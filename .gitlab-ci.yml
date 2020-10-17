@@ -3,6 +3,7 @@ pages:
   stage: deploy
   script:
     - npm ci
+    - npm install
     - npm run build
     - mv dist public # rename the dist folder (result of npm run build)
     # optionally, you can activate gzip support with the following line:
