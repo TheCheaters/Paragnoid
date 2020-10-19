@@ -23,7 +23,7 @@ export default class HelloWorldScene extends Phaser.Scene
         const particles = this.add.particles('red')
 
         const emitter = particles.createEmitter({
-            speed: 100,
+            speed: 10,
             scale: { start: 1, end: 0 },
             blendMode: 'ADD'
         })
