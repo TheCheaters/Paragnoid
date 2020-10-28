@@ -1,19 +1,21 @@
 import { Physics, Scene } from 'phaser';
 
 export default class SceneOne extends Scene {
-
+  player;
+  cursor;
   constructor() {
     super('scene-one')
   }
   preload() {
-    this.load.atlas ('spacecraft', "assets/spacecraft.png", "assets/spacecraft.json");
-    
+    // this.load.atlas ('spacecraft', "assets/spacecraft.png", "assets/spacecraft.json");
+    this.load.image ('spacecraft', "assets/spacecraft.png");
+
   }
   create() {
-    this.add.image(400, 300, "spacecraft");
+    // this.add.image(400, 300, "spacecraft");
 
     this.player = this.physics.add.sprite (100, 450, "spacecraft");
-    this.player.setCollideWorldBounds (true); 
+    // this.player.setCollideWorldBounds (true);
 
     this.anims.create ({
       key: "accelerate",
@@ -57,15 +59,9 @@ export default class SceneOne extends Scene {
         this.player.anims.play ("goup", true);
       }
 
-      else (this.cursor.down.isDown) {
-        this.player.setVelocityY (-160);
-        this.player.anims.play ("godown", true);
-      }
-
-    
-      
-
-
-    }
+      // else (this.cursor.down.isDown) {
+      //   this.player.setVelocityY (-160);
+      //   this.player.anims.play ("godown", true);
+      // }
   }
 }
