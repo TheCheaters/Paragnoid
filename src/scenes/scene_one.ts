@@ -1,4 +1,7 @@
-import { Physics, Scene } from 'phaser';
+import {
+  Physics,
+  Scene
+} from 'phaser';
 
 export default class SceneOne extends Scene {
   player;
@@ -26,18 +29,24 @@ export default class SceneOne extends Scene {
       frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
       frameRate: 20
     })
-    this.anims.create ({
+    this.anims.create({
       key: "goup",
-      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNumbers("spacecraft", {
+        start: 0,
+        end: 7
+      }),
       frameRate: 20
     });
-    this.anims.create ({
+    this.anims.create({
       key: "godown",
-      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNumbers("spacecraft", {
+        start: 0,
+        end: 7
+      }),
       frameRate: 20
     });
 
-  this.cursor = this.input.keyboard.createCursorKeys();
+    this.cursor = this.input.keyboard.createCursorKeys();
 
   }
 
