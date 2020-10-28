@@ -6,10 +6,11 @@ export default class SceneOne extends Scene {
     super('scene-one')
   }
   preload() {
-    this.load.image('sky', 'assets/sky.png');
+    this.load.atlas ('spacecraft', "assets/spacecraft.png", "assets/spacecraft.json");
+    
   }
   create() {
-    this.add.image(400, 300, 'sky');
+    this.add.image(400, 300, "spacecraft");
 
   }
 
