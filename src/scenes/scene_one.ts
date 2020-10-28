@@ -12,30 +12,60 @@ export default class SceneOne extends Scene {
   create() {
     this.add.image(400, 300, "spacecraft");
 
+    this.player = this.physics.add.sprite (100, 450, "spacecraft");
+    this.player.setCollideWorldBounds (true); 
+
     this.anims.create ({
       key: "accelerate",
-      frames: [{ key: "spacecraft", frame: 4}],
+      frames: this.anims.generateFrameNumbers ("spacecraft", {start: 0, end: 7}),
       frameRate: 20
     });
 
     this.anims.create ({
       key: "decelerate",
-      frames: [{ key: "spacecraft", frame: 4}],
+      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
       frameRate: 20
     })
     this.anims.create ({
       key: "goup",
-      frames: [{ key: "spacecraft", frame: 4}],
+      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
       frameRate: 20
     });
     this.anims.create ({
       key: "godown",
-      frames: [{ key: "spacecraft", frame: 4}],
+      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
       frameRate: 20
     });
+
+  this.cursor = this.input.keyboard.createCursorKeys();
 
   }
 
   update() {
+    if (this.cursor.left.isDown) {
+      this.player.SetVelocityX (-160);
+      this.player.anims.play ("goleft", true);
+      }
+
+      else if (this.cursor.right.isDown) {
+        this.player.SetVelocityX (160);
+        this.player.anims.play ("goright", true);
+      }
+
+      else if (this.cursor.up.isDown) {
+        this.player.setVelocityY (160);
+        this.player.anims.play ("goup", true);
+      }
+
+      else (this.cursor.down.isDown) {
+        this.player.setVelocityY (-160);
+        this.player.anims.play ("godown", true);
+      }
+
+    
+      
+
+
+    }
   }
 }
