@@ -7,24 +7,22 @@ export default class SceneOne extends Scene {
     super('scene-one')
   }
   preload() {
-    // this.load.atlas ('spacecraft', "assets/spacecraft.png", "assets/spacecraft.json");
-    this.load.image ('spacecraft', "assets/spacecraft.png");
+    this.load.spritesheet ('spacecraft', "assets/spacecraft.png", {frameWidth: 50, frameHeight: 50});
 
   }
   create() {
-    // this.add.image(400, 300, "spacecraft");
 
     this.player = this.physics.add.sprite (100, 450, "spacecraft");
-    // this.player.setCollideWorldBounds (true);
+    this.player.setCollideWorldBounds (true);
 
     this.anims.create ({
-      key: "accelerate",
+      key: "goright",
       frames: this.anims.generateFrameNumbers ("spacecraft", {start: 0, end: 7}),
       frameRate: 20
     });
 
     this.anims.create ({
-      key: "decelerate",
+      key: "goleft",
       frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
       frameRate: 20
     })
@@ -45,23 +43,23 @@ export default class SceneOne extends Scene {
 
   update() {
     if (this.cursor.left.isDown) {
-      this.player.SetVelocityX (-160);
+      this.player.setVelocityX (-160);
       this.player.anims.play ("goleft", true);
       }
 
       else if (this.cursor.right.isDown) {
-        this.player.SetVelocityX (160);
+        this.player.setVelocityX (160);
         this.player.anims.play ("goright", true);
       }
 
       else if (this.cursor.up.isDown) {
-        this.player.setVelocityY (160);
+        this.player.setVelocityY (-160);
         this.player.anims.play ("goup", true);
       }
 
-      // else (this.cursor.down.isDown) {
-      //   this.player.setVelocityY (-160);
-      //   this.player.anims.play ("godown", true);
-      // }
-  }
+      else {
+        this.player.setVelocityY (160);
+        this.player.anims.play ("godown", true);
+      }
+   }
 }
