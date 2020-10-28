@@ -12,6 +12,28 @@ export default class SceneOne extends Scene {
   create() {
     this.add.image(400, 300, "spacecraft");
 
+    this.anims.create ({
+      key: "accelerate",
+      frames: [{ key: "spacecraft", frame: 4}],
+      frameRate: 20
+    });
+
+    this.anims.create ({
+      key: "decelerate",
+      frames: [{ key: "spacecraft", frame: 4}],
+      frameRate: 20
+    })
+    this.anims.create ({
+      key: "goup",
+      frames: [{ key: "spacecraft", frame: 4}],
+      frameRate: 20
+    });
+    this.anims.create ({
+      key: "godown",
+      frames: [{ key: "spacecraft", frame: 4}],
+      frameRate: 20
+    });
+
   }
 
   update() {
