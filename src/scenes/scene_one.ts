@@ -72,9 +72,7 @@ export default class SceneOne extends Scene {
   update() {
 
     if (this.player && this.cursor) {
-
-      this.player.setVelocityY(-5);
-
+      this.player.setVelocity(0);
       if (this.cursor.left?.isDown) {
         this.player.setVelocityX(-300);
         this.player.anims.play(DIRECTIONS.GO_LEFT, true);
@@ -90,7 +88,6 @@ export default class SceneOne extends Scene {
         this.player.setVelocityY(300);
         this.player.anims.play(DIRECTIONS.GO_UP, true);
       }
-
     }
   }
 }
