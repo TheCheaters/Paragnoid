@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
-import SceneOne from './scenes/scene_one';
+import SpacecraftScene from '~/scenes/spacecraft-scene';
+import Space from '~/scenes/space-background';
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -12,7 +13,7 @@ const config: Phaser.Types.Core.GameConfig = {
 		debug: true
 		}
 },
-	scene: [SceneOne]
+	scene: [Space, SpacecraftScene]
 };
 
 new Phaser.Game(config);

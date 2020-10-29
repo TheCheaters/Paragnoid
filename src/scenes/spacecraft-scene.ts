@@ -1,15 +1,11 @@
-import {
-  LEFT,
-  Physics,
-  Scene
-} from 'phaser';
+import { Physics, Scene } from 'phaser';
 
 const SPACECRAFT             = 'spacecraft';
 const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
 const SPACECRAFT_ACC_X_DELTA = 3;
-const SPACECRAFT_DEC_X_DELTA = 1;
+const SPACECRAFT_DEC_X_DELTA = 2;
 const SPACECRAFT_ACC_Y_DELTA = 3;
-const SPACECRAFT_DEC_Y_DELTA = 1;
+const SPACECRAFT_DEC_Y_DELTA = 2;
 
 enum DIRECTIONS {
   GO_RIGHT = 'GO_RIGHT',
@@ -25,15 +21,18 @@ enum KEYS {
   LEFT  = 'LEFT',
 }
 
-export default class SceneOne extends Scene {
+export default class SpacecraftScene extends Scene {
   private player?: Physics.Arcade.Sprite;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
-  private VelocityX = 0;
-  private VelocityY = 0;
+  public VelocityX = 0;
+  public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   constructor() {
-    super('scene-one');
+    super({
+      key: 'spacecraft-scene',
+      active: true,
+    });
   }
   preload() {
     this.load.spritesheet(SPACECRAFT, SPACECRAFT_ASSET_PATH, {
