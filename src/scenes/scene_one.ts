@@ -69,9 +69,13 @@ export default class SceneOne extends Scene {
         this.player.anims.play ("goup", true);
       }
 
-      //else {
-        //this.player.setVelocityY (160);
-        //this.player.anims.play ("godown", true);
+      else if (this.cursor.down.isDown) {
+        this.player.setVelocityY(160);
+        this.player.anims.play ("godown", true);
+      }
+
+      else {
+        this.player.setVelocityY (-5);
       }
    }
 }
