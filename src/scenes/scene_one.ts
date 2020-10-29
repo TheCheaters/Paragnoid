@@ -3,43 +3,62 @@ import {
   Scene
 } from 'phaser';
 
+const SPACECRAFT = 'spacecraft';
+const SPACECRAFT_ASSET_PATH = 'assets/spacecraft.png';
+
+enum DIRECTIONS {
+  GO_RIGHT = 'GO_RIGHT',
+  GO_LEFT = 'GO_LEFT',
+  GO_UP = 'GO_UP',
+  GO_DOWN = 'GO_DOWN',
+}
+
 export default class SceneOne extends Scene {
-  player;
-  cursor;
+  private player ? : Physics.Arcade.Sprite;
+  private cursor ? : Phaser.Types.Input.Keyboard.CursorKeys;
   constructor() {
     super('scene-one')
   }
   preload() {
-    this.load.spritesheet ('spacecraft', "assets/spacecraft.png", {frameWidth: 50, frameHeight: 50});
+    this.load.spritesheet(SPACECRAFT, SPACECRAFT_ASSET_PATH, {
+      frameWidth: 50,
+      frameHeight: 50
+    });
 
   }
   create() {
 
-    this.player = this.physics.add.sprite (100, 450, "spacecraft");
-    this.player.setCollideWorldBounds (true);
+    this.player = this.physics.add.sprite(100, 450, SPACECRAFT);
+    this.player.setCollideWorldBounds(true);
 
-    this.anims.create ({
-      key: "goright",
-      frames: this.anims.generateFrameNumbers ("spacecraft", {start: 0, end: 7}),
+    this.anims.create({
+      key: DIRECTIONS.GO_RIGHT,
+      frames: this.anims.generateFrameNumbers(SPACECRAFT, {
+        start: 0,
+        end: 7
+      }),
       frameRate: 20
     });
 
-    this.anims.create ({
-      key: "goleft",
-      frames: this.anims.generateFrameNumbers("spacecraft", { start: 0, end: 7 }),
+    this.anims.create({
+      key: DIRECTIONS.GO_LEFT,
+      frames: this.anims.generateFrameNumbers(SPACECRAFT, {
+        start: 0,
+        end: 7
+      }),
       frameRate: 20
     })
     this.anims.create({
-      key: "goup",
-      frames: this.anims.generateFrameNumbers("spacecraft", {
+      key: DIRECTIONS.GO_UP,
+      frames: this.anims.generateFrameNumbers(SPACECRAFT, {
         start: 0,
         end: 7
       }),
       frameRate: 20
     });
     this.anims.create({
-      key: "godown",
-      frames: this.anims.generateFrameNumbers("spacecraft", {
+      key: DIRECTIONS.GO_DOWN,
+      frames: this.anims.generateFrameNumbers(SPACECRAFT, {
         start: 0,
         end: 7
       }),
@@ -52,30 +71,26 @@ export default class SceneOne extends Scene {
 
   update() {
 
-    this.player.setVelocity(0);
+    if (this.player && this.cursor) {
 
-    if (this.cursor.left.isDown) {
-      this.player.setVelocityX (-160);
-      this.player.anims.play ("goleft", true);
+      this.player.setVelocityY(-5);
+
+      if (this.cursor.left?.isDown) {
+        this.player.setVelocityX(-300);
+        this.player.anims.play(DIRECTIONS.GO_LEFT, true);
+      } else if (this.cursor.right?.isDown) {
+        this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
+        this.player.setVelocityX(300);
       }
 
-      else if (this.cursor.right.isDown) {
-        this.player.setVelocityX (160);
-        this.player.anims.play ("goright", true);
+      if (this.cursor.up?.isDown) {
+        this.player.setVelocityY(-300);
+        this.player.anims.play(DIRECTIONS.GO_DOWN, true);
+      } else if (this.cursor.down?.isDown) {
+        this.player.setVelocityY(300);
+        this.player.anims.play(DIRECTIONS.GO_UP, true);
       }
 
-      else if (this.cursor.up.isDown) {
-        this.player.setVelocityY (-160);
-        this.player.anims.play ("goup", true);
-      }
-
-      else if (this.cursor.down.isDown) {
-        this.player.setVelocityY(160);
-        this.player.anims.play ("godown", true);
-      }
-
-      else {
-        this.player.setVelocityY (-5);
-      }
-   }
+    }
+  }
 }
