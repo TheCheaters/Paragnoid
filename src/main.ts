@@ -1,6 +1,7 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
-import HelloWorldScene from './scenes/HelloWorldScene'
+import SpacecraftScene from '~/scenes/spacecraft-scene';
+import Space from '~/scenes/space-background';
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -9,10 +10,10 @@ const config: Phaser.Types.Core.GameConfig = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: { y: 200 }
+		debug: true
 		}
-	},
-	scene: [HelloWorldScene]
-}
+},
+	scene: [Space, SpacecraftScene]
+};
 
-export default new Phaser.Game(config)
+new Phaser.Game(config);
