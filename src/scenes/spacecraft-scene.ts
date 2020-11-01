@@ -48,11 +48,10 @@ export default class SpacecraftScene extends Scene {
       frameHeight: 50
     });
 		this.load.image(LASER, LASER_ASSET_PATH);
-    this.laserGroup = new LaserGroup(this);
 
   }
   create() {
-
+    this.laserGroup = new LaserGroup(this);
     this.player = this.physics.add.sprite(100, 450, SPACECRAFT).setScale(2, 2);
     this.player.setCollideWorldBounds(true);
 
