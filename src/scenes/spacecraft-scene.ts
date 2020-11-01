@@ -53,7 +53,7 @@ export default class SpacecraftScene extends Scene {
   }
   create() {
 
-    this.player = this.physics.add.sprite(100, 450, SPACECRAFT);
+    this.player = this.physics.add.sprite(100, 450, SPACECRAFT).setScale(2, 2);
     this.player.setCollideWorldBounds(true);
 
     this.anims.create({
