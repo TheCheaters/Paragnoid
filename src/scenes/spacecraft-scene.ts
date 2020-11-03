@@ -1,5 +1,6 @@
 import { Physics, Scene } from 'phaser';
 import LaserGroup from '~/scenes/laser';
+import Enemies from '~/scenes/enemies';
 
 const SPACECRAFT             = 'spacecraft';
 const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -11,6 +12,8 @@ const SPACECRAFT_DEC_Y_DELTA = 5;
 const LASER                  = 'laser';
 const LASER_ASSET_PATH       = 'assets/laser.png';
 
+const ENEMY                  = 'enemy';
+const ENEMY_ASSET_PATH       = 'assets/laser.png';
 
 enum DIRECTIONS {
   GO_RIGHT = 'GO_RIGHT',
@@ -28,6 +31,7 @@ enum KEYS {
 
 export default class SpacecraftScene extends Scene {
   private player?: Physics.Arcade.Sprite;
+  private enemies?: Enemies;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private space!: Phaser.Input.Keyboard.Key;
   public VelocityX = 0;
@@ -48,10 +52,12 @@ export default class SpacecraftScene extends Scene {
       frameHeight: 50
     });
 		this.load.image(LASER, LASER_ASSET_PATH);
+		this.load.image(ENEMY, ENEMY_ASSET_PATH);
 
   }
   create() {
     this.laserGroup = new LaserGroup(this);
+    this.enemies = new Enemies(this);
     this.player = this.physics.add.sprite(100, 450, SPACECRAFT).setScale(2, 2);
     this.player.setCollideWorldBounds(true);
 
@@ -94,13 +100,22 @@ export default class SpacecraftScene extends Scene {
     // Laser
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
+    // Enemy
+    this.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+
   }
 
 	fireBullet() {
     if (this.player && this.laserGroup) {
       this.laserGroup.fireBullet(this.player.x, this.player.y);
     }
-	}
+  }
+
+  makeEnemy() {
+    const y = Phaser.Math.Between(0, 600);
+    const x = 900;
+    if (this.enemies) this.enemies.makeEnemy(x, y);
+  }
 
   update() {
 
@@ -158,6 +173,7 @@ export default class SpacecraftScene extends Scene {
       if (Phaser.Input.Keyboard.JustDown(this.space)) {
         this.fireBullet();
       }
+
     }
   }
 }
