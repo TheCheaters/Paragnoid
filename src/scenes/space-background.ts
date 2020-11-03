@@ -17,7 +17,7 @@ export default class SpaceBackground extends Scene {
     this.load.image(SPACE, SPACE_ASSET_PATH);
   }
   create() {
-    this.bg = this.add.tileSprite(0, 0, 800, 600, SPACE).setOrigin(0);
+    this.bg = this.add.tileSprite(0, 0, 1600, 1200, SPACE).setOrigin(0);
     this.spaceCraftScene = this.scene.get('spacecraft-scene') as SpacecraftScene;
   }
   update() {
