@@ -14,15 +14,15 @@ const LASER_ASSET_PATH   = 'assets/laser.png';
 const AUDIO_MISSILE      = 'audiomissile';
 const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 
-const ENEMY                  = 'enemy';
-const ENEMY_ASSET_PATH       = 'assets/laser.png';
+const ENEMY            = 'enemy';
+const ENEMY_ASSET_PATH = 'assets/laser.png';
 
 enum DIRECTIONS {
   GO_RIGHT = 'GO_RIGHT',
   GO_LEFT  = 'GO_LEFT',
   GO_UP    = 'GO_UP',
   GO_DOWN  = 'GO_DOWN',
-  STOP = 'STOP',
+  STOP     = 'STOP',
 }
 
 enum KEYS {
