@@ -17,6 +17,7 @@ enum DIRECTIONS {
   GO_LEFT  = 'GO_LEFT',
   GO_UP    = 'GO_UP',
   GO_DOWN  = 'GO_DOWN',
+  STOP = 'STOP',
 }
 
 enum KEYS {
@@ -88,6 +89,14 @@ export default class SpacecraftScene extends Scene {
       }),
       frameRate: 20
     });
+    this.anims.create({
+      key: DIRECTIONS.STOP,
+      frames: this.anims.generateFrameNumbers(SPACECRAFT, {
+        start: 0,
+        end: 7
+      }),
+      frameRate: 20
+    });
 
     this.cursor = this.input.keyboard.createCursorKeys();
 
@@ -120,7 +129,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
-      }
+      } else {this.player.anims.play(DIRECTIONS.STOP, true); }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
       if (up) {
@@ -131,7 +140,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
-      }
+      } else {this.player.anims.play(DIRECTIONS.STOP, true); }
 
       // DECELERAZIONE ORIZONTALE
       if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
