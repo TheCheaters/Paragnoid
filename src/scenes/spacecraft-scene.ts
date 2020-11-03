@@ -8,9 +8,9 @@ const SPACECRAFT_DEC_X_DELTA = 5;
 const SPACECRAFT_ACC_Y_DELTA = 10;
 const SPACECRAFT_DEC_Y_DELTA = 5;
 
-const LASER                  = 'laser';
-const LASER_ASSET_PATH       = 'assets/laser.png';
-const AUDIO_MISSILE = 'audiomissile';
+const LASER              = 'laser';
+const LASER_ASSET_PATH   = 'assets/laser.png';
+const AUDIO_MISSILE      = 'audiomissile';
 const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 
 
@@ -39,7 +39,6 @@ export default class SpacecraftScene extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private laserGroup?: LaserGroup;
   private missile_audio;
-  
 
   constructor() {
     super({
@@ -53,7 +52,7 @@ export default class SpacecraftScene extends Scene {
       frameHeight: 50
     });
     this.load.image(LASER, LASER_ASSET_PATH);
-    this.load.audio('audiomissile', AUDIO_MISSILE_PATH);
+    this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
 
   }
   create() {
@@ -108,7 +107,7 @@ export default class SpacecraftScene extends Scene {
     // Laser
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     //Missile_audio
-    this.missile_audio = this.sound.add('audiomissile', {loop: false}); //Da verificare se AUDIO_MISSILE_PATH è corretto in questo caso
+    this.missile_audio = this.sound.add(AUDIO_MISSILE, {loop: false}); //Da verificare se AUDIO_MISSILE_PATH è corretto in questo caso
 
 
   }
@@ -139,7 +138,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
         //this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
-      } 
+      }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
       if (up) {
@@ -150,7 +149,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
         //this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
-      } 
+      }
 
       // DECELERAZIONE ORIZONTALE
       if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
