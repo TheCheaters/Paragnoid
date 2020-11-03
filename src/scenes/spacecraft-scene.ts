@@ -38,6 +38,8 @@ export default class SpacecraftScene extends Scene {
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private laserGroup?: LaserGroup;
+  private missile_audio;
+  
 
   constructor() {
     super({
@@ -51,7 +53,7 @@ export default class SpacecraftScene extends Scene {
       frameHeight: 50
     });
     this.load.image(LASER, LASER_ASSET_PATH);
-    this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
+    this.load.audio('audiomissile', AUDIO_MISSILE_PATH);
 
   }
   create() {
@@ -106,6 +108,7 @@ export default class SpacecraftScene extends Scene {
     // Laser
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     //Missile_audio
+    this.missile_audio = this.sound.add('audiomissile', {loop: false}); //Da verificare se AUDIO_MISSILE_PATH è corretto in questo caso
 
 
   }
@@ -113,6 +116,7 @@ export default class SpacecraftScene extends Scene {
 	fireBullet() {
     if (this.player && this.laserGroup) {
       this.laserGroup.fireBullet(this.player.x, this.player.y);
+      this.missile_audio.play();
     }
 	}
 
