@@ -16,6 +16,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
+    this.anims.play('enemy', true);
 
 		if (this.x < -100) {
 			this.setActive(false);
