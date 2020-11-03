@@ -146,7 +146,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
         //this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
-      } //else {this.player.anims.play(DIRECTIONS.STOP, true); }
+      } 
 
       // DECELERAZIONE ORIZONTALE
       if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
