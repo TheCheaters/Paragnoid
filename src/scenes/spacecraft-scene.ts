@@ -15,7 +15,7 @@ const AUDIO_MISSILE      = 'audiomissile';
 const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 
 const ENEMY            = 'enemy';
-const ENEMY_ASSET_PATH = 'assets/laser.png';
+const ENEMY_ASSET_PATH = 'assets/enemy.png';
 
 enum DIRECTIONS {
   GO_RIGHT = 'GO_RIGHT',
@@ -57,7 +57,10 @@ export default class SpacecraftScene extends Scene {
     });
     this.load.image(LASER, LASER_ASSET_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
-		this.load.image(ENEMY, ENEMY_ASSET_PATH);
+    this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
+      frameWidth: 50,
+      frameHeight: 50
+    });
 
   }
   create() {
@@ -118,6 +121,15 @@ export default class SpacecraftScene extends Scene {
 
     // Enemy
     this.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+
+    this.anims.create ({
+      key: ENEMY,
+      frames: this.anims.generateFrameNumbers (ENEMY, {
+        start: 0, 
+        end: 1
+      }),
+      frameRate: 10
+    });
 
   }
 
