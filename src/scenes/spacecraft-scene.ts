@@ -10,6 +10,8 @@ const SPACECRAFT_DEC_Y_DELTA = 5;
 
 const LASER                  = 'laser';
 const LASER_ASSET_PATH       = 'assets/laser.png';
+const AUDIO_MISSILE = 'audiomissile';
+const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 
 
 enum DIRECTIONS {
@@ -48,7 +50,8 @@ export default class SpacecraftScene extends Scene {
       frameWidth: 50,
       frameHeight: 50
     });
-		this.load.image(LASER, LASER_ASSET_PATH);
+    this.load.image(LASER, LASER_ASSET_PATH);
+    this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
 
   }
   create() {
@@ -102,6 +105,8 @@ export default class SpacecraftScene extends Scene {
 
     // Laser
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+    //Missile_audio
+    
 
   }
 
