@@ -1,5 +1,6 @@
 import { Physics, Scene } from 'phaser';
 import LaserGroup from '~/scenes/laser';
+import Enemies from '~/scenes/enemies';
 
 const SPACECRAFT             = 'spacecraft';
 const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -13,6 +14,8 @@ const LASER_ASSET_PATH   = 'assets/laser.png';
 const AUDIO_MISSILE      = 'audiomissile';
 const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 
+const ENEMY                  = 'enemy';
+const ENEMY_ASSET_PATH       = 'assets/laser.png';
 
 enum DIRECTIONS {
   GO_RIGHT = 'GO_RIGHT',
@@ -31,6 +34,7 @@ enum KEYS {
 
 export default class SpacecraftScene extends Scene {
   private player?: Physics.Arcade.Sprite;
+  private enemies?: Enemies;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private space!: Phaser.Input.Keyboard.Key;
   public VelocityX = 0;
@@ -53,10 +57,12 @@ export default class SpacecraftScene extends Scene {
     });
     this.load.image(LASER, LASER_ASSET_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
+		this.load.image(ENEMY, ENEMY_ASSET_PATH);
 
   }
   create() {
     this.laserGroup = new LaserGroup(this);
+    this.enemies = new Enemies(this);
     this.player = this.physics.add.sprite(100, 450, SPACECRAFT).setScale(2, 2);
     this.player.setCollideWorldBounds(true);
 
@@ -110,6 +116,9 @@ export default class SpacecraftScene extends Scene {
     this.missile_audio = this.sound.add(AUDIO_MISSILE, {loop: false}); //Da verificare se AUDIO_MISSILE_PATH è corretto in questo caso
 
 
+    // Enemy
+    this.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+
   }
 
 	fireBullet() {
@@ -117,7 +126,13 @@ export default class SpacecraftScene extends Scene {
       this.laserGroup.fireBullet(this.player.x, this.player.y);
       this.missile_audio.play();
     }
-	}
+  }
+
+  makeEnemy() {
+    const y = Phaser.Math.Between(0, 600);
+    const x = 900;
+    if (this.enemies) this.enemies.makeEnemy(x, y);
+  }
 
   update() {
 
@@ -176,6 +191,7 @@ export default class SpacecraftScene extends Scene {
       if (Phaser.Input.Keyboard.JustDown(this.space)) {
         this.fireBullet();
       }
+
     }
   }
 }
