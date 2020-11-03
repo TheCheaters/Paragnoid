@@ -126,7 +126,7 @@ export default class SpacecraftScene extends Scene {
       const left = this.cursor.left?.isDown;
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
-      //this.player.anims.play(DIRECTIONS.STOP, true);
+      this.player.anims.play(DIRECTIONS.STOP, true);
       if (left) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_LEFT, true);
@@ -135,7 +135,7 @@ export default class SpacecraftScene extends Scene {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
-      }  }
+      } 
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
       if (up) {
