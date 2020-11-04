@@ -128,7 +128,7 @@ export default class SpacecraftScene extends Scene {
         start: 0, 
         end: 1
       }),
-      frameRate: 10
+      frameRate: 2
     });
 
   }
