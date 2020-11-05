@@ -54,10 +54,17 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
 
+    this.physics.add.collider(this.player, this.enemies, this.handlerCollisions.bind(this));
+
+
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
+  }
+
+  handlerCollisions() {
+    this.physics.pause();
   }
 
   update() {
