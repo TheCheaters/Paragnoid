@@ -1,12 +1,12 @@
 import Phaser from 'phaser';
 
-import SpacecraftScene from '~/scenes/spacecraft-scene';
-import Space from '~/scenes/space-background';
+import Game from '~/scenes/game';
+import Background from '~/scenes/background';
 
 const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 	type: Phaser.AUTO,
-	width: 1600,
-	height: 1200,
+	width: 800,
+	height: 600,
 	pixelArt: true,
 	physics: {
 		default: 'arcade',
@@ -14,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 			debug: false
 		}
 },
-	scene: [Space, SpacecraftScene]
+	scene: [Background, Game]
 };
 
 new Phaser.Game(config);

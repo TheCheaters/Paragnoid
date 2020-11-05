@@ -26,20 +26,34 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 }
 
-export default class LaserGroup extends Phaser.Physics.Arcade.Group {
-  constructor(scene: Scene) {
+export default class Enemies extends Phaser.Physics.Arcade.Group {
+  constructor(scene: Scene, texture: string) {
     super(scene.physics.world, scene);
 
     this.createMultiple({
       frameQuantity: 30,
-      key: 'enemy',
+      key: texture,
       active: false,
       visible: false,
       classType: Enemy
     });
+
+    scene.anims.create ({
+      key: texture,
+      frames: scene.anims.generateFrameNumbers (texture, {
+        start: 0,
+        end: 1
+      }),
+      frameRate: 2
+    });
+
+    scene.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+
   }
 
-  makeEnemy(x: number, y: number) {
+  makeEnemy() {
+    const y = Phaser.Math.Between(0, 600);
+    const x = 900;
     const laser = this.getFirstDead(false);
 
     if (laser) {
