@@ -40,7 +40,11 @@ export default class Game extends Scene {
   preload() {
     this.load.spritesheet(SPACECRAFT, SPACECRAFT_ASSET_PATH, {
       frameWidth: 50,
+<<<<<<< HEAD
       frameHeight: 17
+=======
+      frameHeight: 22
+>>>>>>> astronavina-ruota
     });
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
@@ -77,26 +81,27 @@ export default class Game extends Scene {
       const left = this.cursor.left?.isDown;
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
-      this.player.anims.play(DIRECTIONS.STOP, true);
       if (left) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
-        //this.player.anims.play(DIRECTIONS.GO_LEFT, true);
         this.lastHorizontalKeyPressed = KEYS.LEFT;
       } else if (right) {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
-        //this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
       }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
       if (up) {
         this.VelocityY -= SPACECRAFT_ACC_Y_DELTA;
-        //this.player.anims.play(DIRECTIONS.GO_UP, true);
+        this.player.anims.play(DIRECTIONS.GO_UP, true);
         this.lastVerticalKeyPressed = KEYS.UP;
       } else if (down) {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
-        //this.player.anims.play(DIRECTIONS.GO_DOWN, true);
+        this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
+      }
+
+      if (!up && !down) {
+        this.player.anims.play(DIRECTIONS.STOP, true);
       }
 
       // DECELERAZIONE ORIZONTALE
