@@ -64,7 +64,7 @@ export default class Game extends Scene {
   }
 
   handlerCollisions() {
-    this.physics.pause();
+    // this.physics.pause();
   }
 
   update() {
