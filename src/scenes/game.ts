@@ -40,11 +40,7 @@ export default class Game extends Scene {
   preload() {
     this.load.spritesheet(SPACECRAFT, SPACECRAFT_ASSET_PATH, {
       frameWidth: 50,
-<<<<<<< HEAD
-      frameHeight: 17
-=======
       frameHeight: 22
->>>>>>> astronavina-ruota
     });
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
