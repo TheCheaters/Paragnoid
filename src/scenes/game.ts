@@ -91,9 +91,9 @@ export default class Game extends Scene {
         this.lastVerticalKeyPressed = KEYS.DOWN;
       }
 
-      // if (!up && !right && !down && !left) {
-      //   this.player.anims.play(DIRECTIONS.STOP, true);
-      // }
+      if (!up && !right && !down && !left) {
+        this.player.anims.play(DIRECTIONS.STOP, true);
+      }
 
       // DECELERAZIONE ORIZONTALE
       if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
