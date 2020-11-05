@@ -18,7 +18,7 @@ export default class Background extends Scene {
   }
   create() {
     this.bg = this.add.tileSprite(0, 0, 1600, 1200, SPACE).setOrigin(0);
-    this.gameInstance = this.scene.get('gameInstance') as Game;
+    this.gameInstance = this.scene.get('game') as Game;
   }
   update() {
     if (this.bg && this.gameInstance) {

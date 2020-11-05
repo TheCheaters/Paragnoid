@@ -1,4 +1,4 @@
-import { Scene } from 'phaser';
+import { GameObjects, Physics, Scene } from 'phaser';
 import MissileGroup from '~/scenes/missile';
 import Enemies from '~/scenes/enemies';
 import Player from '~/scenes/player';
@@ -54,7 +54,12 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
 
-    this.physics.add.collider(this.player, this.enemies, this.handlerCollisions.bind(this));
+    // this.missileGroup.children.each((c) => {
+    //   const child = c as Phaser.Physics.Arcade.Sprite;
+    // });
+
+    this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
+    // this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
 
 
     // assegna comandi
@@ -63,8 +68,13 @@ export default class Game extends Scene {
 
   }
 
-  handlerCollisions() {
+  handlerPlayerEnemyCollisions() {
     // this.physics.pause();
+  }
+
+  handlerMissileEnemyCollisions() {
+    // this.physics.pause();
+    // console.log('here');
   }
 
   update() {
