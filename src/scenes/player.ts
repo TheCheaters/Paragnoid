@@ -25,8 +25,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.anims.create({
       key: DIRECTIONS.GO_LEFT,
       frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 0,
-        end: 6
+        start: 28,
+        end: 35
       }),
       frameRate: 20
     })
@@ -52,8 +52,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.anims.create({
       key: DIRECTIONS.STOP,
       frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 0,
-        end: 6
+        start: 21,
+        end: 27
       }),
       frameRate: 20
     });
