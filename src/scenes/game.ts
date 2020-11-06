@@ -72,9 +72,11 @@ export default class Game extends Scene {
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
       if (left) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
+        this.player.anims.play(DIRECTIONS.GO_LEFT, true);
         this.lastHorizontalKeyPressed = KEYS.LEFT;
       } else if (right) {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
+        this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
       }
 
@@ -89,7 +91,7 @@ export default class Game extends Scene {
         this.lastVerticalKeyPressed = KEYS.DOWN;
       }
 
-      if (!up && !down) {
+      if (!up && !down && !left && !right) {
         this.player.anims.play(DIRECTIONS.STOP, true);
       }
 
