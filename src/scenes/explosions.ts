@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import { EXPLOSION } from './game';
 
 class Explosion extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
@@ -14,6 +15,17 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
 export default class Explosions extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, texture: string) {
     super(scene.physics.world, scene);
+
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+
+    scene.anims.create ({
+      frames: scene.anims.generateFrameNumbers(EXPLOSION, {
+        start: 0,
+        end: 9
+      }),
+      frameRate: 20
+    });
 
     this.createMultiple({
       frameQuantity: 30,
