@@ -3,10 +3,23 @@ import { EXPLOSION } from './game';
 
 class Explosion extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, 100, 100, 'explosion');
+    super(scene, 100, 100, EXPLOSION);
+    this.play(EXPLOSION, true);
   }
 
-	preUpdate(time: number, delta: number) {
+  explode (x: number, y: number) {
+    this.body.reset(x, y);
+    this.play(EXPLOSION, true);
+
+
+    this.setActive(true);
+    this.setVisible(true);
+
+
+  }
+
+  preUpdate(time: number, delta: number) {
+    this.play(EXPLOSION, true);
 
 	}
 
@@ -16,10 +29,9 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, texture: string) {
     super(scene.physics.world, scene);
 
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
 
     scene.anims.create ({
+      key: EXPLOSION,
       frames: scene.anims.generateFrameNumbers(EXPLOSION, {
         start: 0,
         end: 9
@@ -37,4 +49,15 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
     });
 
   }
+
+  addExplosion(x: number, y: number){
+    const explosion = this.getFirstDead(false);
+
+    if (explosion) {
+      explosion.explode(x, y);
+    }
+  }
+
+
+
 }

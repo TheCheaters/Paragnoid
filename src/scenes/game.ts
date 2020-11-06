@@ -2,8 +2,9 @@ import { Scene } from 'phaser';
 import MissileGroup from '~/scenes/missile';
 import Enemies from '~/scenes/enemies';
 import Player from '~/scenes/player';
+import Explosions from '~/scenes/explosions';
+
 import { KEYS, DIRECTIONS } from '~/globals';
-import Explosions from './explosions';
 
 export const SPACECRAFT             = 'spacecraft';
 export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -20,7 +21,7 @@ export const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 export const ENEMY            = 'enemy';
 export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 
-export const EXPLOSION = 'explosion'
+export const EXPLOSION            = 'explosion'
 export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
 export default class Game extends Scene {
@@ -64,12 +65,10 @@ export default class Game extends Scene {
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
 
-    // this.missileGroup.children.each((c) => {
-    //   const child = c as Phaser.Physics.Arcade.Sprite;
-    // });
-
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
+
+
 
 
     // assegna comandi
@@ -82,9 +81,10 @@ export default class Game extends Scene {
     // this.physics.pause();
   }
 
-  handlerMissileEnemyCollisions() {
-    // this.physics.pause();
-    console.log('here');
+  handlerMissileEnemyCollisions(...args) {
+    const enemy = args[1] as Phaser.Physics.Arcade.Sprite;
+    const {x, y} = enemy;
+    this.explosions?.addExplosion(x, y);
   }
 
   update() {
