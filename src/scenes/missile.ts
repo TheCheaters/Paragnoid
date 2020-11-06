@@ -7,7 +7,7 @@ class Missile extends Phaser.Physics.Arcade.Sprite {
   }
 
   fire(x: number, y: number) {
-    this.body.reset(x, y);
+    this.body.reset(x + 2, y + 20);
 
     this.setActive(true);
     this.setVisible(true);
