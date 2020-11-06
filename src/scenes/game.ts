@@ -45,8 +45,8 @@ export default class Game extends Scene {
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
     this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
-      frameWidth: 45,
-      frameHeight: 35
+      frameWidth: 34,
+      frameHeight: 28
     });
   }
   create() {
