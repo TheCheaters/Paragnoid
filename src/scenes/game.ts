@@ -3,6 +3,7 @@ import MissileGroup from '~/scenes/missile';
 import Enemies from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import { KEYS, DIRECTIONS } from '~/globals';
+import Explosions from './explosions';
 
 export const SPACECRAFT             = 'spacecraft';
 export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -60,6 +61,7 @@ export default class Game extends Scene {
     this.player = new Player(this, 100, 450, SPACECRAFT);
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
+    //this.explosion = new Explosion(this, EXPLOSION);
 
     // this.missileGroup.children.each((c) => {
     //   const child = c as Phaser.Physics.Arcade.Sprite;
