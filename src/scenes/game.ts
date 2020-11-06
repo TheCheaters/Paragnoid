@@ -19,6 +19,9 @@ export const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 export const ENEMY            = 'enemy';
 export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 
+export const EXPLOSION = 'explosion'
+export const EXPLOSION_ASSET_PATH = 'assets/EXPLOSION.png'
+
 export default class Game extends Scene {
   private player?: Player;
   private enemies?: Enemies;
@@ -47,6 +50,10 @@ export default class Game extends Scene {
     this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
       frameWidth: 34,
       frameHeight: 28
+    });
+    this.load.spritesheet(EXPLOSION, EXPLOSION_ASSET_PATH, {
+      frameWidth: 60,
+      frameHeight: 60
     });
   }
   create() {
