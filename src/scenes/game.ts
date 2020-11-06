@@ -1,4 +1,4 @@
-import { GameObjects, Physics, Scene } from 'phaser';
+import { Scene } from 'phaser';
 import MissileGroup from '~/scenes/missile';
 import Enemies from '~/scenes/enemies';
 import Player from '~/scenes/player';
@@ -59,7 +59,7 @@ export default class Game extends Scene {
     // });
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
-    // this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
+    this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
 
 
     // assegna comandi
@@ -74,7 +74,7 @@ export default class Game extends Scene {
 
   handlerMissileEnemyCollisions() {
     // this.physics.pause();
-    // console.log('here');
+    console.log('here');
   }
 
   update() {
