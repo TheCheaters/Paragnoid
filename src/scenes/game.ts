@@ -61,10 +61,27 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
 
+    // this.missileGroup.children.each((c) => {
+    //   const child = c as Phaser.Physics.Arcade.Sprite;
+    // });
+
+    this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
+    this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
+
+
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
+  }
+
+  handlerPlayerEnemyCollisions() {
+    // this.physics.pause();
+  }
+
+  handlerMissileEnemyCollisions() {
+    // this.physics.pause();
+    console.log('here');
   }
 
   update() {

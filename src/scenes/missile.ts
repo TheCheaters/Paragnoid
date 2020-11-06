@@ -3,7 +3,7 @@ import { AUDIO_MISSILE } from '~/scenes/game';
 
 class Missile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, x, y, 'missile');
+    super(scene, 100, 100, 'missile');
   }
 
   fire(x: number, y: number) {
@@ -36,6 +36,7 @@ export default class MissileGroup extends Phaser.Physics.Arcade.Group {
 
     this.createMultiple({
       frameQuantity: 30,
+      setXY: { x: 1000, y: 2000 },
       key: texture,
       active: false,
       visible: false,

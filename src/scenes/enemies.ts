@@ -2,7 +2,7 @@ import { Scene } from "phaser";
 
 class Enemy extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, x, y, 'enemy');
+    super(scene, 1000, 1000, 'enemy');
   }
 
   make(x: number, y: number) {
@@ -33,6 +33,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     this.createMultiple({
       frameQuantity: 30,
       key: texture,
+      setXY: { x: 500, y: 1000 },
       active: false,
       visible: false,
       classType: Enemy
