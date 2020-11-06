@@ -21,12 +21,13 @@ export const ENEMY            = 'enemy';
 export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 
 export const EXPLOSION = 'explosion'
-export const EXPLOSION_ASSET_PATH = 'assets/EXPLOSION.png'
+export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
 export default class Game extends Scene {
   private player?: Player;
   private enemies?: Enemies;
   private missileGroup?: MissileGroup;
+  private explosions?: Explosions;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   public VelocityX = 0;
@@ -61,7 +62,7 @@ export default class Game extends Scene {
     this.player = new Player(this, 100, 450, SPACECRAFT);
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
-    //this.explosion = new Explosion(this, EXPLOSION);
+    this.explosions = new Explosions(this, EXPLOSION);
 
     // this.missileGroup.children.each((c) => {
     //   const child = c as Phaser.Physics.Arcade.Sprite;
