@@ -84,8 +84,16 @@ export default class Game extends Scene {
 
   }
 
-  handlerPlayerEnemyCollisions() {
+  handlerPlayerEnemyCollisions(...args) {
     // this.physics.pause();
+    const enemy = args[1] as Enemy;
+    const player = args[0] as Player;
+    const {x, y} = enemy;
+    const {x:a,y:b} = player;
+    this.explosions?.addExplosion(x, y);
+    this.explosions?.addExplosion(a, b);
+    enemy.kill();
+    player.kill();
     this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER);
     this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
