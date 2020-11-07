@@ -39,7 +39,8 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
         start: 0,
         end: 9
       }),
-      frameRate: 20
+      frameRate: 20,
+      repeat: 1,
     });
 
     this.createMultiple({
