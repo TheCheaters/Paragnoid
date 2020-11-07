@@ -35,6 +35,8 @@ export default class Game extends Scene {
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
+  private score = 0;
+  private scoreText!: Phaser.GameObjects.Text;
 
   constructor() {
     super({
@@ -65,6 +67,8 @@ export default class Game extends Scene {
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
 
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
 
@@ -82,9 +86,14 @@ export default class Game extends Scene {
     const enemy = args[1] as Enemy;
     const missile = args[0] as Missile;
     const {x, y} = enemy;
-    this.explosions?.addExplosion(x, y);
-    enemy.kill();
+    enemy.energy = enemy.energy - missile.energy;
     missile.kill();
+    if (enemy.energy <= 0) {
+      this.score += enemy.score;
+      this.scoreText.setText(`Score: ${this.score}`);
+      this.explosions?.addExplosion(x, y);
+      enemy.kill();
+    }
   }
 
   update() {

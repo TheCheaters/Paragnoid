@@ -2,6 +2,7 @@ import { Scene } from "phaser";
 import { AUDIO_MISSILE } from '~/scenes/game';
 
 export class Missile extends Phaser.Physics.Arcade.Sprite {
+  energy = 90;
   constructor(scene: Scene, x: number, y: number) {
     super(scene, 100, 100, 'missile');
   }

@@ -1,11 +1,17 @@
 import { Scene } from "phaser";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
+  public energy: number;
+  public score: number;
   constructor(scene: Scene, x: number, y: number) {
     super(scene, 1000, 1000, 'enemy');
+    this.energy = 100;
+    this.score = 10;
   }
-
+  
   make(x: number, y: number) {
+    this.energy = 100;
+    this.body.immovable = true;
     this.body.enable = true;
     this.body.reset(x, y);
 
