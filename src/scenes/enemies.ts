@@ -1,17 +1,25 @@
 import { Scene } from "phaser";
 
-class Enemy extends Phaser.Physics.Arcade.Sprite {
+export class Enemy extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
     super(scene, 1000, 1000, 'enemy');
   }
 
   make(x: number, y: number) {
+    this.body.enable = true;
     this.body.reset(x, y);
 
     this.setActive(true);
     this.setVisible(true);
 
     this.setVelocityX(-350);
+  }
+
+  kill() {
+    this.body.enable = false;
+    this.setActive(false);
+    this.setVisible(false);
+    this.setVelocity(0);
   }
 
 	preUpdate(time: number, delta: number) {
@@ -48,7 +56,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameRate: 2
     });
 
-    scene.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: 200, callback: this.makeEnemy, callbackScope: this, loop: true });
 
   }
 
