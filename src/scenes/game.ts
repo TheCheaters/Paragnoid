@@ -24,6 +24,9 @@ export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 export const EXPLOSION            = 'explosion'
 export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
+export const INFOPANEL_OVER       = 'infopanel_over'
+export const INFOPANEL_OVER_PATH  = 'assets/infopanel.png'
+
 export default class Game extends Scene {
   private player?: Player;
   private enemies?: Enemies;
@@ -31,6 +34,7 @@ export default class Game extends Scene {
   private explosions?: Explosions;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
+  private infoPanel;
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -64,6 +68,7 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
+    
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
@@ -76,6 +81,7 @@ export default class Game extends Scene {
 
   handlerPlayerEnemyCollisions() {
     // this.physics.pause();
+    this.infoPanel = this.add.image(512, 384, INFOPANEL_OVER_PATH);
   }
 
   handlerMissileEnemyCollisions(...args) {
