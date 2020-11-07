@@ -32,7 +32,6 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, texture: string) {
     super(scene.physics.world, scene);
 
-
     scene.anims.create ({
       key: EXPLOSION,
       frames: scene.anims.generateFrameNumbers(EXPLOSION, {
