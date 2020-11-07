@@ -26,6 +26,8 @@ export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
 export const INFOPANEL_OVER       = 'infopanel'
 export const INFOPANEL_OVER_PATH  = 'assets/game-over.png'
+export const AUDIO_OVER           = 'audioover'
+export const AUDIO_OVER_PATH      = 'assets/gameover.mp3'
 
 export default class Game extends Scene {
   private player?: Player;
@@ -57,6 +59,7 @@ export default class Game extends Scene {
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
     this.load.image(INFOPANEL_OVER, INFOPANEL_OVER_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
+    this.load.audio(AUDIO_OVER, AUDIO_OVER_PATH);
     this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
       frameWidth: 34,
       frameHeight: 28
@@ -95,6 +98,7 @@ export default class Game extends Scene {
     enemy.kill();
     player.kill();
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
+    this.sound.add(AUDIO_OVER, {loop: false}).play();
     //this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
 
