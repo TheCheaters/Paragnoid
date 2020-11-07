@@ -8,14 +8,19 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
   }
 
   explode (x: number, y: number) {
+    this.body.enable = true;
     this.body.reset(x, y);
     this.play(EXPLOSION, true);
-
-
     this.setActive(true);
     this.setVisible(true);
+    this.on('animationcomplete', (...args) => this.kill());
 
+  }
 
+  kill() {
+    this.body.enable = false;
+    this.setActive(false);
+    this.setVisible(false);
   }
 
   preUpdate(time: number, delta: number) {
@@ -23,15 +28,12 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
 
     this.play(EXPLOSION, true);
     this.anims.update(time, delta);
-
 	}
-
 }
 
 export default class Explosions extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, texture: string) {
     super(scene.physics.world, scene);
-
 
     scene.anims.create ({
       key: EXPLOSION,
@@ -39,7 +41,7 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
         start: 0,
         end: 9
       }),
-      frameRate: 20
+      frameRate: 20,
     });
 
     this.createMultiple({
@@ -60,7 +62,4 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
       explosion.explode(x, y);
     }
   }
-
-
-
 }

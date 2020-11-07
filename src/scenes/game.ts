@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
-import MissileGroup from '~/scenes/missile';
-import Enemies from '~/scenes/enemies';
+import MissileGroup, { Missile } from '~/scenes/missile';
+import Enemies, { Enemy } from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import Explosions from '~/scenes/explosions';
 
@@ -10,8 +10,8 @@ export const SPACECRAFT             = 'spacecraft';
 export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
 export const SPACECRAFT_ACC_X_DELTA = 10;
 export const SPACECRAFT_DEC_X_DELTA = 5;
-export const SPACECRAFT_ACC_Y_DELTA = 10;
-export const SPACECRAFT_DEC_Y_DELTA = 5;
+export const SPACECRAFT_ACC_Y_DELTA = 15;
+export const SPACECRAFT_DEC_Y_DELTA = 15;
 
 export const MISSILE            = 'missile';
 export const MISSILE_ASSET_PATH = 'assets/missile.png';
@@ -66,10 +66,7 @@ export default class Game extends Scene {
     this.explosions = new Explosions(this, EXPLOSION);
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
-    this.physics.add.collider(this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
-
-
-
+    this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
 
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
@@ -82,9 +79,12 @@ export default class Game extends Scene {
   }
 
   handlerMissileEnemyCollisions(...args) {
-    const enemy = args[1] as Phaser.Physics.Arcade.Sprite;
+    const enemy = args[1] as Enemy;
+    const missile = args[0] as Missile;
     const {x, y} = enemy;
     this.explosions?.addExplosion(x, y);
+    enemy.kill();
+    missile.kill();
   }
 
   update() {
