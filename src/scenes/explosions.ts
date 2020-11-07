@@ -19,7 +19,10 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
   }
 
   preUpdate(time: number, delta: number) {
+    super.preUpdate(time, delta);
+
     this.play(EXPLOSION, true);
+    this.anims.update(time, delta);
 
 	}
 
