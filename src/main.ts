@@ -1,7 +1,12 @@
 import Phaser from 'phaser';
-
 import Game from '~/scenes/game';
 import Background from '~/scenes/background';
+
+declare const process: {
+  env: {
+    NODE_ENV: string
+  }
+}
 
 const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 	type: Phaser.AUTO,
@@ -11,7 +16,7 @@ const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			debug: true
+			debug: process.env.NODE_ENV === 'development'
 		}
 },
 	scene: [Background, Game]
