@@ -24,6 +24,9 @@ export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 export const EXPLOSION            = 'explosion'
 export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
+export const INFOPANEL_OVER       = 'infopanel'
+export const INFOPANEL_OVER_PATH  = 'assets/infopanel.png'
+
 export default class Game extends Scene {
   private player?: Player;
   private enemies?: Enemies;
@@ -31,6 +34,7 @@ export default class Game extends Scene {
   private explosions?: Explosions;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
+  private infoPanel;
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -51,6 +55,7 @@ export default class Game extends Scene {
       frameHeight: 22
     });
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
+    this.load.image(INFOPANEL_OVER, INFOPANEL_OVER_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
     this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
       frameWidth: 34,
@@ -66,6 +71,7 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
+    
 
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
 
@@ -80,6 +86,8 @@ export default class Game extends Scene {
 
   handlerPlayerEnemyCollisions() {
     // this.physics.pause();
+    this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER);
+    this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
 
   handlerMissileEnemyCollisions(...args) {
