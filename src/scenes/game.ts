@@ -73,7 +73,7 @@ export default class Game extends Scene {
     this.explosions = new Explosions(this, EXPLOSION);
     
 
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+    this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#FFF' });
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));

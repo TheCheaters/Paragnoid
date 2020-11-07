@@ -3,7 +3,7 @@ import { EXPLOSION } from './game';
 
 class Explosion extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, 100, 100, EXPLOSION);
+    super(scene, x, y, EXPLOSION);
     this.play(EXPLOSION, true);
   }
 

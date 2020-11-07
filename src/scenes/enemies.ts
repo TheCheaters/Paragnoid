@@ -4,7 +4,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy: number;
   public score: number;
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, 1000, 1000, 'enemy');
+    super(scene, x, y, 'enemy');
     this.energy = 100;
     this.score = 10;
   }
