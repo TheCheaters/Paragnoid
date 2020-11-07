@@ -94,7 +94,7 @@ export default class Game extends Scene {
     this.explosions?.addExplosion(a, b);
     enemy.kill();
     player.kill();
-    this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER);
+    this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     //this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
 
