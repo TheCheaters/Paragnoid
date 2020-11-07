@@ -24,7 +24,7 @@ export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 export const EXPLOSION            = 'explosion'
 export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
 
-export const INFOPANEL_OVER       = 'infopanel_over'
+export const INFOPANEL_OVER       = 'infopanel'
 export const INFOPANEL_OVER_PATH  = 'assets/infopanel.png'
 
 export default class Game extends Scene {
@@ -53,6 +53,7 @@ export default class Game extends Scene {
       frameHeight: 22
     });
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
+    this.load.image(INFOPANEL_OVER, INFOPANEL_OVER_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
     this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
       frameWidth: 34,
@@ -81,7 +82,7 @@ export default class Game extends Scene {
 
   handlerPlayerEnemyCollisions() {
     // this.physics.pause();
-    this.infoPanel = this.add.image(512, 384, INFOPANEL_OVER_PATH);
+    this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER_PATH);
   }
 
   handlerMissileEnemyCollisions(...args) {
