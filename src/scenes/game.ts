@@ -82,7 +82,8 @@ export default class Game extends Scene {
 
   handlerPlayerEnemyCollisions() {
     // this.physics.pause();
-    this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER_PATH);
+    this.infoPanel = this.add.image(400, 384, INFOPANEL_OVER);
+    this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
 
   handlerMissileEnemyCollisions(...args) {
