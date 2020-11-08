@@ -30,7 +30,7 @@ export const AUDIO_OVER           = 'audioover'
 export const AUDIO_OVER_PATH      = 'assets/gameover.mp3'
 
 export default class Game extends Scene {
-  private player?: Player;
+  public player!: Player;
   private enemies?: Enemies;
   private missileGroup?: MissileGroup;
   private explosions?: Explosions;
@@ -74,7 +74,6 @@ export default class Game extends Scene {
     this.missileGroup = new MissileGroup(this, MISSILE);
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
-    
 
     this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#FFF' });
 
