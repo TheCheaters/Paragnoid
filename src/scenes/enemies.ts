@@ -62,7 +62,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameRate: 2
     });
 
-    scene.time.addEvent({ delay: 200, callback: this.makeEnemy, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
 
   }
 
@@ -73,6 +73,15 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
     if (laser) {
       laser.make(x, y);
-    }
+    }   
   }
+}
+
+export class EnemyWeapons extends Phaser.Physics.Arcade.Sprite {
+  constructor (scene: Scene, x:number, y:number, key, frame)
+    {
+        super(scene, x, y, key, frame);
+
+        this.setScale(0.5);
+    }
 }

@@ -38,6 +38,7 @@ export default class Game extends Scene {
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
   private missileActive = 1; 
+  private playerActive = 1;
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -100,6 +101,7 @@ export default class Game extends Scene {
     enemy.kill();
     player.kill();
     this.missileActive = 0; 
+    this.playerActive = 0;
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
     //this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
@@ -129,22 +131,22 @@ export default class Game extends Scene {
       const left = this.cursor.left?.isDown;
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
-      if (left) {
+      if (left && this.playerActive==1) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_LEFT, true);
         this.lastHorizontalKeyPressed = KEYS.LEFT;
-      } else if (right) {
+      } else if (right && this.playerActive==1) {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
       }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
-      if (up) {
+      if (up && this.playerActive==1) {
         this.VelocityY -= SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_UP, true);
         this.lastVerticalKeyPressed = KEYS.UP;
-      } else if (down) {
+      } else if (down && this.playerActive==1) {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
