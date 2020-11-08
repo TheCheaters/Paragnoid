@@ -82,7 +82,7 @@ export class EnemyWeapon1 extends Phaser.Physics.Arcade.Sprite {
   enemyWeapon1Active = 1; 
   constructor (scene: Scene, x:number, y:number)
     {
-        super(scene, x, y, 'pippo');
+        super(scene, x, y, 'enemyweapon1');
 
         this.setScale(0.5);
     }
