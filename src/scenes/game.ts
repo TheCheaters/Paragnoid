@@ -37,6 +37,7 @@ export default class Game extends Scene {
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
+  private missileActive = 1; 
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -91,12 +92,14 @@ export default class Game extends Scene {
     // this.physics.pause();
     const enemy = args[1] as Enemy;
     const player = args[0] as Player;
+    const missile = args[0] as Missile;
     const {x, y} = enemy;
     const {x:a,y:b} = player;
     this.explosions?.addExplosion(x, y);
     this.explosions?.addExplosion(a, b);
     enemy.kill();
     player.kill();
+    this.missileActive = 0; 
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
     //this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
@@ -173,7 +176,7 @@ export default class Game extends Scene {
       this.player.setVelocityX(this.VelocityX);
       this.player.setVelocityY(this.VelocityY);
 
-      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup) {
+      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup && this.missileActive==1) {
         this.missileGroup.fireBullet(this.player.x, this.player.y);
       }
     }
