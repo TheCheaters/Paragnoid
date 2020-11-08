@@ -21,13 +21,17 @@ export const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
 export const ENEMY            = 'enemy';
 export const ENEMY_ASSET_PATH = 'assets/enemy.png';
 
-export const EXPLOSION            = 'explosion'
-export const EXPLOSION_ASSET_PATH = 'assets/explosion.png'
+export const EXPLOSION            = 'explosion';
+export const EXPLOSION_ASSET_PATH = 'assets/explosion.png';
 
-export const INFOPANEL_OVER       = 'infopanel'
-export const INFOPANEL_OVER_PATH  = 'assets/game-over.png'
-export const AUDIO_OVER           = 'audioover'
-export const AUDIO_OVER_PATH      = 'assets/gameover.mp3'
+export const INFOPANEL_OVER       = 'infopanel';
+export const INFOPANEL_OVER_PATH  = 'assets/game-over.png';
+export const AUDIO_OVER           = 'audioover';
+export const AUDIO_OVER_PATH      = 'assets/gameover.mp3';
+
+export const FONT_NAME            = 'portable_vengeance';
+export const FONT_PATH            = 'assets/portable_vengeance.png';
+export const FONT_XML_PATH        = 'assets/portable_vengeance.xml';
 
 export default class Game extends Scene {
   public player!: Player;
@@ -42,7 +46,7 @@ export default class Game extends Scene {
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
-  private scoreText!: Phaser.GameObjects.Text;
+  private scoreText!: Phaser.GameObjects.DynamicBitmapText;
 
   constructor() {
     super({
@@ -68,6 +72,8 @@ export default class Game extends Scene {
       frameWidth: 60,
       frameHeight: 60
     });
+    this.load.bitmapFont(FONT_NAME, FONT_PATH, FONT_XML_PATH);
+
   }
   create() {
     this.player = new Player(this, 100, 450, SPACECRAFT);
@@ -75,7 +81,7 @@ export default class Game extends Scene {
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
 
-    this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#FFF' });
+    this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
@@ -98,7 +104,6 @@ export default class Game extends Scene {
     player.kill();
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
-    //this.infoPanel= this.add.text(300, 384, 'mortaccivostraedestocazzodePhaser');
   }
 
   handlerMissileEnemyCollisions(...args) {
