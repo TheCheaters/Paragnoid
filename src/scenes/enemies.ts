@@ -6,26 +6,46 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public score: number;
   private timer!: Phaser.Time.TimerEvent;
 
+  private greenStyle!: Phaser.GameObjects.Graphics;
+  private greenLine!: Phaser.Geom.Line;
+
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, 'enemy');
     this.energy = 100;
     this.score = 10;
   }
 
+  addLifeLine() {
+    this.greenStyle = this.scene.add.graphics({ lineStyle: { width: 2, color: 0x00ff3d } });
+    this.greenLine = new Phaser.Geom.Line();
+  }
+
+  updateLifeLine() {
+    this.greenStyle.clear();
+    this.greenLine.x1 = this.x;
+    this.greenLine.y1 = this.y - 3;
+    this.greenLine.x2 = this.x + (this.width * this.energy) / 100;
+    this.greenLine.y2 = this.y - 3;
+    this.greenStyle.strokeLineShape(this.greenLine);
+  }
+
   make(x: number, y: number,) {
     this.energy = 100;
     this.body.immovable = true;
     this.body.enable = true;
+    this.setOrigin(0, 0);
     this.body.reset(x, y);
 
     this.setActive(true);
     this.setVisible(true);
 
+    this.addLifeLine();
+
     const { player } = this.scene as Game;
 
     this.scene.physics.moveToObject(this, player, 100);
 
-    this.timer = this.scene.time.addEvent({ delay: 1000, callback: () => {
+    this.timer = this.scene.time.addEvent({ delay: 100000, callback: () => {
       this.fire(this.x, this.y);
     }, callbackScope: this, loop: true });
 
@@ -37,6 +57,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   kill() {
+    this.greenStyle.clear();
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
@@ -47,6 +68,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
     this.anims.play('enemy', true);
+    this.updateLifeLine();
 
 		if (this.x < -100) {
 			this.kill();
