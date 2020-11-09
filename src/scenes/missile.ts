@@ -34,9 +34,8 @@ export class Missile extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
 
-		if (this.x > 800) {
-			this.setActive(false);
-			this.setVisible(false);
+		if (this.x > 800 || this.x < -200) {
+      this.kill();
 		}
 	}
 }
@@ -46,7 +45,7 @@ export default class MissileGroup extends Phaser.Physics.Arcade.Group {
     super(scene.physics.world, scene);
 
     this.createMultiple({
-      frameQuantity: 60,
+      frameQuantity: 100,
       setXY: { x: 1000, y: 2000 },
       key: texture,
       active: false,

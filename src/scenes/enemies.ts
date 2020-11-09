@@ -4,6 +4,7 @@ import Game from './game';
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy: number;
   public score: number;
+  private timer!: Phaser.Time.TimerEvent;
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, 'enemy');
@@ -24,7 +25,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.scene.physics.moveToObject(this, player, 100);
 
-    this.scene.time.addEvent({ delay: 200, callback: () => {
+    this.timer = this.scene.time.addEvent({ delay: 1000, callback: () => {
       this.fire(this.x, this.y);
     }, callbackScope: this, loop: true });
 
@@ -40,6 +41,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
+    this.timer.remove();
   }
 
 	preUpdate(time: number, delta: number) {
@@ -47,8 +49,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.anims.play('enemy', true);
 
 		if (this.x < -100) {
-			this.setActive(false);
-			this.setVisible(false);
+			this.kill();
 		}
 	}
 
@@ -76,7 +77,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameRate: 2
     });
 
-    scene.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: Phaser.Math.Between(2000, 3000), callback: this.makeEnemy, callbackScope: this, loop: true });
 
   }
 
