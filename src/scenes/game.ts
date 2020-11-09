@@ -86,6 +86,7 @@ export default class Game extends Scene {
     this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
+    this.physics.add.collider(this.player, this.missileGroup, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.missileGroup, this.enemies, this.handlerMissileEnemyCollisions.bind(this));
 
     // assegna comandi

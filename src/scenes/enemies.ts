@@ -45,7 +45,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.scene.physics.moveToObject(this, player, 100);
 
-    this.timer = this.scene.time.addEvent({ delay: 100000, callback: () => {
+    this.timer = this.scene.time.addEvent({ delay: 3000, callback: () => {
       this.fire(this.x, this.y);
     }, callbackScope: this, loop: true });
 
