@@ -4,6 +4,7 @@ import Game from './game';
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy: number;
   public score: number;
+  private timer!: Phaser.Time.TimerEvent;
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, 'enemy');
@@ -23,6 +24,16 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const { player } = this.scene as Game;
 
     this.scene.physics.moveToObject(this, player, 100);
+
+    this.timer = this.scene.time.addEvent({ delay: 1000, callback: () => {
+      this.fire(this.x, this.y);
+    }, callbackScope: this, loop: true });
+
+  }
+
+  fire(x: number, y: number) {
+    const { missileGroup } = this.scene as Game;
+    missileGroup.fireBullet(x, y, 'enemy');
   }
 
   kill() {
@@ -30,6 +41,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
+    this.timer.remove();
   }
 
 	preUpdate(time: number, delta: number) {
@@ -37,8 +49,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.anims.play('enemy', true);
 
 		if (this.x < -100) {
-			this.setActive(false);
-			this.setVisible(false);
+			this.kill();
 		}
 	}
 
@@ -66,7 +77,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameRate: 2
     });
 
-    scene.time.addEvent({ delay: 2000, callback: this.makeEnemy, callbackScope: this, loop: true });
+    scene.time.addEvent({ delay: Phaser.Math.Between(2000, 3000), callback: this.makeEnemy, callbackScope: this, loop: true });
 
   }
 
@@ -77,13 +88,13 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
     if (laser) {
       laser.make(x, y);
-    }   
+    }
   }
 }
 
 export class EnemyWeapon1 extends Phaser.Physics.Arcade.Sprite {
   energy = 90;
-  enemyWeapon1Active = 1; 
+  enemyWeapon1Active = 1;
   constructor (scene: Scene, x:number, y:number)
     {
         super(scene, x, y, 'enemyweapon1');
@@ -115,7 +126,7 @@ export class EnemyWeapon1 extends Phaser.Physics.Arcade.Sprite {
         super.preUpdate(time, delta);
         if (this.x >= 800)
         {
-            this.stop();            
+            this.stop();
         }
     }
 }

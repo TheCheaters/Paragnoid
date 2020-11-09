@@ -34,13 +34,13 @@ export const AUDIO_OVER_PATH      = 'assets/gameover.mp3'
 export default class Game extends Scene {
   public player!: Player;
   private enemies?: Enemies;
-  private missileGroup?: MissileGroup;
+  public missileGroup!: MissileGroup;
   private explosions?: Explosions;
   private enemyweapons1Group?: EnemyWeaponsGroup;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
-  private missileActive = 1; 
+  private missileActive = 1;
   private playerActive = 1;
   public VelocityX = 0;
   public VelocityY = 0;
@@ -104,7 +104,7 @@ export default class Game extends Scene {
     this.explosions?.addExplosion(a, b);
     enemy.kill();
     player.kill();
-    this.missileActive = 0; 
+    this.missileActive = 0;
     this.playerActive = 0;
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
@@ -182,8 +182,8 @@ export default class Game extends Scene {
       this.player.setVelocityX(this.VelocityX);
       this.player.setVelocityY(this.VelocityY);
 
-      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup && this.missileActive==1) {
-        this.missileGroup.fireBullet(this.player.x, this.player.y);
+      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup) {
+        this.missileGroup.fireBullet(this.player.x, this.player.y, 'player');
       }
     }
   }
