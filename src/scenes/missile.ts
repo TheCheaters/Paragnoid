@@ -7,14 +7,18 @@ export class Missile extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, 'missile');
   }
 
-  fire(x: number, y: number) {
+  fire(x: number, y: number, type: string) {
     this.body.enable = true;
     this.body.reset(x + 2, y + 20);
 
     this.setActive(true);
     this.setVisible(true);
 
-    this.setVelocityX(1000);
+    if (type === 'player') {
+      this.setVelocityX(1000);
+    } else {
+      this.setVelocityX(-1000);
+    }
 
     // TODO: penso che ci sia un'altra soluzione perché così mangia memoria
     this.scene.sound.add(AUDIO_MISSILE, {loop: false}).play();
@@ -35,7 +39,6 @@ export class Missile extends Phaser.Physics.Arcade.Sprite {
 			this.setVisible(false);
 		}
 	}
-
 }
 
 export default class MissileGroup extends Phaser.Physics.Arcade.Group {
@@ -43,7 +46,7 @@ export default class MissileGroup extends Phaser.Physics.Arcade.Group {
     super(scene.physics.world, scene);
 
     this.createMultiple({
-      frameQuantity: 30,
+      frameQuantity: 60,
       setXY: { x: 1000, y: 2000 },
       key: texture,
       active: false,
@@ -53,11 +56,11 @@ export default class MissileGroup extends Phaser.Physics.Arcade.Group {
 
   }
 
-  fireBullet(x: number, y: number) {
+  fireBullet(x: number, y: number, type: string) {
     const missile = this.getFirstDead(false);
 
     if (missile) {
-      missile.fire(x, y);
+      missile.fire(x, y, type);
     }
   }
 }

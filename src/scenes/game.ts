@@ -32,7 +32,7 @@ export const AUDIO_OVER_PATH      = 'assets/gameover.mp3'
 export default class Game extends Scene {
   public player!: Player;
   private enemies?: Enemies;
-  private missileGroup?: MissileGroup;
+  public missileGroup!: MissileGroup;
   private explosions?: Explosions;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
@@ -173,7 +173,7 @@ export default class Game extends Scene {
       this.player.setVelocityY(this.VelocityY);
 
       if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup) {
-        this.missileGroup.fireBullet(this.player.x, this.player.y);
+        this.missileGroup.fireBullet(this.player.x, this.player.y, 'player');
       }
     }
   }
