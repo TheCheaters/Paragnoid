@@ -41,8 +41,8 @@ export default class Game extends Scene {
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
-  private missileActive = 1;
-  private playerActive = 1;
+  private missileActive = true;
+  private playerActive = true;
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -106,8 +106,8 @@ export default class Game extends Scene {
     this.explosions?.addExplosion(a, b);
     enemy.kill();
     player.kill();
-    this.missileActive = 0;
-    this.playerActive = 0;
+    this.missileActive = false;
+    this.playerActive = false;
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
   }
@@ -136,22 +136,22 @@ export default class Game extends Scene {
       const left = this.cursor.left?.isDown;
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
-      if (left && this.playerActive==1) {
+      if (left && this.playerActive) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_LEFT, true);
         this.lastHorizontalKeyPressed = KEYS.LEFT;
-      } else if (right && this.playerActive==1) {
+      } else if (right && this.playerActive) {
         this.VelocityX += SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
       }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
-      if (up && this.playerActive==1) {
+      if (up && this.playerActive) {
         this.VelocityY -= SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_UP, true);
         this.lastVerticalKeyPressed = KEYS.UP;
-      } else if (down && this.playerActive==1) {
+      } else if (down && this.playerActive) {
         this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
@@ -183,7 +183,7 @@ export default class Game extends Scene {
       this.player.setVelocityX(this.VelocityX);
       this.player.setVelocityY(this.VelocityY);
 
-      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup) {
+      if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.missileGroup && this.playerActive) {
         this.missileGroup.fireBullet(this.player.x, this.player.y, 'player');
       }
     }
