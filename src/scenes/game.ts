@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import MissileGroup, { Missile } from '~/scenes/missile';
-import Enemies, { Enemy, EnemyWeapon1, EnemyWeaponsGroup } from '~/scenes/enemies';
+import Enemies, { Enemy } from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import Explosions from '~/scenes/explosions';
 
@@ -17,8 +17,6 @@ export const MISSILE            = 'missile';
 export const MISSILE_ASSET_PATH = 'assets/missile.png';
 export const AUDIO_MISSILE      = 'audiomissile';
 export const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
-export const ENEMYWEAPON1       = 'enemyweapon1';
-export const ENEMYWEAPON1_PATH  = 'assets/green-orb.png';
 
 export const ENEMY            = 'enemy';
 export const ENEMY_ASSET_PATH = 'assets/enemy.png';
@@ -40,7 +38,6 @@ export default class Game extends Scene {
   private enemies?: Enemies;
   public missileGroup!: MissileGroup;
   private explosions?: Explosions;
-  private enemyweapons1Group?: EnemyWeaponsGroup;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
@@ -66,7 +63,6 @@ export default class Game extends Scene {
       frameHeight: 22
     });
     this.load.image(MISSILE, MISSILE_ASSET_PATH);
-    this.load.image(ENEMYWEAPON1, ENEMYWEAPON1_PATH);
     this.load.image(INFOPANEL_OVER, INFOPANEL_OVER_PATH);
     this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
     this.load.audio(AUDIO_OVER, AUDIO_OVER_PATH);
@@ -84,7 +80,6 @@ export default class Game extends Scene {
   create() {
     this.player = new Player(this, 100, 450, SPACECRAFT);
     this.missileGroup = new MissileGroup(this, MISSILE);
-    this.enemyweapons1Group = new EnemyWeaponsGroup(this, ENEMYWEAPON1)
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
 
