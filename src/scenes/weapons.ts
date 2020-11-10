@@ -20,8 +20,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityX(-1000);
     }
 
-    // TODO: penso che ci sia un'altra soluzione perché così mangia memoria
-    this.scene.sound.add(AUDIO_MISSILE, {loop: false}).play();
+    this.scene.sound.play(AUDIO_MISSILE);
   }
 
   kill() {
