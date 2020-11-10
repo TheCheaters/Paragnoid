@@ -80,6 +80,8 @@ export default class Game extends Scene {
 
   }
   create() {
+    this.sound.add(AUDIO_MISSILE, {loop: false});
+
     this.player = new Player(this, 100, 450, SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
