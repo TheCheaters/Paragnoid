@@ -33,8 +33,8 @@ export const AUDIO_OVER           = 'audioover';
 export const AUDIO_OVER_PATH      = 'assets/gameover.mp3';
 
 export const FONT_NAME            = 'portable_vengeance';
-export const FONT_PATH            = 'assets/portable_vengeance.png';
-export const FONT_XML_PATH        = 'assets/portable_vengeance.xml';
+export const FONT_PATH            = 'assets/fonts/portable_vengeance/portable_vengeance.png';
+export const FONT_XML_PATH        = 'assets/fonts/portable_vengeance/portable_vengeance.xml';
 
 export default class Game extends Scene {
   public player!: Player;
@@ -58,7 +58,7 @@ export default class Game extends Scene {
   constructor() {
     super({
       key: 'game',
-      active: true,
+      active: false,
     });
   }
 

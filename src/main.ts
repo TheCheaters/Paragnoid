@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import Game from '~/scenes/game';
+import Intro from '~/scenes/intro';
 import Background from '~/scenes/background';
+import Game from '~/scenes/game';
 
 declare const process: {
   env: {
@@ -19,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 			debug: process.env.NODE_ENV === 'development'
 		}
 },
-	scene: [Background, Game]
+	scene: [Background, Intro, Game]
 };
 
 new Phaser.Game(config);
