@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapons';
-import MissileGroup from '~/scenes/missileGroup';
+import WeaponGroup from '~/scenes/weaponGroup';
 import Enemies, { Enemy } from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import Explosions from '~/scenes/explosions';
@@ -37,8 +37,8 @@ export const FONT_XML_PATH        = 'assets/portable_vengeance.xml';
 export default class Game extends Scene {
   public player!: Player;
   private enemies?: Enemies;
-  public playerWeaponsGroup!: MissileGroup;
-  public enemyWeaponsGroup!: MissileGroup;
+  public playerWeaponsGroup!: WeaponGroup;
+  public enemyWeaponsGroup!: WeaponGroup;
   private explosions?: Explosions;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
@@ -81,8 +81,8 @@ export default class Game extends Scene {
   }
   create() {
     this.player = new Player(this, 100, 450, SPACECRAFT);
-    this.playerWeaponsGroup = new MissileGroup(this, MISSILE, PlayerWeapon);
-    this.enemyWeaponsGroup = new MissileGroup(this, MISSILE, EnemyWeapon);
+    this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
+    this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
 

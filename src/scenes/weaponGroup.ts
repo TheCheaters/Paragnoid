@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 
-export default class MissileGroup extends Phaser.Physics.Arcade.Group {
+export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, texture: string, classType: Function) {
     super(scene.physics.world, scene);
 
