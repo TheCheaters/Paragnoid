@@ -1,11 +1,13 @@
-import { Scene } from 'phaser';
+import { Scene, Time } from 'phaser';
 import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapons';
 import WeaponGroup from '~/scenes/weaponGroup';
 import Enemies, { Enemy } from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import Explosions from '~/scenes/explosions';
+import timeline from '~/scenes/timeline';
 
 import { KEYS, DIRECTIONS } from '~/globals';
+import Timeline from '~/scenes/timeline';
 
 export const SPACECRAFT             = 'spacecraft';
 export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -36,7 +38,7 @@ export const FONT_XML_PATH        = 'assets/portable_vengeance.xml';
 
 export default class Game extends Scene {
   public player!: Player;
-  private enemies?: Enemies;
+  public enemies?: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
   private explosions?: Explosions;
@@ -51,6 +53,7 @@ export default class Game extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
+  private timeline!: Timeline;
 
   constructor() {
     super({
@@ -85,6 +88,7 @@ export default class Game extends Scene {
     this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, ENEMY);
     this.explosions = new Explosions(this, EXPLOSION);
+    this.timeline = new Timeline(this);
 
     this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
 
@@ -95,6 +99,8 @@ export default class Game extends Scene {
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+
+    this.timeline.start();
 
   }
 
