@@ -123,13 +123,13 @@ export default class Game extends Scene {
   }
 
   handlerMissileEnemyCollisions(...args) {
-    const enemy = args[1] as Enemy;
-    const missile = args[0] as PlayerWeapon;
+    const enemy = args[0] as Enemy;
+    const missile = args[1] as PlayerWeapon;
     const {x, y} = enemy;
     enemy.energy = enemy.energy - missile.energy;
     missile.kill();
     if (enemy.energy <= 0) {
-      this.score += enemy.score;
+      this.score += enemy.getData('score');
       this.scoreText.setText(`Score: ${this.score}`);
       this.explosions?.addExplosion(x, y);
       enemy.kill();
