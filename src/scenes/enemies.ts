@@ -52,8 +52,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   fire(x: number, y: number) {
-    const { missileGroup } = this.scene as Game;
-    missileGroup.fireBullet(x, y, 'enemy');
+    const { enemyWeaponsGroup } = this.scene as Game;
+    enemyWeaponsGroup.fireBullet(x, y, 'enemy');
   }
 
   kill() {
@@ -98,8 +98,6 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       }),
       frameRate: 2
     });
-
-    scene.time.addEvent({ delay: Phaser.Math.Between(2000, 3000), callback: this.makeEnemy, callbackScope: this, loop: true });
 
   }
 

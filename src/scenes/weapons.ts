@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import { AUDIO_MISSILE } from '~/scenes/game';
 
-export class Missile extends Phaser.Physics.Arcade.Sprite {
+export class Weapon extends Phaser.Physics.Arcade.Sprite {
   energy = 90;
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, 'missile');
@@ -20,8 +20,7 @@ export class Missile extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityX(-1000);
     }
 
-    // TODO: penso che ci sia un'altra soluzione perché così mangia memoria
-    this.scene.sound.add(AUDIO_MISSILE, {loop: false}).play();
+    this.scene.sound.play(AUDIO_MISSILE);
   }
 
   kill() {
@@ -40,26 +39,10 @@ export class Missile extends Phaser.Physics.Arcade.Sprite {
 	}
 }
 
-export default class MissileGroup extends Phaser.Physics.Arcade.Group {
-  constructor(scene: Scene, texture: string) {
-    super(scene.physics.world, scene);
+export class PlayerWeapon extends Weapon {
+  energy = 90;
+}
 
-    this.createMultiple({
-      frameQuantity: 100,
-      setXY: { x: 1000, y: 2000 },
-      key: texture,
-      active: false,
-      visible: false,
-      classType: Missile
-    });
-
-  }
-
-  fireBullet(x: number, y: number, type: string) {
-    const missile = this.getFirstDead(false);
-
-    if (missile) {
-      missile.fire(x, y, type);
-    }
-  }
+export class EnemyWeapon extends Weapon {
+  energy = 90;
 }
