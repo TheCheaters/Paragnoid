@@ -99,8 +99,6 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameRate: 2
     });
 
-    scene.time.addEvent({ delay: Phaser.Math.Between(2000, 3000), callback: this.makeEnemy, callbackScope: this, loop: true });
-
   }
 
   makeEnemy() {
