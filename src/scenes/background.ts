@@ -13,7 +13,7 @@ export default class Background extends Scene {
   constructor() {
     super({
       key: 'background',
-      active: true,
+      active: false,
     });
   }
   preload() {
@@ -27,10 +27,14 @@ export default class Background extends Scene {
   }
   update(time, delta) {
 
-    const backgroundVelocity = this.gameInstance.VelocityX > 0 ? this.gameInstance.VelocityX / 100 : 0;
+    let backgroundVelocity = 0;
+
+    if (this.gameInstance) {
+      backgroundVelocity = this.gameInstance.VelocityX > 0 ? this.gameInstance.VelocityX / 100 : 0;
+      this.bg.tilePositionY += this.gameInstance.VelocityY / 500;
+    }
 
     this.bg.tilePositionX += 1 + backgroundVelocity;
-    this.bg.tilePositionY += this.gameInstance.VelocityY / 500;
 
     this.sun.x -= 0.01;
     // this.sun.y += this.gameInstance.VelocityY / 5000;
