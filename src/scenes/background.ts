@@ -1,10 +1,6 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
-
-const SPACE            = 'space';
-const SPACE_ASSET_PATH = 'assets/nebula.jpg';
-const SUN              = 'sun';
-const SUN_ASSET_PATH   = 'assets/sun.png';
+import { SPACE, SPACE_ASSET_PATH, SUN, SUN_ASSET_PATH } from '~/constants.json';
 
 export default class Background extends Scene {
   private bg!: Phaser.GameObjects.TileSprite;

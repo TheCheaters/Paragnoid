@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import Game from './game';
+import { ENEMY } from '~/constants.json';
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
@@ -9,7 +10,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private greenLine!: Phaser.Geom.Line;
 
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, 'enemy');
+    super(scene, x, y, ENEMY);
     this.setData('score', 10);
   }
 
@@ -51,7 +52,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, 'enemy');
+    enemyWeaponsGroup.fireBullet(x, y, ENEMY);
   }
 
   kill() {
@@ -65,7 +66,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
-    this.anims.play('enemy', true);
+    this.anims.play(ENEMY, true);
     this.updateLifeLine();
 
 		if (this.x < -100) {

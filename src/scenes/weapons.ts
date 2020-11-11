@@ -1,10 +1,10 @@
 import { Scene } from "phaser";
-import { AUDIO_MISSILE } from '~/scenes/game';
+import { AUDIO_MISSILE, MISSILE } from '~/constants.json';
 
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
   energy = 90;
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, x, y, 'missile');
+    super(scene, x, y, MISSILE);
   }
 
   fire(x: number, y: number, type: string) {
@@ -27,7 +27,6 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
-    console.log('kill missile');
   }
 
 	preUpdate(time: number, delta: number) {
