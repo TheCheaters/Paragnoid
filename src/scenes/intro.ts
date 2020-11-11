@@ -17,6 +17,7 @@ export default class Intro extends Scene {
   }
   create() {
     this.text = this.add.dynamicBitmapText(400, 300, FONT_NAME, 'Paragnoid', 60 ).setOrigin(0.5);
+    this.text = this.add.dynamicBitmapText(400, 350, FONT_NAME, 'Rabbia edition', 20 ).setOrigin(0.5);
     this.input.once('pointerdown', () => {
 
       this.scene.start('game');

@@ -53,6 +53,8 @@ export default class Game extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
+  public livesPlayer;
+  public extraLifesPlayer = 3;
   private timeline!: Timeline;
 
   constructor() {
@@ -92,8 +94,15 @@ export default class Game extends Scene {
     this.explosions = new Explosions(this, EXPLOSION);
     this.timeline = new Timeline(this);
 
+    
     this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
-
+    /*this.livesPlayer = this.add.group();
+    var firstLifeIconX = 800 - 10 - (this.extraLifesPlayer * 50); //larghezza schermo da rendere parametrica
+    for (var i=0; i<this.extraLifesPlayer; i++){
+      var life = this.livesPlayer.create(firstLifeIconX + (50 * i), 50, 'spacecraft');
+      life.setScale(0.8);
+      life.setOrigin(0.5, 0.5);
+    }*/
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
@@ -101,7 +110,7 @@ export default class Game extends Scene {
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
-
+    
     this.timeline.start();
 
   }
@@ -112,14 +121,38 @@ export default class Game extends Scene {
     const enemyOrEnemyWeapon = args[1] as Enemy | EnemyWeapon;
     const {x, y} = enemyOrEnemyWeapon;
     const {x:a,y:b} = player;
+    const respawnTime = 1000;
     this.explosions?.addExplosion(x, y);
     this.explosions?.addExplosion(a, b);
     enemyOrEnemyWeapon.kill();
-    player.kill();
-    this.missileActive = false;
-    this.playerActive = false;
+    //player.kill();
+    //this.missileActive = false;
+    //this.playerActive = false;
+    if (this.extraLifesPlayer!==0){
+      this.extraLifesPlayer -= 1;
+      
+      this.tweens.addCounter({
+        from: 255,
+        to: 0,
+        duration: respawnTime,
+        ease: Phaser.Math.Easing.Sine.InOut,
+        repeat: 3,
+        yoyo: true,        
+        onUpdate: tween => {
+          const valoreFrame = tween.getValue()
+          this.player.setTint(Phaser.Display.Color.GetColor(valoreFrame, valoreFrame, valoreFrame));
+             },
+        onRepeat: tween => {
+          this.missileActive = false;
+          
+        }     
+      })
+    } else {
     this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
+    this.missileActive === false;
+    this.playerActive = false;   
+  }
   }
 
   handlerMissileEnemyCollisions(...args) {
@@ -195,7 +228,16 @@ export default class Game extends Scene {
 
       if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.playerWeaponsGroup && this.playerActive) {
         this.playerWeaponsGroup.fireBullet(this.player.x, this.player.y, 'player');
+        
       }
-    }
+
+    this.livesPlayer = this.add.group();
+    var firstLifeIconX = 800 - 10 - (this.extraLifesPlayer * 50); //larghezza schermo da rendere parametrica
+    for (var i=0; i<this.extraLifesPlayer; i++){
+      var life = this.livesPlayer.create(firstLifeIconX + (50 * i), 50, 'spacecraft');
+      //this.scoreText = this.add.dynamicBitmapText(600, 300, FONT_NAME, this.extraLifesPlayer.toString(), 60 );
+      life.setScale(0.8);
+      life.setOrigin(0.5, 0.5);
+    } }
   }
 }

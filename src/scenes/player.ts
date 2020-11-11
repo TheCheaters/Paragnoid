@@ -1,14 +1,15 @@
-import { Scene } from "phaser";
+import {Game, Scene} from "phaser";
 import { DIRECTIONS } from '~/globals';
 import { SPACECRAFT } from '~/scenes/game';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene: Scene, x: number, y: number, texture: string) {
+   constructor(scene: Scene, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
+      
 
     scene.anims.create({
       key: DIRECTIONS.GO_RIGHT,
@@ -56,10 +57,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     });
 
   }
+
  kill() {
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
   }
+ 
 }
