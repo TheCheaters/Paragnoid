@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { EXPLOSION } from './game';
+import { EXPLOSION } from '~/constants.json';
 
 class Explosion extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {

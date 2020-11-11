@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { DIRECTIONS } from '~/globals';
-import { SPACECRAFT } from '~/scenes/game';
+import { SPACECRAFT } from '~/constants.json';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number, texture: string) {

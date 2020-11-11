@@ -1,40 +1,13 @@
-import { Scene, Time } from 'phaser';
+import * as C from '~/constants.json';
+import { Scene } from 'phaser';
 import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapons';
 import WeaponGroup from '~/scenes/weaponGroup';
 import Enemies, { Enemy } from '~/scenes/enemies';
 import Player from '~/scenes/player';
 import Explosions from '~/scenes/explosions';
-import timeline from '~/scenes/timeline';
 
 import { KEYS, DIRECTIONS } from '~/globals';
 import Timeline from '~/scenes/timeline';
-
-export const SPACECRAFT             = 'spacecraft';
-export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
-export const SPACECRAFT_ACC_X_DELTA = 10;
-export const SPACECRAFT_DEC_X_DELTA = 5;
-export const SPACECRAFT_ACC_Y_DELTA = 15;
-export const SPACECRAFT_DEC_Y_DELTA = 15;
-
-export const MISSILE            = 'missile';
-export const MISSILE_ASSET_PATH = 'assets/missile.png';
-export const AUDIO_MISSILE      = 'audiomissile';
-export const AUDIO_MISSILE_PATH = 'assets/missile.mp3';
-
-export const ENEMY            = 'enemy';
-export const ENEMY_ASSET_PATH = 'assets/enemy.png';
-
-export const EXPLOSION            = 'explosion';
-export const EXPLOSION_ASSET_PATH = 'assets/explosion.png';
-
-export const INFOPANEL_OVER       = 'infopanel';
-export const INFOPANEL_OVER_PATH  = 'assets/game-over.png';
-export const AUDIO_OVER           = 'audioover';
-export const AUDIO_OVER_PATH      = 'assets/gameover.mp3';
-
-export const FONT_NAME            = 'portable_vengeance';
-export const FONT_PATH            = 'assets/fonts/portable_vengeance/portable_vengeance.png';
-export const FONT_XML_PATH        = 'assets/fonts/portable_vengeance/portable_vengeance.xml';
 
 export default class Game extends Scene {
   public player!: Player;
@@ -63,36 +36,36 @@ export default class Game extends Scene {
   }
 
   preload() {
-    this.load.spritesheet(SPACECRAFT, SPACECRAFT_ASSET_PATH, {
+    this.load.spritesheet(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH, {
       frameWidth: 50,
       frameHeight: 22
     });
-    this.load.image(MISSILE, MISSILE_ASSET_PATH);
-    this.load.image(INFOPANEL_OVER, INFOPANEL_OVER_PATH);
-    this.load.audio(AUDIO_MISSILE, AUDIO_MISSILE_PATH);
-    this.load.audio(AUDIO_OVER, AUDIO_OVER_PATH);
-    this.load.spritesheet(ENEMY, ENEMY_ASSET_PATH, {
+    this.load.image(C.MISSILE, C.MISSILE_ASSET_PATH);
+    this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
+    this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
+    this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
+    this.load.spritesheet(C.ENEMY, C.ENEMY_ASSET_PATH, {
       frameWidth: 34,
       frameHeight: 28
     });
-    this.load.spritesheet(EXPLOSION, EXPLOSION_ASSET_PATH, {
+    this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
       frameWidth: 60,
       frameHeight: 60
     });
-    this.load.bitmapFont(FONT_NAME, FONT_PATH, FONT_XML_PATH);
+    this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
 
   }
   create() {
-    this.sound.add(AUDIO_MISSILE, {loop: false});
+    this.sound.add(C.AUDIO_MISSILE, {loop: false});
 
-    this.player = new Player(this, 100, 450, SPACECRAFT);
-    this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
-    this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
-    this.enemies = new Enemies(this, ENEMY);
-    this.explosions = new Explosions(this, EXPLOSION);
+    this.player = new Player(this, 100, 450, C.SPACECRAFT);
+    this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
+    this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
+    this.enemies = new Enemies(this, C.ENEMY);
+    this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 
-    this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
+    this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
 
     this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
@@ -118,8 +91,8 @@ export default class Game extends Scene {
     player.kill();
     this.missileActive = false;
     this.playerActive = false;
-    this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
-    this.sound.add(AUDIO_OVER, {loop: false}).play();
+    this.infoPanel = this.add.image(400, 300, C.INFOPANEL_OVER);
+    this.sound.add(C.AUDIO_OVER, {loop: false}).play();
   }
 
   handlerMissileEnemyCollisions(...args) {
@@ -147,22 +120,22 @@ export default class Game extends Scene {
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
       if (left && this.playerActive) {
-        this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
+        this.VelocityX -= C.SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_LEFT, true);
         this.lastHorizontalKeyPressed = KEYS.LEFT;
       } else if (right && this.playerActive) {
-        this.VelocityX += SPACECRAFT_ACC_X_DELTA;
+        this.VelocityX += C.SPACECRAFT_ACC_X_DELTA;
         this.player.anims.play(DIRECTIONS.GO_RIGHT, true);
         this.lastHorizontalKeyPressed = KEYS.RIGHT;
       }
 
       // ACCELERAZIONE E ANIMAZIONE VERTICALE
       if (up && this.playerActive) {
-        this.VelocityY -= SPACECRAFT_ACC_Y_DELTA;
+        this.VelocityY -= C.SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_UP, true);
         this.lastVerticalKeyPressed = KEYS.UP;
       } else if (down && this.playerActive) {
-        this.VelocityY += SPACECRAFT_ACC_Y_DELTA;
+        this.VelocityY += C.SPACECRAFT_ACC_Y_DELTA;
         this.player.anims.play(DIRECTIONS.GO_DOWN, true);
         this.lastVerticalKeyPressed = KEYS.DOWN;
       }
@@ -173,20 +146,20 @@ export default class Game extends Scene {
 
       // DECELERAZIONE ORIZONTALE
       if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
-        this.VelocityX -= SPACECRAFT_DEC_X_DELTA;
+        this.VelocityX -= C.SPACECRAFT_DEC_X_DELTA;
       }
 
       if (this.lastHorizontalKeyPressed === KEYS.LEFT && this.VelocityX < 0 && !left) {
-        this.VelocityX += SPACECRAFT_DEC_X_DELTA;
+        this.VelocityX += C.SPACECRAFT_DEC_X_DELTA;
       }
 
       // DECELERAZIONE VERTICALE
       if (this.lastVerticalKeyPressed === KEYS.DOWN && this.VelocityY > 0 && !down) {
-        this.VelocityY -= SPACECRAFT_DEC_Y_DELTA;
+        this.VelocityY -= C.SPACECRAFT_DEC_Y_DELTA;
       }
 
       if (this.lastVerticalKeyPressed === KEYS.UP && this.VelocityY < 0 && !up) {
-        this.VelocityY += SPACECRAFT_DEC_Y_DELTA;
+        this.VelocityY += C.SPACECRAFT_DEC_Y_DELTA;
       }
 
       // SPOSTAMENTO SPRITE
