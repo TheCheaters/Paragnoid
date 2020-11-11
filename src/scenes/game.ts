@@ -148,7 +148,8 @@ export default class Game extends Scene {
         }     
       })
     } else {
-    this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
+    player.kill();
+      this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
     this.missileActive === false;
     this.playerActive = false;   
