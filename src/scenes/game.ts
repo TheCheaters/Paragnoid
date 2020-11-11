@@ -49,6 +49,9 @@ export default class Game extends Scene {
   private playerActive = true;
   public VelocityX = 0;
   public VelocityY = 0;
+  public colliderPlayerEnemy;
+  public colliderPlayerWeapons;
+  public colliderEnemyWeapons;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
@@ -103,9 +106,9 @@ export default class Game extends Scene {
       life.setScale(0.8);
       life.setOrigin(0.5, 0.5);
     }*/
-    this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
-    this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
-    this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
+    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
+    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
 
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
@@ -144,15 +147,19 @@ export default class Game extends Scene {
              },
         onStart: tween => {
           this.missileActive = false;
-          this.physics.world.colliders.destroy();        
+          this.colliderPlayerEnemy.active = false;
+          this.colliderPlayerWeapons.active = false; 
+          this.colliderEnemyWeapons.active = false;       
         },
         onComplete: tween => {
           this.missileActive = true;
-          this.physics.world.colliders.getActive();
+          this.colliderPlayerEnemy.active = true;
+          this.colliderPlayerWeapons.active = true; 
+          this.colliderEnemyWeapons.active = true; 
         }     
       })
     } else {
-    player.kill();
+    player.kill(); 
       this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
     this.missileActive === false;
