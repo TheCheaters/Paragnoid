@@ -99,13 +99,6 @@ export default class Game extends Scene {
 
     
     this.scoreText = this.add.dynamicBitmapText(16, 16, FONT_NAME, 'Score: 0', 14 );
-    /*this.livesPlayer = this.add.group();
-    var firstLifeIconX = 800 - 10 - (this.extraLifesPlayer * 50); //larghezza schermo da rendere parametrica
-    for (var i=0; i<this.extraLifesPlayer; i++){
-      var life = this.livesPlayer.create(firstLifeIconX + (50 * i), 50, 'spacecraft');
-      life.setScale(0.8);
-      life.setOrigin(0.5, 0.5);
-    }*/
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
     this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
