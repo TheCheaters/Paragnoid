@@ -15,11 +15,11 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
 
   }
 
-  fireBullet(x: number, y: number, type: string) {
-    const missile = this.getFirstDead(false);
+  fireBullet(x: number, y: number, type: string, fireSpeed: number) {
+    const weapon = this.getFirstDead(false);
 
-    if (missile) {
-      missile.fire(x, y, type);
+    if (weapon) {
+      weapon.fire(x, y, type, fireSpeed);
     }
   }
 }

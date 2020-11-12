@@ -1,9 +1,16 @@
 import { Scene } from "phaser";
 import Game from './game';
-import { ENEMY } from '~/constants.json';
+import { ENEMY, ENEMY_BEHAVIOR } from '~/constants.json';
+
+
+type Make = {
+  enemyTexture?: string;
+  enemyBehavior: keyof typeof ENEMY_BEHAVIOR;
+}
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
+  public maxEnergy!: number;
   private timer!: Phaser.Time.TimerEvent;
 
   private greenStyle!: Phaser.GameObjects.Graphics;
@@ -14,7 +21,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setData('score', 10);
   }
 
-  addLifeLine() {
+  setLifeLine() {
     this.greenStyle = this.scene.add.graphics({ lineStyle: { width: 2, color: 0x00ff3d } });
     this.greenLine = new Phaser.Geom.Line();
   }
@@ -23,36 +30,42 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.clear();
     this.greenLine.x1 = this.x;
     this.greenLine.y1 = this.y - 3;
-    this.greenLine.x2 = this.x + (this.width * this.energy) / 100;
+    this.greenLine.x2 = this.x + (this.width * this.energy) / this.maxEnergy;
     this.greenLine.y2 = this.y - 3;
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make(x: number, y: number,) {
-    this.energy = 100;
-    this.body.immovable = true;
-    this.body.enable = true;
+  make({ enemyTexture, enemyBehavior }: Make) {
+
+    const { ENERGY, SPEED, FIRERATE, FIRESPEED } = ENEMY_BEHAVIOR[enemyBehavior];
+
+    // POSITION
+    const y = Phaser.Math.Between(0, 600);
+    const x = 900;
     this.setOrigin(0, 0);
     this.body.reset(x, y);
+    const { player } = this.scene as Game;
+    this.scene.physics.moveToObject(this, player, SPEED);
 
+    // BEHAVIOR
+    this.maxEnergy = ENERGY;
+    this.energy = ENERGY;
+
+    this.body.immovable = true;
+    this.body.enable = true;
     this.setActive(true);
     this.setVisible(true);
+    this.setLifeLine();
 
-    this.addLifeLine();
-
-    const { player } = this.scene as Game;
-
-    this.scene.physics.moveToObject(this, player, 100);
-
-    this.timer = this.scene.time.addEvent({ delay: 3000, callback: () => {
-      this.fire(this.x, this.y);
+    this.timer = this.scene.time.addEvent({ delay: FIRERATE, callback: () => {
+      this.fire(this.x, this.y, FIRESPEED);
     }, callbackScope: this, loop: true });
 
   }
 
-  fire(x: number, y: number) {
+  fire(x: number, y: number, fireSpeed: number) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, ENEMY);
+    enemyWeaponsGroup.fireBullet(x, y, ENEMY, fireSpeed);
   }
 
   kill() {
@@ -100,13 +113,11 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
   }
 
-  makeEnemy() {
-    const y = Phaser.Math.Between(0, 600);
-    const x = 900;
+  makeEnemy({ enemyTexture, enemyBehavior }: Make) {
     const laser = this.getFirstDead(false);
 
     if (laser) {
-      laser.make(x, y);
+      laser.make({ enemyTexture, enemyBehavior });
     }
   }
 }
