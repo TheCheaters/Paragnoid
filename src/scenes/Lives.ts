@@ -11,10 +11,10 @@ export default class Lives extends Phaser.Physics.Arcade.Group {
     
         this.livesPlayer = scene.add.group();
         this.livesPlayer.createMultiple({
-            frameQuantity: 3,
+            frameQuantity: this.extraLifesPlayer,
             key: SPACECRAFT,
-            frame: 0,   
-            repeat: 1,         
+            frame: 35,   
+            repeat: 0,         
           }); 
 
            

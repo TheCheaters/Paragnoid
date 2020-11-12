@@ -59,6 +59,7 @@ export default class Game extends Scene {
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
   //public livesPlayer;
   public lives!: Lives;
+
   //public extraLifesPlayer = 3;
   private timeline!: Timeline;
 
@@ -94,7 +95,10 @@ export default class Game extends Scene {
 
     this.player = new Player(this, 100, 450, SPACECRAFT);
     this.lives = new Lives (this, SPACECRAFT);
-    var life = Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), 50, 100, 50);
+    Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), this.lives.firstLifeIconX, 25, 50);
+    Phaser.Actions.SetScale(this.lives.livesPlayer.getChildren(), 0.8, 0.8);
+    Phaser.Actions.SetOrigin(this.lives.livesPlayer.getChildren(), 0.5, 0.5);
+   
     this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, ENEMY);
@@ -130,6 +134,9 @@ export default class Game extends Scene {
     //this.playerActive = false;
     if (this.lives.extraLifesPlayer!==0){
       this.lives.extraLifesPlayer -= 1;
+      //this.lives.livesPlayer.destroy();
+      var firstLifeIconX = 800 - 10 - (3 * 50);
+      Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), firstLifeIconX, 25, 50);
       
       this.tweens.addCounter({
         from: 255,
@@ -146,13 +153,13 @@ export default class Game extends Scene {
           this.missileActive = false;
           this.colliderPlayerEnemy.active = false;
           this.colliderPlayerWeapons.active = false; 
-          this.colliderEnemyWeapons.active = false;       
+          this.colliderEnemyWeapons.active = false;            
         },
         onComplete: tween => {
           this.missileActive = true;
           this.colliderPlayerEnemy.active = true;
           this.colliderPlayerWeapons.active = true; 
-          this.colliderEnemyWeapons.active = true; 
+          this.colliderEnemyWeapons.active = true;
         }     
       })
     } else {
@@ -186,7 +193,7 @@ export default class Game extends Scene {
       const right = this.cursor.right?.isDown;
       const down = this.cursor.down?.isDown;
       const left = this.cursor.left?.isDown;
-
+      
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
       if (left && this.playerActive) {
         this.VelocityX -= SPACECRAFT_ACC_X_DELTA;
