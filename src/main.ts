@@ -19,8 +19,8 @@ const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 		arcade: {
 			debug: process.env.NODE_ENV === 'development'
 		}
-},
-	scene: [Background, Intro, Game]
+	},
+	scene: [Background, Intro, Game],
 };
 
 new Phaser.Game(config);
