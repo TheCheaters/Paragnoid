@@ -8,6 +8,7 @@ import timeline from '~/scenes/timeline';
 
 import { KEYS, DIRECTIONS } from '~/globals';
 import Timeline from '~/scenes/timeline';
+import Lives from './Lives';
 
 export const SPACECRAFT             = 'spacecraft';
 export const SPACECRAFT_ASSET_PATH  = 'assets/spacecraft.png';
@@ -56,8 +57,9 @@ export default class Game extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
-  public livesPlayer;
-  public extraLifesPlayer = 3;
+  //public livesPlayer;
+  public lives!: Lives;
+  //public extraLifesPlayer = 3;
   private timeline!: Timeline;
 
   constructor() {
@@ -91,6 +93,8 @@ export default class Game extends Scene {
     this.sound.add(AUDIO_MISSILE, {loop: false});
 
     this.player = new Player(this, 100, 450, SPACECRAFT);
+    this.lives = new Lives (this, SPACECRAFT);
+    var life = Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), 50, 100, 50);
     this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, ENEMY);
@@ -124,8 +128,8 @@ export default class Game extends Scene {
     //player.kill();
     //this.missileActive = false;
     //this.playerActive = false;
-    if (this.extraLifesPlayer!==0){
-      this.extraLifesPlayer -= 1;
+    if (this.lives.extraLifesPlayer!==0){
+      this.lives.extraLifesPlayer -= 1;
       
       this.tweens.addCounter({
         from: 255,
@@ -236,13 +240,13 @@ export default class Game extends Scene {
         
       }
 
-    this.livesPlayer = this.add.group();
+    /*this.livesPlayer = this.add.group();
     var firstLifeIconX = 800 - 10 - (this.extraLifesPlayer * 50); //larghezza schermo da rendere parametrica
     for (var i=0; i<this.extraLifesPlayer; i++){
       var life = this.livesPlayer.create(firstLifeIconX + (50 * i), 50, 'spacecraft');
       //this.scoreText = this.add.dynamicBitmapText(600, 300, FONT_NAME, this.extraLifesPlayer.toString(), 60 );
       life.setScale(0.8);
       life.setOrigin(0.5, 0.5);
-    } }
+    } */}
   }
 }
