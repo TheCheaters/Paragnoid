@@ -94,10 +94,7 @@ export default class Game extends Scene {
     this.sound.add(AUDIO_MISSILE, {loop: false});
 
     this.player = new Player(this, 100, 450, SPACECRAFT);
-    this.lives = new Lives (this, SPACECRAFT);
-    Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), this.lives.firstLifeIconX, 25, 50);
-    Phaser.Actions.SetScale(this.lives.livesPlayer.getChildren(), 0.8, 0.8);
-    Phaser.Actions.SetOrigin(this.lives.livesPlayer.getChildren(), 0.5, 0.5);
+    this.lives = new Lives (this, SPACECRAFT);         
    
     this.playerWeaponsGroup = new WeaponGroup(this, MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, MISSILE, EnemyWeapon);
@@ -125,18 +122,14 @@ export default class Game extends Scene {
     const enemyOrEnemyWeapon = args[1] as Enemy | EnemyWeapon;
     const {x, y} = enemyOrEnemyWeapon;
     const {x:a,y:b} = player;
-    const respawnTime = 1000;
+    const respawnTime = 500;
     this.explosions?.addExplosion(x, y);
     this.explosions?.addExplosion(a, b);
     enemyOrEnemyWeapon.kill();
     
     if (this.lives.extraLifesPlayer!==0){
       this.lives.extraLifesPlayer -= 1;
-      var vite = Phaser.Utils.Array.RemoveAt(this.lives.livesPlayer, 1);
-      if (vite) {vite.destroy();}
-      //this.lives.livesPlayer.destroy();
-      var firstLifeIconX = 800 - 10 - (3 * 50);
-      Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), firstLifeIconX, 25, 50);
+      this.lives.destroyLives();
       
       this.tweens.addCounter({
         from: 255,
