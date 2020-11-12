@@ -7,7 +7,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, MISSILE);
   }
 
-  fire(x: number, y: number, type: string) {
+  fire(x: number, y: number, type: string, fireSpeed: number) {
     this.body.enable = true;
     this.body.reset(x + 2, y + 20);
 
@@ -17,7 +17,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     if (type === 'player') {
       this.setVelocityX(1000);
     } else {
-      this.setVelocityX(-1000);
+      this.setVelocityX(-fireSpeed);
     }
 
     this.scene.sound.play(AUDIO_MISSILE);
