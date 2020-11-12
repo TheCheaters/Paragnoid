@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { GAME_NAME, LR_FONT_NAME, LR_FONT_PATH, LR_FONT_XML_PATH } from "~/constants.json"
+import { GAME_NAME, GAME_TITLE, LR_FONT_NAME, LR_FONT_PATH, LR_FONT_XML_PATH } from "~/constants.json"
 
 export default class Intro extends Scene {
   private text!: Phaser.GameObjects.DynamicBitmapText;
@@ -14,6 +14,7 @@ export default class Intro extends Scene {
   }
   create() {
     this.text = this.add.dynamicBitmapText(400, 300, LR_FONT_NAME, GAME_NAME, 60 ).setOrigin(0.5);
+    this.text = this.add.dynamicBitmapText(400, 350, LR_FONT_NAME, GAME_TITLE, 20 ).setOrigin(0.5);
     this.input.once('pointerdown', () => {
 
       this.scene.start('game');

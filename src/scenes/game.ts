@@ -9,6 +9,7 @@ import Explosions from '~/scenes/explosions';
 
 import { KEYS, DIRECTIONS } from '~/globals';
 import Timeline from '~/scenes/timeline';
+import Lives from './Lives';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -31,10 +32,16 @@ export default class Game extends Scene {
   private infoPanel;
   private missileActive = true;
   private playerActive = true;
+  public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
+  public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
+  public lives!: Lives;
+
+  //public extraLifesPlayer = 3;
   private timeline!: Timeline;
 
   constructor() {
@@ -46,21 +53,22 @@ export default class Game extends Scene {
 
   preload() {
     this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
+
     this.load.spritesheet(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH, {
       frameWidth: 50,
       frameHeight: 22
     });
-    this.load.image(C.MISSILE, C.MISSILE_ASSET_PATH);
-    this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
-    this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
-    this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
-    this.load.image(C.ENEMY_GREEN, C.ENEMY_GREEN_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
       frameWidth: 60,
       frameHeight: 60
     });
+    this.load.image(C.MISSILE, C.MISSILE_ASSET_PATH);
+    this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
+    this.load.image(C.ENEMY_GREEN, C.ENEMY_GREEN_ASSET_PATH);
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
 
+    this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
+    this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
   }
   create() {
 
@@ -73,7 +81,7 @@ export default class Game extends Scene {
       // thumb: this.add.circle(0, 0, 50, 0xcccccc),
       // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
       // forceMin: 16,
-      // enable: true
+      enable: true
     });
 
     this.sound.add(C.AUDIO_MISSILE, {loop: false});
@@ -87,9 +95,11 @@ export default class Game extends Scene {
 
     this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
 
-    this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
-    this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
-    this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
+    this.lives = new Lives(this, C.SPACECRAFT);
+
+    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
+    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
 
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
@@ -102,19 +112,51 @@ export default class Game extends Scene {
   }
 
   handlerPlayerEnemyCollisions(...args) {
-    // this.physics.pause();
     const player = args[0] as Player;
     const enemyOrEnemyWeapon = args[1] as Enemy | EnemyWeapon;
     const {x, y} = enemyOrEnemyWeapon;
-    const {x:a,y:b} = player;
+    const {x:a, y:b} = player;
+    const respawnTime = 500;
     this.explosions?.addExplosion(x, y);
     this.explosions?.addExplosion(a, b);
     enemyOrEnemyWeapon.kill();
-    player.kill();
-    this.missileActive = false;
-    this.playerActive = false;
-    this.infoPanel = this.add.image(400, 300, C.INFOPANEL_OVER);
-    this.sound.add(C.AUDIO_OVER, {loop: false}).play();
+
+    if (this.lives.extraLifesPlayer > 0){
+
+      this.lives.extraLifesPlayer -= 1;
+      this.lives.destroyLives();
+
+      this.tweens.addCounter({
+        from: 255,
+        to: 0,
+        duration: respawnTime,
+        ease: Phaser.Math.Easing.Sine.InOut,
+        repeat: 3,
+        yoyo: true,
+        onUpdate: tween => {
+          const valoreFrame = tween.getValue()
+          this.player.setTint(Phaser.Display.Color.GetColor(valoreFrame, valoreFrame, valoreFrame));
+             },
+        onStart: tween => {
+          this.missileActive = false;
+          this.colliderPlayerEnemy.active = false;
+          this.colliderPlayerWeapons.active = false;
+          this.colliderEnemyWeapons.active = false;
+        },
+        onComplete: tween => {
+          this.missileActive = true;
+          this.colliderPlayerEnemy.active = true;
+          this.colliderPlayerWeapons.active = true;
+          this.colliderEnemyWeapons.active = true;
+        }
+      });
+    } else {
+      player.kill();
+      this.infoPanel = this.add.image(400, 300, C.INFOPANEL_OVER);
+      this.sound.add(C.AUDIO_OVER, {loop: false}).play();
+      this.missileActive === false;
+      this.playerActive = false;
+    }
   }
 
   handlerMissileEnemyCollisions(...args) {
