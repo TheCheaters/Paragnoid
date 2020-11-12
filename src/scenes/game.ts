@@ -1,3 +1,4 @@
+import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
 import { Scene } from 'phaser';
 import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapon';
@@ -9,19 +10,27 @@ import Explosions from '~/scenes/explosions';
 import { KEYS, DIRECTIONS } from '~/globals';
 import Timeline from '~/scenes/timeline';
 
+type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
+  add: (Scene, any) => VirtualJoystickPlugin;
+  on: (event: string, callback: Function, context: Scene) => VirtualJoystickPlugin;
+  createCursorKeys: () => Phaser.Types.Input.Keyboard.CursorKeys;
+}
+
 export default class Game extends Scene {
   public player!: Player;
-  public enemies?: Enemies;
+  public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
-  private explosions?: Explosions;
-  private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
+  public VelocityX = 0;
+  public VelocityY = 0;
+  private explosions!: Explosions;
+  private cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private joyStick!: VirtualJoystickPlugin;
+  private joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
   private spaceKey!: Phaser.Input.Keyboard.Key;
   private infoPanel;
   private missileActive = true;
   private playerActive = true;
-  public VelocityX = 0;
-  public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
@@ -36,6 +45,7 @@ export default class Game extends Scene {
   }
 
   preload() {
+    this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
     this.load.spritesheet(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH, {
       frameWidth: 50,
       frameHeight: 22
@@ -53,9 +63,22 @@ export default class Game extends Scene {
 
   }
   create() {
+
+    const plugin = this.plugins.get('rexVirtualJoystick') as VirtualJoystickPlugin;
+    this.joyStick = plugin.add(this, {
+      x: 100,
+      y: 500,
+      radius: 70,
+      // base: this.add.circle(0, 0, 100, 0x888888),
+      // thumb: this.add.circle(0, 0, 50, 0xcccccc),
+      // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
+      // forceMin: 16,
+      // enable: true
+    });
+
     this.sound.add(C.AUDIO_MISSILE, {loop: false});
 
-    this.player = new Player(this, 100, 450, C.SPACECRAFT);
+    this.player = new Player(this, 100, 300, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, C.ENEMY_GREEN);
@@ -70,8 +93,10 @@ export default class Game extends Scene {
 
     // assegna comandi
     this.cursor = this.input.keyboard.createCursorKeys();
+    this.joyStickKeys = this.joyStick.createCursorKeys();
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
+    // inizia il gioco
     this.timeline.start();
 
   }
@@ -108,12 +133,10 @@ export default class Game extends Scene {
 
   update() {
 
-    if (this.player && this.cursor) {
-
-      const up = this.cursor.up?.isDown;
-      const right = this.cursor.right?.isDown;
-      const down = this.cursor.down?.isDown;
-      const left = this.cursor.left?.isDown;
+      const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown;
+      const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown;
+      const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown;
+      const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown;
 
       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
       if (left && this.playerActive) {
@@ -166,6 +189,5 @@ export default class Game extends Scene {
       if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.playerWeaponsGroup && this.playerActive) {
         this.playerWeaponsGroup.fireBullet(this.player.x, this.player.y, 'player', 1000);
       }
-    }
   }
 }
