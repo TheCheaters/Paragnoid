@@ -16,6 +16,8 @@
   "AUDIO_MISSILE_PATH":     "assets/missile.mp3",
   "ENEMY":                  "enemy",
   "ENEMY_ASSET_PATH":       "assets/enemy.png",
+  "ENEMY_GREEN":            "enemy_green",
+  "ENEMY_GREEN_ASSET_PATH": "assets/enemy_2.png",
   "EXPLOSION":              "explosion",
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",
   "INFOPANEL_OVER":         "infopanel",

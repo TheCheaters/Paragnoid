@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from './game';
-import { ENEMY, ENEMY_BEHAVIOR } from '~/constants.json';
+import { ENEMY_GREEN, ENEMY_BEHAVIOR } from '~/constants.json';
 
 
 type Make = {
@@ -17,7 +17,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private greenLine!: Phaser.Geom.Line;
 
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, ENEMY);
+    super(scene, x, y, ENEMY_GREEN);
     this.setData('score', 10);
   }
 
@@ -65,7 +65,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, fireSpeed: number) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, ENEMY, fireSpeed);
+    enemyWeaponsGroup.fireBullet(x, y, ENEMY_GREEN, fireSpeed);
   }
 
   kill() {
@@ -79,7 +79,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
-    this.anims.play(ENEMY, true);
     this.updateLifeLine();
 
 		if (this.x < -100) {
@@ -97,18 +96,10 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameQuantity: 30,
       key: texture,
       setXY: { x: 500, y: 1000 },
+      setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,
       classType: Enemy
-    });
-
-    scene.anims.create ({
-      key: texture,
-      frames: scene.anims.generateFrameNumbers (texture, {
-        start: 0,
-        end: 1
-      }),
-      frameRate: 2
     });
 
   }

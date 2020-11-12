@@ -44,10 +44,7 @@ export default class Game extends Scene {
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
     this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
-    this.load.spritesheet(C.ENEMY, C.ENEMY_ASSET_PATH, {
-      frameWidth: 34,
-      frameHeight: 28
-    });
+    this.load.image(C.ENEMY_GREEN, C.ENEMY_GREEN_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
       frameWidth: 60,
       frameHeight: 60
@@ -61,7 +58,7 @@ export default class Game extends Scene {
     this.player = new Player(this, 100, 450, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
-    this.enemies = new Enemies(this, C.ENEMY);
+    this.enemies = new Enemies(this, C.ENEMY_GREEN);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 
@@ -167,7 +164,7 @@ export default class Game extends Scene {
       this.player.setVelocityY(this.VelocityY);
 
       if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.playerWeaponsGroup && this.playerActive) {
-        this.playerWeaponsGroup.fireBullet(this.player.x, this.player.y, 'player');
+        this.playerWeaponsGroup.fireBullet(this.player.x, this.player.y, 'player', 1000);
       }
     }
   }
