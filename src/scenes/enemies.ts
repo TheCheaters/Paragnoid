@@ -30,7 +30,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.clear();
     this.greenLine.x1 = this.x;
     this.greenLine.y1 = this.y - 3;
-    this.greenLine.x2 = this.x + (this.width * this.energy) / this.maxEnergy;
+    this.greenLine.x2 = this.x + ((this.width / 2) * this.energy) / this.maxEnergy;
     this.greenLine.y2 = this.y - 3;
     this.greenStyle.strokeLineShape(this.greenLine);
   }

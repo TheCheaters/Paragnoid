@@ -1,5 +1,6 @@
 {
   "GAME_NAME":              "Paragnoid",
+  "GAME_TITLE":             "Rabbia edition",
   "SPACECRAFT":             "spacecraft",
   "SPACECRAFT_ASSET_PATH":  "assets/spacecraft.png",
   "SPACECRAFT_ACC_X_DELTA": 10,
