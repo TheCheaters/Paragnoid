@@ -129,11 +129,11 @@ export default class Game extends Scene {
     this.explosions?.addExplosion(x, y);
     this.explosions?.addExplosion(a, b);
     enemyOrEnemyWeapon.kill();
-    //player.kill();
-    //this.missileActive = false;
-    //this.playerActive = false;
+    
     if (this.lives.extraLifesPlayer!==0){
       this.lives.extraLifesPlayer -= 1;
+      var vite = Phaser.Utils.Array.RemoveAt(this.lives.livesPlayer, 1);
+      if (vite) {vite.destroy();}
       //this.lives.livesPlayer.destroy();
       var firstLifeIconX = 800 - 10 - (3 * 50);
       Phaser.Actions.SetXY(this.lives.livesPlayer.getChildren(), firstLifeIconX, 25, 50);
@@ -164,7 +164,7 @@ export default class Game extends Scene {
       })
     } else {
     player.kill(); 
-      this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
+    this.infoPanel = this.add.image(400, 300, INFOPANEL_OVER);
     this.sound.add(AUDIO_OVER, {loop: false}).play();
     this.missileActive === false;
     this.playerActive = false;   
