@@ -1,5 +1,5 @@
 import * as C from '~/constants.json';
-import { Game, Scene } from 'phaser';
+import { Scene } from 'phaser';
 export default class GameOver extends Scene {
   public ricominciamoText!: Phaser.GameObjects.DynamicBitmapText;
   constructor() {
@@ -8,7 +8,7 @@ export default class GameOver extends Scene {
       active: false,
     });
   }
-  preload() {    
+  preload() {
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
   }
@@ -18,7 +18,7 @@ export default class GameOver extends Scene {
     this.sound.add(C.AUDIO_OVER, {loop: false}).play();
     this.ricominciamoText = this.add.dynamicBitmapText(230, 400, C.PV_FONT_NAME, 'clicca per ricominciare', 14 );
     this.input.once('pointerdown', () => {
-      this.scene.start('game');  
+      this.scene.start('game');
     });
   }
 }
