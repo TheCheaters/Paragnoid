@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import Intro from '~/scenes/intro';
 import Background from '~/scenes/background';
 import Game from '~/scenes/game';
+import GameOver from '~/scenes/gameover';
 
 declare const process: {
 	env: {
@@ -36,7 +37,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 			debug: process.env.NODE_ENV === 'development'
 		}
 	},
-	scene: [Background, Intro, Game]
+	scene: [Background, Intro, Game, GameOver],
 };
 
 new Phaser.Game(config);
