@@ -46,7 +46,6 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
 
     this.createMultiple({
       frameQuantity: 30,
-      setXY: { x: 1000, y: 2000 },
       key: texture,
       active: false,
       visible: false,

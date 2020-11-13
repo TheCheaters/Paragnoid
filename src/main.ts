@@ -4,15 +4,31 @@ import Background from '~/scenes/background';
 import Game from '~/scenes/game';
 
 declare const process: {
-  env: {
-    NODE_ENV: string
-  }
+	env: {
+		NODE_ENV: string
+	}
 }
 
-const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
+type extraConfig = {
+	pixelArt: boolean
+}
+
+const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
+	scale: {
+		mode: Phaser.Scale.FIT,
+		parent: 'phaser',
+		width: 1200,
+		height: 600,
+		min: {
+				width: 800,
+				height: 400
+		},
+		max: {
+				width: 2400,
+				height: 1200
+		}
+	},
 	pixelArt: true,
 	physics: {
 		default: 'arcade',
@@ -20,7 +36,7 @@ const config: Phaser.Types.Core.GameConfig & { pixelArt: boolean } = {
 			debug: process.env.NODE_ENV === 'development'
 		}
 	},
-	scene: [Background, Intro, Game],
+	scene: [Background, Intro, Game]
 };
 
 new Phaser.Game(config);

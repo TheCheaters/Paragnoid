@@ -83,10 +83,11 @@ export default class Game extends Scene {
       // forceMin: 16,
       enable: true
     });
+    // scene.sys.game.device.os.desktop
 
     this.sound.add(C.AUDIO_MISSILE, {loop: false});
 
-    this.player = new Player(this, 100, 300, C.SPACECRAFT);
+    this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, C.ENEMY_GREEN);
@@ -108,6 +109,7 @@ export default class Game extends Scene {
 
     // inizia il gioco
     this.timeline.start();
+    // this.scale.on('resize', this.resize, this);
 
   }
 
@@ -143,7 +145,7 @@ export default class Game extends Scene {
           this.colliderPlayerWeapons.active = false;
           this.colliderEnemyWeapons.active = true;
         },
-        onComplete: tween => {
+        onComplete: () => {
           this.missileActive = true;
           this.colliderPlayerEnemy.active = true;
           this.colliderPlayerWeapons.active = true;
@@ -152,7 +154,7 @@ export default class Game extends Scene {
       });
     } else {
       player.kill();
-      this.infoPanel = this.add.image(400, 300, C.INFOPANEL_OVER);
+      this.infoPanel = this.add.image(this.scale.width / 2, this.scale.height / 2, C.INFOPANEL_OVER);
       this.sound.add(C.AUDIO_OVER, {loop: false}).play();
       this.missileActive === false;
       this.playerActive = false;
@@ -172,6 +174,16 @@ export default class Game extends Scene {
       enemy.kill();
     }
   }
+
+  // resize(gameSize:, baseSize:, displaySize:, resolution:) {
+  //     const width = gameSize.width;
+  //     const height = gameSize.height;
+
+  //     this.cameras.resize(width, height);
+
+  //     // this.bg.setSize(width, height);
+  //     // this.logo.setPosition(width / 2, height / 2);
+  // }
 
   update() {
 

@@ -40,8 +40,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const { ENERGY, SPEED, FIRERATE, FIRESPEED } = ENEMY_BEHAVIOR[enemyBehavior];
 
     // POSITION
-    const y = Phaser.Math.Between(0, 600);
-    const x = 900;
+    const y = Phaser.Math.Between(0, this.scene.scale.height);
+    const x = this.scene.scale.width + 100;
     this.setOrigin(0, 0);
     this.body.reset(x, y);
     const { player } = this.scene as Game;
@@ -95,7 +95,6 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     this.createMultiple({
       frameQuantity: 30,
       key: texture,
-      setXY: { x: 500, y: 1000 },
       setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,
