@@ -39,6 +39,7 @@ export default class Game extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
+  public ricominciamoText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
 
   //public extraLifesPlayer = 3;
@@ -94,7 +95,7 @@ export default class Game extends Scene {
     this.timeline = new Timeline(this);
 
     this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
-
+    
     this.lives = new Lives(this, C.SPACECRAFT);
 
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
@@ -156,6 +157,10 @@ export default class Game extends Scene {
       this.sound.add(C.AUDIO_OVER, {loop: false}).play();
       this.missileActive === false;
       this.playerActive = false;
+      this.ricominciamoText = this.add.dynamicBitmapText(230, 400, C.PV_FONT_NAME, 'clicca per ricominciare', 14 );
+      this.input.once('pointerdown', () => {
+        this.scene.restart();  
+      });
     }
   }
 
