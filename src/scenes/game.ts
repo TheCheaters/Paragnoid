@@ -139,11 +139,11 @@ export default class Game extends Scene {
           const valoreFrame = tween.getValue()
           this.player.setTint(Phaser.Display.Color.GetColor(valoreFrame, valoreFrame, valoreFrame));
              },
-        onStart: () => {
-          this.missileActive = false;
+        onStart: tween => {
+          this.missileActive = true;
           this.colliderPlayerEnemy.active = false;
           this.colliderPlayerWeapons.active = false;
-          this.colliderEnemyWeapons.active = false;
+          this.colliderEnemyWeapons.active = true;
         },
         onComplete: () => {
           this.missileActive = true;
