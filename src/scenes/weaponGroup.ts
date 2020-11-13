@@ -6,7 +6,6 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
 
     this.createMultiple({
       frameQuantity: 100,
-      setXY: { x: 1000, y: 2000 },
       key: texture,
       active: false,
       visible: false,

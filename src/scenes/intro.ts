@@ -13,8 +13,8 @@ export default class Intro extends Scene {
     this.load.bitmapFont(LR_FONT_NAME, LR_FONT_PATH, LR_FONT_XML_PATH);
   }
   create() {
-    this.text = this.add.dynamicBitmapText(400, 300, LR_FONT_NAME, GAME_NAME, 60 ).setOrigin(0.5);
-    this.text = this.add.dynamicBitmapText(400, 350, LR_FONT_NAME, GAME_TITLE, 20 ).setOrigin(0.5);
+    this.text = this.add.dynamicBitmapText(this.scale.width / 2, this.scale.height / 2, LR_FONT_NAME, GAME_NAME, 60 ).setOrigin(0.5);
+    this.text = this.add.dynamicBitmapText(this.scale.width / 2, (this.scale.height / 2) +  50, LR_FONT_NAME, GAME_TITLE, 20 ).setOrigin(0.5);
     this.input.once('pointerdown', () => {
 
       this.scene.start('game');

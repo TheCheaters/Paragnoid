@@ -17,8 +17,8 @@ export default class Background extends Scene {
     this.load.image(SUN, SUN_ASSET_PATH);
   }
   create() {
-    this.bg = this.add.tileSprite(0, 0, 1024, 1024, SPACE).setOrigin(0);
-    this.sun = this.add.image(0, 0, SUN).setPosition(1000, 200)
+    this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.width, SPACE).setOrigin(0);
+    this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 2, this.scale.height / 3)
     this.gameInstance = this.scene.get('game') as Game;
   }
   update(time, delta) {
@@ -32,10 +32,6 @@ export default class Background extends Scene {
 
     this.bg.tilePositionX += 1 + backgroundVelocity;
 
-    this.sun.x -= 0.01;
-    // this.sun.y += this.gameInstance.VelocityY / 5000;
-
-    if (this.sun.x < -200) this.sun.x = 1000;
     this.sun.rotation += 0.00006 * delta;
     }
 }

@@ -32,7 +32,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
 
-		if (this.x > 800 || this.x < -200) {
+		if (this.x > this.scene.scale.width || this.x < -200) {
       this.kill();
 		}
 	}
