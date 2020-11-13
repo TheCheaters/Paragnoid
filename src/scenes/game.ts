@@ -1,6 +1,7 @@
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
 import { Scene } from 'phaser';
+import GameOver from '~/scenes/gameover';
 import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapon';
 import WeaponGroup from '~/scenes/weaponGroup';
 import Enemies, { Enemy } from '~/scenes/enemies';
@@ -39,10 +40,7 @@ export default class Game extends Scene {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private score = 0;
   private scoreText!: Phaser.GameObjects.DynamicBitmapText;
-  public ricominciamoText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
-
-  //public extraLifesPlayer = 3;
   private timeline!: Timeline;
 
   constructor() {
@@ -72,7 +70,6 @@ export default class Game extends Scene {
     this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
   }
   create() {
-
     const plugin = this.plugins.get('rexVirtualJoystick') as VirtualJoystickPlugin;
     this.joyStick = plugin.add(this, {
       x: 100,
@@ -123,7 +120,8 @@ export default class Game extends Scene {
     enemyOrEnemyWeapon.kill();
 
     if (this.lives.extraLifesPlayer > 0){
-
+      this.colliderPlayerEnemy.active = false;
+      this.colliderPlayerWeapons.active = false;
       this.lives.extraLifesPlayer -= 1;
       this.lives.destroyLives();
 
@@ -140,9 +138,7 @@ export default class Game extends Scene {
              },
         onStart: tween => {
           this.missileActive = false;
-          this.colliderPlayerEnemy.active = false;
-          this.colliderPlayerWeapons.active = false;
-          this.colliderEnemyWeapons.active = false;
+          this.colliderEnemyWeapons.active = true;
         },
         onComplete: tween => {
           this.missileActive = true;
@@ -153,15 +149,10 @@ export default class Game extends Scene {
       });
     } else {
       player.kill();
-      this.infoPanel = this.add.image(400, 300, C.INFOPANEL_OVER);
-      this.sound.add(C.AUDIO_OVER, {loop: false}).play();
+      this.scene.start('gameover');
       this.missileActive === false;
       this.playerActive = false;
-      this.ricominciamoText = this.add.dynamicBitmapText(230, 400, C.PV_FONT_NAME, 'clicca per ricominciare', 14 );
-      this.input.once('pointerdown', () => {
-        this.scene.restart();  
-      });
-    }
+     }
   }
 
   handlerMissileEnemyCollisions(...args) {
@@ -179,7 +170,6 @@ export default class Game extends Scene {
   }
 
   update() {
-
       const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown;
       const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown;
       const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown;
