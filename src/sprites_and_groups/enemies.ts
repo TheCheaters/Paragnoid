@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import Game from './game';
+import Game from '../scenes/game';
 import { ENEMY_GREEN, ENEMY_BEHAVIOR } from '~/constants.json';
 
 

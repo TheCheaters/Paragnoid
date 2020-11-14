@@ -1,5 +1,5 @@
 import Game from '~/scenes/game';
-import enemyTimeline from '~/storyboard.json';
+import enemyTimeline from '~/game_timeline/storyboard.json';
 import { ENEMY_BEHAVIOR } from '~/constants.json';
 
 export type EnemyBlock = {
