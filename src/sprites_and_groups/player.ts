@@ -2,7 +2,7 @@ import * as C from '~/constants.json';
 import { KEYS, DIRECTIONS } from '~/globals';
 import { SPACECRAFT } from '~/constants.json';
 
-import Game from './game';
+import Game from '../scenes/game';
 import { Scene } from 'phaser';
 
 
@@ -17,7 +17,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public joyStick!: VirtualJoystickPlugin;
   public joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
   public spaceKey!: Phaser.Input.Keyboard.Key;
-
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
@@ -115,22 +114,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown;
 
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
-    if (left && scene.playerActive) {
+    if (left) {
       this.VelocityX -= C.SPACECRAFT_ACC_X_DELTA;
       this.anims.play(DIRECTIONS.GO_LEFT, true);
       this.lastHorizontalKeyPressed = KEYS.LEFT;
-    } else if (right && scene.playerActive) {
+    } else if (right) {
       this.VelocityX += C.SPACECRAFT_ACC_X_DELTA;
       this.play(DIRECTIONS.GO_RIGHT, true);
       this.lastHorizontalKeyPressed = KEYS.RIGHT;
     }
 
     // ACCELERAZIONE E ANIMAZIONE VERTICALE
-    if (up && scene.playerActive) {
+    if (up) {
       this.VelocityY -= C.SPACECRAFT_ACC_Y_DELTA;
       this.play(DIRECTIONS.GO_UP, true);
       this.lastVerticalKeyPressed = KEYS.UP;
-    } else if (down && scene.playerActive) {
+    } else if (down) {
       this.VelocityY += C.SPACECRAFT_ACC_Y_DELTA;
       this.play(DIRECTIONS.GO_DOWN, true);
       this.lastVerticalKeyPressed = KEYS.DOWN;
@@ -162,7 +161,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.player.setVelocityX(this.VelocityX);
     scene.player.setVelocityY(this.VelocityY);
 
-    if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup && scene.playerActive) {
+    if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
       scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y, 'player', 1000);
     }
   }

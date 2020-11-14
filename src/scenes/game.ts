@@ -1,29 +1,27 @@
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
 import { Scene } from 'phaser';
-import { PlayerWeapon, EnemyWeapon } from '~/scenes/weapon';
-import WeaponGroup from '~/scenes/weaponGroup';
-import Enemies, { Enemy } from '~/scenes/enemies';
-import Player from '~/scenes/player';
-import Explosions from '~/scenes/explosions';
-
-import Timeline from '~/scenes/timeline';
-import Lives from './Lives';
-
+import { PlayerWeapon, EnemyWeapon } from '~/sprites_and_groups/weapon';
+import WeaponGroup from '~/sprites_and_groups/weaponGroup';
+import Enemies from '~/sprites_and_groups/enemies';
+import Player from '~/sprites_and_groups/player';
+import Explosions from '~/sprites_and_groups/explosions';
+import playerEnemyCollision from '~/colliders/handlerPlayerEnemyCollisions';
+import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
+import Timeline from '~/game_timeline/timeline';
+import Lives from '../sprites_and_groups/Lives';
 
 export default class Game extends Scene {
   public player!: Player;
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
-  private explosions!: Explosions;
-  private missileActive = true;
-  public playerActive = true;
+  public explosions!: Explosions;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
-  private score = 0;
-  private scoreText!: Phaser.GameObjects.DynamicBitmapText;
+  public score = 0;
+  public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
   private timeline!: Timeline;
 
@@ -64,73 +62,16 @@ export default class Game extends Scene {
     this.lives = new Lives(this, C.SPACECRAFT);
     this.sound.add(C.AUDIO_MISSILE, {loop: false});
 
-    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, this.handlerPlayerEnemyCollisions.bind(this));
-    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, this.handlerPlayerEnemyCollisions.bind(this));
-    this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, this.handlerMissileEnemyCollisions.bind(this));
+    const handlerPlayerEnemyCollisions = playerEnemyCollision(this) as ArcadePhysicsCallback;
+    const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
+
+    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions.bind(this));
+    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
 
     // inizia il gioco
     this.timeline.start();
 
-  }
-
-  handlerPlayerEnemyCollisions(...args) {
-    const player = args[0] as Player;
-    const enemyOrEnemyWeapon = args[1] as Enemy | EnemyWeapon;
-    const {x, y} = enemyOrEnemyWeapon;
-    const {x:a, y:b} = player;
-    const respawnTime = 500;
-    this.explosions?.addExplosion(x, y);
-    this.explosions?.addExplosion(a, b);
-    enemyOrEnemyWeapon.kill();
-
-    if (this.lives.extraLifesPlayer > 0){
-      this.colliderPlayerEnemy.active = false;
-      this.colliderPlayerWeapons.active = false;
-      this.lives.extraLifesPlayer -= 1;
-      this.lives.destroyLives();
-
-      this.tweens.addCounter({
-        from: 255,
-        to: 0,
-        duration: respawnTime,
-        ease: Phaser.Math.Easing.Sine.InOut,
-        repeat: 3,
-        yoyo: true,
-        onUpdate: tween => {
-          const valoreFrame = tween.getValue()
-          this.player.setTint(Phaser.Display.Color.GetColor(valoreFrame, valoreFrame, valoreFrame));
-             },
-        onStart: tween => {
-          this.missileActive = false;
-          this.colliderEnemyWeapons.active = true;
-        },
-        onComplete: () => {
-          this.missileActive = true;
-          this.colliderPlayerEnemy.active = true;
-          this.colliderPlayerWeapons.active = true;
-          this.colliderEnemyWeapons.active = true;
-        }
-      });
-    } else {
-      player.kill();
-      this.scene.start('gameover');
-      this.missileActive === false;
-      this.playerActive = false;
-     }
-  }
-
-  handlerMissileEnemyCollisions(...args) {
-    const enemy = args[0] as Enemy;
-    const missile = args[1] as PlayerWeapon;
-    const {x, y} = enemy;
-    enemy.energy = enemy.energy - missile.energy;
-    missile.kill();
-    if (enemy.energy <= 0) {
-      this.score += enemy.getData('score');
-      this.scoreText.setText(`Score: ${this.score}`);
-      this.explosions?.addExplosion(x, y);
-      enemy.kill();
-    }
   }
 
 }
