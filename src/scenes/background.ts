@@ -21,14 +21,16 @@ export default class Background extends Scene {
     this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 2, this.scale.height / 3)
     this.gameInstance = this.scene.get('game') as Game;
   }
+
   update(time, delta) {
 
     let backgroundVelocity = 0;
 
-    if (this.gameInstance) {
-      backgroundVelocity = this.gameInstance.VelocityX > 0 ? this.gameInstance.VelocityX / 100 : 0;
-      this.bg.tilePositionY += this.gameInstance.VelocityY / 500;
-    }
+    const VelocityX = this.gameInstance?.player?.VelocityX || 0;
+    const VelocityY = this.gameInstance?.player?.VelocityY || 0;
+
+    backgroundVelocity = VelocityX > 0 ? VelocityX / 100 : 0;
+    this.bg.tilePositionY += VelocityY / 500;
 
     this.bg.tilePositionX += 1 + backgroundVelocity;
 

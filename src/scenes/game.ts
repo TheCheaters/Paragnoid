@@ -49,6 +49,7 @@ export default class Game extends Scene {
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
     this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
   }
+
   create() {
 
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
