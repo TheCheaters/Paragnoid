@@ -2,12 +2,15 @@ import { Scene } from "phaser";
 import Game from '../scenes/game';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
+import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
 
 
 type Make = {
   enemyType: keyof typeof ENEMY_TYPES;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
 }
+
+type WeaponType = keyof typeof WEAPON_TYPES;
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
@@ -38,8 +41,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   make({ enemyType, enemyBehavior }: Make) {
 
-    const { ENERGY, SPEED, FIRERATE, FIRESPEED } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, WIDTH, HEIGHT } = ENEMY_TYPES[enemyType];
+    const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
+    const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME);
@@ -63,15 +66,15 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(true);
     this.setLifeLine();
 
-    this.timer = this.scene.time.addEvent({ delay: FIRERATE, callback: () => {
-      this.fire(this.x, this.y, FIRESPEED);
+    this.timer = this.scene.time.addEvent({ delay: FIRE_RATE, callback: () => {
+      this.fire(this.x, this.y, WEAPON_TYPE as WeaponType);
     }, callbackScope: this, loop: true });
 
   }
 
-  fire(x: number, y: number, fireSpeed: number) {
+  fire(x: number, y: number, weaponType: WeaponType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, 'enemy', fireSpeed);
+    enemyWeaponsGroup.fireBullet(x, y, weaponType as WeaponType);
   }
 
   kill() {

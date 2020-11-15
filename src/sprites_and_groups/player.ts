@@ -162,7 +162,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.player.setVelocityY(this.VelocityY);
 
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
-      scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y, 'player', 1000);
+      scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y);
     }
   }
 }

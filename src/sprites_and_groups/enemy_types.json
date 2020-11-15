@@ -1,26 +1,30 @@
 {
   "DEFAULT": {
-    "TEXTURE_NAME": "Mordicchio",
+    "TEXTURE_NAME":      "Mordicchio",
     "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+    "WIDTH":             68,
+    "HEIGHT":            28,
+    "WEAPON_TYPE":       "MEGA"
   },
   "GREY_SHIP": {
     "TEXTURE_NAME": "Grey-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
     "WIDTH": 130,
-    "HEIGHT": 80
+    "HEIGHT": 80,
+    "WEAPON_TYPE":       "MEGA"
   },
   "WHITE_SHIP": {
     "TEXTURE_NAME": "White-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_white.png",
     "WIDTH": 300,
-    "HEIGHT": 140
+    "HEIGHT": 140,
+    "WEAPON_TYPE":       "MEGA"
   },
   "GREEN_SHIP": {
-    "TEXTURE_NAME": "Green-Ship",
+    "TEXTURE_NAME":      "Green-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_2.png",
-    "WIDTH": 150,
-    "HEIGHT": 65
+    "WIDTH":             150,
+    "HEIGHT":            65,
+    "WEAPON_TYPE":       "MEGA"
   }
 }

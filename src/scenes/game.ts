@@ -11,8 +11,10 @@ import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
+import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
+type WeaponType = keyof typeof WEAPON_TYPES;
 export default class Game extends Scene {
   public player!: Player;
   public enemies!: Enemies;
@@ -44,22 +46,28 @@ export default class Game extends Scene {
       frameWidth: 60,
       frameHeight: 60
     });
-    this.load.image(C.MISSILE, C.MISSILE_ASSET_PATH);
 
+    // Carica tutti gli sprite di Enemies
     Object.keys(ENEMY_TYPES).forEach((E) => {
       const ENEMY = E as EnemyType;
       this.load.image(ENEMY_TYPES[ENEMY].TEXTURE_NAME, ENEMY_TYPES[ENEMY].SPRITE_ASSET_PATH);
     });
 
+    // Carica tutti gli sprite e i suoni di Weapons
+    Object.keys(WEAPON_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponType;
+      this.load.image(WEAPON_TYPES[WEAPON].TEXTURE_NAME, WEAPON_TYPES[WEAPON].SPRITE_ASSET_PATH);
+      this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
+    });
+
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
-    this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
   }
 
   create() {
 
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
-    this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
-    this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
+    this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
+    this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.enemies = new Enemies(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
@@ -67,7 +75,12 @@ export default class Game extends Scene {
     this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
 
     this.lives = new Lives(this, C.SPACECRAFT);
-    this.sound.add(C.AUDIO_MISSILE, {loop: false});
+
+    Object.keys(WEAPON_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponType;
+      this.sound.add(WEAPON_TYPES[WEAPON].AUDIO_NAME, {loop: false});
+    });
+
 
     const handlerPlayerEnemyCollisions = playerEnemyCollision(this) as ArcadePhysicsCallback;
     const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
