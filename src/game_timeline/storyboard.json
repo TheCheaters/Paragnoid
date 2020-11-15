@@ -14,7 +14,7 @@
       "waves": 5,
       "wavesDelay": 1000,
       "enemyQuantity": 5,
-      "enemyType": "MORDICCHIO",
+      "enemyType": "GREY_SHIP",
       "enemyBehavior": "SUICIDE",
       "callbacks": []
     },

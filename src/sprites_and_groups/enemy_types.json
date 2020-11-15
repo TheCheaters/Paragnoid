@@ -5,11 +5,11 @@
     "WIDTH": 68,
     "HEIGHT": 28
   },
-  "MORDICCHIO": {
-    "TEXTURE_NAME": "Tizio",
-    "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+  "GREY_SHIP": {
+    "TEXTURE_NAME": "Grey-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
+    "WIDTH": 130,
+    "HEIGHT": 80
   },
   "WHITE_SHIP": {
     "TEXTURE_NAME": "White-Ship",
