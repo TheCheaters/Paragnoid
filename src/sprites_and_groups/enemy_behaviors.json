@@ -1,20 +1,20 @@
 {
   "STANDARD" : {
-    "ENERGY":             500,
-    "SPEED":              50,
+    "ENERGY":             80,
+    "SPEED":              100,
     "FIRERATE":           10000,
-    "FIRESPEED":          1000
+    "FIRESPEED":          500
   },
   "AGGRESSIVE" : {
-    "ENERGY":             100,
-    "SPEED":              300,
-    "FIRERATE":           5000,
+    "ENERGY":             170,
+    "SPEED":              150,
+    "FIRERATE":           15000,
     "FIRESPEED":          700
   },
   "SUICIDE" : {
-    "ENERGY":             10,
-    "SPEED":              150,
+    "ENERGY":             350,
+    "SPEED":              200,
     "FIRERATE":           30000,
-    "FIRESPEED":          10
+    "FIRESPEED":          1000
   }
 }

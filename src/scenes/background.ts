@@ -18,7 +18,7 @@ export default class Background extends Scene {
   }
   create() {
     this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.width, SPACE).setOrigin(0);
-    this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 2, this.scale.height / 3)
+    this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 4, this.scale.height / 4).setScale(0.3, 0.3);
     this.gameInstance = this.scene.get('game') as Game;
   }
 
