@@ -45,6 +45,8 @@ export default class Game extends Scene {
     this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
     this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
     this.load.image(C.ENEMY_GREEN, C.ENEMY_GREEN_ASSET_PATH);
+    this.load.image(C.ENEMY_WHITE, C.ENEMY_WHITE_ASSET_PATH);
+    this.load.image(C.FIREBALL, C.FIREBALL_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
       frameWidth: 60,
       frameHeight: 60
@@ -57,8 +59,8 @@ export default class Game extends Scene {
 
     this.player = new Player(this, 100, 450, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
-    this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
     this.enemies = new Enemies(this, C.ENEMY_GREEN);
+    this.enemyWeaponsGroup = new WeaponGroup(this, C.FIREBALL, EnemyWeapon);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 

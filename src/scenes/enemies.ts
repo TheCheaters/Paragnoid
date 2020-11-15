@@ -1,7 +1,6 @@
 import { Scene } from "phaser";
 import Game from './game';
-import { ENEMY_GREEN, ENEMY_BEHAVIOR } from '~/constants.json';
-
+import { ENEMY_GREEN, ENEMY_WHITE, ENEMY_BEHAVIOR } from '~/constants.json';
 
 type Make = {
   enemyTexture?: string;
@@ -17,7 +16,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private greenLine!: Phaser.Geom.Line;
 
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, ENEMY_GREEN);
+    super(scene, x, y, ENEMY_GREEN, ENEMY_WHITE);
     this.setData('score', 10);
   }
 

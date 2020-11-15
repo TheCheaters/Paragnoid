@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { AUDIO_MISSILE, MISSILE } from '~/constants.json';
+import { AUDIO_MISSILE, MISSILE, FIREBALL } from '~/constants.json'
 
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
   energy = 90;
