@@ -13,9 +13,9 @@
   },
   "WHITE_SHIP": {
     "TEXTURE_NAME": "White-Ship",
-    "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+    "SPRITE_ASSET_PATH": "assets/enemy_white.png",
+    "WIDTH": 300,
+    "HEIGHT": 140
   },
   "GREEN_SHIP": {
     "TEXTURE_NAME": "Green-Ship",
