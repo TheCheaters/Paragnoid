@@ -19,7 +19,7 @@ export default (gameScene: Game) => (player: Player, enemyOrEnemyWeapon: Enemy |
       gameScene.lives.destroyLives();
 
       gameScene.tweens.addCounter({
-        from: 255,
+        from: 1,
         to: 0,
         duration: respawnTime,
         ease: Phaser.Math.Easing.Sine.InOut,
@@ -27,8 +27,8 @@ export default (gameScene: Game) => (player: Player, enemyOrEnemyWeapon: Enemy |
         yoyo: true,
         onUpdate: tween => {
           const valoreFrame = tween.getValue()
-          player.setTint(Phaser.Display.Color.GetColor(valoreFrame, valoreFrame, valoreFrame));
-             },
+          player.setAlpha(valoreFrame)
+        },
         onStart: () => {
           gameScene.colliderEnemyWeapons.active = true;
         },
