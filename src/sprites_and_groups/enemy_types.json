@@ -1,26 +1,30 @@
 {
   "DEFAULT": {
-    "TEXTURE_NAME": "Mordicchio",
+    "TEXTURE_NAME":      "Mordicchio",
     "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+    "WIDTH":             68,
+    "HEIGHT":            28,
+    "WEAPON_TYPE":       "MEGA"
   },
   "MORDICCHIO": {
-    "TEXTURE_NAME": "Tizio",
+    "TEXTURE_NAME":      "Tizio",
     "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+    "WIDTH":             68,
+    "HEIGHT":            28,
+    "WEAPON_TYPE":       "ULTRA"
   },
   "WHITE_SHIP": {
-    "TEXTURE_NAME": "White-Ship",
+    "TEXTURE_NAME":      "White-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH": 68,
-    "HEIGHT": 28
+    "WIDTH":             68,
+    "HEIGHT":            28,
+    "WEAPON_TYPE":       "MEGA"
   },
   "GREEN_SHIP": {
-    "TEXTURE_NAME": "Green-Ship",
+    "TEXTURE_NAME":      "Green-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_2.png",
-    "WIDTH": 150,
-    "HEIGHT": 65
+    "WIDTH":             150,
+    "HEIGHT":            65,
+    "WEAPON_TYPE":       "MEGA"
   }
 }
