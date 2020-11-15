@@ -1,11 +1,11 @@
 {
   "quadro_uno": [
     {
-      "delay": 3000,
+      "delay": 1000,
       "waves": 3,
       "wavesDelay": 1000,
       "enemyQuantity": 3,
-      "enemyTexture": "mordicchio",
+      "enemyType": "GREEN_SHIP",
       "enemyBehavior": "STANDARD",
       "callbacks": []
     },
@@ -14,7 +14,7 @@
       "waves": 5,
       "wavesDelay": 1000,
       "enemyQuantity": 5,
-      "enemyTexture": "mordicchio",
+      "enemyType": "MORDICCHIO",
       "enemyBehavior": "SUICIDE",
       "callbacks": []
     },
@@ -23,7 +23,7 @@
       "waves": 10,
       "wavesDelay": 700,
       "enemyQuantity": 5,
-      "enemyTexture": "mordicchio",
+      "enemyType": "WHITE_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "callbacks": []
     }

@@ -10,7 +10,9 @@ import playerEnemyCollision from '~/colliders/handlerPlayerEnemyCollisions';
 import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
+import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 
+type EnemyType = keyof typeof ENEMY_TYPES;
 export default class Game extends Scene {
   public player!: Player;
   public enemies!: Enemies;
@@ -43,7 +45,12 @@ export default class Game extends Scene {
       frameHeight: 60
     });
     this.load.image(C.MISSILE, C.MISSILE_ASSET_PATH);
-    this.load.image(C.ENEMY_GREEN, C.ENEMY_GREEN_ASSET_PATH);
+
+    Object.keys(ENEMY_TYPES).forEach((E) => {
+      const ENEMY = E as EnemyType;
+      this.load.image(ENEMY_TYPES[ENEMY].TEXTURE_NAME, ENEMY_TYPES[ENEMY].SPRITE_ASSET_PATH);
+    });
+
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
     this.load.audio(C.AUDIO_MISSILE, C.AUDIO_MISSILE_PATH);
   }
@@ -53,7 +60,7 @@ export default class Game extends Scene {
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, C.MISSILE, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, C.MISSILE, EnemyWeapon);
-    this.enemies = new Enemies(this, C.ENEMY_GREEN);
+    this.enemies = new Enemies(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 

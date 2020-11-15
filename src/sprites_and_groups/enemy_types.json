@@ -1,0 +1,26 @@
+{
+  "DEFAULT": {
+    "TEXTURE_NAME": "Mordicchio",
+    "SPRITE_ASSET_PATH": "assets/enemy.png",
+    "WIDTH": 68,
+    "HEIGHT": 28
+  },
+  "MORDICCHIO": {
+    "TEXTURE_NAME": "Tizio",
+    "SPRITE_ASSET_PATH": "assets/enemy.png",
+    "WIDTH": 68,
+    "HEIGHT": 28
+  },
+  "WHITE_SHIP": {
+    "TEXTURE_NAME": "White-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemy.png",
+    "WIDTH": 68,
+    "HEIGHT": 28
+  },
+  "GREEN_SHIP": {
+    "TEXTURE_NAME": "Green-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemy_2.png",
+    "WIDTH": 150,
+    "HEIGHT": 65
+  }
+}
