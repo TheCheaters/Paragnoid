@@ -6,7 +6,7 @@
       "wavesDelay": 1000,
       "enemyQuantity": 3,
       "enemyType": "GREEN_SHIP",
-      "enemyBehavior": "STANDARD",
+      "enemyBehavior": "AGGRESSIVE",
       "callbacks": []
     },
     {
@@ -14,8 +14,8 @@
       "waves": 5,
       "wavesDelay": 1000,
       "enemyQuantity": 5,
-      "enemyType": "MORDICCHIO",
-      "enemyBehavior": "SUICIDE",
+      "enemyType": "GREY_SHIP",
+      "enemyBehavior": "STANDARD",
       "callbacks": []
     },
     {
@@ -24,7 +24,7 @@
       "wavesDelay": 700,
       "enemyQuantity": 5,
       "enemyType": "WHITE_SHIP",
-      "enemyBehavior": "AGGRESSIVE",
+      "enemyBehavior": "SUICIDE",
       "callbacks": []
     }
   ]

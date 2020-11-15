@@ -6,18 +6,18 @@
     "HEIGHT":            28,
     "WEAPON_TYPE":       "MEGA"
   },
-  "MORDICCHIO": {
-    "TEXTURE_NAME":      "Tizio",
-    "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH":             68,
-    "HEIGHT":            28,
-    "WEAPON_TYPE":       "ULTRA"
+  "GREY_SHIP": {
+    "TEXTURE_NAME": "Grey-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
+    "WIDTH": 130,
+    "HEIGHT": 80,
+    "WEAPON_TYPE":       "MEGA"
   },
   "WHITE_SHIP": {
-    "TEXTURE_NAME":      "White-Ship",
-    "SPRITE_ASSET_PATH": "assets/enemy.png",
-    "WIDTH":             68,
-    "HEIGHT":            28,
+    "TEXTURE_NAME": "White-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemy_white.png",
+    "WIDTH": 300,
+    "HEIGHT": 140,
     "WEAPON_TYPE":       "MEGA"
   },
   "GREEN_SHIP": {
