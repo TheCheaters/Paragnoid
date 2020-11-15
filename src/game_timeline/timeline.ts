@@ -1,14 +1,15 @@
 import Game from '~/scenes/game';
 import enemyTimeline from '~/game_timeline/storyboard.json';
-import { ENEMY_BEHAVIOR } from '~/constants.json';
+import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
+import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 
 export type EnemyBlock = {
   delay: number;
   waves: number;
   wavesDelay: number;
   enemyQuantity: number;
-  enemyTexture: string;
-  enemyBehavior: keyof typeof ENEMY_BEHAVIOR;
+  enemyType: keyof typeof ENEMY_TYPES;
+  enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   callbacks: string[];
 }
 
@@ -31,26 +32,26 @@ export default class Timeline {
         delay,
         waves,
         wavesDelay,
-        enemyTexture,
+        enemyType,
         enemyBehavior,
         enemyQuantity
       } = block as EnemyBlock;
       time += delay;
-      console.log(`block ${i + 1} created`);
 
       for (let wave = 0; wave < waves; wave++) {
 
         time += wave * wavesDelay;
 
-        console.log(`wave ${wave + 1} created`);
-        console.log(JSON.stringify(time));
         this.scene.time.addEvent({
           delay: time,
           callback: () => {
             if (this.scene.enemies) {
               for (let enemies = 0; enemies < enemyQuantity; enemies++) {
-                console.log(`sending group of ${enemyQuantity} enemies`);
-                this.scene.enemies.makeEnemy({ enemyTexture, enemyBehavior });
+                console.log(`
+                  sending group of ${enemyQuantity} enemies
+                  of type ${enemyType} with ${enemyBehavior} behavior
+                `);
+                this.scene.enemies.makeEnemy({ enemyType, enemyBehavior });
               }
             }
           },

@@ -1,11 +1,12 @@
 import { Scene } from "phaser";
 import Game from '../scenes/game';
-import { ENEMY_GREEN, ENEMY_BEHAVIOR } from '~/constants.json';
+import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
+import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 
 
 type Make = {
-  enemyTexture?: string;
-  enemyBehavior: keyof typeof ENEMY_BEHAVIOR;
+  enemyType: keyof typeof ENEMY_TYPES;
+  enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
 }
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
@@ -17,7 +18,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private greenLine!: Phaser.Geom.Line;
 
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, ENEMY_GREEN);
+    super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
     this.setData('score', 10);
   }
 
@@ -35,9 +36,14 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make({ enemyTexture, enemyBehavior }: Make) {
+  make({ enemyType, enemyBehavior }: Make) {
 
-    const { ENERGY, SPEED, FIRERATE, FIRESPEED } = ENEMY_BEHAVIOR[enemyBehavior];
+    const { ENERGY, SPEED, FIRERATE, FIRESPEED } = ENEMY_BEHAVIORS[enemyBehavior];
+    const { TEXTURE_NAME, WIDTH, HEIGHT } = ENEMY_TYPES[enemyType];
+
+    // TEXTURE
+    this.setTexture(TEXTURE_NAME);
+    this.setBodySize(WIDTH, HEIGHT);
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
@@ -65,7 +71,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, fireSpeed: number) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, ENEMY_GREEN, fireSpeed);
+    enemyWeaponsGroup.fireBullet(x, y, 'enemy', fireSpeed);
   }
 
   kill() {
@@ -89,13 +95,13 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 }
 
 export default class Enemies extends Phaser.Physics.Arcade.Group {
-  constructor(scene: Scene, texture: string) {
+  constructor(scene: Scene) {
     super(scene.physics.world, scene);
 
     this.createMultiple({
-      frameQuantity: 30,
+      frameQuantity: 50,
+      key: ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
       setXY: {x: -100, y: -100},
-      key: texture,
       setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,
@@ -104,11 +110,8 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
   }
 
-  makeEnemy({ enemyTexture, enemyBehavior }: Make) {
-    const laser = this.getFirstDead(false);
-
-    if (laser) {
-      laser.make({ enemyTexture, enemyBehavior });
-    }
+  makeEnemy({ enemyType, enemyBehavior }: Make) {
+    const enemy = this.getFirstDead(false) as Enemy;
+    if (enemy) enemy.make({ enemyType, enemyBehavior });
   }
 }

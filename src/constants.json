@@ -15,10 +15,6 @@
   "MISSILE_ASSET_PATH":     "assets/missile.png",
   "AUDIO_MISSILE":          "audiomissile",
   "AUDIO_MISSILE_PATH":     "assets/missile.mp3",
-  "ENEMY":                  "enemy",
-  "ENEMY_ASSET_PATH":       "assets/enemy.png",
-  "ENEMY_GREEN":            "enemy_green",
-  "ENEMY_GREEN_ASSET_PATH": "assets/enemy_2.png",
   "EXPLOSION":              "explosion",
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",
   "INFOPANEL_OVER":         "infopanel",
@@ -32,23 +28,6 @@
   "LR_FONT_PATH":           "assets/fonts/lady_radical/lady_radical.png",
   "LR_FONT_XML_PATH":       "assets/fonts/lady_radical/lady_radical.xml",
   "ENEMY_BEHAVIOR":         {
-    "STANDARD" : {
-      "ENERGY":             500,
-      "SPEED":              50,
-      "FIRERATE":           10000,
-      "FIRESPEED":          1000
-    },
-    "AGGRESSIVE" : {
-      "ENERGY":             100,
-      "SPEED":              300,
-      "FIRERATE":           5000,
-      "FIRESPEED":          700
-    },
-    "SUICIDE" : {
-      "ENERGY":             10,
-      "SPEED":              150,
-      "FIRERATE":           30000,
-      "FIRESPEED":          10
-    }
+
   }
 }
