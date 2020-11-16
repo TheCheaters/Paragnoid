@@ -66,7 +66,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(true);
     this.setLifeLine();
 
-    this.timer = this.scene.time.addEvent({ delay: FIRE_RATE, callback: () => {
+    const delay = Phaser.Math.Between(FIRE_RATE, FIRE_RATE + 2000);
+
+    this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fire(this.x, this.y, WEAPON_TYPE as WeaponType);
     }, callbackScope: this, loop: true });
 
