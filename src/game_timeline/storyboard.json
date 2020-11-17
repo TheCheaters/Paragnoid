@@ -1,9 +1,9 @@
 {
   "quadro_uno": [
     {
-      "delay": 1000,
+      "delay": 0,
       "waves": 1,
-      "wavesDelay": 1000,
+      "wavesDelay": 500,
       "singleWave": false,
       "enemyQuantity": 5,
       "enemyType": "GREY_SHIP",
@@ -12,9 +12,9 @@
       "callbacks": []
     },
     {
-      "delay": 3000,
+      "delay": 0,
       "waves": 5,
-      "wavesDelay": 2000,
+      "wavesDelay": 300,
       "singleWave": true,
       "enemyQuantity": 3,
       "enemyType": "GREEN_SHIP",
@@ -23,7 +23,7 @@
       "callbacks": []
     },
     {
-      "delay": 3000,
+      "delay": 0,
       "waves": 5,
       "wavesDelay": 700,
       "singleWave": false,
