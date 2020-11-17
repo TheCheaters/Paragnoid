@@ -7,35 +7,26 @@
     "AUDIO_NAME":        "Missile",
     "AUDIO_ASSET_PATH":  "assets/missile.mp3",
     "WIDTH":             40,
-    "HEIGHT":            40,
-    "ANGLE":             [0, 90, 180, 45, 125],
-    "GRAVITY_X":         0,
-    "GRAVITY_Y":         0
+    "HEIGHT":            40
   },
   "MEGA": {
     "DAMAGE":            100,
-    "FIRE_SPEED":        -500,
+    "FIRE_SPEED":        500,
     "TEXTURE_NAME":      "Missile",
     "SPRITE_ASSET_PATH": "assets/missile.png",
     "AUDIO_NAME":        "Missile",
     "AUDIO_ASSET_PATH":  "assets/missile.mp3",
     "WIDTH":             40,
-    "HEIGHT":            40,
-    "ANGLE":             [0, 90, 180, 45, 125],
-    "GRAVITY_X":         0,
-    "GRAVITY_Y":         0
-  },
+    "HEIGHT":            40
+   },
   "ULTRA": {
     "DAMAGE":            100,
-    "FIRE_SPEED":        -10,
+    "FIRE_SPEED":        10,
     "TEXTURE_NAME":      "Missile",
     "SPRITE_ASSET_PATH": "assets/missile.png",
     "AUDIO_NAME":        "Missile",
     "AUDIO_ASSET_PATH":  "assets/missile.mp3",
     "WIDTH":             40,
-    "HEIGHT":            40,
-    "ANGLE":             [0, 90, 180, 45, 125],
-    "GRAVITY_X":         0,
-    "GRAVITY_Y":         0
+    "HEIGHT":            40
   }
 }
