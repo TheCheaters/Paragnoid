@@ -12,9 +12,12 @@ import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponType = keyof typeof WEAPON_TYPES;
+type PathTypes = keyof typeof ENEMY_PATHS;
+
 export default class Game extends Scene {
   public player!: Player;
   public enemies!: Enemies;
@@ -80,7 +83,6 @@ export default class Game extends Scene {
       const WEAPON = W as WeaponType;
       this.sound.add(WEAPON_TYPES[WEAPON].AUDIO_NAME, {loop: false});
     });
-
 
     const handlerPlayerEnemyCollisions = playerEnemyCollision(this) as ArcadePhysicsCallback;
     const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
