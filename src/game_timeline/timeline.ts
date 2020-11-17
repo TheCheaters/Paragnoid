@@ -29,6 +29,13 @@ export default class Timeline {
 
     let time = 0;
 
+    const launchCallbacks = (callbacks) => callbacks.forEach(cb => {
+      const [group, fn] = cb.split('.');
+      if (!fn) throw new Error('Warning, callback must be in the form of ["gameMember.function", ...] ');
+      console.log(`Now executing callback ${cb}`);
+      this.scene[group][fn]();
+    })
+
     enemyTimeline.quadro_uno.forEach((block, i) => {
 
       const {
@@ -39,7 +46,8 @@ export default class Timeline {
         enemyType,
         enemyBehavior,
         enemyPath,
-        enemyQuantity
+        enemyQuantity,
+        callbacks
       } = block as EnemyBlock;
 
       time += delay;
@@ -48,18 +56,12 @@ export default class Timeline {
 
       for (let wave = 1; wave <= waves; wave++) {
 
-        // time += wave * wavesDelay;
-
         if (singleWave) {
 
           this.scene.time.addEvent({
             delay: time,
             callback: () => {
               for (let enemies = 1; enemies <= enemyQuantity; enemies++) {
-                console.log(`
-                  sending a whole group of ${enemyQuantity} enemies
-                  of type ${enemyType} with ${enemyBehavior} behavior
-                `);
                 this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
               }
             },
@@ -75,19 +77,27 @@ export default class Timeline {
             this.scene.time.addEvent({
               delay: time,
               callback: () => {
-                  console.log(`
-                    sending enemy number ${enemies} of ${enemyQuantity} enemies
-                    of type ${enemyType} with ${enemyBehavior} behavior
-                  `);
                   this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
-                },
-                callbackScope: this,
-                loop: false
-              });
+              },
+              callbackScope: this,
+              loop: false
+            });
+
             time += (wave * wavesDelay) + (500 * enemies);
+
           }
         }
+      }
+
+      if (callbacks) {
+        this.scene.time.addEvent({
+          delay: time,
+          callback: () => launchCallbacks(callbacks),
+          callbackScope: this,
+          loop: false,
+        })
       }
     })
   }
 }
+

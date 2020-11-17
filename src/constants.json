@@ -14,6 +14,8 @@
   "AUDIO_MISSILE":          "audiomissile",
   "EXPLOSION":              "explosion",
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",
+  "POWERUP":                "powerup",
+  "POWERUP_ASSET_PATH":     "assets/power_up.png",
   "INFOPANEL_OVER":         "infopanel",
   "INFOPANEL_OVER_PATH":    "assets/game-over.png",
   "AUDIO_OVER":             "audioover",
@@ -23,8 +25,5 @@
   "PV_FONT_XML_PATH":       "assets/fonts/portable_vengeance/portable_vengeance.xml",
   "LR_FONT_NAME":           "lady_radical",
   "LR_FONT_PATH":           "assets/fonts/lady_radical/lady_radical.png",
-  "LR_FONT_XML_PATH":       "assets/fonts/lady_radical/lady_radical.xml",
-  "ENEMY_BEHAVIOR":         {
-
-  }
+  "LR_FONT_XML_PATH":       "assets/fonts/lady_radical/lady_radical.xml"
 }

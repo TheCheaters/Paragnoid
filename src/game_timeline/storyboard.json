@@ -9,7 +9,7 @@
       "enemyType": "GREY_SHIP",
       "enemyBehavior": "STANDARD",
       "enemyPath": "SIMPLE",
-      "callbacks": []
+      "callbacks": ["powerups.launchPowerup"]
     },
     {
       "delay": 0,
@@ -20,7 +20,7 @@
       "enemyType": "GREEN_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "enemyPath": null,
-      "callbacks": []
+      "callbacks": ["powerups.launchPowerup"]
     },
     {
       "delay": 0,
@@ -31,7 +31,7 @@
       "enemyType": "WHITE_SHIP",
       "enemyBehavior": "SUICIDE",
       "enemyPath": null,
-      "callbacks": []
+      "callbacks": ["powerups.launchPowerup"]
     }
   ]
 }
