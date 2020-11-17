@@ -132,7 +132,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       const { x, y } = this.path.vec;
       this.x = x;
       this.y = y;
-      console.log('here');
     }
 
 		if (this.x < -100) {
