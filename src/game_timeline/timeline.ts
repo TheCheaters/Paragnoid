@@ -10,6 +10,7 @@ export type EnemyBlock = {
   wavesDelay: number;
   singleWave: boolean;
   enemyQuantity: number;
+  enemyDelay: number;
   enemyType: keyof typeof ENEMY_TYPES;
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
@@ -47,6 +48,7 @@ export default class Timeline {
         enemyBehavior,
         enemyPath,
         enemyQuantity,
+        enemyDelay,
         callbacks
       } = block as EnemyBlock;
 
@@ -63,13 +65,12 @@ export default class Timeline {
             callback: () => {
               for (let enemies = 1; enemies <= enemyQuantity; enemies++) {
                 this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                time += enemyDelay;
               }
             },
             callbackScope: this,
             loop: false
           });
-
-          time += wave * wavesDelay;
 
         } else {
 
@@ -77,16 +78,17 @@ export default class Timeline {
             this.scene.time.addEvent({
               delay: time,
               callback: () => {
-                  this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
               },
               callbackScope: this,
               loop: false
             });
-
-            time += (wave * wavesDelay) + (500 * enemies);
+            time += enemyDelay;
 
           }
         }
+
+        time += wavesDelay;
       }
 
       if (callbacks) {
