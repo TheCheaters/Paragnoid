@@ -3,11 +3,14 @@ import Game from '../scenes/game';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
 
+let enemyProgressiveNumber = 0;
 
 type Make = {
   enemyType: keyof typeof ENEMY_TYPES;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
+  enemyPath: keyof typeof ENEMY_PATHS | null;
 }
 
 type WeaponType = keyof typeof WEAPON_TYPES;
@@ -15,11 +18,15 @@ type WeaponType = keyof typeof WEAPON_TYPES;
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
   public maxEnergy!: number;
+  private enemyName!: string;
   private timer!: Phaser.Time.TimerEvent;
-
+  private enemyPath?: Make['enemyPath'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
-
+  private path?: { t: number, vec: Phaser.Math.Vector2 };
+  private curve?: Phaser.Curves.Spline | null;
+  private tween?: Phaser.Tweens.Tween | null;
+  private points?: number[];
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
     this.setData('score', 10);
@@ -39,7 +46,16 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make({ enemyType, enemyBehavior }: Make) {
+  make({ enemyType, enemyBehavior, enemyPath }: Make) {
+
+    // RESET PREVIOUS PATH
+    this.enemyPath = null;
+    this.curve = null;
+    this.tween = null;
+
+    enemyProgressiveNumber += 1;
+    this.enemyName = `Enemy_${enemyProgressiveNumber}`;
+    console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
     const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE } = ENEMY_TYPES[enemyType];
@@ -53,8 +69,27 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const x = this.scene.scale.width + 100;
     this.setOrigin(0, 0);
     this.body.reset(x, y);
-    const { player } = this.scene as Game;
-    this.scene.physics.moveToObject(this, player, SPEED);
+
+    // DIRECTION
+    if (enemyPath) {
+
+      this.enemyPath = enemyPath;
+      this.path = { t: 0, vec: new Phaser.Math.Vector2() };
+      this.points = ENEMY_PATHS[this.enemyPath];
+      this.curve = new Phaser.Curves.Spline(this.points);
+      this.tween = this.scene.tweens.add({
+        targets: this.path,
+        t: 1,
+        duration: 5000,
+        repeat: 0
+      });
+
+    } else {
+
+      const { player } = this.scene as Game;
+      this.scene.physics.moveToObject(this, player, SPEED);
+
+    }
 
     // BEHAVIOR
     this.maxEnergy = ENERGY;
@@ -84,11 +119,20 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.setVelocity(0);
     this.timer.remove();
+    this.tween?.stop();
+    console.log(`Killed Enemy ${this.enemyName}`);
   }
 
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
     this.updateLifeLine();
+
+    if (this.enemyPath && this.path && this.curve) {
+      this.curve.getPoint(this.path.t, this.path.vec);
+      const { x, y } = this.path.vec;
+      this.x = x;
+      this.y = y;
+    }
 
 		if (this.x < -100) {
 			this.kill();
@@ -102,7 +146,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     super(scene.physics.world, scene);
 
     this.createMultiple({
-      frameQuantity: 50,
+      frameQuantity: 70,
       key: ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
       setXY: {x: -100, y: -100},
       setScale: {x: 0.5, y: 0.5},
@@ -113,8 +157,8 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
   }
 
-  makeEnemy({ enemyType, enemyBehavior }: Make) {
+  makeEnemy({ enemyType, enemyBehavior, enemyPath }: Make) {
     const enemy = this.getFirstDead(false) as Enemy;
-    if (enemy) enemy.make({ enemyType, enemyBehavior });
+    if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath });
   }
 }
