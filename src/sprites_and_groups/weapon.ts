@@ -57,6 +57,13 @@ export class PlayerWeapon extends Weapon {
     this.WIDTH = DEFAULT.WIDTH;
     this.HEIGHT = DEFAULT.HEIGHT;
   }
+  fire(x: number, y: number, weaponType?: WeaponType) {
+    if (weaponType) {
+      this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
+      this.FIRE_SPEED = (WEAPON_TYPES[weaponType].FIRE_SPEED);
+    }
+    super.fire(x, y);
+  }
 }
 
 export class EnemyWeapon extends Weapon {

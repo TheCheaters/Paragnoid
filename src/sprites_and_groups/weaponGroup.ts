@@ -24,7 +24,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
       weapon.fire(x, y, weaponType);
     }
     if (weapon instanceof PlayerWeapon) {
-      weapon.fire(x, y);
+      weapon.fire(x, y, weaponType);
     }
   }
 }
