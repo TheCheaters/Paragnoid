@@ -16,6 +16,8 @@
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",
   "POWERUP":                "powerup",
   "POWERUP_ASSET_PATH":     "assets/power_up.png",
+  "AUDIO_EXPLOSION":        "audio_explosion",
+  "AUDIO_EXPLOSION_ASSET_PATH":"assets/audio_explosion.mp3",
   "INFOPANEL_OVER":         "infopanel",
   "INFOPANEL_OVER_PATH":    "assets/game-over.png",
   "AUDIO_OVER":             "audioover",
