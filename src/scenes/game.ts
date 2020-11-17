@@ -62,6 +62,8 @@ export default class Game extends Scene {
       this.load.image(WEAPON_TYPES[WEAPON].TEXTURE_NAME, WEAPON_TYPES[WEAPON].SPRITE_ASSET_PATH);
       this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
     });
+    
+    this.load.audio(C.AUDIO_EXPLOSION, C.AUDIO_EXPLOSION_ASSET_PATH);
 
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
   }
