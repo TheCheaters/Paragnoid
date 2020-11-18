@@ -54,8 +54,8 @@ export default class Game extends Scene {
     });
 
     this.load.spritesheet(POWERUP, POWERUP_ASSET_PATH, {
-      frameWidth: 30,
-      frameHeight: 30
+      frameWidth: 60,
+      frameHeight: 60
     });
 
     // Carica tutti gli sprite di Enemies
@@ -71,6 +71,7 @@ export default class Game extends Scene {
       this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
     });
     
+    this.load.audio(C.HIT_ENEMY, C.HIT_ENEMY_ASSET_PATH);
     this.load.audio(C.AUDIO_EXPLOSION, C.AUDIO_EXPLOSION_ASSET_PATH);
 
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);

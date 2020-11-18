@@ -1,7 +1,7 @@
 {
   "STANDARD" : {
-    "ENERGY":             90,
-    "SPEED":              400,
+    "ENERGY":             360,
+    "SPEED":              4000,
     "FIRE_RATE":          10000
   },
   "AGGRESSIVE" : {
