@@ -25,12 +25,16 @@ export default class Game extends Scene {
   public enemyWeaponsGroup!: WeaponGroup;
   public PlayerWeapon1Level1Group!: WeaponGroup;
   public PlayerWeapon1Level2Group!: WeaponGroup;
+  public PlayerWeapon1Level3Group!: WeaponGroup;
+  public PlayerWeapon1Level4Group!: WeaponGroup;
   public explosions!: Explosions;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons1Lvl2!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl3!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl4!: Phaser.Physics.Arcade.Collider;
   public score = 0;
   public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
@@ -77,6 +81,8 @@ export default class Game extends Scene {
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
     this.PlayerWeapon1Level2Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level3Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level4Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
@@ -98,6 +104,8 @@ export default class Game extends Scene {
     this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
     this.colliderEnemyWeapons1Lvl2 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level2Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl3 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level3Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl4 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level4Group, handlerMissileEnemyCollisions.bind(this));
 
     // inizia il gioco
     this.timeline.start();
