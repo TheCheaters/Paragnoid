@@ -17,11 +17,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public joyStick!: VirtualJoystickPlugin;
   public joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
   public spaceKey!: Phaser.Input.Keyboard.Key;
+  public MKey!: Phaser.Input.Keyboard.Key;
+  public NKey!: Phaser.Input.Keyboard.Key;
   public VelocityX = 0;
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
-  public PlayerLevel = 1;
+  public PlayerLevel = 2;
+  public provaangolo!: Phaser.GameObjects.DynamicBitmapText;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -93,8 +96,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // assegna comandi
     this.cursor = this.scene.input.keyboard.createCursorKeys();
     this.joyStickKeys = this.joyStick.createCursorKeys();
-    this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
-
+    this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    this.MKey =this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
+    this.NKey =this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
  kill() {
@@ -162,8 +166,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.player.setVelocityX(this.VelocityX);
     scene.player.setVelocityY(this.VelocityY);
 
+    // TASTI AUMENTO DIMINUZIONE LIVELLO PER DEBUG
+    if (Phaser.Input.Keyboard.JustDown(this.MKey) && scene.playerWeaponsGroup){
+      this.PlayerLevel += 1;
+    } else if (Phaser.Input.Keyboard.JustDown(this.NKey) && scene.playerWeaponsGroup) {
+      this.PlayerLevel -= 1;
+    }
+
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
-      scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y);
+      if (this.PlayerLevel === 1 || 0) {
+        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, -15);
+        this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
+      } else {
+        this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
+        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, -15);
+        scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, 15);
+      }
+      
+      
     }
   }
 }

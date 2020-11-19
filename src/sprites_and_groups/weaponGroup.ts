@@ -20,16 +20,20 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
 
   }
 
-  fireBullet(x: number, y: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
-    const weapon = this.getFirstDead(true) as PlayerWeapon || EnemyWeapon;
-    weapon.setActive(true);
+  
+  
+  fireBulletEnemy(x: number, y: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
+    const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
+    weaponEnemy.setActive(true);
     const pippo = this.getFirstDead(false) as PlayerWeapon || EnemyWeapon;
-    if (weapon instanceof EnemyWeapon) {
-      weapon.fireEnemy(x, y, weaponType);
-    }
-    if (weapon instanceof PlayerWeapon) {
-      weapon.firePlayer(x, y, 45, weaponType, weaponLevel);
-      pippo.firePlayer2(x, y, -10, weaponType, weaponLevel);
-    }
+    weaponEnemy.fireEnemy(x, y, weaponType);
+       
   }
-}
+  fireBulletPlayer(x: number, y: number, angle: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
+    const weaponPlayer = this.getFirstDead(true) as PlayerWeapon;
+    weaponPlayer.setActive(true);
+    weaponPlayer.firePlayer(x, y, angle, weaponType, weaponLevel);
+   
+    
+  }
+}    

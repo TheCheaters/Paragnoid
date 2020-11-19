@@ -116,7 +116,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, weaponType: WeaponEnemyType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, weaponType as WeaponEnemyType);
+    enemyWeaponsGroup.fireBulletEnemy(x, y, weaponType as WeaponEnemyType);
   }
 
   kill() {

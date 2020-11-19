@@ -23,10 +23,14 @@ export default class Game extends Scene {
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
+  public PlayerWeapon1Level1Group!: WeaponGroup;
+  public PlayerWeapon1Level2Group!: WeaponGroup;
   public explosions!: Explosions;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl2!: Phaser.Physics.Arcade.Collider;
   public score = 0;
   public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
@@ -71,6 +75,8 @@ export default class Game extends Scene {
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
+    this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level2Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
@@ -90,6 +96,8 @@ export default class Game extends Scene {
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions.bind(this));
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerEnemyCollisions.bind(this));
     this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl2 = this.physics.add.collider (this.enemies, this.PlayerWeapon1Level2Group, handlerMissileEnemyCollisions.bind(this));
 
     // inizia il gioco
     this.timeline.start();
