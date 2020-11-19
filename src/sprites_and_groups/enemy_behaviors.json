@@ -5,12 +5,12 @@
     "FIRE_RATE":          10000
   },
   "AGGRESSIVE" : {
-    "ENERGY":             180,
+    "ENERGY":             270,
     "SPEED":              300,
     "FIRE_RATE":          5000
   },
   "SUICIDE" : {
-    "ENERGY":             270,
+    "ENERGY":             540,
     "SPEED":              150,
     "FIRE_RATE":          30000
   }
