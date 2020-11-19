@@ -48,6 +48,8 @@ export default class Game extends Scene {
       frameWidth: 50,
       frameHeight: 22
     });
+    this.load.image(C.BLUE_PARTICLE, C.BLUE_PARTICLE_ASSET_PATH);
+    this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
       frameWidth: 60,
       frameHeight: 60
@@ -70,7 +72,7 @@ export default class Game extends Scene {
       this.load.image(WEAPON_TYPES[WEAPON].TEXTURE_NAME, WEAPON_TYPES[WEAPON].SPRITE_ASSET_PATH);
       this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
     });
-    
+
     this.load.audio(C.HIT_ENEMY, C.HIT_ENEMY_ASSET_PATH);
     this.load.audio(C.AUDIO_EXPLOSION, C.AUDIO_EXPLOSION_ASSET_PATH);
 

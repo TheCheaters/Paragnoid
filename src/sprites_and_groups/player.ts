@@ -1,6 +1,6 @@
 import * as C from '~/constants.json';
 import { KEYS, DIRECTIONS } from '~/globals';
-import { SPACECRAFT } from '~/constants.json';
+import { SPACECRAFT, BLUE_PARTICLE } from '~/constants.json';
 
 import Game from '../scenes/game';
 import { Scene } from 'phaser';
@@ -14,11 +14,15 @@ type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   public cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private shield!: Phaser.GameObjects.Particles.ParticleEmitter;
   public joyStick!: VirtualJoystickPlugin;
   public joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
-  public spaceKey!: Phaser.Input.Keyboard.Key;
+  public keys!: {
+    [key: string]: Phaser.Input.Keyboard.Key;
+  }
   public VelocityX = 0;
   public VelocityY = 0;
+  private hasShield = false;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
 
@@ -28,7 +32,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
-
 
     scene.anims.create({
       key: DIRECTIONS.GO_RIGHT,
@@ -92,8 +95,34 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // assegna comandi
     this.cursor = this.scene.input.keyboard.createCursorKeys();
     this.joyStickKeys = this.joyStick.createCursorKeys();
-    this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+    this.keys = {
+      space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
+      m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
+    }
 
+  }
+
+  shieldsUp() {
+    this.shield = this.scene.add.particles(BLUE_PARTICLE).createEmitter({
+      x: 400,
+      y: 300,
+      blendMode: 'SCREEN',
+      scale: { start: 0.2, end: 0 },
+      speed: { min: -100, max: 100 },
+      quantity: 30,
+    });
+
+    this.shield.setEmitZone({
+      source: new Phaser.Geom.Circle(0, 0, 100),
+      type: 'edge',
+      quantity: 50
+    })
+    this.hasShield = true;
+  }
+
+  shieldsDown() {
+    this.shield.explode(50, this.x, this.y);
+    this.hasShield = false;
   }
 
  kill() {
@@ -161,8 +190,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.player.setVelocityX(this.VelocityX);
     scene.player.setVelocityY(this.VelocityY);
 
-    if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
       scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y);
     }
+
+    if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
+      if (!this.hasShield) this.shieldsUp()
+      else this.shieldsDown();
+    }
+
+    if (this.shield) this.shield.setPosition(this.x, this.y);
+
   }
 }
