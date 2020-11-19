@@ -80,7 +80,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       this.tween = this.scene.tweens.add({
         targets: this.path,
         t: 1,
-        duration: SPEED,
+        duration: SPEED * 10,
         repeat: 0
       });
 
