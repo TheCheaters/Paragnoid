@@ -92,9 +92,9 @@ export default class Powerups extends Phaser.Physics.Arcade.Group {
       key: POWERUP,
       frames: scene.anims.generateFrameNumbers(POWERUP, {
         start: 0,
-        end: 5
+        end: 16
       }),
-      frameRate: 30
+      frameRate: 12
     });
 
   }
