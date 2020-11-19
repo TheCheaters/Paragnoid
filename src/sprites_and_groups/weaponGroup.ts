@@ -28,8 +28,8 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
       weapon.fireEnemy(x, y, weaponType);
     }
     if (weapon instanceof PlayerWeapon) {
-      weapon.firePlayer(x, y, weaponType, weaponLevel);
-      pippo.firePlayer2(x, y+100, weaponType, weaponLevel);
+      weapon.firePlayer(x, y, 45, weaponType, weaponLevel);
+      pippo.firePlayer2(x, y, -10, weaponType, weaponLevel);
     }
   }
 }
