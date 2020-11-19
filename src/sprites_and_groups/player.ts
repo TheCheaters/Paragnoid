@@ -174,7 +174,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
-      if (this.PlayerLevel === 1 || 0) {
+      if (this.PlayerLevel === 1 || this.PlayerLevel == 0) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, -15);
         this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
       } else {
