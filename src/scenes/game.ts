@@ -11,11 +11,11 @@ import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
-import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
-type WeaponType = keyof typeof WEAPON_TYPES;
+type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type PathTypes = keyof typeof ENEMY_PATHS;
 
 export default class Game extends Scene {
@@ -57,10 +57,10 @@ export default class Game extends Scene {
     });
 
     // Carica tutti gli sprite e i suoni di Weapons
-    Object.keys(WEAPON_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponType;
-      this.load.image(WEAPON_TYPES[WEAPON].TEXTURE_NAME, WEAPON_TYPES[WEAPON].SPRITE_ASSET_PATH);
-      this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
+    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponEnemyType;
+      this.load.image(WEAPON_ENEMY_TYPES[WEAPON].TEXTURE_NAME, WEAPON_ENEMY_TYPES[WEAPON].SPRITE_ASSET_PATH);
+      this.load.audio(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, WEAPON_ENEMY_TYPES[WEAPON].AUDIO_ASSET_PATH);
     });
 
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
@@ -79,9 +79,9 @@ export default class Game extends Scene {
 
     this.lives = new Lives(this, C.SPACECRAFT);
 
-    Object.keys(WEAPON_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponType;
-      this.sound.add(WEAPON_TYPES[WEAPON].AUDIO_NAME, {loop: false});
+    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponEnemyType;
+      this.sound.add(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, {loop: false});
     });
 
     const handlerPlayerEnemyCollisions = playerEnemyCollision(this) as ArcadePhysicsCallback;

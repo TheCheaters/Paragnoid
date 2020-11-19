@@ -21,6 +21,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
+  public PlayerLevel = 1;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);

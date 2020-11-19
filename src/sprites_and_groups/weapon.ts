@@ -1,10 +1,10 @@
 import { Scene } from "phaser";
-import { DEFAULT } from '~/sprites_and_groups/weapons_types.json';
+import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import {LEVEL_1} from '~/sprites_and_groups/weapons_levels.json'
-import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_LEVELS from '~/sprites_and_groups/weapons_levels.json'
 
-type WeaponType = keyof typeof WEAPON_TYPES;
+type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponLevel = keyof typeof WEAPON_LEVELS;
 
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
@@ -26,15 +26,6 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   }
 
   fire(x: number, y: number) {
-    this.body.enable = true;
-    this.body.reset(x + 2, y + 20);
-    this.setActive(true);
-    this.setVisible(true);
-    this.setVelocityX(this.FIRE_SPEED);
-    this.scene.sound.play(this.AUDIO_NAME);
-  }
-
-  fire2(x: number, y: number) {
     this.body.enable = true;
     this.body.reset(x + 2, y + 20);
     this.setActive(true);
@@ -75,28 +66,28 @@ export class PlayerWeapon extends Weapon {
     this.GR_X = LEVEL_1.GRAVITY_X;
     this.GR_Y = LEVEL_1.GRAVITY_Y;
   }
-  firePlayer(x: number, y: number, weaponType?: WeaponType, weaponLevel?: WeaponLevel) {
+  firePlayer(x: number, y: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
     if (weaponType && weaponLevel) {
-      this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
-      this.FIRE_SPEED = (WEAPON_TYPES[weaponType].FIRE_SPEED);
+      this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
+      this.FIRE_SPEED = (WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
     super.fire(x, y);
   }
 
-  firePlayer2(x: number, y: number, weaponType?: WeaponType, weaponLevel?: WeaponLevel) {
+  firePlayer2(x: number, y: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
     if (weaponType && weaponLevel) {
-      this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
+      this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = 100;
     }
-    super.fire2(x, y);
+    super.fire(x, y);
   }
 }
 
 export class EnemyWeapon extends Weapon {
-  fireEnemy(x: number, y: number, weaponType?: WeaponType) {
+  fireEnemy(x: number, y: number, weaponType?: WeaponEnemyType) {
     if (weaponType) {
-      this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
-      this.FIRE_SPEED = -(WEAPON_TYPES[weaponType].FIRE_SPEED);
+      this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
+      this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
     super.fire(x, y);
   }
