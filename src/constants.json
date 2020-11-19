@@ -11,6 +11,8 @@
   "SPACE_ASSET_PATH":       "assets/nebula.jpg",
   "SUN":                    "sun",
   "SUN_ASSET_PATH":         "assets/sun.png",
+  "PLANET":                 "planet",
+  "PLANET_ASSET_PATH":      "assets/planet.png",
   "AUDIO_MISSILE":          "audiomissile",
   "EXPLOSION":              "explosion",
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",

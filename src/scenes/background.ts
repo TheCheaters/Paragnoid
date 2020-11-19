@@ -1,10 +1,11 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
-import { SPACE, SPACE_ASSET_PATH, SUN, SUN_ASSET_PATH } from '~/constants.json';
+import { SPACE, SPACE_ASSET_PATH, SUN, SUN_ASSET_PATH, PLANET, PLANET_ASSET_PATH } from '~/constants.json';
 
 export default class Background extends Scene {
   private bg!: Phaser.GameObjects.TileSprite;
   private sun!: Phaser.GameObjects.Image;
+  private planet!: Phaser.GameObjects.Image;
   private gameInstance!: Game;
   constructor() {
     super({
@@ -15,10 +16,12 @@ export default class Background extends Scene {
   preload() {
     this.load.image(SPACE, SPACE_ASSET_PATH);
     this.load.image(SUN, SUN_ASSET_PATH);
+    this.load.image(PLANET, PLANET_ASSET_PATH);
   }
   create() {
     this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.width, SPACE).setOrigin(0);
     this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 4, this.scale.height / 4).setScale(0.3, 0.3);
+    this.planet = this.add.image(0, 0, PLANET).setPosition(this.scale.width / 1.5, this.scale.height / 7).setScale(0.05, 0.05);
     this.gameInstance = this.scene.get('game') as Game;
   }
 
@@ -35,5 +38,6 @@ export default class Background extends Scene {
     this.bg.tilePositionX += 1 + backgroundVelocity;
 
     this.sun.rotation += 0.00006 * delta;
+    this.planet.rotation -= 0.00008 * delta;
     }
 }
