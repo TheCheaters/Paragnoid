@@ -74,7 +74,14 @@ export class PlayerWeapon extends Weapon {
       this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = (WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
-    super.fire(x, y, angle);
+    this.body.enable = true;
+    this.body.reset(x + 2, y + 20);
+    this.setActive(true);
+    this.setVisible(true);
+    this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+    this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+    this.scene.sound.play(this.AUDIO_NAME);
+    this.setRotation(Phaser.Math.DegToRad(angle));
   }
 
   firePlayer2(x: number, y: number, angle:number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
@@ -82,7 +89,14 @@ export class PlayerWeapon extends Weapon {
       this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = 100;
     }
-    super.fire(x, y, angle);
+    this.body.enable = true;
+    this.body.reset(x + 2, y + 20);
+    this.setActive(true);
+    this.setVisible(true);
+    this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+    this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+    this.scene.sound.play(this.AUDIO_NAME);
+    this.setRotation(Phaser.Math.DegToRad(angle));
   }
 }
 

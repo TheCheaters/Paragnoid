@@ -34,7 +34,8 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			debug: process.env.NODE_ENV === 'development'
+			debug: process.env.NODE_ENV === 'development',
+			useTree: false
 		}
 	},
 	scene: [Background, Intro, Game, GameOver],
