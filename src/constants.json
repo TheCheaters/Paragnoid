@@ -16,6 +16,8 @@
   "EXPLOSION_ASSET_PATH":   "assets/explosion.png",
   "POWERUP":                "powerup",
   "POWERUP_ASSET_PATH":     "assets/power_up.png",
+  "HIT_ENEMY":              "hit_enemy",
+  "HIT_ENEMY_ASSET_PATH":   "assets/hit_enemy.mp3",
   "AUDIO_EXPLOSION":        "audio_explosion",
   "AUDIO_EXPLOSION_ASSET_PATH":"assets/audio_explosion.mp3",
   "INFOPANEL_OVER":         "infopanel",
