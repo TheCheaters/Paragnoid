@@ -20,8 +20,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   ANGLE = LEVEL_1.ANGLE;
   GR_X = LEVEL_1.GRAVITY_X;
   GR_Y = LEVEL_1.GRAVITY_Y;
-  public angolo!: Phaser.Physics.Arcade.Body;
-  
+   
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
