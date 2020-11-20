@@ -1,6 +1,6 @@
 import * as C from '~/constants.json';
 import { KEYS, DIRECTIONS } from '~/globals';
-import { SPACECRAFT, BLUE_PARTICLE } from '~/constants.json';
+import { SPACECRAFT } from '~/constants.json';
 
 import Game from '../scenes/game';
 import { Scene } from 'phaser';
@@ -14,7 +14,6 @@ type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   public cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
-  private shield!: Phaser.GameObjects.Particles.ParticleEmitter;
   public joyStick!: VirtualJoystickPlugin;
   public joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
   public keys!: {
@@ -103,25 +102,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   shieldsUp() {
-    this.shield = this.scene.add.particles(BLUE_PARTICLE).createEmitter({
-      x: 400,
-      y: 300,
-      blendMode: 'SCREEN',
-      scale: { start: 0.2, end: 0 },
-      speed: { min: -100, max: 100 },
-      quantity: 30,
-    });
-
-    this.shield.setEmitZone({
-      source: new Phaser.Geom.Circle(0, 0, 100),
-      type: 'edge',
-      quantity: 50
-    })
+    const scene = this.scene as Game;
+    console.log(scene.shield);
     this.hasShield = true;
   }
 
   shieldsDown() {
-    this.shield.explode(50, this.x, this.y);
+    // const scene = this.scene as Game;
     this.hasShield = false;
   }
 
@@ -199,7 +186,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       else this.shieldsDown();
     }
 
-    if (this.shield) this.shield.setPosition(this.x, this.y);
-
+    scene.shield.setPosition(this.x, this.y);
   }
 }
