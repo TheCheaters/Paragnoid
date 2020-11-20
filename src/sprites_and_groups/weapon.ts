@@ -64,10 +64,7 @@ export class PlayerWeapon extends Weapon {
     this.AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
     this.WIDTH = DEFAULT.WIDTH;
     this.HEIGHT = DEFAULT.HEIGHT;
-    this.ANGLE = LEVEL_1.ANGLE;
-    this.GR_X = LEVEL_1.GRAVITY_X;
-    this.GR_Y = LEVEL_1.GRAVITY_Y;
-  }
+   }
   firePlayer(x: number, y: number, angle:number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
     if (weaponType && weaponLevel) {
       this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
