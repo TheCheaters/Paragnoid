@@ -101,14 +101,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   }
 
-  shieldsUp() {
+  shieldUp() {
     const scene = this.scene as Game;
-    console.log(scene.shield);
+    scene.particles.shieldUp();
     this.hasShield = true;
   }
 
-  shieldsDown() {
-    // const scene = this.scene as Game;
+  shieldDown() {
+    const scene = this.scene as Game;
+    scene.particles.shieldDown();
     this.hasShield = false;
   }
 
@@ -182,10 +183,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
-      if (!this.hasShield) this.shieldsUp()
-      else this.shieldsDown();
+      if (!this.hasShield) this.shieldUp()
+      else this.shieldDown();
     }
 
-    scene.shield.setPosition(this.x, this.y);
+    scene.particles.moveShield(this.x, this.y);
   }
 }

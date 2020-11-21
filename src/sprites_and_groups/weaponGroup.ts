@@ -8,7 +8,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     super(scene.physics.world, scene);
 
     this.createMultiple({
-      frameQuantity: 100,
+      frameQuantity: 20,
       setXY: {x: -100, y: -100},
       key: WEAPON_TYPES.DEFAULT.TEXTURE_NAME,
       active: false,

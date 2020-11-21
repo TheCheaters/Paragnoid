@@ -5,7 +5,7 @@ import { PlayerWeapon, EnemyWeapon } from '~/sprites_and_groups/weapon';
 import WeaponGroup from '~/sprites_and_groups/weaponGroup';
 import Enemies from '~/sprites_and_groups/enemies';
 import Player from '~/sprites_and_groups/player';
-import Shield from '~/sprites_and_groups/shield';
+import Particles from '~/sprites_and_groups/particles';
 import Explosions from '~/sprites_and_groups/explosions';
 import Powerups from '~/sprites_and_groups/powerups';
 import playerEnemyCollision from '~/colliders/handlerPlayerEnemyCollisions';
@@ -22,7 +22,7 @@ type WeaponType = keyof typeof WEAPON_TYPES;
 
 export default class Game extends Scene {
   public player!: Player;
-  public shield!: Shield;
+  public particles!: Particles;
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
@@ -84,7 +84,7 @@ export default class Game extends Scene {
   create() {
 
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
-    this.shield = new Shield(this);
+    this.particles = new Particles(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.enemies = new Enemies(this);
