@@ -23,7 +23,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public VelocityY = 0;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
-  public PlayerLevel = 2;
+  public PlayerLevel = 1;
+  public PlayerWeapon = 1; //messo un numero per comodità. da usare un enum??
   public provaangolo!: Phaser.GameObjects.DynamicBitmapText;
 
   constructor(scene: Game, x: number, y: number, texture: string) {

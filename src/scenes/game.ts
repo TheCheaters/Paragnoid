@@ -12,10 +12,12 @@ import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
+type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type PathTypes = keyof typeof ENEMY_PATHS;
 
 export default class Game extends Scene {
@@ -69,6 +71,13 @@ export default class Game extends Scene {
       const WEAPON = W as WeaponEnemyType;
       this.load.image(WEAPON_ENEMY_TYPES[WEAPON].TEXTURE_NAME, WEAPON_ENEMY_TYPES[WEAPON].SPRITE_ASSET_PATH);
       this.load.audio(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, WEAPON_ENEMY_TYPES[WEAPON].AUDIO_ASSET_PATH);
+    });
+
+    //Carica tutti gli sprite ed i suoni del Player
+    Object.keys(WEAPON_PLAYER_TYPES).forEach((P) =>{
+      const PLAYER = P as WeaponPlayerType;
+      this.load.image(WEAPON_PLAYER_TYPES[PLAYER].TEXTURE_NAME, WEAPON_PLAYER_TYPES[PLAYER].SPRITE_ASSET_PATH);
+      this.load.audio(WEAPON_PLAYER_TYPES[PLAYER].AUDIO_NAME, WEAPON_PLAYER_TYPES[PLAYER].AUDIO_ASSET_PATH);
     });
 
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
