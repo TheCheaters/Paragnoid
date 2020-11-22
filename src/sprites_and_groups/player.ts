@@ -1,10 +1,9 @@
 import * as C from '~/constants.json';
 import { KEYS, DIRECTIONS } from '~/globals';
-import { SPACECRAFT } from '~/constants.json';
+import { SPACECRAFT, SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH, RESPAWN_TIME } from '~/constants.json';
 
-import Game from '../scenes/game';
+import Game from '~/scenes/game';
 import { Scene } from 'phaser';
-
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -21,9 +20,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
   public VelocityX = 0;
   public VelocityY = 0;
-  private hasShield = false;
+  private energy = 300;
+  public maxEnergy!: number;
   private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
+  private greenStyle!: Phaser.GameObjects.Graphics;
+  private greenLine!: Phaser.Geom.Line;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -80,9 +82,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     const plugin = this.scene.plugins.get('rexVirtualJoystick') as VirtualJoystickPlugin;
     this.joyStick = plugin.add(this.scene, {
-      x: 100,
-      y: 500,
-      radius: 70,
+      x: -200,
+      y: -200,
+      radius: 0,
       // base: this.add.circle(0, 0, 100, 0x888888),
       // thumb: this.add.circle(0, 0, 50, 0xcccccc),
       // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
@@ -99,18 +101,83 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
     }
 
+    // BEHAVIOR
+    this.maxEnergy = this.energy;
+    this.setLifeLine();
+  }
+
+  setLifeLine() {
+    this.greenStyle = this.scene.add.graphics({ lineStyle: { width: 3, color: 0x00ff3d } });
+    this.greenLine = new Phaser.Geom.Line();
+  }
+
+  updateLifeLine() {
+    this.greenStyle.clear();
+    const xPos = this.x - this.width / 2;
+    this.greenLine.x1 = xPos;
+    this.greenLine.y1 = this.y + this.height + 5;
+    this.greenLine.x2 = xPos + ((this.width) * this.energy) / this.maxEnergy;
+    this.greenLine.y2 = this.y + this.height + 5;
+    this.greenStyle.strokeLineShape(this.greenLine);
+  }
+
+  takeHit(damage: number) {
+    const scene = this.scene as Game;
+    console.log(scene.shield.isUp);
+    if (scene.shield.isUp) scene.shield.takeHit(damage);
+    else {
+      this.energy -= damage;
+      if (this.energy <= 0) this.die();
+    }
+  }
+
+  die() {
+    const scene = this.scene as Game;
+
+    if (scene.lives.lifes <= 0) scene.scene.start('gameover');
+
+    scene.explosions?.addExplosion(this.x, this.y);
+    scene.colliderPlayerEnemy.active = false;
+    scene.colliderPlayerWeapons.active = false;
+    scene.lives.lifes -= 1;
+    scene.lives.destroyLives();
+    scene.tweens.addCounter({
+      from: 1,
+      to: 0,
+      duration: RESPAWN_TIME,
+      ease: Phaser.Math.Easing.Sine.InOut,
+      repeat: 3,
+      yoyo: true,
+      onUpdate: tween => {
+        const valoreFrame = tween.getValue()
+        this.setAlpha(valoreFrame)
+      },
+      onStart: () => {
+        scene.colliderEnemyWeapons.active = true;
+      },
+      onComplete: () => {
+        scene.colliderPlayerEnemy.active = true;
+        scene.colliderPlayerWeapons.active = true;
+        scene.colliderEnemyWeapons.active = true;
+      }
+    });
+    this.resurrect();
+  }
+
+  resurrect() {
+    this.energy = this.maxEnergy;
   }
 
   shieldUp() {
     const scene = this.scene as Game;
-    scene.particles.shieldUp();
-    this.hasShield = true;
+    scene.shield.forceShieldUp();
+    this.setBodySize(200, 200);
   }
 
   shieldDown() {
     const scene = this.scene as Game;
-    scene.particles.shieldDown();
-    this.hasShield = false;
+    scene.shield.shieldDown();
+    this.setBodySize(SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH);
   }
 
  kill() {
@@ -183,10 +250,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
-      if (!this.hasShield) this.shieldUp()
-      else this.shieldDown();
+      this.shieldUp();
     }
 
-    scene.particles.moveShield(this.x, this.y);
+    scene.shield.moveShield(this.x, this.y);
+    this.updateLifeLine();
+
   }
 }

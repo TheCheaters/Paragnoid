@@ -1,4 +1,4 @@
-import { Scene } from "phaser";
+import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites_and_groups/weapons_types.json';
 import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
 
@@ -15,7 +15,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   WIDTH = DEFAULT.WIDTH;
   HEIGHT = DEFAULT.HEIGHT;
 
-  constructor(scene: Scene, x: number, y: number) {
+  constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
@@ -26,6 +26,12 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(true);
     this.setVelocityX(this.FIRE_SPEED);
     this.scene.sound.play(this.AUDIO_NAME);
+  }
+
+  explode() {
+    const { explosions } = this.scene as Game;
+    explosions.addExplosion(this.x, this.y);
+    this.kill();
   }
 
   kill() {
@@ -46,7 +52,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
 }
 
 export class PlayerWeapon extends Weapon {
-  constructor(scene: Scene, x: number, y: number) {
+  constructor(scene: Game, x: number, y: number) {
     super(scene, x, y);
     this.DAMAGE = DEFAULT.DAMAGE;
     this.FIRE_SPEED = DEFAULT.FIRE_SPEED;
@@ -64,6 +70,7 @@ export class EnemyWeapon extends Weapon {
     if (weaponType) {
       this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = (WEAPON_TYPES[weaponType].FIRE_SPEED);
+      this.DAMAGE = (WEAPON_TYPES[weaponType].DAMAGE);
     }
     super.fire(x, y);
   }

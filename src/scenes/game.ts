@@ -5,12 +5,13 @@ import { PlayerWeapon, EnemyWeapon } from '~/sprites_and_groups/weapon';
 import WeaponGroup from '~/sprites_and_groups/weaponGroup';
 import Enemies from '~/sprites_and_groups/enemies';
 import Player from '~/sprites_and_groups/player';
-import Particles from '~/sprites_and_groups/particles';
+import Shield from '~/sprites_and_groups/shield';
 import Explosions from '~/sprites_and_groups/explosions';
 import Powerups from '~/sprites_and_groups/powerups';
-import playerEnemyCollision from '~/colliders/handlerPlayerEnemyCollisions';
+import handlerPlayerEnemyCollisions from '~/colliders/handlerPlayerEnemyCollisions';
+import handlerPlayerWeaponCollisions from '~/colliders/handlerPlayerWeaponCollisions';
+import handlerPlayerPowerupCollisions from '~/colliders/handlerPlayerPowerupCollisions';
 import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
-import playerPowerupCollision from '~/colliders/handlerPlayerPowerupCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
@@ -22,7 +23,7 @@ type WeaponType = keyof typeof WEAPON_TYPES;
 
 export default class Game extends Scene {
   public player!: Player;
-  public particles!: Particles;
+  public shield!: Shield;
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
@@ -47,8 +48,8 @@ export default class Game extends Scene {
   preload() {
     this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
     this.load.spritesheet(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH, {
-      frameWidth: 50,
-      frameHeight: 22
+      frameWidth: C.SPACECRAFT_FRAME_WIDTH,
+      frameHeight: C.SPACECRAFT_FRAME_HEIGH,
     });
     this.load.image(C.BLUE_PARTICLE, C.BLUE_PARTICLE_ASSET_PATH);
     this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
@@ -84,7 +85,7 @@ export default class Game extends Scene {
   create() {
 
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
-    this.particles = new Particles(this);
+    this.shield = new Shield(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.enemies = new Enemies(this);
@@ -101,13 +102,11 @@ export default class Game extends Scene {
       this.sound.add(WEAPON_TYPES[WEAPON].AUDIO_NAME, {loop: false});
     });
 
-    const handlerPlayerEnemyCollisions = playerEnemyCollision(this) as ArcadePhysicsCallback;
     const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
-    const handlerPlayerPowerupCollisions = playerPowerupCollision(this) as ArcadePhysicsCallback;
 
-    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions.bind(this));
-    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerEnemyCollisions.bind(this));
-    this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions.bind(this));
+    this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
+    this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
+    this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
 
     // inizia il gioco

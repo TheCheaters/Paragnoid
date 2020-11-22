@@ -114,12 +114,17 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     enemyWeaponsGroup.fireBullet(x, y, weaponType as WeaponType);
   }
 
+  explode() {
+    const { explosions } = this.scene as Game;
+    explosions.addExplosion(this.x, this.y);
+    this.kill();
+  }
+
   kill() {
     this.greenStyle.clear();
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
-    this.setVelocity(0);
     this.timer.remove();
     this.tween?.stop();
     console.log(`Killed Enemy ${this.enemyName}`);
