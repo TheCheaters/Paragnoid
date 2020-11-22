@@ -21,7 +21,18 @@
    },
   "ULTRA": {
     "DAMAGE":            100,
-    "FIRE_SPEED":        10,
+    "FIRE_SPEED":        200,
+    "TEXTURE_NAME":      "Missile",
+    "SPRITE_ASSET_PATH": "assets/missile.png",
+    "AUDIO_NAME":        "Missile",
+    "AUDIO_ASSET_PATH":  "assets/missile.mp3",
+    "WIDTH":             40,
+    "HEIGHT":            40
+  },
+
+  "DIFFUSO": {
+    "DAMAGE":            100,
+    "FIRE_SPEED":        300,
     "TEXTURE_NAME":      "Missile",
     "SPRITE_ASSET_PATH": "assets/missile.png",
     "AUDIO_NAME":        "Missile",

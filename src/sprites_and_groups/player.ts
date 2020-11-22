@@ -189,7 +189,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       } else if (this.PlayerLevel === 4) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y+30, 0); 
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, 0);
-        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y-30, 0);
+        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y-30, 125);
       } else {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0);
       }

@@ -7,24 +7,24 @@
     "WEAPON_TYPE":       "DEFAULT"
   },
   "GREY_SHIP": {
-    "TEXTURE_NAME": "Grey-Ship",
+    "TEXTURE_NAME":      "Grey-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
-    "WIDTH": 130,
-    "HEIGHT": 80,
+    "WIDTH":              130,
+    "HEIGHT":             80,
     "WEAPON_TYPE":       "MEGA"
   },
   "WHITE_SHIP": {
-    "TEXTURE_NAME": "White-Ship",
+    "TEXTURE_NAME":      "White-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_white.png",
-    "WIDTH": 300,
-    "HEIGHT": 140,
-    "WEAPON_TYPE":       "ULTRA"
+    "WIDTH":              300,
+    "HEIGHT":             140,
+    "WEAPON_TYPE":       "DIFFUSO"
   },
   "GREEN_SHIP": {
     "TEXTURE_NAME":      "Green-Ship",
     "SPRITE_ASSET_PATH": "assets/enemy_2.png",
     "WIDTH":             150,
     "HEIGHT":            65,
-    "WEAPON_TYPE":       "DEFAULT"
+    "WEAPON_TYPE":       "ULTRA"
   }
 }

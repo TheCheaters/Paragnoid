@@ -116,7 +116,21 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, weaponType: WeaponEnemyType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBulletEnemy(x, y, weaponType as WeaponEnemyType);
+    if (weaponType === 'DIFFUSO'){
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 15, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 45, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 90, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 135, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 180, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 225, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 270, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 315, weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 345, weaponType as WeaponEnemyType);
+    } else {
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, weaponType as WeaponEnemyType);
+    }
+    
   }
 
   kill() {
