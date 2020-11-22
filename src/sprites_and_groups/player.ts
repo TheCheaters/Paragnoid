@@ -176,13 +176,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
       if (this.PlayerLevel === 1 || this.PlayerLevel == 0) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0);
-        //this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
       } else if (this.PlayerLevel === 2){
-        //this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15);
         scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15);
       } else if (this.PlayerLevel === 3){
-        //this.provaangolo = this.scene.add.dynamicBitmapText(200, 200, C.PV_FONT_NAME, 'Livello:'+ this.PlayerLevel, 14 );
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0); 
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15);
         scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15);
