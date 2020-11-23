@@ -74,7 +74,7 @@ export class PlayerWeapon extends Weapon {
       this.FIRE_SPEED = (WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
     this.body.enable = true;
-    this.body.reset(x + 2, y + 20);
+    this.body.reset(x + 20, y+5);
     this.setActive(true);
     this.setVisible(true);
     this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
