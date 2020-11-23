@@ -11,7 +11,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
 
     this.createMultiple({
       frameQuantity: 30,
-      setXY: {x: -100, y: -100},
+      setXY: {x: -50, y: -50},
       key: WEAPON_ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
       active: false,
       visible: false,
@@ -21,11 +21,11 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   }
 
    
-  fireBulletEnemy(x: number, y: number, angle:number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
+  fireBulletEnemy(x: number, y: number, angle:number, follow:number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
     const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
     weaponEnemy.setActive(true);
     //const pippo = this.getFirstDead(false) as PlayerWeapon || EnemyWeapon;
-    weaponEnemy.fireEnemy(x, y,angle, weaponType);
+    weaponEnemy.fireEnemy(x, y,angle, follow, weaponType);
        
   }
   fireBulletPlayer(x: number, y: number, angle: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {

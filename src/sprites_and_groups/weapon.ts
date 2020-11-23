@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import Game from '../scenes/game';
 import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import {LEVEL_1} from '~/sprites_and_groups/weapons_levels.json'
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
@@ -25,7 +26,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
-  fire(x: number, y: number, angle:number) {
+  fire(x: number, y: number, angle:number, follow:number) {
     this.body.enable = true;
     this.body.reset(x + 2, y + 20);
     this.setActive(true);
@@ -34,6 +35,10 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
     this.scene.sound.play(this.AUDIO_NAME);
     this.setRotation(Phaser.Math.DegToRad(angle));
+    if (follow === 1){
+      const { player } = this.scene as Game;
+      this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
+    }
    }
 
   kill() {
@@ -82,11 +87,11 @@ export class PlayerWeapon extends Weapon {
 }
 
 export class EnemyWeapon extends Weapon {
-  fireEnemy(x: number, y: number, angle:number, weaponType?: WeaponEnemyType) {
+  fireEnemy(x: number, y: number, angle:number, follow:number, weaponType?: WeaponEnemyType) {
     if (weaponType) {
       this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
-    super.fire(x, y, angle);
+    super.fire(x, y, angle, follow);
   }
 }
