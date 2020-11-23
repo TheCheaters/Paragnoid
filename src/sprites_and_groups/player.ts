@@ -171,13 +171,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   shieldUp() {
     const scene = this.scene as Game;
     scene.shield.forceShieldUp();
-    this.setBodySize(200, 200);
   }
 
   shieldDown() {
     const scene = this.scene as Game;
     scene.shield.shieldDown();
-    this.setBodySize(SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH);
   }
 
  kill() {

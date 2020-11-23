@@ -53,7 +53,7 @@ export default class Shield {
   }
 
   shieldUp() {
-    this.scene.player.setBodySize(200, 200);
+    this.scene.player.setBodySize(150, 150);
     this.emitter.setVisible(true);
   }
 
