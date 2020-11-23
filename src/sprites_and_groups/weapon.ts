@@ -18,10 +18,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
   WIDTH = DEFAULT.WIDTH;
   HEIGHT = DEFAULT.HEIGHT;
-  ANGLE = LEVEL_1.ANGLE;
-  GR_X = LEVEL_1.GRAVITY_X;
-  GR_Y = LEVEL_1.GRAVITY_Y;
-   
+     
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
@@ -38,6 +35,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     if (follow === 1){
       const { player } = this.scene as Game;
       this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
+      this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
     }
    }
 
