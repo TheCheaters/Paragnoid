@@ -1,25 +1,19 @@
 import * as C from '~/constants.json';
-import {
-  KEYS,
-  DIRECTIONS
-} from '~/globals';
-import {
-  SPACECRAFT,
-  SPACECRAFT_FRAME_WIDTH,
-  SPACECRAFT_FRAME_HEIGH,
-  RESPAWN_TIME
-} from '~/constants.json';
+import { KEYS, DIRECTIONS } from '~/globals';
+import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
+import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 
 import Game from '~/scenes/game';
-import {
-  Scene
-} from 'phaser';
+import { Scene } from 'phaser';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
   on: (event: string, callback: Function, context: Scene) => VirtualJoystickPlugin;
   createCursorKeys: () => Phaser.Types.Input.Keyboard.CursorKeys;
 }
+type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+
+const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   public cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -39,8 +33,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
-  public PlayerLevel = 1;
-  public PlayerWeapon = 1; //messo un numero per comodità. da usare un enum??
+  private weaponType = weaponNames[0] as WeaponPlayerType;
+  public weaponLevel = 0;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -267,28 +261,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // TASTI AUMENTO DIMINUZIONE LIVELLO PER DEBUG
     if (Phaser.Input.Keyboard.JustDown(this.keys.m) && scene.playerWeaponsGroup) {
-      this.PlayerLevel += 1;
+      if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
+        this.weaponLevel += 1;
+      }
     } else if (Phaser.Input.Keyboard.JustDown(this.keys.n) && scene.playerWeaponsGroup) {
-      this.PlayerLevel -= 1;
+      if (this.weaponLevel >= 1) {
+        this.weaponLevel -= 1;
+      }
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
-      if (this.PlayerLevel === 1 || this.PlayerLevel == 0) {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "SECONDA");
-      } else if (this.PlayerLevel === 2) {
-        scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15, "PRIMA");
-        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15, "PRIMA");
-      } else if (this.PlayerLevel === 3) {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
-        scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15, "PRIMA");
-        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15, "PRIMA");
-      } else if (this.PlayerLevel === 4) {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y + 30, 0, "PRIMA");
-        scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
-        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y - 30, 125, "PRIMA");
-      } else {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
-      }
+      scene.PlayerWeapon1Level1Group.fireBulletPlayerTwo(this.x, this.y, this.weaponType, this.weaponLevel);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {

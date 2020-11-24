@@ -3,12 +3,9 @@ import Game from '../scenes/game';
 import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import WEAPON_LEVELS from '~/sprites_and_groups/weapons_levels.json'
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
-type WeaponLevel = keyof typeof WEAPON_LEVELS;
-
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
 
   DAMAGE = DEFAULT.DAMAGE;
@@ -75,12 +72,10 @@ export class PlayerWeapon extends Weapon {
     this.WIDTH = DEFAULT.WIDTH;
     this.HEIGHT = DEFAULT.HEIGHT;
    }
-  firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel?: WeaponLevel) {
-    if (weaponType && weaponLevel) {
-      this.setWeaponTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
-      this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
-    }
-    this.setTexture(WEAPON_PLAYER_TYPES.SECONDA.TEXTURE_NAME);
+
+   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType) {
+    this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
+    this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
     this.body.reset(x + 20, y+5);
     this.setActive(true);
