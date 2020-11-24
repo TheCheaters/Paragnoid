@@ -63,8 +63,8 @@ export class PlayerWeapon extends Weapon {
     super(scene, x, y);
     this.DAMAGE = DEFAULT.DAMAGE;
     this.FIRE_SPEED = DEFAULT.FIRE_SPEED;
-    this.TEXTURE_NAME = WEAPON_PLAYER_TYPES.SECONDA.TEXTURE_NAME;
-    this.SPRITE_ASSET_PATH = WEAPON_PLAYER_TYPES.SECONDA.SPRITE_ASSET_PATH;  
+    this.TEXTURE_NAME = DEFAULT.TEXTURE_NAME;
+    this.SPRITE_ASSET_PATH = DEFAULT.SPRITE_ASSET_PATH;  
     this.AUDIO_NAME = DEFAULT.AUDIO_NAME;
     this.AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
     this.WIDTH = DEFAULT.WIDTH;
@@ -75,6 +75,7 @@ export class PlayerWeapon extends Weapon {
       this.setWeaponTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
       this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     }
+    this.setTexture(WEAPON_PLAYER_TYPES.SECONDA.TEXTURE_NAME);
     this.body.enable = true;
     this.body.reset(x + 20, y+5);
     this.setActive(true);
