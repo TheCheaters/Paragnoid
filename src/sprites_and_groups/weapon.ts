@@ -1,8 +1,13 @@
-import Game from '~/scenes/game';
-import { DEFAULT } from '~/sprites_and_groups/weapons_types.json';
-import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import { Scene } from "phaser";
+import Game from '../scenes/game';
+import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import WEAPON_LEVELS from '~/sprites_and_groups/weapons_levels.json'
 
-type WeaponType = keyof typeof WEAPON_TYPES;
+type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
+type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+type WeaponLevel = keyof typeof WEAPON_LEVELS;
 
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
 
@@ -15,18 +20,25 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   WIDTH = DEFAULT.WIDTH;
   HEIGHT = DEFAULT.HEIGHT;
 
-  constructor(scene: Game, x: number, y: number) {
+  constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
-  fire(x: number, y: number) {
+  fire(x: number, y: number, angle: number, follow: number) {
     this.body.enable = true;
     this.body.reset(x + 2, y + 20);
     this.setActive(true);
     this.setVisible(true);
-    this.setVelocityX(this.FIRE_SPEED);
+    this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+    this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
     this.scene.sound.play(this.AUDIO_NAME);
-  }
+    this.setRotation(Phaser.Math.DegToRad(angle));
+    if (follow === 1){
+      const { player } = this.scene as Game;
+      this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
+      this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
+    }
+   }
 
   explode() {
     const { explosions } = this.scene as Game;
@@ -62,16 +74,31 @@ export class PlayerWeapon extends Weapon {
     this.AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
     this.WIDTH = DEFAULT.WIDTH;
     this.HEIGHT = DEFAULT.HEIGHT;
+   }
+  firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel?: WeaponLevel) {
+    if (weaponType && weaponLevel) {
+      this.setWeaponTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
+      this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
+    }
+    this.setTexture(WEAPON_PLAYER_TYPES.SECONDA.TEXTURE_NAME);
+    this.body.enable = true;
+    this.body.reset(x + 20, y+5);
+    this.setActive(true);
+    this.setVisible(true);
+    this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+    this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+    this.scene.sound.play(this.AUDIO_NAME);
+    this.setRotation(Phaser.Math.DegToRad(angle));
   }
 }
 
 export class EnemyWeapon extends Weapon {
-  fire(x: number, y: number, weaponType?: WeaponType) {
+  fireEnemy(x: number, y: number, angle: number, follow: number, weaponType?: WeaponEnemyType) {
     if (weaponType) {
-      this.setWeaponTexture(WEAPON_TYPES[weaponType].TEXTURE_NAME);
-      this.FIRE_SPEED = (WEAPON_TYPES[weaponType].FIRE_SPEED);
-      this.DAMAGE = (WEAPON_TYPES[weaponType].DAMAGE);
+      this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
+      this.DAMAGE = (WEAPON_ENEMY_TYPES[weaponType].DAMAGE);
+      this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     }
-    super.fire(x, y);
+    super.fire(x, y, angle, follow);
   }
 }

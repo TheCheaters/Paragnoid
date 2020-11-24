@@ -12,6 +12,6 @@
   "SUICIDE" : {
     "ENERGY":             540,
     "SPEED":              150,
-    "FIRE_RATE":          30000
+    "FIRE_RATE":          1000
   }
 }

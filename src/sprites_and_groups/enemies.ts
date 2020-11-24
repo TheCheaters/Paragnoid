@@ -2,7 +2,7 @@ import { Scene } from "phaser";
 import Game from '../scenes/game';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
-import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
 
 let enemyProgressiveNumber = 0;
@@ -13,7 +13,7 @@ type Make = {
   enemyPath: keyof typeof ENEMY_PATHS | null;
 }
 
-type WeaponType = keyof typeof WEAPON_TYPES;
+type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
@@ -67,7 +67,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
     const x = this.scene.scale.width + 100;
-    this.setOrigin(0, 0);
+    /*if (Phaser.Math.IsEven(y*3)) { //prova rozza di spawn da dietro
+      const x = this.scene.scale.width + 100;
+    } else {
+      const x = -this.scene.scale.width - 100;
+    }*/
+    this.setOrigin(0.5, 0.5);
     this.body.reset(x, y);
 
     // DIRECTION
@@ -104,14 +109,30 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const delay = Phaser.Math.Between(FIRE_RATE, FIRE_RATE + 2000);
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
-      this.fire(this.x, this.y, WEAPON_TYPE as WeaponType);
+      this.fire(this.x, this.y, WEAPON_TYPE as WeaponEnemyType);
     }, callbackScope: this, loop: true });
 
   }
 
-  fire(x: number, y: number, weaponType: WeaponType) {
+  fire(x: number, y: number, weaponType: WeaponEnemyType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBullet(x, y, weaponType as WeaponType);
+    if (weaponType === 'DIFFUSO'){
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 15, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 45, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 90, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 135, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 180, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 225, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 270, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 315, 0,weaponType as WeaponEnemyType);
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 345, 0,weaponType as WeaponEnemyType);
+    } else if (weaponType === 'ULTRA'){
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 1,weaponType as WeaponEnemyType);
+    } else {
+      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 0,weaponType as WeaponEnemyType);
+    }
+    
   }
 
   explode() {
@@ -155,7 +176,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     this.createMultiple({
       frameQuantity: 70,
       key: ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
-      setXY: {x: -100, y: -100},
+      setXY: {x: -50, y: -50},
       setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,

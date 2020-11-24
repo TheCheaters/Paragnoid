@@ -1,0 +1,32 @@
+{
+    "PRIMA": {
+      "DAMAGE":            100,
+      "FIRE_SPEED":        1000,
+      "TEXTURE_NAME":      "Missile",
+      "SPRITE_ASSET_PATH": "assets/missile.png",
+      "AUDIO_NAME":        "Missile",
+      "AUDIO_ASSET_PATH":  "assets/missile.mp3",
+      "WIDTH":             40,
+      "HEIGHT":            40
+    },
+    "SECONDA": {
+      "DAMAGE":            100,
+      "FIRE_SPEED":        500,
+      "TEXTURE_NAME":      "Missile",
+      "SPRITE_ASSET_PATH": "assets/laser.png",
+      "AUDIO_NAME":        "Missile",
+      "AUDIO_ASSET_PATH":  "assets/missile.mp3",
+      "WIDTH":             40,
+      "HEIGHT":            40
+     },
+    "TERZA": {
+      "DAMAGE":            100,
+      "FIRE_SPEED":        10,
+      "TEXTURE_NAME":      "Missile",
+      "SPRITE_ASSET_PATH": "assets/missile.png",
+      "AUDIO_NAME":        "Missile",
+      "AUDIO_ASSET_PATH":  "assets/missile.mp3",
+      "WIDTH":             40,
+      "HEIGHT":            40
+    }
+  }

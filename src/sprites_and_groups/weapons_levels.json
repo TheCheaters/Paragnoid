@@ -1,0 +1,19 @@
+{
+    "LEVEL_1":{
+        "ANGLE":         0,
+    "GRAVITY_X":         0,
+    "GRAVITY_Y":         0
+    },
+
+    "LEVEL_2": {
+        "ANGLE":         [0, 90, 180, 45, 125],
+    "GRAVITY_X":         0,
+    "GRAVITY_Y":         0
+    },
+
+    "LEVEL_3":{
+        "ANGLE":         [0, 90, 180, 45, 125],
+    "GRAVITY_X":         0,
+    "GRAVITY_Y":         0
+    }
+}

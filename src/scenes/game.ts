@@ -15,11 +15,16 @@ import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
-import WEAPON_TYPES from '~/sprites_and_groups/weapons_types.json';
 import { POWERUP, POWERUP_ASSET_PATH } from '~/constants.json';
 
+import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
+
 type EnemyType = keyof typeof ENEMY_TYPES;
-type WeaponType = keyof typeof WEAPON_TYPES;
+type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
+type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+type PathTypes = keyof typeof ENEMY_PATHS;
 
 export default class Game extends Scene {
   public player!: Player;
@@ -27,12 +32,20 @@ export default class Game extends Scene {
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
+  public PlayerWeapon1Level1Group!: WeaponGroup;
+  public PlayerWeapon1Level2Group!: WeaponGroup;
+  public PlayerWeapon1Level3Group!: WeaponGroup;
+  public PlayerWeapon1Level4Group!: WeaponGroup;
   public explosions!: Explosions;
   public powerups!: Powerups;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerPowerups!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl2!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl3!: Phaser.Physics.Arcade.Collider;
+  public colliderEnemyWeapons1Lvl4!: Phaser.Physics.Arcade.Collider;
   public score = 0;
   public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
@@ -70,10 +83,17 @@ export default class Game extends Scene {
     });
 
     // Carica tutti gli sprite e i suoni di Weapons
-    Object.keys(WEAPON_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponType;
-      this.load.image(WEAPON_TYPES[WEAPON].TEXTURE_NAME, WEAPON_TYPES[WEAPON].SPRITE_ASSET_PATH);
-      this.load.audio(WEAPON_TYPES[WEAPON].AUDIO_NAME, WEAPON_TYPES[WEAPON].AUDIO_ASSET_PATH);
+    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponEnemyType;
+      this.load.image(WEAPON_ENEMY_TYPES[WEAPON].TEXTURE_NAME, WEAPON_ENEMY_TYPES[WEAPON].SPRITE_ASSET_PATH);
+      this.load.audio(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, WEAPON_ENEMY_TYPES[WEAPON].AUDIO_ASSET_PATH);
+    });
+
+    //Carica tutti gli sprite ed i suoni del Player
+    Object.keys(WEAPON_PLAYER_TYPES).forEach((P) =>{
+      const PLAYER = P as WeaponPlayerType;
+      this.load.image(WEAPON_PLAYER_TYPES[PLAYER].TEXTURE_NAME, WEAPON_PLAYER_TYPES[PLAYER].SPRITE_ASSET_PATH);
+      this.load.audio(WEAPON_PLAYER_TYPES[PLAYER].AUDIO_NAME, WEAPON_PLAYER_TYPES[PLAYER].AUDIO_ASSET_PATH);
     });
 
     this.load.audio(C.HIT_ENEMY, C.HIT_ENEMY_ASSET_PATH);
@@ -88,6 +108,10 @@ export default class Game extends Scene {
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
+    this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level2Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level3Group = new WeaponGroup(this, PlayerWeapon);
+    this.PlayerWeapon1Level4Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
@@ -97,9 +121,9 @@ export default class Game extends Scene {
 
     this.lives = new Lives(this, C.SPACECRAFT);
 
-    Object.keys(WEAPON_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponType;
-      this.sound.add(WEAPON_TYPES[WEAPON].AUDIO_NAME, {loop: false});
+    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
+      const WEAPON = W as WeaponEnemyType;
+      this.sound.add(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, {loop: false});
     });
 
     const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
@@ -107,7 +131,11 @@ export default class Game extends Scene {
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
-    this.colliderEnemyWeapons = this.physics.add.collider (this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl2 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level2Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl3 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level3Group, handlerMissileEnemyCollisions.bind(this));
+    this.colliderEnemyWeapons1Lvl4 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level4Group, handlerMissileEnemyCollisions.bind(this));
 
     // inizia il gioco
     this.timeline.start();
