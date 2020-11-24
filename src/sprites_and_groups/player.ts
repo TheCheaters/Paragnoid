@@ -201,6 +201,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setVelocity(0);
   }
 
+
+
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
 
