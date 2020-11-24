@@ -1,9 +1,19 @@
 import * as C from '~/constants.json';
-import { KEYS, DIRECTIONS } from '~/globals';
-import { SPACECRAFT, SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH, RESPAWN_TIME } from '~/constants.json';
+import {
+  KEYS,
+  DIRECTIONS
+} from '~/globals';
+import {
+  SPACECRAFT,
+  SPACECRAFT_FRAME_WIDTH,
+  SPACECRAFT_FRAME_HEIGH,
+  RESPAWN_TIME
+} from '~/constants.json';
 
 import Game from '~/scenes/game';
-import { Scene } from 'phaser';
+import {
+  Scene
+} from 'phaser';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -103,7 +113,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.joyStickKeys = this.joyStick.createCursorKeys();
     this.keys = {
       space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
+      s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
+      n: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N),
     }
 
     // BEHAVIOR
@@ -112,7 +124,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   setLifeLine() {
-    this.greenStyle = this.scene.add.graphics({ lineStyle: { width: 3, color: 0x00ff3d } });
+    this.greenStyle = this.scene.add.graphics({
+      lineStyle: {
+        width: 3,
+        color: 0x00ff3d
+      }
+    });
     this.greenLine = new Phaser.Geom.Line();
   }
 
@@ -181,20 +198,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   shieldDown() {
     const scene = this.scene as Game;
     scene.shield.shieldDown();
-    this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.MKey =this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
-    this.NKey =this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
- kill() {
+  kill() {
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
   }
 
-	preUpdate(time: number, delta: number) {
-		super.preUpdate(time, delta);
+  preUpdate(time: number, delta: number) {
+    super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
 
@@ -251,37 +265,33 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.player.setVelocityX(this.VelocityX);
     scene.player.setVelocityY(this.VelocityY);
 
-    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
-      scene.playerWeaponsGroup.fireBullet(scene.player.x, scene.player.y);
     // TASTI AUMENTO DIMINUZIONE LIVELLO PER DEBUG
-    if (Phaser.Input.Keyboard.JustDown(this.MKey) && scene.playerWeaponsGroup){
+    if (Phaser.Input.Keyboard.JustDown(this.keys.m) && scene.playerWeaponsGroup) {
       this.PlayerLevel += 1;
-    } else if (Phaser.Input.Keyboard.JustDown(this.NKey) && scene.playerWeaponsGroup) {
+    } else if (Phaser.Input.Keyboard.JustDown(this.keys.n) && scene.playerWeaponsGroup) {
       this.PlayerLevel -= 1;
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && scene.playerWeaponsGroup) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
       if (this.PlayerLevel === 1 || this.PlayerLevel == 0) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "SECONDA");
-      } else if (this.PlayerLevel === 2){
+      } else if (this.PlayerLevel === 2) {
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15, "PRIMA");
         scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15, "PRIMA");
-      } else if (this.PlayerLevel === 3){
+      } else if (this.PlayerLevel === 3) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, -15, "PRIMA");
         scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y, 15, "PRIMA");
       } else if (this.PlayerLevel === 4) {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y+30, 0, "PRIMA");
+        scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y + 30, 0, "PRIMA");
         scene.PlayerWeapon1Level2Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
-        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y-30, 125, "PRIMA");
+        scene.PlayerWeapon1Level3Group.fireBulletPlayer(scene.player.x, scene.player.y - 30, 125, "PRIMA");
       } else {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(scene.player.x, scene.player.y, 0, "PRIMA");
       }
-
-
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
       this.shieldUp();
     }
 
