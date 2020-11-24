@@ -1,12 +1,10 @@
 import { Scene } from "phaser";
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import WEAPON_LEVELS from '~/sprites_and_groups/weapons_levels.json'
 import { PlayerWeapon, EnemyWeapon } from './weapon';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
-type WeaponLevel = keyof typeof WEAPON_LEVELS;
 export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, classType: Function) {
     super(scene.physics.world, scene);
@@ -21,7 +19,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     });
   }
 
-  fireBulletEnemy(x: number, y: number, angle: number, follow: number, weaponType?: WeaponEnemyType, weaponLevel?: WeaponLevel) {
+  fireBulletEnemy(x: number, y: number, angle: number, follow: number, weaponType?: WeaponEnemyType) {
     const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
     weaponEnemy.setActive(true);
     weaponEnemy.fireEnemy(x, y,angle, follow, weaponType);

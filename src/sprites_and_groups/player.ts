@@ -147,6 +147,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
+  upgradeWeapon() {
+    this.weaponLevel += 1;
+  }
+
   die() {
     const scene = this.scene as Game;
 
