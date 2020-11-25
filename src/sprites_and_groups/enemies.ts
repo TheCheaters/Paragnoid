@@ -55,7 +55,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     enemyProgressiveNumber += 1;
     this.enemyName = `Enemy_${enemyProgressiveNumber}`;
-    console.log(`Made Enemy ${this.enemyName}`);
+    // console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
     const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE } = ENEMY_TYPES[enemyType];
@@ -132,7 +132,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     } else {
       enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 0,weaponType as WeaponEnemyType);
     }
-    
+
   }
 
   explode() {
@@ -148,7 +148,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.timer.remove();
     this.tween?.stop();
-    console.log(`Killed Enemy ${this.enemyName}`);
+    // console.log(`Killed Enemy ${this.enemyName}`);
   }
 
 	preUpdate(time: number, delta: number) {
