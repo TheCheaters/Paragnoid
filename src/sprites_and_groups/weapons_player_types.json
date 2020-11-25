@@ -51,10 +51,10 @@
             }
         ]
     },
-    "SECONDA": {
+    "LASER": {
         "DAMAGE": 100,
         "FIRE_SPEED": 500,
-        "TEXTURE_NAME": "Missile",
+        "TEXTURE_NAME": "Laser",
         "SPRITE_ASSET_PATH": "assets/laser.png",
         "AUDIO_NAME": "Missile",
         "AUDIO_ASSET_PATH": "assets/missile.mp3",

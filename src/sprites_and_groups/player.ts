@@ -110,6 +110,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
       n: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N),
+      l: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L),
+      k: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K),
+      j: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J),
     }
 
     // BEHAVIOR
@@ -274,6 +277,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       if (this.weaponLevel >= 1) {
         this.weaponLevel -= 1;
       }
+    }
+    // TASTI CAMBIO ARMA PER DEBUG
+    if (Phaser.Input.Keyboard.JustDown(this.keys.l) && scene.playerWeaponsGroup) {
+      this.weaponType = weaponNames[1] as WeaponPlayerType;  
+    } 
+    if (Phaser.Input.Keyboard.JustDown(this.keys.k) && scene.playerWeaponsGroup) {
+      this.weaponType = weaponNames[2] as WeaponPlayerType;  
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.keys.j) && scene.playerWeaponsGroup) {
+      this.weaponType = weaponNames[0] as WeaponPlayerType;  
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
