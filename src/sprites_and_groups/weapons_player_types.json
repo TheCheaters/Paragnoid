@@ -53,7 +53,7 @@
     },
     "LASER": {
         "DAMAGE": 100,
-        "FIRE_SPEED": 500,
+        "FIRE_SPEED": 2000,
         "TEXTURE_NAME": "Laser",
         "SPRITE_ASSET_PATH": "assets/laser.png",
         "AUDIO_NAME": "Missile",
