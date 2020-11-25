@@ -45,8 +45,8 @@
   "DIFFUSO": {
     "DAMAGE":            100,
     "FIRE_SPEED":        300,
-    "TEXTURE_NAME":      "Missile",
-    "SPRITE_ASSET_PATH": "assets/missile.png",
+    "TEXTURE_NAME":      "Fireball",
+    "SPRITE_ASSET_PATH": "assets/fireball.png",
     "AUDIO_NAME":        "Missile",
     "AUDIO_ASSET_PATH":  "assets/missile.mp3",
     "WIDTH":             40,
