@@ -33,9 +33,6 @@ export default class Game extends Scene {
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
   public PlayerWeapon1Level1Group!: WeaponGroup;
-  public PlayerWeapon1Level2Group!: WeaponGroup;
-  public PlayerWeapon1Level3Group!: WeaponGroup;
-  public PlayerWeapon1Level4Group!: WeaponGroup;
   public explosions!: Explosions;
   public powerups!: Powerups;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
@@ -109,9 +106,6 @@ export default class Game extends Scene {
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
-    this.PlayerWeapon1Level2Group = new WeaponGroup(this, PlayerWeapon);
-    this.PlayerWeapon1Level3Group = new WeaponGroup(this, PlayerWeapon);
-    this.PlayerWeapon1Level4Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.explosions = new Explosions(this, C.EXPLOSION);
@@ -133,9 +127,7 @@ export default class Game extends Scene {
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
-    this.colliderEnemyWeapons1Lvl2 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level2Group, handlerMissileEnemyCollisions.bind(this));
-    this.colliderEnemyWeapons1Lvl3 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level3Group, handlerMissileEnemyCollisions.bind(this));
-    this.colliderEnemyWeapons1Lvl4 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level4Group, handlerMissileEnemyCollisions.bind(this));
+    
 
     // inizia il gioco
     this.timeline.start();
