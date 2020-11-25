@@ -14,7 +14,8 @@
                     0
                 ],
                 "GRAVITY_X": 0,
-                "GRAVITY_Y": 0
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0
             },
             {
                 "ANGLE": [
@@ -23,7 +24,8 @@
                     15
                 ],
                 "GRAVITY_X": 0,
-                "GRAVITY_Y": 0
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0
             },
             {
                 "ANGLE": [
@@ -34,7 +36,8 @@
                     45
                 ],
                 "GRAVITY_X": 0,
-                "GRAVITY_Y": 0
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0
             },
             {
                 "ANGLE": [
@@ -47,7 +50,8 @@
                     45
                 ],
                 "GRAVITY_X": 0,
-                "GRAVITY_Y": 0
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0
             }
         ]
     },

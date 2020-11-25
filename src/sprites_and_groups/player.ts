@@ -277,7 +277,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
-      scene.PlayerWeapon1Level1Group.fireBulletPlayerTwo(this.x, this.y, this.weaponType, this.weaponLevel);
+      scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
