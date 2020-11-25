@@ -17,6 +17,7 @@ type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
+  public scoreValue!: number;
   public maxEnergy!: number;
   private enemyName!: string;
   private timer!: Phaser.Time.TimerEvent;
@@ -29,7 +30,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private points?: number[];
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
-    this.setData('score', 10);
   }
 
   setLifeLine() {
@@ -58,7 +58,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE } = ENEMY_TYPES[enemyType];
+    const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME);
@@ -99,6 +99,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // BEHAVIOR
     this.maxEnergy = ENERGY;
     this.energy = ENERGY;
+    this.scoreValue = SCORE_VALUE;
 
     this.body.immovable = true;
     this.body.enable = true;

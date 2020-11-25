@@ -9,7 +9,7 @@ export default (gameScene: Game) => (enemy: Enemy, weapon: PlayerWeapon ) => {
   enemy.energy = enemy.energy - weapon.DAMAGE;
   weapon.kill();
   if (enemy.energy <= 0) {
-    gameScene.score += enemy.getData('score');
+    gameScene.score += enemy.scoreValue;
     gameScene.scoreText.setText(`Score: ${gameScene.score}`);
     gameScene.explosions?.addExplosion(x, y);
     gameScene.sound.add(AUDIO_EXPLOSION, { loop: false }).play();

@@ -13,7 +13,7 @@ export default class Preload extends Scene {
 
   constructor() {
     super({
-      key: 'preload',
+      key: 'preloader',
       active: true,
     });
   }
@@ -27,7 +27,6 @@ export default class Preload extends Scene {
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.image(C.SPACE, C.SPACE_ASSET_PATH);
     this.load.image(C.SUN, C.SUN_ASSET_PATH);
-    this.load.image(C.PLANET, C.PLANET_ASSET_PATH);
     this.load.image(C.BLUE_PARTICLE, C.BLUE_PARTICLE_ASSET_PATH);
     this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
