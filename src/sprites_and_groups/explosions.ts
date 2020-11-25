@@ -4,7 +4,6 @@ import { EXPLOSION } from '~/constants.json';
 class Explosion extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, EXPLOSION);
-    this.play(EXPLOSION, true);
   }
 
   explode (x: number, y: number) {
@@ -25,8 +24,6 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
 
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
-
-    this.play(EXPLOSION, true);
     this.anims.update(time, delta);
 	}
 }
