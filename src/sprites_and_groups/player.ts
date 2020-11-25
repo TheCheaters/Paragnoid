@@ -1,5 +1,4 @@
-import * as C from '~/constants.json';
-import { KEYS, DIRECTIONS } from '~/globals';
+import { DIRECTIONS } from '~/globals';
 import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 
@@ -16,25 +15,19 @@ type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-  public cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
-  public joyStick!: VirtualJoystickPlugin;
-  public joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
-  public keys!: {
+  private cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private joyStick!: VirtualJoystickPlugin;
+  private joyStickKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private keys!: {
     [key: string]: Phaser.Input.Keyboard.Key;
   }
-  public spaceKey!: Phaser.Input.Keyboard.Key;
-  public MKey!: Phaser.Input.Keyboard.Key;
-  public NKey!: Phaser.Input.Keyboard.Key;
-  public VelocityX = 0;
-  public VelocityY = 0;
   private energy = 300;
-  public maxEnergy!: number;
-  private lastHorizontalKeyPressed: KEYS.LEFT | KEYS.RIGHT | null = null;
-  private lastVerticalKeyPressed: KEYS.UP | KEYS.DOWN | null = null;
+  private speed = 1000;
+  private maxEnergy!: number;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private weaponType = weaponNames[0] as WeaponPlayerType;
-  public weaponLevel = 0;
+  private weaponLevel = 0;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -42,6 +35,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
+    this.setDrag(500, 500);
+    this.setMaxVelocity(300, 300);
 
     scene.anims.create({
       key: DIRECTIONS.GO_RIGHT,
@@ -219,53 +214,29 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
-      this.VelocityX -= C.SPACECRAFT_ACC_X_DELTA;
+      scene.player.setAccelerationX(-this.speed);
       this.anims.play(DIRECTIONS.GO_LEFT, true);
-      this.lastHorizontalKeyPressed = KEYS.LEFT;
     } else if (right) {
-      this.VelocityX += C.SPACECRAFT_ACC_X_DELTA;
+      scene.player.setAccelerationX(this.speed);
       this.play(DIRECTIONS.GO_RIGHT, true);
-      this.lastHorizontalKeyPressed = KEYS.RIGHT;
     }
 
     // ACCELERAZIONE E ANIMAZIONE VERTICALE
     if (up) {
-      this.VelocityY -= C.SPACECRAFT_ACC_Y_DELTA;
+      scene.player.setAccelerationY(-this.speed);
       this.play(DIRECTIONS.GO_UP, true);
-      this.lastVerticalKeyPressed = KEYS.UP;
     } else if (down) {
-      this.VelocityY += C.SPACECRAFT_ACC_Y_DELTA;
+      scene.player.setAccelerationY(this.speed);
       this.play(DIRECTIONS.GO_DOWN, true);
-      this.lastVerticalKeyPressed = KEYS.DOWN;
     }
 
     if (!up && !down && !left && !right) {
+      scene.player.setAccelerationY(0);
+      scene.player.setAccelerationX(0);
       this.play(DIRECTIONS.STOP, true);
     }
 
-    // DECELERAZIONE ORIZONTALE
-    if (this.lastHorizontalKeyPressed === KEYS.RIGHT && this.VelocityX > 0 && !right) {
-      this.VelocityX -= C.SPACECRAFT_DEC_X_DELTA;
-    }
-
-    if (this.lastHorizontalKeyPressed === KEYS.LEFT && this.VelocityX < 0 && !left) {
-      this.VelocityX += C.SPACECRAFT_DEC_X_DELTA;
-    }
-
-    // DECELERAZIONE VERTICALE
-    if (this.lastVerticalKeyPressed === KEYS.DOWN && this.VelocityY > 0 && !down) {
-      this.VelocityY -= C.SPACECRAFT_DEC_Y_DELTA;
-    }
-
-    if (this.lastVerticalKeyPressed === KEYS.UP && this.VelocityY < 0 && !up) {
-      this.VelocityY += C.SPACECRAFT_DEC_Y_DELTA;
-    }
-
-    // SPOSTAMENTO SPRITE
-    scene.player.setVelocityX(this.VelocityX);
-    scene.player.setVelocityY(this.VelocityY);
-
-    // TASTI AUMENTO DIMINUZIONE LIVELLO PER DEBUG
+    // TASTI AUMENTO DIMINUZIONE LIVELLO ARMI PER DEBUG
     if (Phaser.Input.Keyboard.JustDown(this.keys.m) && scene.playerWeaponsGroup) {
       if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
         this.weaponLevel += 1;
@@ -276,10 +247,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }
     }
 
+    // FIRE BULLET
     if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
       scene.PlayerWeapon1Level1Group.fireBulletPlayerTwo(this.x, this.y, this.weaponType, this.weaponLevel);
     }
 
+    // SHIELD UP (DEBUG)
     if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
       this.shieldUp();
     }
