@@ -8,11 +8,6 @@ export default class GameOver extends Scene {
       active: false,
     });
   }
-  preload() {
-    this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
-    this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
-  }
-
   create(){
     this.add.image(this.scale.width / 2, this.scale.height / 2, C.INFOPANEL_OVER);
     this.sound.add(C.AUDIO_OVER, {loop: false}).play();

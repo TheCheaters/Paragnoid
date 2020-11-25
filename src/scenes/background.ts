@@ -1,7 +1,6 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
-import { SPACE, SPACE_ASSET_PATH, SUN, SUN_ASSET_PATH, PLANET, PLANET_ASSET_PATH } from '~/constants.json';
-
+import { SPACE, SUN, PLANET } from '~/constants.json';
 export default class Background extends Scene {
   private bg!: Phaser.GameObjects.TileSprite;
   private sun!: Phaser.GameObjects.Image;
@@ -12,11 +11,6 @@ export default class Background extends Scene {
       key: 'background',
       active: false,
     });
-  }
-  preload() {
-    this.load.image(SPACE, SPACE_ASSET_PATH);
-    this.load.image(SUN, SUN_ASSET_PATH);
-    this.load.image(PLANET, PLANET_ASSET_PATH);
   }
   create() {
     this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.width, SPACE).setOrigin(0);

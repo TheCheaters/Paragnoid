@@ -3,6 +3,7 @@ import Intro from '~/scenes/intro';
 import Background from '~/scenes/background';
 import Game from '~/scenes/game';
 import GameOver from '~/scenes/gameover';
+import Preloader from '~/scenes/preloader';
 
 declare const process: {
 	env: {
@@ -38,7 +39,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 			useTree: false
 		}
 	},
-	scene: [Background, Intro, Game, GameOver],
+	scene: [Preloader, Background, Intro, Game, GameOver],
 };
 
 new Phaser.Game(config);
