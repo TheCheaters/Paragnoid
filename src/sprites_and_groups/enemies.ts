@@ -176,7 +176,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     this.createMultiple({
       frameQuantity: 70,
       key: ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
-      setXY: {x: -50, y: -50},
+      setXY: {x: -500, y: -500},
       setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,

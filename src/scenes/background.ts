@@ -23,8 +23,8 @@ export default class Background extends Scene {
 
     let backgroundVelocity = 0;
 
-    const VelocityX = this.gameInstance?.player?.VelocityX || 0;
-    const VelocityY = this.gameInstance?.player?.VelocityY || 0;
+    const VelocityX = 0;
+    const VelocityY = 0;
 
     backgroundVelocity = VelocityX > 0 ? VelocityX / 100 : 0;
     this.bg.tilePositionY += VelocityY / 500;

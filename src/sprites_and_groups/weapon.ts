@@ -73,7 +73,7 @@ export class PlayerWeapon extends Weapon {
     this.HEIGHT = DEFAULT.HEIGHT;
    }
 
-   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel:WeaponPlayerType) {
+   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: WeaponPlayerType) {
     this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
     this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;

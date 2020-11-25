@@ -15,6 +15,6 @@ export default (gameScene: Game) => (enemy: Enemy, weapon: PlayerWeapon ) => {
     gameScene.sound.add(AUDIO_EXPLOSION, { loop: false }).play();
     enemy.kill();
   } else {
-    gameScene.sound.add (HIT_ENEMY, { loop: false }).play();
+    gameScene.sound.add(HIT_ENEMY, { loop: false }).play();
   }
 }
