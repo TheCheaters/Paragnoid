@@ -116,23 +116,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, weaponType: WeaponEnemyType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    if (weaponType === 'DIFFUSO'){
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 15, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 45, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 90, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 135, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 180, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 225, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 270, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 315, 0,weaponType as WeaponEnemyType);
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 345, 0,weaponType as WeaponEnemyType);
-    } else if (weaponType === 'ULTRA'){
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 1,weaponType as WeaponEnemyType);
-    } else {
-      enemyWeaponsGroup.fireBulletEnemy(x, y, 0, 0,weaponType as WeaponEnemyType);
-    }
-    
+    enemyWeaponsGroup.fireBulletEnemy(x, y, weaponType as WeaponEnemyType);
+       
   }
 
   explode() {

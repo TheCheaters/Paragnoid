@@ -21,22 +21,6 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
-  fire(x: number, y: number, angle: number, follow: number) {
-    this.body.enable = true;
-    this.body.reset(x + 2, y + 20);
-    this.setActive(true);
-    this.setVisible(true);
-    this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
-    this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
-    this.scene.sound.play(this.AUDIO_NAME);
-    this.setRotation(Phaser.Math.DegToRad(angle));
-    if (follow === 1){
-      const { player } = this.scene as Game;
-      this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
-      this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
-    }
-   }
-
   explode() {
     const { explosions } = this.scene as Game;
     explosions.addExplosion(this.x, this.y);
@@ -73,7 +57,7 @@ export class PlayerWeapon extends Weapon {
     this.HEIGHT = DEFAULT.HEIGHT;
    }
 
-   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel:WeaponPlayerType) {
+   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel:number) {
     this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
     this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
@@ -84,7 +68,6 @@ export class PlayerWeapon extends Weapon {
     } else {
       this.body.reset(x + 20, y+5);
     }
-    //this.body.reset(x + 20, y+5);
     this.setActive(true);
     this.setVisible(true);
     this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
@@ -95,12 +78,27 @@ export class PlayerWeapon extends Weapon {
 }
 
 export class EnemyWeapon extends Weapon {
-  fireEnemy(x: number, y: number, angle: number, follow: number, weaponType?: WeaponEnemyType) {
-    if (weaponType) {
-      this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
-      this.DAMAGE = (WEAPON_ENEMY_TYPES[weaponType].DAMAGE);
-      this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
+  fireEnemy(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
+    this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
+    this.DAMAGE = (WEAPON_ENEMY_TYPES[weaponType].DAMAGE);
+    this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);    
+    this.body.enable = true;
+    this.body.enable = true;
+    this.body.reset(x + 2, y + 20);
+    this.setActive(true);
+    this.setVisible(true);    
+    this.scene.sound.play(this.AUDIO_NAME);    
+    if (follow === 0){
+      this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+      this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+      this.setRotation(Phaser.Math.DegToRad(angle));
     }
-    super.fire(x, y, angle, follow);
+    if (follow === 1){
+      const { player } = this.scene as Game;
+      this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+      this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+      this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
+      this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
+    }
   }
 }

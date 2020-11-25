@@ -19,13 +19,15 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     });
   }
 
-  fireBulletEnemy(x: number, y: number, angle: number, follow: number, weaponType?: WeaponEnemyType) {
-    const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
-    weaponEnemy.setActive(true);
-    weaponEnemy.fireEnemy(x, y,angle, follow, weaponType);
+  fireBulletEnemy(x: number, y: number, weaponType: WeaponEnemyType) {
+    WEAPON_ENEMY_TYPES[weaponType].ANGLE.forEach((angle) => {
+      const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
+      weaponEnemy.setActive(true);
+    weaponEnemy.fireEnemy(x, y,angle, WEAPON_ENEMY_TYPES[weaponType].FOLLOW, weaponType);
+    })
   }
 
-  fireBulletPlayer(x: number, y: number, weaponType: WeaponPlayerType, weaponLevel: WeaponPlayerType) {
+  fireBulletPlayer(x: number, y: number, weaponType: WeaponPlayerType, weaponLevel: number) {
     WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].ANGLE.forEach((angle) => {
       const weaponPlayer = this.getFirstDead(true) as PlayerWeapon;
       weaponPlayer.setActive(true);
