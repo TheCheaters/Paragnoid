@@ -41,17 +41,13 @@
             },
             {
                 "ANGLE": [
-                    -45,
-                    -30,
-                    -15,
+                    -0.1,
                     0,
-                    15,
-                    30,
-                    45
+                    0.1                                    
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":30
             }
         ]
     },

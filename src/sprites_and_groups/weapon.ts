@@ -73,14 +73,18 @@ export class PlayerWeapon extends Weapon {
     this.HEIGHT = DEFAULT.HEIGHT;
    }
 
-   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel:number) {
+   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel:WeaponPlayerType) {
     this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
     this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
-    /*if (angle > 0) {
-      this.body.reset(x + 20, y+5+WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].);
-    }*/
-    this.body.reset(x + 20, y+5);
+    if (angle > 0) {
+      this.body.reset(x + 20, y+5+WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].VERTICAL_OFFSET);
+    } else if (angle < 0){
+      this.body.reset(x + 20, y+5-WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].VERTICAL_OFFSET);
+    } else {
+      this.body.reset(x + 20, y+5);
+    }
+    //this.body.reset(x + 20, y+5);
     this.setActive(true);
     this.setVisible(true);
     this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
