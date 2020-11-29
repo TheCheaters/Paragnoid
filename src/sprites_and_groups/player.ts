@@ -224,7 +224,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     
     //SELEZIONE BURST ARMI
     if (this.weaponType === 'LASER'){
-      duration = 1000;
+      duration = WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION;
     } 
     
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
@@ -295,7 +295,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (Phaser.Input.Keyboard.JustDown(this.keys.j) && scene.playerWeaponsGroup) {
       this.weaponType = weaponNames[0] as WeaponPlayerType;  
     }
-
+    //  PLAYER SHOOT FUNCTION
     if (Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) && scene.playerWeaponsGroup) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
     } 
