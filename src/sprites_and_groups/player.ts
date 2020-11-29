@@ -214,12 +214,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
+    var duration = 50;
 
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown;
     const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown;
     const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown;
 
+    
+    //SELEZIONE BURST ARMI
+    if (this.weaponType === 'LASER'){
+      duration = 1000;
+    } 
+    
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       this.VelocityX -= C.SPACECRAFT_ACC_X_DELTA;
@@ -289,9 +296,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.weaponType = weaponNames[0] as WeaponPlayerType;  
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
-      scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
-    }
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) && scene.playerWeaponsGroup) {
+        scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
+    } 
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
       this.shieldUp();

@@ -15,7 +15,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -25,7 +26,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -37,7 +39,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -47,7 +50,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":30
+                "VERTICAL_OFFSET":30,
+                "DURATION": 50
             }
         ]
     },
@@ -55,11 +59,11 @@
         "DAMAGE": 100,
         "FIRE_SPEED": 2000,
         "TEXTURE_NAME": "Laser",
-        "SPRITE_ASSET_PATH": "assets/laser.png",
+        "SPRITE_ASSET_PATH": "assets/laser2.png",
         "AUDIO_NAME": "Missile",
         "AUDIO_ASSET_PATH": "assets/missile.mp3",
-        "WIDTH": 40,
-        "HEIGHT": 40,
+        "WIDTH": 50,
+        "HEIGHT": 47,
         "LEVELS": [
             {
                 "ANGLE": [
@@ -67,7 +71,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -79,7 +84,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -91,7 +97,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             }
         ]
     },
@@ -111,7 +118,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 5000
             },
             {
                 "ANGLE": [
@@ -123,7 +131,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             },
             {
                 "ANGLE": [
@@ -135,7 +144,8 @@
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
-                "VERTICAL_OFFSET":0
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
             }
         ]
     }
