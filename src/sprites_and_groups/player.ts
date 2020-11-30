@@ -151,8 +151,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   upgradeWeapon() {
-    this.weaponLevel += 1;
-  }
+    if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
+      this.weaponLevel += 1;
+      } else {this.weaponLevel += 0;} }
 
   die() {
     const scene = this.scene as Game;
