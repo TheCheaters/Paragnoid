@@ -78,7 +78,8 @@ export class PlayerWeapon extends Weapon {
     this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
     this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
     this.scene.sound.play(this.AUDIO_NAME);
-    this.setRotation(Phaser.Math.DegToRad(angle));  
+    this.setRotation(Phaser.Math.DegToRad(angle));
+    this.body.gravity.set(WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].GRAVITY_X, WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].GRAVITY_Y);
 
   }
 }
