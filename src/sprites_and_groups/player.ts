@@ -102,12 +102,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.joyStickKeys = this.joyStick.createCursorKeys();
     this.keys = {
       space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
-      s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      z: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z),
       m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
       n: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N),
       l: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L),
       k: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K),
       j: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J),
+      w: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+      a: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
+      s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      d: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+
     }
 
     // BEHAVIOR
@@ -212,10 +217,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const scene = this.scene as Game;
     var duration = 50;
 
-    const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown;
-    const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown;
-    const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown;
-    const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown;
+    const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
+    const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
+    const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
+    const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown || this.keys.a?.isDown;
 
 
     //SELEZIONE BURST ARMI
@@ -273,7 +278,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     // SHIELD UP (DEBUG)
-    if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.z)) {
       this.shieldUp();
     }
 
