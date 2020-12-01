@@ -67,12 +67,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
     const x = this.scene.scale.width + 100;
-    /*if (Phaser.Math.IsEven(y*3)) { //prova rozza di spawn da dietro
-      const x = this.scene.scale.width + 100;
-    } else {
-      const x = -this.scene.scale.width - 100;
-    }*/
-    this.setOrigin(0.5, 0.5);
+    this.setOrigin(0, 0);
     this.body.reset(x, y);
 
     // DIRECTION
@@ -154,14 +149,13 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number) {
 		super.preUpdate(time, delta);
-    this.updateLifeLine();
-
     if (this.enemyPath && this.path && this.curve) {
       this.curve.getPoint(this.path.t, this.path.vec);
       const { x, y } = this.path.vec;
       this.x = x;
       this.y = y;
     }
+    this.updateLifeLine();
 
 		if (this.x < -100) {
 			this.kill();
