@@ -10,7 +10,7 @@ import Powerups from '~/sprites_and_groups/powerups';
 import handlerPlayerEnemyCollisions from '~/colliders/handlerPlayerEnemyCollisions';
 import handlerPlayerWeaponCollisions from '~/colliders/handlerPlayerWeaponCollisions';
 import handlerPlayerPowerupCollisions from '~/colliders/handlerPlayerPowerupCollisions';
-import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
+import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
@@ -30,11 +30,6 @@ export default class Game extends Scene {
   public colliderPlayerPowerups!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl2!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl3!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl4!: Phaser.Physics.Arcade.Collider;
-  public score = 0;
-  public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
   private timeline!: Timeline;
 
@@ -57,8 +52,6 @@ export default class Game extends Scene {
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 
-    this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
-
     this.lives = new Lives(this, C.SPACECRAFT);
 
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
@@ -66,14 +59,11 @@ export default class Game extends Scene {
       this.sound.add(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, {loop: false});
     });
 
-    const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
-
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
-    this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
-    this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
-    
+    this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
+    this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
 
     // inizia il gioco
     this.timeline.start();
