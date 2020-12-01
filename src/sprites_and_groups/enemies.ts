@@ -1,5 +1,7 @@
+import { AUDIO_EXPLOSION, HIT_ENEMY } from '~/constants.json';
 import { Scene } from "phaser";
 import Game from '../scenes/game';
+import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
@@ -28,6 +30,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private curve?: Phaser.Curves.Spline | null;
   private tween?: Phaser.Tweens.Tween | null;
   private points?: number[];
+  private ui?: UI;
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
   }
@@ -47,6 +50,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   make({ enemyType, enemyBehavior, enemyPath }: Make) {
+
+    // BIND UI SCENE
+    this.ui = this.scene.game.scene.getScene('ui') as UI;
 
     // RESET PREVIOUS PATH
     this.enemyPath = null;
@@ -114,6 +120,18 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const { enemyWeaponsGroup } = this.scene as Game;
     enemyWeaponsGroup.fireBulletEnemy(x, y, weaponType as WeaponEnemyType);
 
+  }
+
+  takeHit(damage: number) {
+    const scene = this.scene as Game;
+    this.energy -= damage;
+    if (this.energy <= 0) {
+      scene.sound.add(AUDIO_EXPLOSION, { loop: false }).play();
+      this.explode();
+      this.ui?.addScore(this.scoreValue);
+    } else {
+      scene.sound.add(HIT_ENEMY, { loop: false }).play();
+    }
   }
 
   explode() {

@@ -1,6 +1,7 @@
 import { DIRECTIONS } from '~/globals';
 import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import { PowerUpTypes, PowerUpType } from '~/sprites_and_groups/powerups';
 
 import Game from '~/scenes/game';
 import { Scene } from 'phaser';
@@ -150,10 +151,38 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  upgradeWeapon() {
+  usePowerUp(type: PowerUpType) {
+    switch (type) {
+      case PowerUpTypes.ENERGY:
+        this.fullEnergy();
+        break;
+      case PowerUpTypes.CHANGE_WEAPON:
+        this.changeWeapon();
+        break;
+      case PowerUpTypes.UPGRADE_WEAPON:
+        this.updgradeWeapon();
+        break;
+      case PowerUpTypes.SHIELD:
+        this.shieldUp();
+        break;
+    }
+  }
+
+  changeWeapon() {
+    this.weaponType = weaponNames[Phaser.Math.Between(0, weaponNames.length - 1)] as WeaponPlayerType;
+  }
+
+  updgradeWeapon() {
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
       this.weaponLevel += 1;
-      } else {this.weaponLevel += 0;} }
+    } else {
+      this.weaponLevel += 0;
+    }
+  }
+
+  fullEnergy() {
+    this.energy = this.maxEnergy;
+  }
 
   die() {
     const scene = this.scene as Game;
@@ -209,13 +238,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setVelocity(0);
   }
 
-
-
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
-    var duration = 50;
+    let duration = 50;
 
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;

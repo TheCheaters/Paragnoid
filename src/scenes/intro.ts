@@ -15,6 +15,7 @@ export default class Intro extends Scene {
     this.input.once('pointerdown', () => {
 
       this.scene.start('game');
+      this.scene.start('ui');
 
     });
   }
