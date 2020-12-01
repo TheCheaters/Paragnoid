@@ -46,7 +46,7 @@
                 "ANGLE": [
                     -0.01,
                     0,
-                    0.01                                    
+                    0.01
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
@@ -93,12 +93,21 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 2000
+            },
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X": 0,
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0,
+                "DURATION": 2000
             }
         ]
     },
     "TERZA": {
         "DAMAGE": 100,
-        "FIRE_SPEED": 10,
+        "FIRE_SPEED": 100,
         "TEXTURE_NAME": "Missile",
         "SPRITE_ASSET_PATH": "assets/missile.png",
         "AUDIO_NAME": "Missile",
@@ -109,6 +118,19 @@
             {
                 "ANGLE": [
                     0
+                ],
+                "GRAVITY_X": 0,
+                "GRAVITY_Y": 0,
+                "VERTICAL_OFFSET":0,
+                "DURATION": 50
+            },
+            {
+                "ANGLE": [
+                    0,
+                    90,
+                    180,
+                    45,
+                    125
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,

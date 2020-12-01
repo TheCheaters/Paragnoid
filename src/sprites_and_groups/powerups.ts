@@ -2,23 +2,41 @@ import { Scene } from "phaser";
 import Game from '../scenes/game';
 import { POWERUP, FLARES } from '~/constants.json';
 
+export enum PowerUpTypes {
+  ENERGY         = 'ENERGY',
+  CHANGE_WEAPON  = 'CHANGE_WEAPON',
+  UPGRADE_WEAPON = 'UPGRADE_WEAPON',
+  SHIELD         = 'SHIELD',
+}
+
+const powerUpColors = {
+  [PowerUpTypes.ENERGY]: 'blue',
+  [PowerUpTypes.CHANGE_WEAPON]: 'green',
+  [PowerUpTypes.UPGRADE_WEAPON]: 'red',
+  [PowerUpTypes.SHIELD]: 'white',
+  __WEAPON: 'yellow',
+}
+
+export type PowerUpType = keyof typeof PowerUpTypes;
+
 export class Powerup extends Phaser.Physics.Arcade.Sprite {
   private path?: { t: number, vec: Phaser.Math.Vector2 };
   private curve?: Phaser.Curves.Spline | null;
   private tween?: Phaser.Tweens.Tween | null;
   private points?: number[];
   private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
+  public powerUpType!: PowerUpType;
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, POWERUP);
-    this.setData('powerupValues', {
-      potenza: 100
-    });
   }
 
-  make() {
+  make(type: PowerUpType) {
     // RESET PREVIOUS PATH
     this.curve = null;
     this.tween = null;
+
+    // SET POWERUP TYPE
+    this.powerUpType = type;
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
@@ -29,11 +47,11 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
     // DIRECTION
     this.path = { t: 0, vec: new Phaser.Math.Vector2() };
     this.points = [
-      1300, Phaser.Math.Between(0, 600),
-      Phaser.Math.Between(0, 1200), Phaser.Math.Between(0, 600),
-      Phaser.Math.Between(0, 1200), Phaser.Math.Between(0, 600),
-      Phaser.Math.Between(0, 1200), Phaser.Math.Between(0, 600),
-      Phaser.Math.Between(0, 1200), -150
+      1300, Phaser.Math.Between(200, 400),
+      Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
+      Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
+      Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
+      Phaser.Math.Between(200, 1000), -150
     ];
     this.curve = new Phaser.Curves.Spline(this.points);
     this.tween = this.scene.tweens.add({
@@ -51,7 +69,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
     // PARTICLES
     this.flares = this.scene.add.particles(FLARES).createEmitter({
-      frame: 'red',
+      frame: powerUpColors[type],
       x: 200,
       y: 300,
       alpha: 0.3,
@@ -119,8 +137,23 @@ export default class Powerups extends Phaser.Physics.Arcade.Group {
 
   }
 
-  launchPowerup() {
+  energy() {
     const powerup = this.getFirstDead(false) as Powerup;
-    if (powerup) powerup.make();
+    if (powerup) powerup.make(PowerUpTypes.ENERGY);
+  }
+
+  changeWeapon() {
+    const powerup = this.getFirstDead(false) as Powerup;
+    if (powerup) powerup.make(PowerUpTypes.CHANGE_WEAPON);
+  }
+
+  upgradeWeapon() {
+    const powerup = this.getFirstDead(false) as Powerup;
+    if (powerup) powerup.make(PowerUpTypes.UPGRADE_WEAPON);
+  }
+
+  shield() {
+    const powerup = this.getFirstDead(false) as Powerup;
+    if (powerup) powerup.make(PowerUpTypes.SHIELD);
   }
 }
