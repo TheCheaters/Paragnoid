@@ -3,8 +3,6 @@ import Game from '../scenes/game';
 import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import { BLUE_PARTICLE, FLARES, SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH } from '~/constants.json';
-import Player from './player';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;

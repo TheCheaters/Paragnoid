@@ -20,6 +20,8 @@
   "EXPLOSION_ASSET_PATH":       "assets/explosion.png",
   "POWERUP":                    "powerup",
   "POWERUP_ASSET_PATH":         "assets/power_up.png",
+  "SATELLITE":                  "satellite",
+  "SATELLITE_ASSET_PATH":       "assets/mushroom1.png",
   "HIT_ENEMY":                  "hit_enemy",
   "HIT_ENEMY_ASSET_PATH":       "assets/hit_enemy.mp3",
   "AUDIO_EXPLOSION":            "audio_explosion",

@@ -14,10 +14,12 @@ import missileEnemyCollision from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
+import Satellites from '~/sprites_and_groups/satellites';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
   public player!: Player;
+  public satellites!: Satellites;
   public shield!: Shield;
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
@@ -54,10 +56,12 @@ export default class Game extends Scene {
     this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
+    this.satellites = new Satellites (this);
     this.explosions = new Explosions(this, C.EXPLOSION);
     this.timeline = new Timeline(this);
 
     this.scoreText = this.add.dynamicBitmapText(16, 16, C.PV_FONT_NAME, 'Score: 0', 14 );
+    
 
     this.lives = new Lives(this, C.SPACECRAFT);
 

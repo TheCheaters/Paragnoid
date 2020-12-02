@@ -38,6 +38,7 @@ export default class Preload extends Scene {
       frameWidth: 60,
       frameHeight: 60
     });
+    this.load.image(C.SATELLITE, C.SATELLITE_ASSET_PATH);
 
     // Carica tutti gli sprite di Enemies
     Object.keys(ENEMY_TYPES).forEach((E) => {
