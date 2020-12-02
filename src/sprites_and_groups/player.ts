@@ -26,8 +26,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private maxEnergy!: number;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
-  private weaponType = weaponNames[0] as WeaponPlayerType;
-  private weaponLevel = 0;
+  public weaponType = weaponNames[0] as WeaponPlayerType;
+  public weaponLevel = 0;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -129,9 +129,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.clear();
     const xPos = this.x - this.width / 2;
     this.greenLine.x1 = xPos;
-    this.greenLine.y1 = this.y + this.height + 5;
+    this.greenLine.y1 = this.y + this.height-2;
     this.greenLine.x2 = xPos + ((this.width) * this.energy) / this.maxEnergy;
-    this.greenLine.y2 = this.y + this.height + 5;
+    this.greenLine.y2 = this.y + this.height-2;
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
@@ -141,7 +141,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (scene.shield.isUp) scene.shield.takeHit(damage);
     else {
       this.energy -= damage;
-      if (this.energy <= 0) this.die();
+      if (this.energy <= 0) { this.die(); }
     }
   }
 

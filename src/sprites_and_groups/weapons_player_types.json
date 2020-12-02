@@ -16,7 +16,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -27,7 +28,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -40,7 +42,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -51,7 +54,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":30,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             }
         ]
     },
@@ -72,7 +76,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -83,7 +88,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -92,7 +98,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 2000
+                "DURATION": 2000,
+                "SATELLITES": 0
             }
         ]
     },
@@ -113,7 +120,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -126,7 +134,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             },
             {
                 "ANGLE": [
@@ -139,7 +148,8 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 50
+                "DURATION": 50,
+                "SATELLITES": 0
             }
         ]
     }

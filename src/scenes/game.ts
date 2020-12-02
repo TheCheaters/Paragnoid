@@ -28,13 +28,12 @@ export default class Game extends Scene {
   public explosions!: Explosions;
   public powerups!: Powerups;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
+  public colliderSatelliteEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
+  public colliderSatelliteWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerPowerups!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl2!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl3!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl4!: Phaser.Physics.Arcade.Collider;
   public score = 0;
   public scoreText!: Phaser.GameObjects.DynamicBitmapText;
   public lives!: Lives;
@@ -73,13 +72,16 @@ export default class Game extends Scene {
     const handlerMissileEnemyCollisions = missileEnemyCollision(this) as ArcadePhysicsCallback;
 
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
+    this.colliderSatelliteEnemy = this.physics.add.collider(this.satellites, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
+    this.colliderSatelliteWeapons = this.physics.add.collider(this.satellites, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
-    
-
-    // inizia il gioco
+    //PROVVISORIO PER DEBUG SATELLITE
+    this.satellites.launchSatellite(50);
+ 
+    // inizia il gioco 
     this.timeline.start();
 
   }
