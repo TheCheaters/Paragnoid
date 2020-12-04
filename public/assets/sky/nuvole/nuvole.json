@@ -1,0 +1,293 @@
+{
+	"textures": [
+		{
+			"image": "nuvole.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 976,
+				"h": 1374
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "big_cloud.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 904,
+						"h": 602
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 904,
+						"h": 602
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 904,
+						"h": 602
+					}
+				},
+				{
+					"filename": "cinque.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 599,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 599,
+						"h": 311
+					},
+					"frame": {
+						"x": 0,
+						"y": 602,
+						"w": 599,
+						"h": 311
+					}
+				},
+				{
+					"filename": "dieci.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 334,
+						"h": 196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 334,
+						"h": 196
+					},
+					"frame": {
+						"x": 599,
+						"y": 602,
+						"w": 334,
+						"h": 196
+					}
+				},
+				{
+					"filename": "tre.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 308,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 308,
+						"h": 190
+					},
+					"frame": {
+						"x": 599,
+						"y": 798,
+						"w": 308,
+						"h": 190
+					}
+				},
+				{
+					"filename": "tredici.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 524,
+						"h": 124
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 524,
+						"h": 124
+					},
+					"frame": {
+						"x": 0,
+						"y": 913,
+						"w": 524,
+						"h": 124
+					}
+				},
+				{
+					"filename": "due.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 499,
+						"h": 266
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 499,
+						"h": 266
+					},
+					"frame": {
+						"x": 0,
+						"y": 1037,
+						"w": 499,
+						"h": 266
+					}
+				},
+				{
+					"filename": "sette.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 155,
+						"h": 71
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 155,
+						"h": 71
+					},
+					"frame": {
+						"x": 0,
+						"y": 1303,
+						"w": 155,
+						"h": 71
+					}
+				},
+				{
+					"filename": "otto.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 164,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 164,
+						"h": 68
+					},
+					"frame": {
+						"x": 155,
+						"y": 1303,
+						"w": 164,
+						"h": 68
+					}
+				},
+				{
+					"filename": "undici.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 218,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 218,
+						"h": 55
+					},
+					"frame": {
+						"x": 319,
+						"y": 1303,
+						"w": 218,
+						"h": 55
+					}
+				},
+				{
+					"filename": "dodici.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 394,
+						"h": 114
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 394,
+						"h": 114
+					},
+					"frame": {
+						"x": 537,
+						"y": 988,
+						"w": 394,
+						"h": 114
+					}
+				},
+				{
+					"filename": "uno.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 281,
+						"h": 149
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 281,
+						"h": 149
+					},
+					"frame": {
+						"x": 499,
+						"y": 1102,
+						"w": 281,
+						"h": 149
+					}
+				},
+				{
+					"filename": "sei.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 120
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 120
+					},
+					"frame": {
+						"x": 537,
+						"y": 1251,
+						"w": 256,
+						"h": 120
+					}
+				},
+				{
+					"filename": "nove.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 196,
+						"h": 148
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 196,
+						"h": 148
+					},
+					"frame": {
+						"x": 780,
+						"y": 1102,
+						"w": 196,
+						"h": 148
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:0cfec25b868aab31717555e3a81f8c9f:9eba7955776bf981c8c165d72e071682:f155c3c2a383316b0046e1e1fec9eb57$"
+	}
+}
