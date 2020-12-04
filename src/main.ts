@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Intro from '~/scenes/intro';
-import Background from '~/scenes/background';
+import Space from '~/scenes/space';
+import Sky from '~/scenes/sky';
 import UI from '~/scenes/ui';
 import Game from '~/scenes/game';
 import GameOver from '~/scenes/gameover';
@@ -40,7 +41,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 			useTree: false
 		}
 	},
-	scene: [Preloader, Background, Intro, UI, Game, GameOver],
+	scene: [Preloader, Space, Sky, Intro, UI, Game, GameOver],
 };
 
 new Phaser.Game(config);

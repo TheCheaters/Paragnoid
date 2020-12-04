@@ -1,19 +1,19 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
 import { SPACE, SUN } from '~/constants.json';
-export default class Background extends Scene {
+export default class Space extends Scene {
   private bg!: Phaser.GameObjects.TileSprite;
   private sun!: Phaser.GameObjects.Image;
   private planet!: Phaser.GameObjects.Image;
   private gameInstance!: Game;
   constructor() {
     super({
-      key: 'background',
+      key: 'space',
       active: false,
     });
   }
   create() {
-    this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.width, SPACE).setOrigin(0);
+    this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, SPACE).setOrigin(0);
     this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 4, this.scale.height / 4).setScale(0.3, 0.3);
     this.gameInstance = this.scene.get('game') as Game;
   }
