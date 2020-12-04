@@ -8,17 +8,19 @@ const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private energy = 200;
+    private offset!: number;
     public weaponType = weaponNames[0] as WeaponPlayerType;
     constructor(scene: Game, x:number, y:number, texture:string){
         super(scene, x, y, texture);{
-           
+
         }
-         
+
     }
 
 make(offset: number) {
     // POSITION
     const scene = this.scene as Game;
+    this.offset = offset;
     var x = scene.player.x;
     var y = scene.player.y - offset;
     this.setOrigin(0.5, 0.5);
@@ -36,7 +38,7 @@ takeHit(damage: number) {
     if (scene.shield.isUp) scene.shield.takeHit(damage);
     else {
       this.energy -= damage;
-      if (this.energy <= 0) { 
+      if (this.energy <= 0) {
           scene.explosions?.addExplosion(this.x, this.y);
           this.kill(); }
     }
@@ -50,11 +52,9 @@ kill() {
   }
 
 preUpdate(){
-    const scene = this.scene as Game;    
-    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((satellite) => {
-      this.x = scene.player.x;
-      //this.y = scene.player.y + satellite; 
-    })
+    const scene = this.scene as Game;
+    this.x = scene.player.x;
+    this.y = scene.player.y + this.offset;
   }
 
 }
@@ -63,7 +63,7 @@ preUpdate(){
 export default class Satellites extends Phaser.Physics.Arcade.Group {
     constructor(scene: Scene) {
         super(scene.physics.world, scene);
-    
+
         this.createMultiple({
           frameQuantity: 5,
           key: SATELLITE,
@@ -74,13 +74,14 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
           classType: Satellite
         });
 
-} 
+}
 
 launchSatellite() {
     const scene = this.scene as Game;
-    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((satellite) => {
+    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((offset) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      satellitePlayer.make(satellite);     
+      satellitePlayer.make(offset);
     })
  }
+
   }
