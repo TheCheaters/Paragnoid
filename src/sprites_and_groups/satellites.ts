@@ -8,7 +8,6 @@ const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private energy = 200;
-    private offset = 50;
     public weaponType = weaponNames[0] as WeaponPlayerType;
     constructor(scene: Game, x:number, y:number, texture:string){
         super(scene, x, y, texture);{
@@ -51,10 +50,12 @@ kill() {
   }
 
 preUpdate(){
-    const scene = this.scene as Game;
-    this.x = scene.player.x;
-    this.y = scene.player.y + this.offset;
-}
+    const scene = this.scene as Game;    
+    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((satellite) => {
+      this.x = scene.player.x;
+      //this.y = scene.player.y + satellite; 
+    })
+  }
 
 }
 
@@ -74,14 +75,12 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
         });
 
 } 
-launchSatellite(offset: number) {
-    const satellite = this.getFirstDead(false) as Satellite;
-    const scene = this.scene as Game;
-    if (satellite) {
-        for (var i=0; i< 1 + WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES; i++) { 
-        satellite.make(offset);
-        satellite.make(-offset); }
-     }
-  }
 
-}
+launchSatellite() {
+    const scene = this.scene as Game;
+    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((satellite) => {
+      const satellitePlayer = this.getFirstDead(false) as Satellite;
+      satellitePlayer.make(satellite);     
+    })
+ }
+  }

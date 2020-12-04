@@ -78,8 +78,9 @@ export default class Game extends Scene {
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions.bind(this));
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions.bind(this));
+    
     //PROVVISORIO PER DEBUG SATELLITE
-    this.satellites.launchSatellite(50);
+    this.satellites.launchSatellite();
  
     // inizia il gioco 
     this.timeline.start();
