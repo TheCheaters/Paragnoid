@@ -8,7 +8,7 @@ const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private energy = 200;
-    private offset!: number;
+    private offsetY!: number;
     public weaponType = weaponNames[0] as WeaponPlayerType;
     constructor(scene: Game, x:number, y:number, texture:string){
         super(scene, x, y, texture);{
@@ -17,13 +17,14 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
 
     }
 
-make(offset: number) {
+make(offsetY: number, angle: number) {
     // POSITION
     const scene = this.scene as Game;
-    this.offset = offset;
+    this.offsetY = offsetY;
     var x = scene.player.x;
-    var y = scene.player.y - offset;
+    var y = scene.player.y - offsetY;
     this.setOrigin(0.5, 0.5);
+    this.setRotation (Phaser.Math.DegToRad(angle));
     this.body.reset(x, y);
 
     // BEHAVIOR
@@ -54,11 +55,10 @@ kill() {
 preUpdate(){
     const scene = this.scene as Game;
     this.x = scene.player.x;
-    this.y = scene.player.y + this.offset;
+    this.y = scene.player.y + this.offsetY;
   }
 
 }
-
 
 export default class Satellites extends Phaser.Physics.Arcade.Group {
     constructor(scene: Scene) {
@@ -78,9 +78,10 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
 launchSatellite() {
     const scene = this.scene as Game;
-    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES.forEach((offset) => {
+    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      satellitePlayer.make(offset);
+      const angle = 15; 
+      satellitePlayer.make(offsetY, angle);
     })
  }
 
