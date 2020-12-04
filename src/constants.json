@@ -11,6 +11,8 @@
   "FLARES":                     "flares",
   "FLARES_ASSET_PATH":          "assets/particles/flares.png",
   "FLARES_JSON_ASSET_PATH":     "assets/particles/flares.json",
+  "HORIZON":                    "horizon",
+  "HORIZON_ASSET_PATH":         "assets/backgrounds/sky/horizon.png",
   "NUVOLE":                     "nuvole",
   "NUVOLE_ASSET_PATH":          "assets/backgrounds/sky/nuvole/",
   "NUVOLE_JSON_ASSET_PATH":     "assets/backgrounds/sky/nuvole/nuvole.json",
