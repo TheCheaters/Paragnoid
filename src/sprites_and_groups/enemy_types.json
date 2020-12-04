@@ -12,8 +12,16 @@
     "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
     "WIDTH":              130,
     "HEIGHT":             80,
-    "WEAPON_TYPE":       "MEGA",
+    "WEAPON_TYPE":       "DEFAULT",
     "SCORE_VALUE":       1000
+  },
+  "GREY_SHIP_REVERSED": {
+    "TEXTURE_NAME":       "Grey-Ship-Reversed",
+    "SPRITE_ASSET_PATH":  "assets/enemy_grey_reversed.png",
+    "WIDTH":              130,
+    "HEIGHT":             80,
+    "WEAPON_TYPE":        "DEFAULT",
+    "SCORE_VALUE":        1000
   },
   "WHITE_SHIP": {
     "TEXTURE_NAME":      "White-Ship",

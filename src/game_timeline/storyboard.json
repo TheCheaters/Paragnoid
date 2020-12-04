@@ -2,15 +2,15 @@
   "quadro_uno": [
     {
       "delay": 0,
-      "waves": 1,
+      "waves": 2,
       "wavesDelay": 2000,
       "singleWave": false,
-      "enemyQuantity": 3,
+      "enemyQuantity": 5,
       "enemyDelay": 500,
       "enemyType": "GREY_SHIP",
       "enemyBehavior": "STANDARD",
       "enemyPath": "SIMPLE",
-      "callbacks": ["powerups.upgradeWeapon", "powerups.upgradeWeapon", "powerups.upgradeWeapon"]
+      "callbacks": ["powerups.upgradeWeapon"]
     },
     {
       "delay": 0,
@@ -19,9 +19,9 @@
       "singleWave": false,
       "enemyQuantity": 3,
       "enemyDelay": 500,
-      "enemyType": "GREY_SHIP",
+      "enemyType": "GREY_SHIP_REVERSED",
       "enemyBehavior": "STANDARD",
-      "enemyPath": "SIMPLE",
+      "enemyPath": "COMPLEX",
       "callbacks": ["powerups.energy"]
     },
     {

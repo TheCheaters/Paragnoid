@@ -1,18 +1,19 @@
 {
   "DEFAULT": {
     "DAMAGE":            100,
-    "FIRE_SPEED":        1000,
-    "TEXTURE_NAME":      "Missile",
-    "SPRITE_ASSET_PATH": "assets/missile.png",
+    "FIRE_SPEED":        400,
+    "TEXTURE_NAME":      "Missile-Default",
+    "SPRITE_ASSET_PATH": "assets/missile_default.png",
     "AUDIO_NAME":        "Missile",
     "AUDIO_ASSET_PATH":  "assets/missile.mp3",
     "WIDTH":             40,
-    "HEIGHT":            40,
+    "HEIGHT":            10,
     "ANGLE":             [0],
     "GRAVITY_X": 0,
     "GRAVITY_Y": 0,
-    "FOLLOW": 0
+    "FOLLOW": 1
   },
+  
   "MEGA": {
     "DAMAGE":            100,
     "FIRE_SPEED":        500,
