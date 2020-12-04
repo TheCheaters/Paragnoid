@@ -17,14 +17,13 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
 
     }
 
-make(offsetY: number, angle: number) {
+make(offsetY: number) {
     // POSITION
     const scene = this.scene as Game;
     this.offsetY = offsetY;
     var x = scene.player.x;
     var y = scene.player.y - offsetY;
     this.setOrigin(0.5, 0.5);
-    this.setRotation (Phaser.Math.DegToRad(angle));
     this.body.reset(x, y);
 
     // BEHAVIOR
@@ -80,8 +79,7 @@ launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      const angle = 15; 
-      satellitePlayer.make(offsetY, angle);
+      satellitePlayer.make(offsetY);
     })
  }
 
