@@ -17,7 +17,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y": [50, -50]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -29,7 +29,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y":[50, -50]
+                "SATELLITES_OFFSET_Y":[45, -45]
             },
             {
                 "ANGLE": [
@@ -43,7 +43,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y": [50, -50]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -55,7 +55,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":30,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y": [50, -50]
+                "SATELLITES_OFFSET_Y": [45, -45]
             }
         ]
     },
@@ -77,7 +77,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -89,7 +89,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 18,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -99,7 +99,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 2000,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             }
         ]
     },
@@ -121,7 +121,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 50,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -135,7 +135,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 50,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             },
             {
                 "ANGLE": [
@@ -149,7 +149,7 @@
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
                 "DURATION": 50,
-                "SATELLITES_OFFSET_Y": [0, 1]
+                "SATELLITES_OFFSET_Y": [45, -45]
             }
         ]
     }
