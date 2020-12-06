@@ -28,5 +28,10 @@
     "ENERGY":    1000,
     "SPEED":     150,
     "FIRE_RATE": 1000
+  },
+  "SKY_BOSS": {
+    "ENERGY":    1000,
+    "SPEED":     7000,
+    "FIRE_RATE": 500
   }
 }

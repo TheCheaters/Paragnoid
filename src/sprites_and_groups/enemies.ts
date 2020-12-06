@@ -6,6 +6,7 @@ import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
+import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 
 let enemyProgressiveNumber = 0;
 
@@ -23,6 +24,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public maxEnergy!: number;
   private enemyName!: string;
   private timer!: Phaser.Time.TimerEvent;
+  private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
@@ -50,6 +52,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   make({ enemyType, enemyBehavior, enemyPath }: Make) {
+
+    this.isBoss = enemyType.includes('BOSS');
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -148,6 +152,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.timer.remove();
     this.tween?.stop();
     // console.log(`Killed Enemy ${this.enemyName}`);
+    if (this.isBoss) sceneChangeEmitter.emit('boss-is-dead-jim');
   }
 
 	preUpdate(time: number, delta: number) {

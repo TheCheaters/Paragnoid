@@ -23,6 +23,14 @@
     "WEAPON_TYPE":       "DEFAULT",
     "SCORE_VALUE":       1000
   },
+  "SKY_BOSS": {
+    "TEXTURE_NAME":      "Grey-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey.png",
+    "WIDTH":              130,
+    "HEIGHT":             80,
+    "WEAPON_TYPE":       "SKY_BOSS_WEAPON",
+    "SCORE_VALUE":       10000
+  },
   "WHITE_SHIP": {
     "TEXTURE_NAME":      "White-Ship",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_white.png",
