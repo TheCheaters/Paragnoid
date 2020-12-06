@@ -242,15 +242,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
-   
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
     const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
     const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown || this.keys.a?.isDown;
 
 
-   
-    // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
+       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       scene.player.setAccelerationX(-this.speed);
       this.anims.play(DIRECTIONS.GO_LEFT, true);
