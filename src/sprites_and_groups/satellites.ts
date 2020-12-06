@@ -79,7 +79,7 @@ launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      satellitePlayer.make(offsetY);
+      if (offsetY !== 0) { satellitePlayer.make(offsetY) }
     })
  }
 
