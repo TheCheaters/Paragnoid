@@ -70,8 +70,6 @@ export default class Preload extends Scene {
   }
 
   create() {
-    // this.scene.start('space');
-    this.scene.start('sky');
     this.scene.start('intro');
   }
 

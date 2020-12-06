@@ -31,7 +31,7 @@ export default class Game extends Scene {
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
   public lives!: Lives;
-  private timeline!: Timeline;
+  public timeline!: Timeline;
 
   constructor() {
     super({
@@ -65,8 +65,6 @@ export default class Game extends Scene {
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
 
-    // inizia il gioco
-    this.timeline.start();
-
   }
+
 }

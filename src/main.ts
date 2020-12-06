@@ -41,7 +41,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 			useTree: false
 		}
 	},
-	scene: [Preloader, Space, Sky, Intro, UI, Game, GameOver],
+	scene: [Preloader, Space, Sky, UI, Game, Intro, GameOver],
 };
 
 new Phaser.Game(config);

@@ -1,7 +1,8 @@
 import { Scene } from 'phaser';
 import { NUVOLE } from '~/constants.json';
 import { HORIZON } from '~/constants.json';
-
+import Game from '~/scenes/game';
+import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import nuvoleAtlas from '~/atlantes/nuvole.json';
 
 export default class Sky extends Scene {
@@ -13,6 +14,8 @@ export default class Sky extends Scene {
     x: number;
     y: number;
   }[];
+  private gameInstance!: Game;
+
   constructor() {
     super({
       key: 'sky',
@@ -27,7 +30,14 @@ export default class Sky extends Scene {
       x: this.scale.width + (this.distance * index),
       y: Phaser.Math.Between(0, 600),
     }));
-    }
+    this.gameInstance = this.scene.get('game') as Game;
+    this.gameInstance.timeline.start('sky');
+    sceneChangeEmitter.once('boss-is-dead-jim', () => {
+      console.log('here');
+      this.scene.stop('sky');
+      this.scene.start('space');
+    });
+  }
 
   update(time, delta) {
 

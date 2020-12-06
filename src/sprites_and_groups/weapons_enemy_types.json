@@ -41,8 +41,21 @@
     "GRAVITY_Y": 0,
     "FOLLOW": 1
   },
-
   "DIFFUSO": {
+    "DAMAGE":            100,
+    "FIRE_SPEED":        300,
+    "TEXTURE_NAME":      "Fireball",
+    "SPRITE_ASSET_PATH": "assets/weapons/fireball.png",
+    "AUDIO_NAME":        "Missile",
+    "AUDIO_ASSET_PATH":  "assets/sounds/missile.mp3",
+    "WIDTH":             40,
+    "HEIGHT":            40,
+    "ANGLE":             [0, 15, 45, 90, 135, 180, 225, 270, 315],
+    "GRAVITY_X": 0,
+    "GRAVITY_Y": 0,
+    "FOLLOW": 0
+  },
+  "SKY_BOSS_WEAPON": {
     "DAMAGE":            100,
     "FIRE_SPEED":        300,
     "TEXTURE_NAME":      "Fireball",

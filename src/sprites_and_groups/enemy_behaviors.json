@@ -13,20 +13,25 @@
     "ENERGY":             540,
     "SPEED":              150,
     "FIRE_RATE":          1000
-  }, 
+  },
   "MONSTER": {
     "ENERGY":             700,
     "SPEED":              150,
     "FIRE_RATE":          1000
-  }, 
+  },
   "TOUGH": {
     "ENERGY":             900,
-    "SPEED":              300, 
+    "SPEED":              300,
     "FIRE_RATE":          1000
-  }, 
+  },
   "INVINCIBLE": {
     "ENERGY":             1000,
     "SPEED":              150,
     "FIRE_RATE":          1000
+  },
+  "SKY_BOSS": {
+    "ENERGY":             1000,
+    "SPEED":              7000,
+    "FIRE_RATE":          500
   }
 }
