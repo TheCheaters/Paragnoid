@@ -9,6 +9,7 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private energy = 200;
     private offsetY!: number;
+    private offsetX!: number;
     public weaponType = weaponNames[0] as WeaponPlayerType;
     constructor(scene: Game, x:number, y:number, texture:string){
         super(scene, x, y, texture);{
@@ -17,9 +18,10 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
 
     }
 
-make(offsetY: number) {
+make(offsetX: number, offsetY: number) {
     // POSITION
     const scene = this.scene as Game;
+    this.offsetX = offsetX;
     this.offsetY = offsetY;
     var xFrom = -100;
     var yFrom = 0;
@@ -30,9 +32,7 @@ make(offsetY: number) {
     this.body.enable = true;
     this.setActive(true);
     this.setVisible(true);
-    
-
-}
+    }
 
 takeHit(damage: number) {
     const scene = this.scene as Game;
@@ -55,7 +55,7 @@ kill() {
 
 preUpdate(){
     const scene = this.scene as Game;
-    scene.physics.moveTo(this, scene.player.x, scene.player.y +this.offsetY, 500, 75); 
+    scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
 
   }
@@ -82,7 +82,9 @@ launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      if (offsetY !== 0) { satellitePlayer.make(offsetY);}
+      const satelliteOffsetX = WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_X;
+      if (offsetY !== 0 ) { satellitePlayer.make(satelliteOffsetX, offsetY);}        
+      
     })
  }
 
