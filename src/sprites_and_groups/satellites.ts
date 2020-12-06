@@ -57,10 +57,9 @@ kill() {
 
 preUpdate(){
     const scene = this.scene as Game;
-    scene.physics.moveTo(this, scene.player.x, scene.player.y +this.offsetY, 500, 75);
-    //scene.physics.moveToObject(this, scene.player, 10);
-    //this.x = scene.player.x;
-    //this.y = scene.player.y + this.offsetY;
+    scene.physics.moveTo(this, scene.player.x, scene.player.y +this.offsetY, 500, 75); 
+    //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
+
   }
 
 }
@@ -85,9 +84,7 @@ launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      if (offsetY !== 0) { satellitePlayer.make(offsetY);
-        //scene.physics.moveTo(satellitePlayer, scene.player.x, scene.player.y + offsetY, 500);
-       }
+      if (offsetY !== 0) { satellitePlayer.make(offsetY);}
     })
  }
 
