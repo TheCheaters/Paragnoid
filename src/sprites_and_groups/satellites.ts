@@ -53,6 +53,8 @@ kill() {
     //this.setVelocity(0);
   }
 
+fireSatellite(){}
+
 preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
