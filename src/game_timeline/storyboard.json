@@ -5,11 +5,11 @@
       "waves": 2,
       "wavesDelay": 2000,
       "singleWave": false,
-      "enemyQuantity": 5,
+      "enemyQuantity": 4,
       "enemyDelay": 500,
       "enemyType": "GREY_SHIP",
       "enemyBehavior": "STANDARD",
-      "enemyPath": "SIMPLE",
+      "enemyPath": "GREY_SHIP_PATH",
       "callbacks": ["powerups.upgradeWeapon"]
     },
     {
@@ -21,24 +21,12 @@
       "enemyDelay": 500,
       "enemyType": "GREY_SHIP_REVERSED",
       "enemyBehavior": "STANDARD",
-      "enemyPath": "COMPLEX",
-      "callbacks": ["powerups.energy"]
-    },
-    {
-      "delay": 1000,
-      "waves": 3,
-      "wavesDelay": 2000,
-      "singleWave":false,
-      "enemyQuantity": 5,
-      "enemyDelay": 1000,
-      "enemyType": "DARKWHITE_SHIP",
-      "enemyBehavior": "AGGRESSIVE",
-      "enemyPath": null,
+      "enemyPath": "GREY_SHIP_REVERSED_PATH",
       "callbacks": ["powerups.changeWeapon"]
     },
     {
       "delay": 1000,
-      "waves": 5,
+      "waves": 3,
       "wavesDelay": 1000,
       "singleWave": false,
       "enemyQuantity": 4,
@@ -46,8 +34,45 @@
       "enemyType": "GREEN_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "enemyPath": null,
-      "callbacks": ["powerups.upgradeWeapon"]
+      "callbacks": ["powerups.energy"]
     },
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 2000,
+      "singleWave":false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1000,
+      "enemyType": "DARKWHITE_SHIP",
+      "enemyBehavior": "AGGRESSIVE",
+      "enemyPath": null,
+      "callbacks": ["powerups.shield"]
+    },
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 4,
+      "enemyDelay": 1000,
+      "enemyType": "GREEN_SHIP_REVERSED",
+      "enemyBehavior": "STANDARD",
+      "enemyPath": "GREEN_SHIP_REVERSED_PATH" ,
+      "callbacks": ["powerups.energy"]
+    },
+    {
+      "delay": 1000,
+      "waves": 2,
+      "wavesDelay": 2000,
+      "singleWave": false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1000,
+      "enemyType": "DARKWHITE_SHIP",
+      "enemyBehavior": "AGGRESSIVE",
+      "enemyPath": null,
+      "callbacks": ["powerups.shield"]
+    },
+    
     {
       "delay": 1000,
       "waves": 5,

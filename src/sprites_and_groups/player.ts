@@ -242,19 +242,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
-    let duration = 50;
-
+   
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
     const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
     const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown || this.keys.a?.isDown;
 
 
-    //SELEZIONE BURST ARMI
-    if (this.weaponType === 'LASER'){
-      duration = WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION;
-    }
-
+   
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       scene.player.setAccelerationX(-this.speed);
@@ -300,7 +295,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.weaponType = weaponNames[0] as WeaponPlayerType;
     }
     //  PLAYER SHOOT FUNCTION
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) && scene.playerWeaponsGroup) {
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION) && scene.playerWeaponsGroup) {
         scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
     }
 

@@ -37,7 +37,15 @@
     "WIDTH":             150,
     "HEIGHT":            65,
     "WEAPON_TYPE":       "ULTRA",
-    "SCORE_VALUE":       10
+    "SCORE_VALUE":       1500
+  },
+  "GREEN_SHIP_REVERSED": {
+    "TEXTURE_NAME":       "Green-Ship-Reversed",
+    "SPRITE_ASSET_PATH":  "assets/enemy_green_reversed.png",
+    "WIDTH":               150,
+    "HEIGH":              65,
+    "WEAPON_TYPE":        "ULTRA",
+    "SCORE_VALUE":        1500
   },
   "PURPLE_SHIP": {
     "TEXTURE_NAME":     "Purple-Ship",
