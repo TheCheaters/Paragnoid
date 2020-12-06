@@ -21,8 +21,6 @@ make(offsetY: number) {
     // POSITION
     const scene = this.scene as Game;
     this.offsetY = offsetY;
-    var xTo = scene.player.x;
-    var yTo = scene.player.y - offsetY;
     var xFrom = -100;
     var yFrom = 0;
     this.setOrigin(0.5, 0.5);
