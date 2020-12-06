@@ -3,9 +3,9 @@
         "DAMAGE": 100,
         "FIRE_SPEED": 1000,
         "TEXTURE_NAME": "Missile",
-        "SPRITE_ASSET_PATH": "assets/missile.png",
+        "SPRITE_ASSET_PATH": "assets/weapons/missile.png",
         "AUDIO_NAME": "Missile",
-        "AUDIO_ASSET_PATH": "assets/missile.mp3",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 40,
         "HEIGHT": 40,
         "LEVELS": [
@@ -55,7 +55,7 @@
                 "ANGLE": [
                     -0.01,
                     0,
-                    0.01                                    
+                    0.01
                 ],
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
@@ -71,9 +71,9 @@
         "DAMAGE": 100,
         "FIRE_SPEED": 2000,
         "TEXTURE_NAME": "Laser",
-        "SPRITE_ASSET_PATH": "assets/laser2.png",
+        "SPRITE_ASSET_PATH": "assets/weapons/laser2.png",
         "AUDIO_NAME": "Missile",
-        "AUDIO_ASSET_PATH": "assets/missile.mp3",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 50,
         "HEIGHT": 47,
         "LEVELS": [
@@ -119,11 +119,11 @@
     },
     "TERZA": {
         "DAMAGE": 100,
-        "FIRE_SPEED": 10,
+        "FIRE_SPEED": 100,
         "TEXTURE_NAME": "Missile",
-        "SPRITE_ASSET_PATH": "assets/missile.png",
+        "SPRITE_ASSET_PATH": "assets/weapons/missile.png",
         "AUDIO_NAME": "Missile",
-        "AUDIO_ASSET_PATH": "assets/missile.mp3",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 40,
         "HEIGHT": 40,
         "LEVELS": [

@@ -27,6 +27,8 @@ export default class Preload extends Scene {
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.image(C.SPACE, C.SPACE_ASSET_PATH);
     this.load.image(C.SUN, C.SUN_ASSET_PATH);
+    this.load.image(C.HORIZON, C.HORIZON_ASSET_PATH);
+    this.load.multiatlas(C.NUVOLE, C.NUVOLE_JSON_ASSET_PATH, C.NUVOLE_ASSET_PATH);
     this.load.image(C.BLUE_PARTICLE, C.BLUE_PARTICLE_ASSET_PATH);
     this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
     this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
@@ -69,7 +71,6 @@ export default class Preload extends Scene {
   }
 
   create() {
-    this.scene.start('background');
     this.scene.start('intro');
   }
 

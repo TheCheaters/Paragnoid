@@ -1,9 +1,12 @@
+import { AUDIO_EXPLOSION, HIT_ENEMY } from '~/constants.json';
 import { Scene } from "phaser";
 import Game from '../scenes/game';
+import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
+import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 
 let enemyProgressiveNumber = 0;
 
@@ -21,6 +24,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public maxEnergy!: number;
   private enemyName!: string;
   private timer!: Phaser.Time.TimerEvent;
+  private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
@@ -28,6 +32,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private curve?: Phaser.Curves.Spline | null;
   private tween?: Phaser.Tweens.Tween | null;
   private points?: number[];
+  private ui?: UI;
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
   }
@@ -47,6 +52,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   make({ enemyType, enemyBehavior, enemyPath }: Make) {
+
+    this.isBoss = enemyType.includes('BOSS');
+
+    // BIND UI SCENE
+    this.ui = this.scene.game.scene.getScene('ui') as UI;
 
     // RESET PREVIOUS PATH
     this.enemyPath = null;
@@ -116,6 +126,18 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   }
 
+  takeHit(damage: number) {
+    const scene = this.scene as Game;
+    this.energy -= damage;
+    if (this.energy <= 0) {
+      scene.sound.add(AUDIO_EXPLOSION, { loop: false }).play();
+      this.explode();
+      this.ui?.addScore(this.scoreValue);
+    } else {
+      scene.sound.add(HIT_ENEMY, { loop: false }).play();
+    }
+  }
+
   explode() {
     const { explosions } = this.scene as Game;
     explosions.addExplosion(this.x, this.y);
@@ -130,6 +152,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.timer.remove();
     this.tween?.stop();
     // console.log(`Killed Enemy ${this.enemyName}`);
+    if (this.isBoss) sceneChangeEmitter.emit('boss-is-dead-jim');
   }
 
 	preUpdate(time: number, delta: number) {
@@ -142,7 +165,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     this.updateLifeLine();
 
-		if (this.x < -100) {
+    if (this.x < -500 || this.x > 1500) {
+
 			this.kill();
 		}
 	}

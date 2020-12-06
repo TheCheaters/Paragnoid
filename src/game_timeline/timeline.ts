@@ -17,6 +17,8 @@ export type EnemyBlock = {
   callbacks: string[];
 }
 
+export type TimeLineScenes = keyof typeof enemyTimeline
+
 export type StoryBoard = {
   [key: string]: EnemyBlock[];
 }
@@ -26,7 +28,9 @@ export default class Timeline {
   constructor(scene: Game) {
     this.scene = scene;
   }
-  start() {
+  start(sceneName: TimeLineScenes) {
+
+    console.log(`Start timeline of ${sceneName}`);
 
     let time = 0;
 
@@ -37,7 +41,7 @@ export default class Timeline {
       this.scene[group][fn]();
     })
 
-    enemyTimeline.quadro_uno.forEach((block, i) => {
+    enemyTimeline[sceneName].forEach((block, i) => {
 
       const {
         delay,

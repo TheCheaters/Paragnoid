@@ -1,7 +1,7 @@
 {
   "DEFAULT": {
     "TEXTURE_NAME":      "Mordicchio",
-    "SPRITE_ASSET_PATH": "assets/enemy.png",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy.png",
     "WIDTH":             68,
     "HEIGHT":            28,
     "WEAPON_TYPE":       "DEFAULT",
@@ -9,26 +9,99 @@
   },
   "GREY_SHIP": {
     "TEXTURE_NAME":      "Grey-Ship",
-    "SPRITE_ASSET_PATH": "assets/enemy_grey.png",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey.png",
+    "WIDTH":             130,
+    "HEIGHT":            80,
+    "WEAPON_TYPE":       "DEFAULT",
+    "SCORE_VALUE":       1000
+  },
+  "GREY_SHIP_REVERSED": {
+    "TEXTURE_NAME":      "Grey-Ship-Reversed",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey_reversed.png",
+    "WIDTH":             130,
+    "HEIGHT":            80,
+    "WEAPON_TYPE":       "DEFAULT",
+    "SCORE_VALUE":       1000
+  },
+  "SKY_BOSS": {
+    "TEXTURE_NAME":      "Grey-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey.png",
     "WIDTH":              130,
     "HEIGHT":             80,
-    "WEAPON_TYPE":       "MEGA",
-    "SCORE_VALUE":       1000
+    "WEAPON_TYPE":       "SKY_BOSS_WEAPON",
+    "SCORE_VALUE":       10000
   },
   "WHITE_SHIP": {
     "TEXTURE_NAME":      "White-Ship",
-    "SPRITE_ASSET_PATH": "assets/enemy_white.png",
-    "WIDTH":              300,
-    "HEIGHT":             140,
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_white.png",
+    "WIDTH":             300,
+    "HEIGHT":            140,
     "WEAPON_TYPE":       "DIFFUSO",
     "SCORE_VALUE":       500
   },
   "GREEN_SHIP": {
     "TEXTURE_NAME":      "Green-Ship",
-    "SPRITE_ASSET_PATH": "assets/enemy_2.png",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_2.png",
     "WIDTH":             150,
     "HEIGHT":            65,
     "WEAPON_TYPE":       "ULTRA",
-    "SCORE_VALUE":       10
+    "SCORE_VALUE":       1500
+  },
+  "GREEN_SHIP_REVERSED": {
+    "TEXTURE_NAME":      "Green-Ship-Reversed",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_green_reversed.png",
+    "WIDTH":             150,
+    "HEIGHT":             65,
+    "WEAPON_TYPE":       "ULTRA",
+    "SCORE_VALUE":       1500
+  },
+  "PURPLE_SHIP": {
+    "TEXTURE_NAME":      "Purple-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_purple.png",
+    "WIDTH":             500,
+    "HEIGHT":            200,
+    "WEAPON_TYPE":       "DIFFUSO",
+    "SCORE_VALUE":       500
+  },
+  "DARKGREEN_SHIP": {
+    "TEXTURE_NAME":      "Darkgreen-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_darkgreen.png",
+    "WIDTH":             209,
+    "HEIGHT":            119,
+    "WEAPON_TYPE":       "ULTRA",
+    "SCORE_VALUE":       600
+  },
+  "DARKWHITE_SHIP": {
+    "TEXTURE_NAME":      "Darkwhite-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_darkwhite.png",
+    "WIDTH":             175,
+    "HEIGHT":            80,
+    "WEAPON_TYPE":       "MEGA",
+    "SCORE_VALUE":       500
+  },
+  "PIRATE_SHIP": {
+    "TEXTURE_NAME":      "Pirate-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_pirate.png",
+    "WIDTH":             173,
+    "HEIGHT":            66,
+    "WEAPON_TYPE":       "ULTRA",
+    "SCORE_VALUE":       300
+  },
+  "PINCER_SHIP": {
+    "TEXTURE_NAME":      "Pincer-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_pincer.png",
+    "WIDTH":             153,
+    "HEIGHT":            90,
+    "WEAPON_TYPE":       "DIFFUSO",
+    "SCORE_VALUE":       1000
+  },
+  "KNIGHT_SHIP": {
+    "TEXTURE_NAME":      "Knight-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_knight.png",
+    "WIDTH":             139,
+    "HEIGHT":            89,
+    "WEAPON_TYPE":       "DIFFUSO",
+    "SCORE_VALUE":       1500
   }
+
 }

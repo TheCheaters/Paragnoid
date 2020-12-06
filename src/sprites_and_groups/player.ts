@@ -1,6 +1,7 @@
 import { DIRECTIONS } from '~/globals';
 import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import { PowerUpTypes, PowerUpType } from '~/sprites_and_groups/powerups';
 
 import Game from '~/scenes/game';
 import { Scene } from 'phaser';
@@ -102,12 +103,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.joyStickKeys = this.joyStick.createCursorKeys();
     this.keys = {
       space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
-      s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      z: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z),
       m: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
       n: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N),
       l: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L),
       k: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K),
       j: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J),
+      w: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+      a: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
+      s: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      d: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+
     }
 
     // BEHAVIOR
@@ -145,12 +151,38 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  upgradeWeapon() {
-    const scene = this.scene as Game;
+  usePowerUp(type: PowerUpType) {
+    switch (type) {
+      case PowerUpTypes.ENERGY:
+        this.fullEnergy();
+        break;
+      case PowerUpTypes.CHANGE_WEAPON:
+        this.changeWeapon();
+        break;
+      case PowerUpTypes.UPGRADE_WEAPON:
+        this.updgradeWeapon();
+        break;
+      case PowerUpTypes.SHIELD:
+        this.shieldUp();
+        break;
+    }
+  }
+
+  changeWeapon() {
+    this.weaponType = weaponNames[Phaser.Math.Between(0, weaponNames.length - 1)] as WeaponPlayerType;
+  }
+
+  updgradeWeapon() {
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
       this.weaponLevel += 1;
-      scene.satellites.launchSatellite();
-      } else {this.weaponLevel += 0;} }
+    } else {
+      this.weaponLevel += 0;
+    }
+  }
+
+  fullEnergy() {
+    this.energy = this.maxEnergy;
+  }
 
   die() {
     const scene = this.scene as Game;
@@ -206,18 +238,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setVelocity(0);
   }
 
-
-
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
-    const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown;
-    const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown;
-    const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown;
-    const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown;
+    const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
+    const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
+    const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
+    const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown || this.keys.a?.isDown;
 
-   // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
+
+       // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       scene.player.setAccelerationX(-this.speed);
       this.anims.play(DIRECTIONS.GO_LEFT, true);
@@ -267,7 +298,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     // SHIELD UP (DEBUG)
-    if (Phaser.Input.Keyboard.JustDown(this.keys.s)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.z)) {
       this.shieldUp();
     }
 
