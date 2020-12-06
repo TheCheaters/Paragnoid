@@ -21,15 +21,19 @@ make(offsetY: number) {
     // POSITION
     const scene = this.scene as Game;
     this.offsetY = offsetY;
-    var x = scene.player.x;
-    var y = scene.player.y - offsetY;
+    var xTo = scene.player.x;
+    var yTo = scene.player.y - offsetY;
+    var xFrom = -100;
+    var yFrom = 0;
     this.setOrigin(0.5, 0.5);
-    this.body.reset(x, y);
-
+    this.body.reset(xFrom, yFrom);    
+    
     // BEHAVIOR
     this.body.enable = true;
     this.setActive(true);
     this.setVisible(true);
+    
+
 }
 
 takeHit(damage: number) {
@@ -53,8 +57,10 @@ kill() {
 
 preUpdate(){
     const scene = this.scene as Game;
-    this.x = scene.player.x;
-    this.y = scene.player.y + this.offsetY;
+    scene.physics.moveTo(this, scene.player.x, scene.player.y +this.offsetY, 500, 75);
+    //scene.physics.moveToObject(this, scene.player, 10);
+    //this.x = scene.player.x;
+    //this.y = scene.player.y + this.offsetY;
   }
 
 }
@@ -79,7 +85,9 @@ launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      if (offsetY !== 0) { satellitePlayer.make(offsetY) }
+      if (offsetY !== 0) { satellitePlayer.make(offsetY);
+        //scene.physics.moveTo(satellitePlayer, scene.player.x, scene.player.y + offsetY, 500);
+       }
     })
  }
 
