@@ -30,6 +30,9 @@ export default class Sky extends Scene {
       x: this.scale.width + (this.distance * index),
       y: Phaser.Math.Between(0, 600),
     }));
+  }
+
+  startTimeline() {
     this.gameInstance = this.scene.get('game') as Game;
     this.gameInstance.timeline.start('sky');
     sceneChangeEmitter.once('boss-is-dead-jim', () => {
