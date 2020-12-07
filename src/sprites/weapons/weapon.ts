@@ -1,8 +1,8 @@
 import { Scene } from "phaser";
-import Game from '../scenes/game';
-import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import Game from '~/scenes/game';
+import { DEFAULT } from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;

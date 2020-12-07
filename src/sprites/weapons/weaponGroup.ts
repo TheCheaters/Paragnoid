@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import { PlayerWeapon, EnemyWeapon } from './weapon';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import { PlayerWeapon, EnemyWeapon } from '~/sprites/weapons/weapon';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
@@ -9,13 +9,13 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene, classType: Function) {
     super(scene.physics.world, scene);
 
-    this.createMultiple({    
+    this.createMultiple({
       frameQuantity: 30,
       setXY: {x: -50, y: -50},
       key: WEAPON_ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
       active: false,
       visible: false,
-      classType,      
+      classType,
     });
   }
 

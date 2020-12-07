@@ -1,5 +1,5 @@
-import Player from '~/sprites_and_groups/player';
-import { EnemyWeapon } from '~/sprites_and_groups/weapon';
+import Player from '~/sprites/player/player';
+import { EnemyWeapon } from '~/sprites/weapons/weapon';
 
 export default (player: Player, weapon: EnemyWeapon ) => {
     player.takeHit(weapon.DAMAGE);

@@ -1,5 +1,5 @@
-import { Powerup } from '~/sprites_and_groups/powerups';
-import Player from '~/sprites_and_groups/player';
+import { Powerup } from '~/sprites/powerups/powerups';
+import Player from '~/sprites/player/player';
 
 export default (player: Player, powerUp: Powerup) => {
   player.usePowerUp(powerUp.powerUpType);

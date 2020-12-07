@@ -1,9 +1,9 @@
 import { Scene } from 'phaser';
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
-import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
