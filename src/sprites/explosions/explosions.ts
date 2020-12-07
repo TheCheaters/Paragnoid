@@ -48,7 +48,7 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
           start: 0,
           end: 63
         }),
-        frameRate: 60,
+        frameRate: 30,
       });
     });
 
