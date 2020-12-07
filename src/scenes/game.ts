@@ -24,7 +24,6 @@ export default class Game extends Scene {
   public enemies!: Enemies;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
-  public PlayerWeapon1Level1Group!: WeaponGroup;
   public explosions!: Explosions;
   public powerups!: Powerups;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
@@ -50,7 +49,6 @@ export default class Game extends Scene {
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
-    this.PlayerWeapon1Level1Group = new WeaponGroup(this, PlayerWeapon);
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
@@ -70,8 +68,7 @@ export default class Game extends Scene {
     this.colliderSatelliteWeapons = this.physics.add.collider(this.satellites, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
-    this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
-
+  
   }
 
 }

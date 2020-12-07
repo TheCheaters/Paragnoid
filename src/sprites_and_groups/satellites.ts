@@ -1,21 +1,23 @@
 import { Scene } from "phaser";
 import Game from '../scenes/game';
+import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import { SATELLITE } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
+import { PlayerWeapon } from './weapon';
 
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
+    FIRE_SPEED = DEFAULT.FIRE_SPEED;
+    AUDIO_NAME = DEFAULT.AUDIO_NAME;
     private energy = 200;
     private offsetY!: number;
     private offsetX!: number;
     public weaponType = weaponNames[0] as WeaponPlayerType;
     constructor(scene: Game, x:number, y:number, texture:string){
-        super(scene, x, y, texture);{
-
-        }
-
+        super(scene, x, y, texture);
+        
     }
 
 make(offsetX: number, offsetY: number) {
@@ -53,7 +55,15 @@ kill() {
     //this.setVelocity(0);
   }
 
-fireSatellite(){}
+fireSatellite(x: number, y: number, weaponType: WeaponPlayerType){
+  //this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
+  //this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
+  //this.body.enable = true;
+  //this.body.reset(x + 20, y+5);
+  //this.setActive(true);
+  //this.setVisible(true);
+  //this.scene.sound.play(this.AUDIO_NAME);
+}
 
 preUpdate(){
     const scene = this.scene as Game;
@@ -90,4 +100,11 @@ launchSatellite() {
     })
  }
 
-  }
+fireBulletSatellite(x: number, y: number, weaponType: WeaponPlayerType){
+  const scene = this.scene as Game;
+  //const weaponSatellite = this.getFirstDead(true) as Satellite;
+  //weaponSatellite.setOrigin(0, 0.5);
+  //weaponSatellite.fireSatellite (weaponSatellite.x, weaponSatellite.y, weaponSatellite.weaponType);
+}
+
+}
