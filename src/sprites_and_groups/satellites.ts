@@ -60,7 +60,8 @@ kill() {
   }
 
 fireSatellite(){ 
-  //if (scene.satellite.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (scene.satellite.x, scene.satellite.y, scene.satellite.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
+  const scene = this.scene as Game;
+  if (this.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (this.x, this.y, this.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
 }  
 
 preUpdate(){
