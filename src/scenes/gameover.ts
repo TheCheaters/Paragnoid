@@ -12,8 +12,12 @@ export default class GameOver extends Scene {
     this.add.image(this.scale.width / 2, this.scale.height / 2, C.INFOPANEL_OVER);
     this.sound.add(C.AUDIO_OVER, {loop: false}).play();
     this.ricominciamoText = this.add.dynamicBitmapText(this.scale.width / 2, this.scale.height / 2 + 100, C.PV_FONT_NAME, 'clicca per ricominciare', 14 ).setOrigin(0.5);
+
+    this.scene.stop('game');
+    this.scene.stop('ui');
+
     this.input.once('pointerdown', () => {
-      this.scene.start('game');
+      this.scene.start('intro');
     });
   }
 }
