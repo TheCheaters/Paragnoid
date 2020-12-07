@@ -102,7 +102,7 @@ launchSatellite() {
 
 fireBulletSatellite(x: number, y: number, weaponType: WeaponPlayerType){
   const scene = this.scene as Game;
-  //const weaponSatellite = this.getFirstDead(true) as Satellite;
+  //const weaponSatellite = this.getFirstDead(true) as PlayerWeapon;
   //weaponSatellite.setOrigin(0, 0.5);
   //weaponSatellite.fireSatellite (weaponSatellite.x, weaponSatellite.y, weaponSatellite.weaponType);
 }
