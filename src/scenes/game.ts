@@ -2,7 +2,7 @@ import * as C from '~/constants.json';
 import { Scene } from 'phaser';
 import { PlayerWeapon, EnemyWeapon } from '~/sprites_and_groups/weapon';
 import WeaponGroup from '~/sprites_and_groups/weaponGroup';
-import Enemies from '~/sprites_and_groups/enemies';
+import Enemies, { Enemy } from '~/sprites_and_groups/enemies';
 import Player from '~/sprites_and_groups/player';
 import Shield from '~/sprites_and_groups/shield';
 import Explosions from '~/sprites_and_groups/explosions';
@@ -14,14 +14,16 @@ import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollis
 import Timeline from '~/game_timeline/timeline';
 import Lives from '../sprites_and_groups/Lives';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import Satellites from '~/sprites_and_groups/satellites';
+import Satellites, { Satellite } from '~/sprites_and_groups/satellites';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
   public player!: Player;
   public satellites!: Satellites;
+  public satellite!: Satellite;
   public shield!: Shield;
   public enemies!: Enemies;
+  public enemy!: Enemy;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
   public explosions!: Explosions;

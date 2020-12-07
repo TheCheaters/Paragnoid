@@ -1,0 +1,25 @@
+{
+    "MISSILI_SATELLITE": {
+        "DAMAGE": 100,
+        "FIRE_SPEED": 1000,
+        "TEXTURE_NAME": "Missile",
+        "SPRITE_ASSET_PATH": "assets/weapons/missile.png",
+        "AUDIO_NAME": "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH": 40,
+        "HEIGHT": 40,
+        "FOLLOW": 0      
+    },
+    "LASER_SATELLITE": {
+        "DAMAGE": 100,
+        "FIRE_SPEED": 2000,
+        "TEXTURE_NAME": "Laser",
+        "SPRITE_ASSET_PATH": "assets/weapons/laser2.png",
+        "AUDIO_NAME": "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH": 50,
+        "HEIGHT": 47,
+        "FOLLOW": 0          
+    }
+    
+}
