@@ -59,6 +59,10 @@ kill() {
     //this.setVelocity(0);
   }
 
+fireSatellite(){ 
+  //if (scene.satellite.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (scene.satellite.x, scene.satellite.y, scene.satellite.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
+}  
+
 preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
@@ -83,7 +87,6 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
         });
 
 }
-
 launchSatellite() {
     const scene = this.scene as Game;
     WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {

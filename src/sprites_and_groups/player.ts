@@ -32,8 +32,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private greenLine!: Phaser.Geom.Line;
   public weaponType = weaponNames[0] as WeaponPlayerType;
   public weaponLevel = 0;
-  public satellite!: Satellite;
-  
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -302,7 +300,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     //  PLAYER SHOOT FUNCTION
     if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION) && scene.playerWeaponsGroup) {
         scene.playerWeaponsGroup.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
-        if (scene.satellite.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (scene.satellite.x, scene.satellite.y, scene.satellite.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
+        //if (scene.satellite.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (scene.satellite.x, scene.satellite.y, scene.satellite.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
       
     }
 
