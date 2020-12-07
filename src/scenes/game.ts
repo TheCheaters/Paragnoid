@@ -55,7 +55,7 @@ export default class Game extends Scene {
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
-    this.explosions = new Explosions(this, C.EXPLOSION);
+    this.explosions = new Explosions(this);
     this.timeline = new Timeline(this);
 
     this.lives = new Lives(this, C.SPACECRAFT);
