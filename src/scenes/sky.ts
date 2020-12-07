@@ -33,8 +33,6 @@ export default class Sky extends Scene {
     this.gameInstance = this.scene.get('game') as Game;
     this.gameInstance.timeline.start('sky');
     sceneChangeEmitter.once('boss-is-dead-jim', () => {
-      console.log('here');
-      this.scene.stop('sky');
       this.scene.start('space');
     });
   }

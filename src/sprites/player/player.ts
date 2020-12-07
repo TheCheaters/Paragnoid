@@ -22,7 +22,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private keys!: {
     [key: string]: Phaser.Input.Keyboard.Key;
   }
-  private energy = 300;
+  public energy = 300;
   private speed = 1000;
   private maxEnergy!: number;
   private greenStyle!: Phaser.GameObjects.Graphics;

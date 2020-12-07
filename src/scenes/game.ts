@@ -72,6 +72,9 @@ export default class Game extends Scene {
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons1Lvl1 = this.physics.add.collider(this.enemies, this.PlayerWeapon1Level1Group, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
 
+    this.scene.launch('sky');
+    this.scene.launch('ui');
+
   }
 
 }
