@@ -36,9 +36,9 @@ export default class Explosions extends Phaser.Physics.Arcade.Group {
       key: EXPLOSION,
       frames: scene.anims.generateFrameNumbers(EXPLOSION, {
         start: 0,
-        end: 9
+        end: 63
       }),
-      frameRate: 20,
+      frameRate: 60,
     });
 
     this.createMultiple({

@@ -24,6 +24,10 @@ export default class Preload extends Scene {
       frameWidth: C.SPACECRAFT_FRAME_WIDTH,
       frameHeight: C.SPACECRAFT_FRAME_HEIGH,
     });
+    this.load.spritesheet(C.EXPLOSION, C.EXPLOSION_ASSET_PATH, {
+      frameWidth: C.EXPLOSION_FRAME_WIDTH,
+      frameHeight: C.EXPLOSION_FRAME_HEIGH,
+    });
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.image(C.SPACE, C.SPACE_ASSET_PATH);
     this.load.image(C.SUN, C.SUN_ASSET_PATH);
