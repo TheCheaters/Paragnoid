@@ -1,17 +1,26 @@
 import { Scene } from "phaser";
-import { EXPLOSION } from '~/constants.json';
+import EXPLOSION_TYPES from '~/sprites/explosions/explosions_types.json';
+
+const DEFAULT = 'ONE';
+type ExplosionType = keyof typeof EXPLOSION_TYPES;
 
 class Explosion extends Phaser.Physics.Arcade.Sprite {
+  private explosionTypes = Object.keys(EXPLOSION_TYPES) as ExplosionType[];
+  private explosionType: ExplosionType = DEFAULT;
   constructor(scene: Scene, x: number, y: number) {
-    super(scene, x, y, EXPLOSION);
+    super(scene, x, y, DEFAULT);
   }
 
   explode (x: number, y: number) {
+    const rd = Phaser.Math.Between(0, this.explosionTypes.length - 1);
+    this.explosionType = this.explosionTypes[rd];
     this.body.enable = true;
     this.body.reset(x, y);
-    this.play(EXPLOSION, true);
+    this.setTexture(this.explosionType);
+    this.play(this.explosionType, true);
     this.setActive(true);
     this.setVisible(true);
+
     this.on('animationcomplete', (...args) => this.kill());
 
   }
@@ -29,21 +38,23 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
 }
 
 export default class Explosions extends Phaser.Physics.Arcade.Group {
-  constructor(scene: Scene, texture: string) {
+  constructor(scene: Scene) {
     super(scene.physics.world, scene);
 
-    scene.anims.create ({
-      key: EXPLOSION,
-      frames: scene.anims.generateFrameNumbers(EXPLOSION, {
-        start: 0,
-        end: 63
-      }),
-      frameRate: 60,
+    Object.keys(EXPLOSION_TYPES).forEach((EXPLOSION) => {
+      scene.anims.create ({
+        key: EXPLOSION,
+        frames: scene.anims.generateFrameNumbers(EXPLOSION, {
+          start: 0,
+          end: 63
+        }),
+        frameRate: 60,
+      });
     });
 
     this.createMultiple({
       frameQuantity: 30,
-      key: texture,
+      key: DEFAULT,
       active: false,
       visible: false,
       classType: Explosion,
