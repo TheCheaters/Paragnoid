@@ -11,6 +11,8 @@ const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 const weaponSatellitenames = Object.keys(WEAPON_SATELLITE_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
+    private keys!: {
+      [key: string]: Phaser.Input.Keyboard.Key; }
     FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
     AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
     DAMAGE = MISSILI_SATELLITE.DAMAGE;
@@ -36,6 +38,9 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
         this.WIDTH = MISSILI_SATELLITE.WIDTH;
         this.HEIGHT = MISSILI_SATELLITE.HEIGHT;
         this.FOLLOW = MISSILI_SATELLITE.FOLLOW;
+        this.keys = {
+          space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)  }
+         
               
     }
 
@@ -76,16 +81,19 @@ kill() {
     //this.setVelocity(0);
   }
 
-fireSatellite(){ 
+fireSatellite(x: number, y:number, weaponType: WeaponSatelliteType, follow: number){ 
   const scene = this.scene as Game;
-  if (this.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (this.x, this.y, this.weaponType, WEAPON_SATELLITE_TYPES[scene.satellite.weaponType].FOLLOW) }
+  if (this.activeSatellite) { scene.playerWeaponsGroup.fireBulletSatellite (x, y, weaponType, follow) }
 }  
 
 preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
-    
+    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
+      scene.playerWeaponsGroup.fireBulletSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
+            
+  }
     
   }
 

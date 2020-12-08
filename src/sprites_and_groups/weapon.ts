@@ -131,5 +131,5 @@ export class SatelliteWeapon extends Weapon {
         this.scene.physics.moveToObject(this, enemy, this.FIRE_SPEED);
         this.setRotation(Phaser.Math.Angle.Between(enemy.x, enemy.y, this.x, this.y));
       }
-  }
+  };
 }
