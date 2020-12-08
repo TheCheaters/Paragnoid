@@ -62,7 +62,7 @@ make(offsetX: number, offsetY: number) {
     this.setVisible(true);
     this.activeSatellite = true;
     this.weaponType = "MISSILI_SATELLITE";
-    const delay = Phaser.Math.Between(1000, 2000);
+    const delay = Phaser.Math.Between(100, 150);
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
@@ -78,7 +78,8 @@ takeHit(damage: number) {
       this.energy -= damage;
       if (this.energy <= 0) {
           scene.explosions?.addExplosion(this.x, this.y);
-          this.kill(); }
+          this.kill();
+         }
     }
   }
 
