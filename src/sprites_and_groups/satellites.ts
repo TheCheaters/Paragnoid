@@ -14,7 +14,7 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private keys!: {
       [key: string]: Phaser.Input.Keyboard.Key; };
-      private timer!: Phaser.Time.TimerEvent;
+    public timer!: Phaser.Time.TimerEvent;
     FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
     AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
     DAMAGE = MISSILI_SATELLITE.DAMAGE;
@@ -76,7 +76,7 @@ takeHit(damage: number) {
     if (scene.shield.isUp) scene.shield.takeHit(damage);
     else {
       this.energy -= damage;
-      if (this.energy <= 0) {
+      if (this.energy < 0) {
           scene.explosions?.addExplosion(this.x, this.y);
           this.kill();
          }
