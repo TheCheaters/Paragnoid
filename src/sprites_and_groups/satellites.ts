@@ -62,11 +62,11 @@ make(offsetX: number, offsetY: number) {
     this.setVisible(true);
     this.activeSatellite = true;
     this.weaponType = "MISSILI_SATELLITE";
-    const delay = Phaser.Math.Between(1000, 1000 + 1000);
+    const delay = Phaser.Math.Between(100, 150);
 
-    /*this.timer = this.scene.time.addEvent({ delay, callback: () => {
+    this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
-    }, callbackScope: this, loop: true });*/
+    }, callbackScope: this, loop: true });
     
     }
 
@@ -87,7 +87,7 @@ kill() {
     this.setActive(false);
     this.setVisible(false);
     //this.setVelocity(0);
-    //this.timer.remove();
+    this.timer.remove();
   }
 
 fireSatellite(x: number, y:number, weaponType: WeaponSatelliteType, follow: number){ 
@@ -99,9 +99,9 @@ preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
-    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
+    /*if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
-  }
+  }*/
   if (this.x < -500 || this.x > 1500) {this.kill();}
     
   }
