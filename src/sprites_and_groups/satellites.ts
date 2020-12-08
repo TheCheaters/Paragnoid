@@ -5,6 +5,7 @@ import { SATELLITE } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
 import { SatelliteWeapon } from './weapon';
+import { Enemy } from './enemies';
 
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
@@ -15,6 +16,7 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private keys!: {
       [key: string]: Phaser.Input.Keyboard.Key; };
     public timer!: Phaser.Time.TimerEvent;
+    public closestEnemy;
     FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
     AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
     DAMAGE = MISSILI_SATELLITE.DAMAGE;
@@ -103,7 +105,7 @@ preUpdate(){
     /*if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
   }*/
-    
+    this.closestEnemy = this.scene.physics.closest(this);    
   }
 
 }

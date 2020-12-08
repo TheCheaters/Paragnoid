@@ -4,6 +4,7 @@ import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
+import { Enemy } from './enemies';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
@@ -112,6 +113,7 @@ export class EnemyWeapon extends Weapon {
 export class SatelliteWeapon extends Weapon {
 
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
+            
       this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
       this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
       this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
@@ -127,10 +129,11 @@ export class SatelliteWeapon extends Weapon {
       }   
       if (follow === 1){
         const { enemy } = this.scene as Game;
+        var closestEnemy = this.scene.physics.closest(this)
         this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
         this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
-        this.scene.physics.moveToObject(this, enemy, this.FIRE_SPEED);
-        this.setRotation(Phaser.Math.Angle.Between(enemy.x, enemy.y, this.x, this.y));
+        this.scene.physics.moveToObject(this, closestEnemy, this.FIRE_SPEED);
+        //this.setRotation(Phaser.Math.Angle.Between(enemy.x, enemy.y, this.x, this.y));
       }
   }
 }
