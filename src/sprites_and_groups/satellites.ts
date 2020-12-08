@@ -99,7 +99,7 @@ preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
-    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.playerWeaponsGroup) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
   }
   if (this.x < -500 || this.x > 1500) {this.kill();}

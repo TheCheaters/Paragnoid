@@ -2,7 +2,7 @@
     "MISSILI_SATELLITE": {
         "DAMAGE": 100,
         "FIRE_SPEED": 1000,
-        "TEXTURE_NAME": "Missile",
+        "TEXTURE_NAME": "Laser0",
         "SPRITE_ASSET_PATH": "assets/weapons/laser.png",
         "AUDIO_NAME": "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
