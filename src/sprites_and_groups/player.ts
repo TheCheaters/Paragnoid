@@ -300,8 +300,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     //  PLAYER SHOOT FUNCTION
     if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION) && scene.playerWeaponsGroup) {
         scene.playerWeaponsGroup.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
-        //scene.satellite.fireSatellite();
-      
+              
     }
 
     // SHIELD UP (DEBUG)

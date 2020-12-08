@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '../scenes/game';
-import { DEFAULT } from '~/sprites_and_groups/weapons_enemy_types.json';
+import { MISSILI_SATELLITE, LASER_SATELLITE } from '~/sprites_and_groups/weapons_satellite_types.json';
 import { SATELLITE } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
@@ -11,8 +11,15 @@ const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 const weaponSatellitenames = Object.keys(WEAPON_SATELLITE_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
-    FIRE_SPEED = DEFAULT.FIRE_SPEED;
-    AUDIO_NAME = DEFAULT.AUDIO_NAME;
+    FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
+    AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
+    DAMAGE = MISSILI_SATELLITE.DAMAGE;
+    TEXTURE_NAME = MISSILI_SATELLITE.TEXTURE_NAME;
+    SPRITE_ASSET_PATH = MISSILI_SATELLITE.SPRITE_ASSET_PATH;
+    AUDIO_ASSET_PATH = MISSILI_SATELLITE.AUDIO_ASSET_PATH;
+    WIDTH = MISSILI_SATELLITE.WIDTH;
+    HEIGHT = MISSILI_SATELLITE.HEIGHT;
+    FOLLOW = MISSILI_SATELLITE.FOLLOW;
     private energy = 200;
     private offsetY!: number;
     private offsetX!: number;
@@ -20,7 +27,16 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     public weaponType = weaponNames[0] as WeaponSatelliteType;
     constructor(scene: Game, x:number, y:number, texture:string){
         super(scene, x, y, texture);
-        
+        this.DAMAGE = MISSILI_SATELLITE.DAMAGE;
+        this.FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
+        this.TEXTURE_NAME = MISSILI_SATELLITE.TEXTURE_NAME;
+        this.SPRITE_ASSET_PATH = MISSILI_SATELLITE.SPRITE_ASSET_PATH;
+        this.AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
+        this.AUDIO_ASSET_PATH = MISSILI_SATELLITE.AUDIO_ASSET_PATH;
+        this.WIDTH = MISSILI_SATELLITE.WIDTH;
+        this.HEIGHT = MISSILI_SATELLITE.HEIGHT;
+        this.FOLLOW = MISSILI_SATELLITE.FOLLOW;
+              
     }
 
 make(offsetX: number, offsetY: number) {
@@ -38,6 +54,7 @@ make(offsetX: number, offsetY: number) {
     this.setActive(true);
     this.setVisible(true);
     this.activeSatellite = true;
+    
     }
 
 takeHit(damage: number) {
@@ -68,7 +85,8 @@ preUpdate(){
     const scene = this.scene as Game;
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
-
+    
+    
   }
 
 }
