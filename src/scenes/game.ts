@@ -29,6 +29,7 @@ export default class Game extends Scene {
   public satelliteWeaponsGroup!: WeaponGroup;
   public explosions!: Explosions;
   public powerups!: Powerups;
+  public gfx;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderSatelliteEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
@@ -73,7 +74,7 @@ export default class Game extends Scene {
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
-
+    this.gfx = this.add.graphics();
   }
 
 }

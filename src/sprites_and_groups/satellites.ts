@@ -16,7 +16,6 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private keys!: {
       [key: string]: Phaser.Input.Keyboard.Key; };
     public timer!: Phaser.Time.TimerEvent;
-    public closestEnemy;
     FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
     AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
     DAMAGE = MISSILI_SATELLITE.DAMAGE;
@@ -99,13 +98,17 @@ fireSatellite(x: number, y:number, weaponType: WeaponSatelliteType, follow: numb
 }  
 
 preUpdate(){
-    const scene = this.scene as Game;
+    const scene = this.scene as Game;    
     scene.physics.moveTo(this, scene.player.x-this.offsetX, scene.player.y+this.offsetY, 500, 75); 
     //con l'ultimo parametro '75' si controlla in pratica l'inerzia del movimento dei satelliti rispetto ai movimenti del player
     /*if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
   }*/
-    this.closestEnemy = this.scene.physics.closest(this);    
+    //var enemiesapp = scene.enemies as unknown as Phaser.Physics.Arcade.Body[];
+    var closestThing= this.scene.physics.closest(this, scene.enemies as unknown as Phaser.GameObjects.GameObject[]) as Phaser.Physics.Arcade.Sprite;    
+    scene.gfx.clear()
+        .lineStyle(2,0xff3300)
+        .lineBetween(closestThing.x, closestThing.y, this.x, this.y)
   }
 
 }
