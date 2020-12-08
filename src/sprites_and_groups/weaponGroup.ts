@@ -38,7 +38,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     })
   }
 
-  fireBulletSatellite(x:number, y:number, weaponType: WeaponSatelliteType, follow: number){
+  fireBulletSatellite({ x, y, weaponType, follow }: { x: number; y: number; weaponType: WeaponSatelliteType; follow: number; }){
     const weaponSatellite = this.getFirstDead(true) as SatelliteWeapon;
     weaponSatellite.setOrigin(0, 0.5);
     weaponSatellite.setActive(true);

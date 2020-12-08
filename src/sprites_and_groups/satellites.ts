@@ -4,6 +4,7 @@ import { MISSILI_SATELLITE, LASER_SATELLITE } from '~/sprites_and_groups/weapons
 import { SATELLITE } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
+import { SatelliteWeapon } from './weapon';
 
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
@@ -60,6 +61,7 @@ make(offsetX: number, offsetY: number) {
     this.setActive(true);
     this.setVisible(true);
     this.activeSatellite = true;
+    this.weaponType = "MISSILI_SATELLITE";
     const delay = Phaser.Math.Between(500, 500 + 100);
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
@@ -88,8 +90,8 @@ kill() {
   }
 
 fireSatellite(x: number, y:number, weaponType: WeaponSatelliteType, follow: number){ 
-  const { playerWeaponsGroup } = this.scene as Game;
-  playerWeaponsGroup.fireBulletSatellite(x, y, weaponType as WeaponSatelliteType, follow);
+  const { satelliteWeaponsGroup } = this.scene as Game;
+  satelliteWeaponsGroup.fireBulletSatellite({ x, y, weaponType, follow });
 }  
 
 preUpdate(){

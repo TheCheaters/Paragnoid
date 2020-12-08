@@ -1,6 +1,6 @@
 import * as C from '~/constants.json';
 import { Scene } from 'phaser';
-import { PlayerWeapon, EnemyWeapon } from '~/sprites_and_groups/weapon';
+import { PlayerWeapon, EnemyWeapon, SatelliteWeapon } from '~/sprites_and_groups/weapon';
 import WeaponGroup from '~/sprites_and_groups/weaponGroup';
 import Enemies, { Enemy } from '~/sprites_and_groups/enemies';
 import Player from '~/sprites_and_groups/player';
@@ -26,6 +26,7 @@ export default class Game extends Scene {
   public enemy!: Enemy;
   public playerWeaponsGroup!: WeaponGroup;
   public enemyWeaponsGroup!: WeaponGroup;
+  public satelliteWeaponsGroup!: WeaponGroup;
   public explosions!: Explosions;
   public powerups!: Powerups;
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
@@ -51,6 +52,7 @@ export default class Game extends Scene {
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
+    this.satelliteWeaponsGroup = new WeaponGroup(this, SatelliteWeapon)
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
