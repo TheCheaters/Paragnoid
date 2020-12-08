@@ -32,10 +32,10 @@ export default class Game extends Scene {
   public colliderPlayerEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderSatelliteEnemy!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerWeapons!: Phaser.Physics.Arcade.Collider;
-  public colliderSatelliteWeapons!: Phaser.Physics.Arcade.Collider;
+  public colliderSatellite!: Phaser.Physics.Arcade.Collider;
   public colliderPlayerPowerups!: Phaser.Physics.Arcade.Collider;
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
-  public colliderEnemyWeapons1Lvl1!: Phaser.Physics.Arcade.Collider;
+  public colliderSatelliteWeapon!: Phaser.Physics.Arcade.Collider;
   public lives!: Lives;
   public timeline!: Timeline;
 
@@ -69,9 +69,10 @@ export default class Game extends Scene {
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderSatelliteEnemy = this.physics.add.collider(this.satellites, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
-    this.colliderSatelliteWeapons = this.physics.add.collider(this.satellites, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
+    this.colliderSatellite = this.physics.add.collider(this.satellites, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
+    this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
   
   }
 
