@@ -110,12 +110,13 @@ export class EnemyWeapon extends Weapon {
 }
 
 export class SatelliteWeapon extends Weapon {
+
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
       this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
       this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
       this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
       this.body.enable = true;
-      this.body.reset(x + 2, y + 20);
+      this.body.reset(x + 2, y + 2);
       this.setActive(true);
       this.setVisible(true);
       //this.scene.sound.play(this.AUDIO_NAME);
@@ -131,5 +132,5 @@ export class SatelliteWeapon extends Weapon {
         this.scene.physics.moveToObject(this, enemy, this.FIRE_SPEED);
         this.setRotation(Phaser.Math.Angle.Between(enemy.x, enemy.y, this.x, this.y));
       }
-  };
+  }
 }
