@@ -62,7 +62,7 @@ make(offsetX: number, offsetY: number) {
     this.setVisible(true);
     this.activeSatellite = true;
     this.weaponType = "MISSILI_SATELLITE";
-    const delay = Phaser.Math.Between(100, 150);
+    const delay = Phaser.Math.Between(1000, 2000);
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
@@ -102,7 +102,6 @@ preUpdate(){
     /*if (Phaser.Input.Keyboard.JustDown(this.keys.space) && scene.satelliteWeaponsGroup) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
   }*/
-  if (this.x < -500 || this.x > 1500) {this.kill();}
     
   }
 
