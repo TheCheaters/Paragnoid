@@ -65,7 +65,7 @@ make(offsetX: number, offsetY: number) {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
     }, callbackScope: this, loop: true });
 
-    }
+}
 
 takeHit(damage: number) {
     const scene = this.scene as Game;
@@ -91,6 +91,12 @@ kill() {
 fireSatellite(x: number, y: number, weaponType: WeaponSatelliteType, follow: number){
   const { satelliteWeaponsGroup } = this.scene as Game;
   satelliteWeaponsGroup.fireBulletSatellite({ x, y, weaponType, follow });
+}
+
+preUpdate() {
+  const scene = this.scene as Game;
+  scene.physics.moveTo(this, scene.player.x - this.offsetX, scene.player.y + this.offsetY, 500, 75);
+
 }
 
 }
