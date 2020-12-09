@@ -2,32 +2,32 @@
   "STANDARD" : {
     "ENERGY":    200,
     "SPEED":     700,
-    "FIRE_RATE": 1000
+    "FIRE_RATE": 800
   },
   "AGGRESSIVE" : {
     "ENERGY":    300,
     "SPEED":     300,
-    "FIRE_RATE": 1000
+    "FIRE_RATE": 700
   },
   "SUICIDE" : {
     "ENERGY":    400,
-    "SPEED":     150,
-    "FIRE_RATE": 1000
+    "SPEED":     300,
+    "FIRE_RATE": 800
   },
   "MONSTER": {
-    "ENERGY":    700,
+    "ENERGY":    400,
     "SPEED":     150,
-    "FIRE_RATE": 1000
+    "FIRE_RATE": 700
   },
   "TOUGH": {
-    "ENERGY":    900,
-    "SPEED":     300,
-    "FIRE_RATE": 1000
+    "ENERGY":    400,
+    "SPEED":     200,
+    "FIRE_RATE": 700
   },
   "INVINCIBLE": {
-    "ENERGY":    1000,
-    "SPEED":     150,
-    "FIRE_RATE": 1000
+    "ENERGY":    400,
+    "SPEED":     200,
+    "FIRE_RATE": 800
   },
   "SKY_BOSS": {
     "ENERGY":    1000,

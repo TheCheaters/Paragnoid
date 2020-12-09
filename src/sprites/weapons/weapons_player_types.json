@@ -16,7 +16,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y":[0],
                 "SATELLITES_OFFSET_X": 0
 
@@ -30,7 +30,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y":[45, -45],
                 "SATELLITES_OFFSET_X": 0
 
@@ -46,7 +46,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y": [45, -45],
                 "SATELLITES_OFFSET_X": 40
 
@@ -60,7 +60,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":30,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y": [45, -45],
                 "SATELLITES_OFFSET_X": 20
 
@@ -84,7 +84,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y": [45, -45],
                 "SATELLITES_OFFSET_X": 20
 
@@ -98,7 +98,7 @@
                 "GRAVITY_X": 0,
                 "GRAVITY_Y": 0,
                 "VERTICAL_OFFSET":0,
-                "DURATION": 18,
+                "DURATION": 35,
                 "SATELLITES_OFFSET_Y": [45, -45],
                 "SATELLITES_OFFSET_X": 20
 

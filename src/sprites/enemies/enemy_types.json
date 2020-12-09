@@ -21,7 +21,7 @@
     "WIDTH":             130,
     "HEIGHT":            80,
     "WEAPON_TYPE":       "DEFAULT",
-    "SCORE_VALUE":       1000
+    "SCORE_VALUE":       1200
   },
   "SKY_BOSS": {
     "TEXTURE_NAME":      "Grey-Ship",
@@ -37,7 +37,15 @@
     "WIDTH":             300,
     "HEIGHT":            140,
     "WEAPON_TYPE":       "DIFFUSO",
-    "SCORE_VALUE":       500
+    "SCORE_VALUE":       1500
+  },
+  "WHITE_SHIP_REVERSED": {
+    "TEXTURE_NAME":       "White-Ship-Reversed",
+    "SPRITE_ASSET_PATH":  "assets/enemies/enemy_white_reversed.png",
+    "WIDTH":              300, 
+    "HEIGHT":             140,
+    "WEAPON_TYPE":        "DIFFUSO",
+    "SCORE_VALUE":        1500
   },
   "GREEN_SHIP": {
     "TEXTURE_NAME":      "Green-Ship",
@@ -60,7 +68,7 @@
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_purple.png",
     "WIDTH":             500,
     "HEIGHT":            200,
-    "WEAPON_TYPE":       "DIFFUSO",
+    "WEAPON_TYPE":       "ULTRA",
     "SCORE_VALUE":       500
   },
   "DARKGREEN_SHIP": {
