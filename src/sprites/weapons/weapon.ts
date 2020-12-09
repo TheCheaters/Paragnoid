@@ -3,9 +3,12 @@ import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/weapons/weapons_enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
+
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
 
   DAMAGE = DEFAULT.DAMAGE;
@@ -88,7 +91,6 @@ export class EnemyWeapon extends Weapon {
     this.DAMAGE = (WEAPON_ENEMY_TYPES[weaponType].DAMAGE);
     this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
-    this.body.enable = true;
     this.body.reset(x + 2, y + 20);
     this.setActive(true);
     this.setVisible(true);
@@ -105,5 +107,23 @@ export class EnemyWeapon extends Weapon {
       this.scene.physics.moveToObject(this, player, -this.FIRE_SPEED);
       this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
     }
+  }
+}
+
+export class SatelliteWeapon extends Weapon {
+
+  fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
+
+      this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
+      this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
+      this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
+      this.body.enable = true;
+      this.body.reset(x + 2, y + 2);
+      this.setActive(true);
+      this.setVisible(true);
+      this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+      this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+      this.setRotation(Phaser.Math.DegToRad(angle));
+
   }
 }

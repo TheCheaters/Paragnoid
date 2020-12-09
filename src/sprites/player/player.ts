@@ -22,7 +22,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private keys!: {
     [key: string]: Phaser.Input.Keyboard.Key;
   }
-  private energy = 300;
+  public energy = 300;
   private speed = 1000;
   private maxEnergy!: number;
   private greenStyle!: Phaser.GameObjects.Graphics;
@@ -296,7 +296,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     //  PLAYER SHOOT FUNCTION
     if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel].DURATION) && scene.playerWeaponsGroup) {
-        scene.PlayerWeapon1Level1Group.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
+        scene.playerWeaponsGroup.fireBulletPlayer(this.x, this.y, this.weaponType, this.weaponLevel);
+
     }
 
     // SHIELD UP (DEBUG)

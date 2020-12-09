@@ -3,5 +3,5 @@ import { Enemy } from '~/sprites/enemies/enemies';
 
 export default (player: Player, enemy: Enemy) => {
     player.takeHit(1000);
-    enemy.explode();
+    enemy.takeHit(player.energy);
 }

@@ -21,4 +21,8 @@ export default class UserInterface extends Scene {
     this.scoreText.setText(`Score: ${this.score}`);
   }
 
+  resetScore() {
+    this.score = 0;
+  }
+
 }

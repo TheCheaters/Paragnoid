@@ -25,7 +25,7 @@ export default class Shield {
         visible: false,
       })
       .setEmitZone({
-        source: new Phaser.Geom.Circle(0, 0, 100),
+        source: new Phaser.Geom.Circle(0, 0, 50),
         type: 'edge',
         quantity: 50,
       });
@@ -53,7 +53,6 @@ export default class Shield {
   }
 
   shieldUp() {
-    this.scene.player.setBodySize(150, 150);
     this.emitter.setVisible(true);
   }
 
@@ -67,7 +66,6 @@ export default class Shield {
 
   shieldDown() {
     this.emitter.setVisible(false);
-    this.scene.player.setBodySize(SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH);
   }
 
   moveShield(x: number, y: number) {

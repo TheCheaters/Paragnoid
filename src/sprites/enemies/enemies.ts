@@ -82,7 +82,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     // DIRECTION
     if (enemyPath) {
-
       this.enemyPath = enemyPath;
       this.path = { t: 0, vec: new Phaser.Math.Vector2() };
       this.points = ENEMY_PATHS[this.enemyPath];
@@ -91,7 +90,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         targets: this.path,
         t: 1,
         duration: SPEED * 10,
-        repeat: 0
+        repeat: this.isBoss ? -1 : 0
       });
 
     } else {
