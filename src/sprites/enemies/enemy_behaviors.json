@@ -29,7 +29,7 @@
     "SPEED":     200,
     "FIRE_RATE": 800
   },
-  "SKY_BOSS": {
+  "SPACE_BOSS": {
     "ENERGY":    1000,
     "SPEED":     7000,
     "FIRE_RATE": 500

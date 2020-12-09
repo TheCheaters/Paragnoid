@@ -79,6 +79,14 @@
     "WEAPON_TYPE":       "ULTRA",
     "SCORE_VALUE":       600
   },
+  "SPACE_BOSS_SHIP": {
+    "TEXTURE_NAME":       "Space-Boss-Ship",
+    "SPRITE_ASSET_PATH":  "assets/enemies/enemy_boss_space.png",
+    "WIDTH":              254, 
+    "HEIGHT":              140,
+    "WEAPON_TYPE":        "DIFFUSO",
+    "SCORE_VALUE":        5000
+  },
   "DARKWHITE_SHIP": {
     "TEXTURE_NAME":      "Darkwhite-Ship",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_darkwhite.png",
