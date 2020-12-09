@@ -105,7 +105,7 @@ preUpdate(){
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);            
   }*/
     //var enemiesapp = scene.enemies as unknown as Phaser.Physics.Arcade.Body[];
-    var closestThing= this.scene.physics.closest(this, scene.enemies as unknown as Phaser.GameObjects.GameObject[]) as Phaser.Physics.Arcade.Sprite;    
+    var closestThing= this.scene.physics.closest(this) as Phaser.Physics.Arcade.Sprite;    
     scene.gfx.clear()
         .lineStyle(2,0xff3300)
         .lineBetween(closestThing.x, closestThing.y, this.x, this.y)
