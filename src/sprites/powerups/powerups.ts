@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import Game from '../scenes/game';
+import Game from '~/scenes/game';
 import { POWERUP, FLARES } from '~/constants.json';
 
 export enum PowerUpTypes {

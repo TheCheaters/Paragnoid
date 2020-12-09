@@ -1,11 +1,11 @@
 import { AUDIO_EXPLOSION, HIT_ENEMY } from '~/constants.json';
 import { Scene } from "phaser";
-import Game from '../scenes/game';
+import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
-import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
-import ENEMY_BEHAVIORS from '~/sprites_and_groups/enemy_behaviors.json';
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import ENEMY_PATHS from '~/sprites_and_groups/enemy_paths.json';
+import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
+import ENEMY_BEHAVIORS from '~/sprites/enemies/enemy_behaviors.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import ENEMY_PATHS from '~/sprites/enemies/enemy_paths.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 
 let enemyProgressiveNumber = 0;

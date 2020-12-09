@@ -1,10 +1,10 @@
 import { Scene } from 'phaser';
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
-import ENEMY_TYPES from '~/sprites_and_groups/enemy_types.json';
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
+import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
+import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 
 type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
@@ -65,7 +65,7 @@ export default class Preload extends Scene {
     });
 
     //Carica tutti gli sprite ed i suoni dei Satelliti
-    Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => { 
+    Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => {
       const SATELLITE = S as WeaponSatelliteType;
       this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].TEXTURE_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].SPRITE_ASSET_PATH);
       this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_ASSET_PATH);

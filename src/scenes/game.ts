@@ -1,20 +1,20 @@
-import * as C from '~/constants.json';
 import { Scene } from 'phaser';
-import { PlayerWeapon, EnemyWeapon, SatelliteWeapon } from '~/sprites_and_groups/weapon';
-import WeaponGroup from '~/sprites_and_groups/weaponGroup';
-import Enemies, { Enemy } from '~/sprites_and_groups/enemies';
-import Player from '~/sprites_and_groups/player';
-import Shield from '~/sprites_and_groups/shield';
-import Explosions from '~/sprites_and_groups/explosions';
-import Powerups from '~/sprites_and_groups/powerups';
+import * as C from '~/constants.json';
+import { PlayerWeapon, EnemyWeapon, SatelliteWeapon } from '~/sprites/weapons/weapon';
+import WeaponGroup from '~/sprites/weapons/weaponGroup';
+import Enemies, { Enemy } from '~/sprites/enemies/enemies';
+import Player from '~/sprites/player/player';
+import Shield from '~/sprites/shield/shield';
+import Explosions from '~/sprites/explosions/explosions';
+import Powerups from '~/sprites/powerups/powerups';
 import handlerPlayerEnemyCollisions from '~/colliders/handlerPlayerEnemyCollisions';
 import handlerPlayerWeaponCollisions from '~/colliders/handlerPlayerWeaponCollisions';
 import handlerPlayerPowerupCollisions from '~/colliders/handlerPlayerPowerupCollisions';
 import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollisions';
 import Timeline from '~/game_timeline/timeline';
-import Lives from '../sprites_and_groups/Lives';
-import WEAPON_ENEMY_TYPES from '~/sprites_and_groups/weapons_enemy_types.json';
-import Satellites, { Satellite } from '~/sprites_and_groups/satellites';
+import Lives from '~/sprites/player/lives';
+import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import Satellites, { Satellite } from '~/sprites/satellites/satellites';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {

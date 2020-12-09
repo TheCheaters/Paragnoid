@@ -1,7 +1,8 @@
 import { DIRECTIONS } from '~/globals';
 import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
-import WEAPON_PLAYER_TYPES from '~/sprites_and_groups/weapons_player_types.json';
-import { PowerUpTypes, PowerUpType } from '~/sprites_and_groups/powerups';
+import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
+
 import Game from '~/scenes/game';
 import { Scene } from 'phaser';
 
