@@ -31,7 +31,7 @@
   },
   "SKY_BOSS": {
     "ENERGY":    1000,
-    "SPEED":     7000,
+    "SPEED":     500,
     "FIRE_RATE": 500
   }
 }

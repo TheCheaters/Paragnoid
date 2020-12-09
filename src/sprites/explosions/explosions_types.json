@@ -1,0 +1,19 @@
+{
+  "ONE": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/1.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "TWO": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/2.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "THREE": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/3.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "FOUR": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/4.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  }
+}
+

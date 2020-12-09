@@ -15,6 +15,7 @@ import Timeline from '~/game_timeline/timeline';
 import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
+import Space from '~/scenes/space';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
@@ -56,7 +57,7 @@ export default class Game extends Scene {
     this.enemies = new Enemies(this);
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
-    this.explosions = new Explosions(this, C.EXPLOSION);
+    this.explosions = new Explosions(this);
     this.timeline = new Timeline(this);
     this.lives = new Lives(this, C.SPACECRAFT);
 
@@ -72,6 +73,10 @@ export default class Game extends Scene {
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
-  }
 
+    this.scene.launch('ui');
+    const space = this.scene.get('space') as Space;
+    space.scene.start();
+    space.startTimeline();
+  }
 }

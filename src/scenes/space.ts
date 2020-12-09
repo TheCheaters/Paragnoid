@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
 import { SPACE, SUN } from '~/constants.json';
+import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 
 export default class Space extends Scene {
   private bg!: Phaser.GameObjects.TileSprite;
@@ -16,10 +17,15 @@ export default class Space extends Scene {
   create() {
     this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, SPACE).setOrigin(0);
     this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 4, this.scale.height / 4).setScale(0.3, 0.3);
-    this.gameInstance = this.scene.get('game') as Game;
-    this.gameInstance.timeline.start('space');
   }
 
+  startTimeline() {
+    this.gameInstance = this.scene.get('game') as Game;
+    this.gameInstance.timeline.start('space');
+    sceneChangeEmitter.once('boss-is-dead-jim', () => {
+      this.scene.start('sky');
+    });
+  }
   update(time, delta) {
 
     let backgroundVelocity = 0;
