@@ -16,6 +16,7 @@ import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
 import Space from '~/scenes/space';
+import KeyController from '~/scenes/keys_controller';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
@@ -76,7 +77,9 @@ export default class Game extends Scene {
 
     this.scene.launch('ui');
     const space = this.scene.get('space') as Space;
+    const keyController = this.scene.get('keys-controller') as KeyController;
     space.scene.start();
+    keyController.scene.start();
     space.startTimeline();
   }
 }

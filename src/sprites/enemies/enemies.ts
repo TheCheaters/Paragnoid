@@ -165,7 +165,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.updateLifeLine();
 
     if (this.x < -500 || this.x > 1500) {
-
 			this.kill();
 		}
 	}
