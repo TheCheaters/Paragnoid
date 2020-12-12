@@ -10,7 +10,7 @@
       "enemyType": "GREY_SHIP",
       "enemyBehavior": "STANDARD",
       "enemyPath": "GREY_SHIP_PATH",
-      "callbacks": ["powerups.upgradeWeapon"]
+      "callbacks": ["powerups.shield"]
     },
     {
       "delay": 0,
@@ -21,8 +21,7 @@
       "enemyDelay": 500,
       "enemyType": "GREY_SHIP_REVERSED",
       "enemyBehavior": "STANDARD",
-      "enemyPath": "GREY_SHIP_REVERSED_PATH",
-      "callbacks": ["powerups.changeWeapon"]
+      "enemyPath": "GREY_SHIP_REVERSED_PATH"
     },
     {
       "delay": 1000,
@@ -34,7 +33,7 @@
       "enemyType": "GREEN_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "enemyPath": null,
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.energy"]
     },
     {
       "delay": 1000,
@@ -46,7 +45,7 @@
       "enemyType": "DARKWHITE_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "enemyPath": null,
-      "callbacks": ["powerups.energy"]
+      "callbacks": ["powerups.shield"]
     },
     {
       "delay": 1000,
@@ -57,8 +56,7 @@
       "enemyDelay": 1000,
       "enemyType": "GREEN_SHIP_REVERSED",
       "enemyBehavior": "STANDARD",
-      "enemyPath": "GREEN_SHIP_REVERSED_PATH" ,
-      "callbacks": ["powerups.upgradeWeapon"]
+      "enemyPath": "GREEN_SHIP_REVERSED_PATH"
     },
     {
       "delay": 1000,
@@ -70,7 +68,7 @@
       "enemyType": "DARKWHITE_SHIP",
       "enemyBehavior": "AGGRESSIVE",
       "enemyPath": null,
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.energy"]
     },
     
     {
@@ -81,7 +79,7 @@
       "enemyQuantity": 1,
       "enemyDelay": 1000,
       "enemyType": "WHITE_SHIP_REVERSED",
-      "enemyBehavior": "STANDARD",
+      "enemyBehavior": "WHITE_SHIP_REVERSED_BEHAVIOR",
       "enemyPath": "WHITE_SHIP_REVERSED_PATH",
       "callbacks": ["powerups.shield"]
     },
@@ -107,7 +105,7 @@
       "enemyType": "PURPLE_SHIP",
       "enemyBehavior": "MONSTER",
       "enemyPath": null,
-      "callbacks": ["powerups.energy"]
+      "callbacks": ["powerups.upgradeWeapon"]
     },
     {
       "delay": 1000,
@@ -129,7 +127,7 @@
       "enemyQuantity": 1, 
       "enemyDelay": 500, 
       "enemyType": "SPACE_BOSS_SHIP",
-      "enemyBehavior": "SPACE_BOSS",
+      "enemyBehavior": "SPACE_BOSS_BEHAVIOR",
       "enemyPath": "SPACE_BOSS_PATH"
     }    
   ],

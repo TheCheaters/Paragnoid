@@ -108,7 +108,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
         this.createMultiple({
           frameQuantity: 5,
           key: SATELLITE,
-          setXY: {x: -100, y: -100},
+          setXY: {x: -1000, y: -1000},
           setScale: {x: 0.5, y: 0.5},
           active: false,
           visible: false,
