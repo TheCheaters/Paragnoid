@@ -1,8 +1,9 @@
-import Game from '~/scenes/game';
 import enemyTimeline from '~/game_timeline/storyboard.json';
 import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites/enemies/enemy_behaviors.json';
 import ENEMY_PATHS from '~/sprites/enemies/enemy_paths.json';
+import Level from '~/scenes/level';
+import Game from '~/scenes/game';
 
 export type EnemyBlock = {
   delay: number;
@@ -24,9 +25,12 @@ export type StoryBoard = {
 }
 
 export default class Timeline {
-  private scene!: Game;
-  constructor(scene: Game) {
+  private scene!: Level;
+  private timers: Phaser.Time.TimerEvent[] = [];
+  private gameInstance: Game;
+  constructor(scene: Level) {
     this.scene = scene;
+    this.gameInstance = this.scene.scene.get('game') as Game;
   }
   start(sceneName: TimeLineScenes) {
 
@@ -38,7 +42,7 @@ export default class Timeline {
       const [group, fn] = cb.split('.');
       if (!fn) throw new Error('Warning, callback must be in the form of ["gameMember.function", ...] ');
       console.log(`Now executing callback ${cb}`);
-      this.scene[group][fn]();
+      this.gameInstance[group][fn]();
     })
 
     enemyTimeline[sceneName].forEach((block, i) => {
@@ -64,11 +68,11 @@ export default class Timeline {
 
         if (singleWave) {
 
-          this.scene.time.addEvent({
+          const timer = this.scene.time.addEvent({
             delay: time,
             callback: () => {
               for (let enemies = 1; enemies <= enemyQuantity; enemies++) {
-                this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
                 time += enemyDelay;
               }
             },
@@ -76,18 +80,22 @@ export default class Timeline {
             loop: false
           });
 
+          this.timers.push(timer);
+
         } else {
 
           for (let enemies = 1; enemies <= enemyQuantity; enemies++) {
-            this.scene.time.addEvent({
+            const timer = this.scene.time.addEvent({
               delay: time,
               callback: () => {
-                this.scene.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
               },
               callbackScope: this,
               loop: false
             });
             time += enemyDelay;
+
+            this.timers.push(timer);
 
           }
         }
@@ -96,13 +104,23 @@ export default class Timeline {
       }
 
       if (callbacks) {
-        this.scene.time.addEvent({
+        const timer = this.scene.time.addEvent({
           delay: time,
           callback: () => launchCallbacks(callbacks),
           callbackScope: this,
           loop: false,
-        })
+        });
+
+        this.timers.push(timer);
+
       }
+
+    })
+
+  }
+  stop() {
+    this.timers.forEach(timer => {
+      timer.remove();
     })
   }
 }

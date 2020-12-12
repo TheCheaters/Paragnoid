@@ -3,13 +3,11 @@ import Game from '../../scenes/game';
 import { MISSILI_SATELLITE } from '~/sprites/weapons/weapons_satellite_types.json';
 import { SATELLITE } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
-import WEAPON_SATELLITE_TYPES from '~/sprites_and_groups/weapons_satellite_types.json';
+import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
 
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
-    private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
     private keys!: {
       [key: string]: Phaser.Input.Keyboard.Key; };
     public timer!: Phaser.Time.TimerEvent;
@@ -108,7 +106,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
         this.createMultiple({
           frameQuantity: 5,
           key: SATELLITE,
-          setXY: {x: -100, y: -100},
+          setXY: {x: -1000, y: -1000},
           setScale: {x: 0.5, y: 0.5},
           active: false,
           visible: false,

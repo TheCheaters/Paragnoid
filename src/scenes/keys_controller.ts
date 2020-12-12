@@ -50,7 +50,8 @@ export default class KeysController extends Scene {
     this.joyStickKeys = this.joyStick.createCursorKeys();
     this.keys = {
       space: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
-      backspace: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.BACKSPACE),
+      one: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE),
+      two: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO),
       z: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z),
       m: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M),
       n: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N),
@@ -126,11 +127,15 @@ export default class KeysController extends Scene {
 
     }
 
-    // SHIELD UP (DEBUG)
-      if (Phaser.Input.Keyboard.JustDown(this.keys.backspace)) {
-        sceneChangeEmitter.emit('boss-is-dead-jim');
-      }
+    if (Phaser.Input.Keyboard.JustDown(this.keys.one)) {
+      sceneChangeEmitter.emit('sky-boss-is-dead');
+    }
 
+    if (Phaser.Input.Keyboard.JustDown(this.keys.two)) {
+      sceneChangeEmitter.emit('space-boss-is-dead');
+    }
+
+    // SHIELD UP (DEBUG)
     if (Phaser.Input.Keyboard.JustDown(this.keys.z)) {
       player.shieldUp();
     }

@@ -1,11 +1,9 @@
-import { Scene } from 'phaser';
 import { NUVOLE } from '~/constants.json';
 import { HORIZON } from '~/constants.json';
-import Game from '~/scenes/game';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import nuvoleAtlas from '~/atlantes/nuvole.json';
+import Level from '~/scenes/level';
 
-export default class Sky extends Scene {
+export default class Sky extends Level {
   distance = 1500;
   cloudDeltaSpeed = 2;
   private bg!: Phaser.GameObjects.TileSprite;
@@ -14,13 +12,9 @@ export default class Sky extends Scene {
     x: number;
     y: number;
   }[];
-  private gameInstance!: Game;
 
   constructor() {
-    super({
-      key: 'sky',
-      active: false,
-    });
+    super('sky', 'space');
   }
 
   create() {
@@ -30,14 +24,7 @@ export default class Sky extends Scene {
       x: this.scale.width + (this.distance * index),
       y: Phaser.Math.Between(0, 600),
     }));
-  }
-
-  startTimeline() {
-    this.gameInstance = this.scene.get('game') as Game;
-    this.gameInstance.timeline.start('sky');
-    sceneChangeEmitter.once('boss-is-dead-jim', () => {
-      this.scene.start('space');
-    });
+    super.create();
   }
 
   update(time, delta) {
