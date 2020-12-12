@@ -29,9 +29,14 @@
     "SPEED":     200,
     "FIRE_RATE": 800
   },
-  "SPACE_BOSS": {
+  "WHITE_SHIP_REVERSED_BEHAVIOR": {
+    "ENERGY":    400,
+    "SPEED":     900,
+    "FIRE_RATE": 800
+  },
+  "SPACE_BOSS_BEHAVIOR": {
     "ENERGY":    1000,
-    "SPEED":     500,
+    "SPEED":     2600,
     "FIRE_RATE": 500
   }
 }
