@@ -11,11 +11,9 @@ import handlerPlayerEnemyCollisions from '~/colliders/handlerPlayerEnemyCollisio
 import handlerPlayerWeaponCollisions from '~/colliders/handlerPlayerWeaponCollisions';
 import handlerPlayerPowerupCollisions from '~/colliders/handlerPlayerPowerupCollisions';
 import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollisions';
-import Timeline from '~/game_timeline/timeline';
 import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
-import Space from '~/scenes/space';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
@@ -38,7 +36,6 @@ export default class Game extends Scene {
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderSatelliteWeapon!: Phaser.Physics.Arcade.Collider;
   public lives!: Lives;
-  public timeline!: Timeline;
 
   constructor() {
     super({
@@ -48,7 +45,7 @@ export default class Game extends Scene {
   }
 
   create() {
-
+    console.log('create Game');
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
@@ -58,7 +55,6 @@ export default class Game extends Scene {
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
     this.explosions = new Explosions(this);
-    this.timeline = new Timeline(this);
     this.lives = new Lives(this, C.SPACECRAFT);
 
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
@@ -75,8 +71,7 @@ export default class Game extends Scene {
     this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
 
     this.scene.launch('ui');
-    const space = this.scene.get('space') as Space;
-    space.scene.start();
-    space.startTimeline();
+    this.scene.launch('keys-controller');
+    this.scene.launch('space');
   }
 }

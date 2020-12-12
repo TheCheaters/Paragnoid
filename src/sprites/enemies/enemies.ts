@@ -22,6 +22,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
   public scoreValue!: number;
   public maxEnergy!: number;
+  private enemyType!: keyof typeof ENEMY_TYPES;
   private enemyName!: string;
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
@@ -54,6 +55,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   make({ enemyType, enemyBehavior, enemyPath }: Make) {
 
     this.isBoss = enemyType.includes('BOSS');
+    this.enemyType = enemyType;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -151,7 +153,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.timer.remove();
     this.tween?.stop();
     // console.log(`Killed Enemy ${this.enemyName}`);
-    if (this.isBoss) sceneChangeEmitter.emit('boss-is-dead-jim');
+    if (this.isBoss) sceneChangeEmitter.emit(`${this.enemyType}-IS-DEAD`);
   }
 
 	preUpdate(time: number, delta: number) {
@@ -165,7 +167,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.updateLifeLine();
 
     if (this.x < -500 || this.x > 1500) {
-
 			this.kill();
 		}
 	}

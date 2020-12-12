@@ -26,8 +26,8 @@
   "SKY_BOSS": {
     "TEXTURE_NAME":      "Grey-Ship",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey.png",
-    "WIDTH":              130,
-    "HEIGHT":             80,
+    "WIDTH":             130,
+    "HEIGHT":            80,
     "WEAPON_TYPE":       "SKY_BOSS_WEAPON",
     "SCORE_VALUE":       10000
   },
@@ -40,12 +40,12 @@
     "SCORE_VALUE":       1500
   },
   "WHITE_SHIP_REVERSED": {
-    "TEXTURE_NAME":       "White-Ship-Reversed",
-    "SPRITE_ASSET_PATH":  "assets/enemies/enemy_white_reversed.png",
-    "WIDTH":              300, 
-    "HEIGHT":             140,
-    "WEAPON_TYPE":        "DIFFUSO",
-    "SCORE_VALUE":        1500
+    "TEXTURE_NAME":      "White-Ship-Reversed",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_white_reversed.png",
+    "WIDTH":             300,
+    "HEIGHT":            140,
+    "WEAPON_TYPE":       "DIFFUSO",
+    "SCORE_VALUE":       1500
   },
   "GREEN_SHIP": {
     "TEXTURE_NAME":      "Green-Ship",
@@ -59,7 +59,7 @@
     "TEXTURE_NAME":      "Green-Ship-Reversed",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_green_reversed.png",
     "WIDTH":             150,
-    "HEIGHT":             65,
+    "HEIGHT":            65,
     "WEAPON_TYPE":       "ULTRA",
     "SCORE_VALUE":       1500
   },
@@ -80,12 +80,12 @@
     "SCORE_VALUE":       600
   },
   "SPACE_BOSS_SHIP": {
-    "TEXTURE_NAME":       "Space-Boss-Ship",
-    "SPRITE_ASSET_PATH":  "assets/enemies/enemy_boss_space.png",
-    "WIDTH":              254, 
-    "HEIGHT":              140,
-    "WEAPON_TYPE":        "DIFFUSO",
-    "SCORE_VALUE":        5000
+    "TEXTURE_NAME":      "Space-Boss-Ship",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_boss_space.png",
+    "WIDTH":             254,
+    "HEIGHT":            140,
+    "WEAPON_TYPE":       "DIFFUSO",
+    "SCORE_VALUE":       5000
   },
   "DARKWHITE_SHIP": {
     "TEXTURE_NAME":      "Darkwhite-Ship",

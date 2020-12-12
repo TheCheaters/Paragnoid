@@ -6,6 +6,8 @@ import UI from '~/scenes/ui';
 import Game from '~/scenes/game';
 import GameOver from '~/scenes/gameover';
 import Preloader from '~/scenes/preloader';
+import KeyController from '~/scenes/keys_controller';
+
 
 declare const process: {
 	env: {
@@ -41,7 +43,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 			useTree: false
 		}
 	},
-	scene: [Preloader, Space, Sky, UI, Game, Intro, GameOver],
+	scene: [Preloader, Space, Sky, UI, Game, Intro, GameOver, KeyController],
 };
 
 new Phaser.Game(config);

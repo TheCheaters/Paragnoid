@@ -3,8 +3,6 @@ import { GAME_NAME, GAME_TITLE, LR_FONT_NAME } from "~/constants.json"
 import UI from '~/scenes/ui';
 import enemyTimeline from '~/game_timeline/storyboard.json';
 
-type TimeLineScenes = keyof typeof enemyTimeline;
-
 export default class Intro extends Scene {
   private text!: Phaser.GameObjects.DynamicBitmapText;
   constructor() {
@@ -23,8 +21,6 @@ export default class Intro extends Scene {
     Object.keys(enemyTimeline).forEach((sceneName) => {
       this.scene.stop(sceneName);
     });
-
-    this.scene.launch('space');
 
     this.input.once('pointerdown', () => {
       this.scene.start('game');
