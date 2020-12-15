@@ -193,4 +193,16 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
     const enemy = this.getFirstDead(false) as Enemy;
     if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath });
   }
+
+  getChildrenAlive(){
+    
+    const enemiesAlive: Phaser.GameObjects.GameObject[] = [];
+    this.children.iterate((child => {
+        if (child.active) {
+          enemiesAlive.push(child);
+        }
+    }))
+     return enemiesAlive;
+  }
+
 }
