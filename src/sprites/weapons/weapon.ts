@@ -45,23 +45,6 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number,) {
     super.preUpdate(time, delta);
-    if (this.FOLLOW === 1){
-      const { enemies } = this.scene as Game;
-      const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
-      /*
-        scene.gfx.clear()
-        .lineStyle(2,0xff3300)
-        .lineBetween(closestEnemy.x, closestEnemy.y, this.x, this.y);
-        */
-       //tracciamento grafico utile per il debug
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        if (this instanceof SatelliteWeapon) {
-          // TODO: spostare questo preUpdate nella sottoclasse
-          this.scene.physics.moveToObject(this, closestEnemy, this.FIRE_SPEED);
-          this.setRotation(Phaser.Math.Angle.Between(closestEnemy.x, closestEnemy.y, this.x, this.y));
-        }
-    }
-
     if (this.x > this.scene.scale.width || this.x < -200) this.kill();
 	}
 }
@@ -146,5 +129,24 @@ export class SatelliteWeapon extends Weapon {
         this.setRotation(Phaser.Math.DegToRad(angle));
       }
   }
+
+	preUpdate(time: number, delta: number,) {
+    super.preUpdate(time, delta);
+    if (this.FOLLOW === 1){
+      const { enemies } = this.scene as Game;
+      const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
+      /*
+        scene.gfx.clear()
+        .lineStyle(2,0xff3300)
+        .lineBetween(closestEnemy.x, closestEnemy.y, this.x, this.y);
+        */
+       //tracciamento grafico utile per il debug
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        if (this instanceof SatelliteWeapon) {
+          this.scene.physics.moveToObject(this, closestEnemy, this.FIRE_SPEED);
+          this.setRotation(Phaser.Math.Angle.Between(closestEnemy.x, closestEnemy.y, this.x, this.y));
+        }
+    }
+	}
 
 }
