@@ -6,6 +6,8 @@ import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 import EXPLOSION_TYPES from '~/sprites/explosions/explosions_types.json';
+import Blur from '~/pipelines/blur';
+
 type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
@@ -13,6 +15,7 @@ type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 type ExplosionType = keyof typeof EXPLOSION_TYPES;
 
 export default class Preload extends Scene {
+  public blurPipeline?: Phaser.Renderer.WebGL.WebGLPipeline;
 
   constructor() {
     super({
@@ -82,6 +85,13 @@ export default class Preload extends Scene {
     this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
     this.load.bitmapFont(C.LR_FONT_NAME, C.LR_FONT_PATH, C.LR_FONT_XML_PATH);
+
+    // Pipelines
+    const render = this.game.renderer as Phaser.Renderer.WebGL.WebGLRenderer;
+    this.blurPipeline = render.addPipeline('Custom', new Blur(this.game));
+    this.blurPipeline.setFloat1('resolution', Number(this.game.config.width));
+    this.blurPipeline.setFloat1('radius', 1.0);
+    this.blurPipeline.setFloat2('dir', 1.0, 1.0);
 
   }
 

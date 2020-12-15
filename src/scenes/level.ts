@@ -8,6 +8,7 @@ export default class Level extends Scene {
   private levelName: TimeLineScenes;
   private nextLevelName: TimeLineScenes;
   private timeline!: Timeline;
+  camera!: Phaser.Cameras.Scene2D.Camera
 
   constructor(levelName: TimeLineScenes, nextLevelName: TimeLineScenes) {
     super({ key: levelName, active: false });

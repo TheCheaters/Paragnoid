@@ -73,5 +73,7 @@ export default class Game extends Scene {
     this.scene.launch('ui');
     this.scene.launch('keys-controller');
     this.scene.launch('space');
+    // this.scene.launch('background');
+
   }
 }
