@@ -5,12 +5,14 @@ import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
 
-
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
+const weaponSatelliteNames = Object.keys(WEAPON_SATELLITE_TYPES);
 export class Weapon extends Phaser.Physics.Arcade.Sprite {
 
+  public weaponType = weaponSatelliteNames[0] as WeaponSatelliteType;
+  public timer!: Phaser.Time.TimerEvent;
   DAMAGE = DEFAULT.DAMAGE;
   FIRE_SPEED = DEFAULT.FIRE_SPEED;
   TEXTURE_NAME = DEFAULT.TEXTURE_NAME;
@@ -19,10 +21,10 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
   WIDTH = DEFAULT.WIDTH;
   HEIGHT = DEFAULT.HEIGHT;
+  FOLLOW = 0;
 
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
-
   }
 
   explode() {
@@ -41,10 +43,26 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setTexture(texture);
   }
 
-	preUpdate(time: number, delta: number) {
-		super.preUpdate(time, delta);
+	preUpdate(time: number, delta: number,) {
+    super.preUpdate(time, delta);
+    if (this.FOLLOW === 1){
+      const { enemies } = this.scene as Game;
+      const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
+      /*
+        scene.gfx.clear()
+        .lineStyle(2,0xff3300)
+        .lineBetween(closestEnemy.x, closestEnemy.y, this.x, this.y);
+        */
+       //tracciamento grafico utile per il debug
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        if (this instanceof SatelliteWeapon) {
+          // TODO: spostare questo preUpdate nella sottoclasse
+          this.scene.physics.moveToObject(this, closestEnemy, this.FIRE_SPEED);
+          this.setRotation(Phaser.Math.Angle.Between(closestEnemy.x, closestEnemy.y, this.x, this.y));
+        }
+    }
 
-		if (this.x > this.scene.scale.width || this.x < -200) this.kill();
+    if (this.x > this.scene.scale.width || this.x < -200) this.kill();
 	}
 }
 
@@ -113,17 +131,20 @@ export class EnemyWeapon extends Weapon {
 export class SatelliteWeapon extends Weapon {
 
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
-
       this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
       this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
+      this.FOLLOW = follow;
       this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
       this.body.enable = true;
       this.body.reset(x + 2, y + 2);
       this.setActive(true);
       this.setVisible(true);
-      this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
-      this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
-      this.setRotation(Phaser.Math.DegToRad(angle));
-
+      //this.scene.sound.play(this.AUDIO_NAME);
+      if (follow === 0){
+        this.setVelocityX(this.FIRE_SPEED*Math.cos(Phaser.Math.DegToRad(angle)));
+        this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
+        this.setRotation(Phaser.Math.DegToRad(angle));
+      }
   }
+
 }
