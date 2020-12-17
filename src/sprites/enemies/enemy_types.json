@@ -118,6 +118,14 @@
     "HEIGHT":            89,
     "WEAPON_TYPE":       "DIFFUSO",
     "SCORE_VALUE":       1500
+  }, 
+  "RED_SHIP": {
+    "TEXTURE_NAME":      "Red-Ship", 
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_red.png", 
+    "WIDTH":             150, 
+    "HEIGHT":            65, 
+    "WEAPON_TYPE":       "MEGA",
+    "SCORE_VALUE":       1500
   }
 
 }

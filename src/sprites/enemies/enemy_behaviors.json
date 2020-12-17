@@ -38,5 +38,10 @@
     "ENERGY":    1000,
     "SPEED":     2600,
     "FIRE_RATE": 500
+  }, 
+  "RED_SHIP_BEHAVIOR": {
+    "ENERGY":    400,
+    "SPEED":     300,
+    "FIRE_RATE": 800
   }
 }

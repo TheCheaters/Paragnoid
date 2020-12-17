@@ -133,6 +133,18 @@
   ],
   "sky": [
     {
+      "delay": 0,
+      "waves": 1,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1500,
+      "enemyType": "RED_SHIP",
+      "enemyBehavior": "RED_SHIP_BEHAVIOR",
+      "enemyPath": null,
+      "callbacks": ["powerups.upgradeWeapon"]
+    },
+    {
       "delay": 1000,
       "waves": 5,
       "wavesDelay": 1000,
