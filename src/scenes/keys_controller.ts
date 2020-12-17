@@ -71,7 +71,6 @@ export default class KeysController extends Scene {
 
     const { player, playerWeaponsGroup } = this.gameInstance;
     const { speed } = player;
-    let { weaponType } = player;
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
     const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
@@ -119,8 +118,8 @@ export default class KeysController extends Scene {
       player.changeWeaponType(0);
     }
     //  PLAYER SHOOT FUNCTION
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[weaponType].LEVELS[player.weaponLevel].DURATION)) {
-        playerWeaponsGroup.fireBulletPlayer(player.x, player.y, weaponType, player.weaponLevel);
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
+        playerWeaponsGroup.fireBulletPlayer(player.x, player.y, player.weaponType, player.weaponLevel);
 
     }
 
