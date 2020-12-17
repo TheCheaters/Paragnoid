@@ -129,7 +129,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.weaponType = weaponNames[Phaser.Math.Between(0, weaponNames.length - 1)] as WeaponPlayerType;
   }
 
-  updgradeWeapon() {
+  increaseLevelWeapon(){
+    if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {this.weaponLevel += 1;}
+  }
+
+  decreaseLevelWeapon(){
+    if (this.weaponLevel >= 1) {this.weaponLevel -= 1;}
+  }
+
+  changeWeaponType(type:number){
+    this.weaponType = weaponNames[type] as WeaponPlayerType;
+  }
+
+   updgradeWeapon() {
     const scene = this.scene as Game;
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
       this.weaponLevel += 1;
