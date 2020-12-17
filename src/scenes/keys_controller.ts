@@ -71,7 +71,6 @@ export default class KeysController extends Scene {
 
     const { player, playerWeaponsGroup } = this.gameInstance;
     const { speed } = player;
-    let { weaponType, weaponLevel } = player;
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
     const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
@@ -103,27 +102,24 @@ export default class KeysController extends Scene {
 
     // TASTI AUMENTO DIMINUZIONE LIVELLO ARMI PER DEBUG
     if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
-      if (weaponLevel < WEAPON_PLAYER_TYPES[weaponType].LEVELS.length - 1) {
-        weaponLevel += 1;
-      }
+      player.increaseLevelWeapon();
+      
     } else if (Phaser.Input.Keyboard.JustDown(this.keys.n)) {
-      if (weaponLevel >= 1) {
-        weaponLevel -= 1;
-      }
+      player.decreaseLevelWeapon();
     }
     // TASTI CAMBIO ARMA PER DEBUG
     if (Phaser.Input.Keyboard.JustDown(this.keys.l)) {
-      weaponType = weaponNames[1] as WeaponPlayerType;
+      player.changeWeaponType(1);
     }
     if (Phaser.Input.Keyboard.JustDown(this.keys.k)) {
-      weaponType = weaponNames[2] as WeaponPlayerType;
+      player.changeWeaponType(2);
     }
     if (Phaser.Input.Keyboard.JustDown(this.keys.j)) {
-      weaponType = weaponNames[0] as WeaponPlayerType;
+      player.changeWeaponType(0);
     }
     //  PLAYER SHOOT FUNCTION
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].DURATION)) {
-        playerWeaponsGroup.fireBulletPlayer(player.x, player.y, weaponType, weaponLevel);
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
+        playerWeaponsGroup.fireBulletPlayer(player.x, player.y, player.weaponType, player.weaponLevel);
 
     }
 
