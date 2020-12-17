@@ -22,7 +22,7 @@
   "SUN_ASSET_PATH":              "assets/backgrounds/space/sun.png",
   "AUDIO_MISSILE":               "audiomissile",
   "SATELLITE":                   "satellite",
-  "SATELLITE_ASSET_PATH":        "assets/satellites/mushroom1.png",
+  "SATELLITE_ASSET_PATH":        "assets/satellites/satellite_up.png",
   "POWERUP":                     "powerup",
   "POWERUP_ASSET_PATH":          "assets/powerups/power_up.png",
   "HIT_ENEMY":                   "hit_enemy",

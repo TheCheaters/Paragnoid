@@ -10,7 +10,7 @@
       "enemyType": "GREY_SHIP",
       "enemyBehavior": "STANDARD",
       "enemyPath": "GREY_SHIP_PATH",
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.upgradeWeapon"]
     },
     {
       "delay": 0,
