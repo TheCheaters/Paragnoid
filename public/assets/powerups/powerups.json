@@ -1,0 +1,68 @@
+{"frames": [
+
+{
+	"filename": "bio.png",
+	"frame": {"x":0,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "emtpy.png",
+	"frame": {"x":125,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "energy.png",
+	"frame": {"x":250,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "ice.png",
+	"frame": {"x":375,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "life.png",
+	"frame": {"x":500,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "nuclear.png",
+	"frame": {"x":625,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+},
+{
+	"filename": "shield.png",
+	"frame": {"x":750,"y":0,"w":125,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":114},
+	"sourceSize": {"w":125,"h":114}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "powerups.png",
+	"format": "RGBA8888",
+	"size": {"w":875,"h":114},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:22a3cb80c1b2042d363e0ece33042cf7:e537a959b55692eaaefb068ec63860f6:b145912adc7227a31b37bd47c71fdf9c$"
+}
+}
