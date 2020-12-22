@@ -15,6 +15,7 @@ export default class GameOver extends Scene {
 
     this.scene.stop('keys-controller');
     this.scene.stop('game');
+    this.scene.stop('background');
     this.scene.stop('ui');
 
     this.input.once('pointerdown', () => {
