@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { POWERUP, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { POWERUPS, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
 export enum PowerUpTypes {
   ENERGY         = 'ENERGY',
@@ -27,7 +27,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
   private flares!: Phaser.GameObjects.Particles.ParticleEmitter;
   public powerUpType!: PowerUpType;
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, POWERUP);
+    super(scene, x, y, POWERUPS);
   }
 
   make(type: PowerUpType) {
@@ -95,7 +95,6 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
 	preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
-    this.play(POWERUP, true);
     if (this.path && this.curve) {
       this.curve.getPoint(this.path.t, this.path.vec);
       const { x, y } = this.path.vec;
@@ -118,21 +117,12 @@ export default class Powerups extends Phaser.Physics.Arcade.Group {
 
     this.createMultiple({
       frameQuantity: 5,
-      key: POWERUP,
+      key: POWERUPS,
       setXY: {x: -100, y: -100},
-      setScale: {x: 0.5, y: 0.5},
+      setScale: {x: 0.3, y: 0.3},
       active: false,
       visible: false,
       classType: Powerup
-    });
-
-    scene.anims.create({
-      key: POWERUP,
-      frames: scene.anims.generateFrameNumbers(POWERUP, {
-        start: 0,
-        end: 16
-      }),
-      frameRate: 12
     });
 
   }

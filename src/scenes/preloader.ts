@@ -43,6 +43,7 @@ export default class Preload extends Scene {
     this.load.multiatlas(C.ENEMIES, C.ENEMIES_JSON_ASSET_PATH, C.ENEMIES_ASSET_PATH);
     this.load.multiatlas(C.WEAPONS, C.WEAPONS_JSON_ASSET_PATH, C.WEAPONS_ASSET_PATH);
     this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
+    this.load.atlas(C.POWERUPS, C.POWERUPS_ASSET_PATH, C.POWERUPS_JSON_ASSET_PATH);
 
     this.load.spritesheet(C.POWERUP, C.POWERUP_ASSET_PATH, {
       frameWidth: 60,
