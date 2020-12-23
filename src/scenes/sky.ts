@@ -1,6 +1,6 @@
 import { NUVOLE } from '~/constants.json';
 import { HORIZON } from '~/constants.json';
-import nuvoleAtlas from '~/atlantes/nuvole.json';
+import nuvoleAtlas from '../../public/assets/backgrounds/sky/nuvole/nuvole.json';
 import Level from '~/scenes/level';
 
 export default class Sky extends Level {
