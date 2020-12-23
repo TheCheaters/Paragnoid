@@ -1,0 +1,598 @@
+{
+	"textures": [
+		{
+			"image": "enemies-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2048,
+				"h": 2045
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Ship/Ship_16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 969,
+						"h": 421
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 969,
+						"h": 421
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 969,
+						"h": 421
+					}
+				},
+				{
+					"filename": "Ship/Ship_18.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 967,
+						"h": 454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 967,
+						"h": 454
+					},
+					"frame": {
+						"x": 972,
+						"y": 1,
+						"w": 967,
+						"h": 454
+					}
+				},
+				{
+					"filename": "Ship/Ship_17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 856,
+						"h": 496
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 856,
+						"h": 496
+					},
+					"frame": {
+						"x": 1,
+						"y": 424,
+						"w": 856,
+						"h": 496
+					}
+				},
+				{
+					"filename": "Ship/Ship_12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 720,
+						"h": 269
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 720,
+						"h": 269
+					},
+					"frame": {
+						"x": 859,
+						"y": 457,
+						"w": 720,
+						"h": 269
+					}
+				},
+				{
+					"filename": "Ship/Ship_9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 466,
+						"h": 267
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 466,
+						"h": 267
+					},
+					"frame": {
+						"x": 1581,
+						"y": 457,
+						"w": 466,
+						"h": 267
+					}
+				},
+				{
+					"filename": "Ship/Ship_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 435,
+						"h": 309
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 435,
+						"h": 309
+					},
+					"frame": {
+						"x": 1581,
+						"y": 726,
+						"w": 435,
+						"h": 309
+					}
+				},
+				{
+					"filename": "Ship/Ship_15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 703,
+						"h": 318
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 703,
+						"h": 318
+					},
+					"frame": {
+						"x": 859,
+						"y": 728,
+						"w": 703,
+						"h": 318
+					}
+				},
+				{
+					"filename": "Ship/Ship_5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 483,
+						"h": 273
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 483,
+						"h": 273
+					},
+					"frame": {
+						"x": 1564,
+						"y": 1037,
+						"w": 483,
+						"h": 273
+					}
+				},
+				{
+					"filename": "Ship/Ship_11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 673,
+						"h": 337
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 673,
+						"h": 337
+					},
+					"frame": {
+						"x": 1,
+						"y": 922,
+						"w": 673,
+						"h": 337
+					}
+				},
+				{
+					"filename": "Ship/Ship_7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 637,
+						"h": 239
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 637,
+						"h": 239
+					},
+					"frame": {
+						"x": 676,
+						"y": 1048,
+						"w": 637,
+						"h": 239
+					}
+				},
+				{
+					"filename": "Drones/Drone_7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 243,
+						"h": 189
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 243,
+						"h": 189
+					},
+					"frame": {
+						"x": 1315,
+						"y": 1048,
+						"w": 243,
+						"h": 189
+					}
+				},
+				{
+					"filename": "Drones/Drone_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 208,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 208,
+						"h": 125
+					},
+					"frame": {
+						"x": 1315,
+						"y": 1239,
+						"w": 208,
+						"h": 125
+					}
+				},
+				{
+					"filename": "Ship/Ship_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 511,
+						"h": 296
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 511,
+						"h": 296
+					},
+					"frame": {
+						"x": 1525,
+						"y": 1312,
+						"w": 511,
+						"h": 296
+					}
+				},
+				{
+					"filename": "Ship/Ship_13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 632,
+						"h": 368
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 632,
+						"h": 368
+					},
+					"frame": {
+						"x": 1,
+						"y": 1261,
+						"w": 632,
+						"h": 368
+					}
+				},
+				{
+					"filename": "Ship/Ship_14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 575,
+						"h": 350
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 575,
+						"h": 350
+					},
+					"frame": {
+						"x": 1,
+						"y": 1631,
+						"w": 575,
+						"h": 350
+					}
+				},
+				{
+					"filename": "Ship/Ship_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 414,
+						"h": 320
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 414,
+						"h": 320
+					},
+					"frame": {
+						"x": 578,
+						"y": 1631,
+						"w": 414,
+						"h": 320
+					}
+				},
+				{
+					"filename": "Drones/Drone_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 310,
+						"h": 142
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 310,
+						"h": 142
+					},
+					"frame": {
+						"x": 994,
+						"y": 1289,
+						"w": 310,
+						"h": 142
+					}
+				},
+				{
+					"filename": "Ship/Ship_8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 509,
+						"h": 245
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 509,
+						"h": 245
+					},
+					"frame": {
+						"x": 994,
+						"y": 1433,
+						"w": 509,
+						"h": 245
+					}
+				},
+				{
+					"filename": "Drones/Drone_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 330,
+						"h": 173
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 330,
+						"h": 173
+					},
+					"frame": {
+						"x": 635,
+						"y": 1289,
+						"w": 330,
+						"h": 173
+					}
+				},
+				{
+					"filename": "Drones/Drone_5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 274,
+						"h": 163
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 274,
+						"h": 163
+					},
+					"frame": {
+						"x": 635,
+						"y": 1464,
+						"w": 274,
+						"h": 163
+					}
+				},
+				{
+					"filename": "Ship/Ship_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 488,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 488,
+						"h": 200
+					},
+					"frame": {
+						"x": 1505,
+						"y": 1610,
+						"w": 488,
+						"h": 200
+					}
+				},
+				{
+					"filename": "Ship/Ship_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 423,
+						"h": 232
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 423,
+						"h": 232
+					},
+					"frame": {
+						"x": 994,
+						"y": 1812,
+						"w": 423,
+						"h": 232
+					}
+				},
+				{
+					"filename": "Drones/Drone_6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 296,
+						"h": 153
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 296,
+						"h": 153
+					},
+					"frame": {
+						"x": 1419,
+						"y": 1812,
+						"w": 296,
+						"h": 153
+					}
+				},
+				{
+					"filename": "Drones/Drone_8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 294,
+						"h": 148
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 294,
+						"h": 148
+					},
+					"frame": {
+						"x": 1717,
+						"y": 1812,
+						"w": 294,
+						"h": 148
+					}
+				}
+			]
+		},
+		{
+			"image": "enemies-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 749,
+				"h": 283
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Ship/Ship_6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 474,
+						"h": 275
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 474,
+						"h": 275
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 474,
+						"h": 275
+					}
+				},
+				{
+					"filename": "Drones/Drone_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 271,
+						"h": 147
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 271,
+						"h": 147
+					},
+					"frame": {
+						"x": 477,
+						"y": 1,
+						"w": 271,
+						"h": 147
+					}
+				},
+				{
+					"filename": "Drones/Drone_9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 132
+					},
+					"frame": {
+						"x": 477,
+						"y": 150,
+						"w": 256,
+						"h": 132
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:bd09d2714d7ffa9e16ac0c7c7d4a36b5:508b5874f2d6d492106d0eee4a6f9406:dc77b8d41b826619ad71d4470c5edb5a$"
+	}
+}
