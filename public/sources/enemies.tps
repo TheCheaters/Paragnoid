@@ -132,7 +132,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../assets/enemies/enemies.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
