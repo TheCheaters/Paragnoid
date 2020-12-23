@@ -1,4 +1,9 @@
 {
+  "ENEMY_GREY_REDWINDOW_PATH": [
+    1500, 257,
+    600, 400,
+    -250, 300
+  ],
   "GREY_SHIP_PATH": [
     1500, 257,
     600, 400,

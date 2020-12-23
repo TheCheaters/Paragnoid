@@ -1,25 +1,25 @@
 {
   "DEFAULT": {
-    "TEXTURE_NAME":      "Mordicchio",
+    "TEXTURE_NAME": "Mordicchio",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy.png",
-    "WIDTH":             68,
-    "HEIGHT":            28,
-    "WEAPON_TYPE":       "DEFAULT",
-    "SCORE_VALUE":       100
+    "WIDTH": 68,
+    "HEIGHT": 28, 
+    "WEAPON_TYPE": "DEFAULT",
+    "SCORE_VALUE": 100
   },
   "GREY_SHIP": {
     "TEXTURE_NAME":      "Grey-Ship",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey.png",
-    "WIDTH":             130,
-    "HEIGHT":            80,
+    "WIDTH":             237,
+    "HEIGHT":            137,
     "WEAPON_TYPE":       "DEFAULT",
     "SCORE_VALUE":       1000
   },
   "GREY_SHIP_REVERSED": {
     "TEXTURE_NAME":      "Grey-Ship-Reversed",
     "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey_reversed.png",
-    "WIDTH":             130,
-    "HEIGHT":            80,
+    "WIDTH":             237,
+    "HEIGHT":            137,
     "WEAPON_TYPE":       "DEFAULT",
     "SCORE_VALUE":       1200
   },
@@ -119,13 +119,13 @@
     "WEAPON_TYPE":       "DIFFUSO",
     "SCORE_VALUE":       1500
   }, 
-  "RED_SHIP": {
-    "TEXTURE_NAME":      "Red-Ship", 
-    "SPRITE_ASSET_PATH": "assets/enemies/enemy_red.png", 
-    "WIDTH":             150, 
-    "HEIGHT":            65, 
-    "WEAPON_TYPE":       "MEGA",
-    "SCORE_VALUE":       1500
+  "ENEMY_GREY_REDWINDOW": {
+    "TEXTURE_NAME": "Enemy-Grey-Redwindow",
+    "SPRITE_ASSET_PATH": "assets/enemies/enemy_grey_redwindow.png",
+    "WIDTH": 217,
+    "HEIGHT": 154,
+    "WEAPON_TYPE": "DEFAULT",
+    "SCORE_VALUE": 100
   }
 
 }
