@@ -13,6 +13,7 @@ export type EnemyBlock = {
   enemyQuantity: number;
   enemyDelay: number;
   enemyType: keyof typeof ENEMY_TYPES;
+  enemyFlip: boolean;
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   callbacks: string[];
@@ -55,6 +56,7 @@ export default class Timeline {
         enemyType,
         enemyBehavior,
         enemyPath,
+        enemyFlip,
         enemyQuantity,
         enemyDelay,
         callbacks
@@ -72,7 +74,7 @@ export default class Timeline {
             delay: time,
             callback: () => {
               for (let enemies = 1; enemies <= enemyQuantity; enemies++) {
-                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath, enemyFlip });
                 time += enemyDelay;
               }
             },
@@ -88,7 +90,7 @@ export default class Timeline {
             const timer = this.scene.time.addEvent({
               delay: time,
               callback: () => {
-                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath });
+                this.gameInstance.enemies.makeEnemy({ enemyType, enemyBehavior, enemyPath, enemyFlip });
               },
               callbackScope: this,
               loop: false

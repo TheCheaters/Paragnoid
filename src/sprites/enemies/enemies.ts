@@ -14,6 +14,7 @@ type Make = {
   enemyType: keyof typeof ENEMY_TYPES;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   enemyPath: keyof typeof ENEMY_PATHS | null;
+  enemyFlip: true | false;
 }
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
@@ -27,6 +28,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
+  private enemyFlip?: Make ['enemyFlip'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
@@ -52,10 +54,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make({ enemyType, enemyBehavior, enemyPath }: Make) {
+  make({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
 
     this.isBoss = enemyType.includes('BOSS');
     this.enemyType = enemyType;
+    this.enemyFlip = enemyFlip;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -92,7 +95,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         targets: this.path,
         t: 1,
         duration: SPEED * 10,
-        repeat: this.isBoss ? -1 : 0
+        repeat: this.isBoss ? -1 : 0,
       });
 
     } else {
@@ -100,7 +103,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       const { player } = this.scene as Game;
       this.scene.physics.moveToObject(this, player, SPEED);
 
-    }
+    }; 
+
+    this.setFlipX(enemyFlip);
 
     // BEHAVIOR
     this.maxEnergy = ENERGY;
@@ -189,9 +194,9 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
   }
 
-  makeEnemy({ enemyType, enemyBehavior, enemyPath }: Make) {
+  makeEnemy({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
     const enemy = this.getFirstDead(false) as Enemy;
-    if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath });
+    if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath, enemyFlip });
   }
 
   getChildrenAlive(){
