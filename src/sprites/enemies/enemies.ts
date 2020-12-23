@@ -73,11 +73,13 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
+    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
-    this.setTexture(TEXTURE_NAME);
+    this.setTexture(TEXTURE_NAME, FRAME_NAME);
     this.setBodySize(WIDTH, HEIGHT);
+    this.setScale(0.3, 0.3);
+
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
@@ -186,7 +188,6 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
       frameQuantity: 70,
       key: ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
       setXY: {x: -500, y: -500},
-      setScale: {x: 0.5, y: 0.5},
       active: false,
       visible: false,
       classType: Enemy
@@ -200,7 +201,7 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
   }
 
   getChildrenAlive(){
-    
+
     const enemiesAlive: Phaser.GameObjects.GameObject[] = [];
     this.children.iterate((child => {
         if (child.active) {
