@@ -22,6 +22,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   WIDTH = DEFAULT.WIDTH;
   HEIGHT = DEFAULT.HEIGHT;
   FOLLOW = 0;
+  TURN_RATE = 0;
 
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
@@ -112,11 +113,12 @@ export class EnemyWeapon extends Weapon {
 }
 
 export class SatelliteWeapon extends Weapon {
-
+  
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
       this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
       this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
       this.FOLLOW = follow;
+      this.TURN_RATE = (WEAPON_SATELLITE_TYPES[weaponType].TURN_RATE);
       this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
       this.body.enable = true;
       this.body.reset(x + 2, y + 2);
@@ -135,6 +137,8 @@ export class SatelliteWeapon extends Weapon {
     if (this.FOLLOW === 1){
       const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
+      if (closestEnemy !== null) {var angleEnemy = Phaser.Math.Angle.Between(this.x, this.y, closestEnemy.x, closestEnemy.y); 
+      var coords: number[] = [0, 0];
       /*
         scene.gfx.clear()
         .lineStyle(2,0xff3300)
@@ -143,10 +147,36 @@ export class SatelliteWeapon extends Weapon {
        //tracciamento grafico utile per il debug
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         if (this instanceof SatelliteWeapon) {
-          this.scene.physics.moveToObject(this, closestEnemy, this.FIRE_SPEED);
-          this.setRotation(Phaser.Math.Angle.Between(closestEnemy.x, closestEnemy.y, this.x, this.y));
-        }
-    }
-	}
+          if (closestEnemy !== null && this.rotation !== angleEnemy) { 
+          coords[0] = closestEnemy.x;
+          coords[1] = closestEnemy.y
+          var delta = angleEnemy - this.rotation; // differenza tra l'angolo del missile e l'angolo del nemico
+          if (delta > Math.PI) delta -= Math.PI * 2; // se la differenza è > 180° allora togli 90° dal delta e mantienilo nel range 0-180°
+          if (delta < -Math.PI) delta += Math.PI * 2; // se la differenza è < -180° allora aggiungi 90° al delta e mantienilo nel range -180° - 0
+          if (delta > 0) { this.angle += this.TURN_RATE} else { this.angle -= this.TURN_RATE}; // se delta > 0 gira in senso orario gradualmente altrimenti gira in senso antiorario
+          if (Math.abs(delta) < Phaser.Math.DegToRad(this.TURN_RATE)) { this.rotation = angleEnemy};
+          this.body.velocity.x = Math.cos(this.rotation) * this.FIRE_SPEED;
+          this.body.velocity.y = Math.sin(this.rotation) * this.FIRE_SPEED;
+          
+          /*this.scene.physics.moveTo(this, coords[0], coords[1], this.FIRE_SPEED);
+          this.setRotation(Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y));*/
+        } 
+          /*else {
+            var angleEnemyCoords = Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y);   
+            var delta = angleEnemyCoords - this.rotation; 
+            if (delta > Math.PI) delta -= Math.PI * 2;
+            if (delta < -Math.PI) delta += Math.PI * 2; 
+            if (delta > 0) { this.angle += this.TURN_RATE} else { this.angle -= this.TURN_RATE};
+            if (Math.abs(delta) < Phaser.Math.DegToRad(this.TURN_RATE)) { this.rotation = angleEnemyCoords};
+            this.body.velocity.x = Math.cos(this.rotation) * this.FIRE_SPEED;
+            this.body.velocity.y = Math.sin(this.rotation) * this.FIRE_SPEED;*/
+            /*this.scene.physics.moveTo(this, 1500, angleEnemyCoords*1500, this.FIRE_SPEED);
+            this.setRotation(Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y));*/
 
+          }   }        
+          
+        } 
+        
+    }
+	
 }

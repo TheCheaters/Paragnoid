@@ -8,7 +8,8 @@
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 40,
         "HEIGHT": 40,
-        "FOLLOW": 1
+        "FOLLOW": 1,
+        "TURN_RATE": 2
     },
     "LASER_SATELLITE": {
         "DAMAGE": 100,
@@ -19,7 +20,8 @@
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 50,
         "HEIGHT": 47,
-        "FOLLOW": 0
+        "FOLLOW": 0,
+        "TURN_RATE": 5
     }
 
 }

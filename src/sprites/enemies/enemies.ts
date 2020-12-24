@@ -152,6 +152,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.timer.remove();
     this.tween?.stop();
+    this.x = 1500;
+    this.y = 0;
     // console.log(`Killed Enemy ${this.enemyName}`);
     if (this.isBoss) sceneChangeEmitter.emit(`${this.enemyType}-IS-DEAD`);
   }
