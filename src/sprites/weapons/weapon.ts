@@ -158,10 +158,8 @@ export class SatelliteWeapon extends Weapon {
           this.body.velocity.x = Math.cos(this.rotation) * this.FIRE_SPEED;
           this.body.velocity.y = Math.sin(this.rotation) * this.FIRE_SPEED;
           
-          /*this.scene.physics.moveTo(this, coords[0], coords[1], this.FIRE_SPEED);
-          this.setRotation(Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y));*/
         } 
-          /*else {
+          else {
             var angleEnemyCoords = Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y);   
             var delta = angleEnemyCoords - this.rotation; 
             if (delta > Math.PI) delta -= Math.PI * 2;
@@ -169,11 +167,10 @@ export class SatelliteWeapon extends Weapon {
             if (delta > 0) { this.angle += this.TURN_RATE} else { this.angle -= this.TURN_RATE};
             if (Math.abs(delta) < Phaser.Math.DegToRad(this.TURN_RATE)) { this.rotation = angleEnemyCoords};
             this.body.velocity.x = Math.cos(this.rotation) * this.FIRE_SPEED;
-            this.body.velocity.y = Math.sin(this.rotation) * this.FIRE_SPEED;*/
-            /*this.scene.physics.moveTo(this, 1500, angleEnemyCoords*1500, this.FIRE_SPEED);
-            this.setRotation(Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y));*/
+            this.body.velocity.y = Math.sin(this.rotation) * this.FIRE_SPEED;
+          
 
-          }   }        
+          }    } }        
           
         } 
         
