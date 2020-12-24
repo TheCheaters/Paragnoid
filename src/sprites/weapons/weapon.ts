@@ -137,8 +137,9 @@ export class SatelliteWeapon extends Weapon {
     if (this.FOLLOW === 1){
       const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
-      if (closestEnemy !== null) {var angleEnemy = Phaser.Math.Angle.Between(this.x, this.y, closestEnemy.x, closestEnemy.y); 
-      var coords: number[] = [0, 0];
+      if (closestEnemy !== null) {
+        var angleEnemy = Phaser.Math.Angle.Between(this.x, this.y, closestEnemy.x, closestEnemy.y); 
+        var coords: number[] = [0, 0];
       /*
         scene.gfx.clear()
         .lineStyle(2,0xff3300)
