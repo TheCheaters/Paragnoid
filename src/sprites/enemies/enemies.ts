@@ -105,7 +105,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       const { player } = this.scene as Game;
       this.scene.physics.moveToObject(this, player, SPEED);
 
-    }; 
+    }
 
     this.setFlipX(enemyFlip);
 

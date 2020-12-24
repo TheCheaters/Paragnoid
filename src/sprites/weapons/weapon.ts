@@ -16,7 +16,7 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
   DAMAGE = DEFAULT.DAMAGE;
   FIRE_SPEED = DEFAULT.FIRE_SPEED;
   TEXTURE_NAME = DEFAULT.TEXTURE_NAME;
-  SPRITE_ASSET_PATH = DEFAULT.SPRITE_ASSET_PATH;
+  FRAME_NAME = DEFAULT.FRAME_NAME;
   AUDIO_NAME = DEFAULT.AUDIO_NAME;
   AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
   WIDTH = DEFAULT.WIDTH;
@@ -39,8 +39,8 @@ export class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
   }
 
-  setWeaponTexture(texture: string) {
-    this.setTexture(texture);
+  setWeaponTexture(texture: string, frame: string) {
+    this.setTexture(texture, frame);
   }
 
 	preUpdate(time: number, delta: number,) {
@@ -56,7 +56,7 @@ export class PlayerWeapon extends Weapon {
     this.DAMAGE = DEFAULT.DAMAGE;
     this.FIRE_SPEED = DEFAULT.FIRE_SPEED;
     this.TEXTURE_NAME = DEFAULT.TEXTURE_NAME;
-    this.SPRITE_ASSET_PATH = DEFAULT.SPRITE_ASSET_PATH;
+    this.FRAME_NAME = DEFAULT.FRAME_NAME;
     this.AUDIO_NAME = DEFAULT.AUDIO_NAME;
     this.AUDIO_ASSET_PATH = DEFAULT.AUDIO_ASSET_PATH;
     this.WIDTH = DEFAULT.WIDTH;
@@ -65,7 +65,7 @@ export class PlayerWeapon extends Weapon {
 
    firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
 
-    this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME);
+    this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME, WEAPON_PLAYER_TYPES[weaponType].FRAME_NAME);
     this.FIRE_SPEED = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
     if (angle > 0) {
@@ -88,7 +88,7 @@ export class PlayerWeapon extends Weapon {
 
 export class EnemyWeapon extends Weapon {
   fireEnemy(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
-    this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME);
+    this.setWeaponTexture(WEAPON_ENEMY_TYPES[weaponType].TEXTURE_NAME, WEAPON_ENEMY_TYPES[weaponType].FRAME_NAME);
     this.DAMAGE = (WEAPON_ENEMY_TYPES[weaponType].DAMAGE);
     this.FIRE_SPEED = -(WEAPON_ENEMY_TYPES[weaponType].FIRE_SPEED);
     this.body.enable = true;
@@ -114,7 +114,7 @@ export class EnemyWeapon extends Weapon {
 export class SatelliteWeapon extends Weapon {
 
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
-      this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME);
+      this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME, WEAPON_SATELLITE_TYPES[weaponType].FRAME_NAME);
       this.DAMAGE = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
       this.FOLLOW = follow;
       this.FIRE_SPEED = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);

@@ -42,6 +42,7 @@ export default class Preload extends Scene {
     this.load.image(C.HORIZON, C.HORIZON_ASSET_PATH);
     this.load.multiatlas(C.NUVOLE, C.NUVOLE_JSON_ASSET_PATH, C.NUVOLE_ASSET_PATH);
     this.load.multiatlas(C.ENEMIES, C.ENEMIES_JSON_ASSET_PATH, C.ENEMIES_ASSET_PATH);
+    this.load.multiatlas(C.WEAPONS, C.WEAPONS_JSON_ASSET_PATH, C.WEAPONS_ASSET_PATH);
     this.load.image(C.BLUE_PARTICLE, C.BLUE_PARTICLE_ASSET_PATH);
     this.load.atlas(C.FLARES, C.FLARES_ASSET_PATH, C.FLARES_JSON_ASSET_PATH);
 
@@ -51,16 +52,9 @@ export default class Preload extends Scene {
     });
     this.load.image(C.SATELLITE, C.SATELLITE_ASSET_PATH);
 
-    // Carica tutti gli sprite di Enemies
-    Object.keys(ENEMY_TYPES).forEach((E) => {
-      const ENEMY = E as EnemyType;
-      this.load.image(ENEMY_TYPES[ENEMY].TEXTURE_NAME, ENEMY_TYPES[ENEMY].SPRITE_ASSET_PATH);
-    });
-
     // Carica tutti gli sprite e i suoni di Weapons
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
       const WEAPON = W as WeaponEnemyType;
-      this.load.image(WEAPON_ENEMY_TYPES[WEAPON].TEXTURE_NAME, WEAPON_ENEMY_TYPES[WEAPON].SPRITE_ASSET_PATH);
       this.load.audio(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, WEAPON_ENEMY_TYPES[WEAPON].AUDIO_ASSET_PATH);
     });
 
