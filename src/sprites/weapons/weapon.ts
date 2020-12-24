@@ -161,7 +161,7 @@ export class SatelliteWeapon extends Weapon {
           
         } 
           else {
-            var angleEnemyCoords = Phaser.Math.Angle.Between(coords[0], coords[1], this.x, this.y);   
+            var angleEnemyCoords = Phaser.Math.Angle.Between(this.x, this.y, coords[0], coords[1]);   
             var delta = angleEnemyCoords - this.rotation; 
             if (delta > Math.PI) delta -= Math.PI * 2;
             if (delta < -Math.PI) delta += Math.PI * 2; 
