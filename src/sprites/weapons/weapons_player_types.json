@@ -71,7 +71,7 @@
         "DAMAGE": 100,
         "FIRE_SPEED": 2000,
         "TEXTURE_NAME": "weapons",
-        "FRAME_NAME": "assets/weapons/laser2.png",
+        "FRAME_NAME": "OrangeTail__003.png",
         "AUDIO_NAME": "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH": 56,

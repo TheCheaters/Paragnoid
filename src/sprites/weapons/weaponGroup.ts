@@ -15,6 +15,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
       frameQuantity: 30,
       setXY: {x: -50, y: -50},
       key: WEAPON_ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
+      setScale: {x: 0.3, y: 0.3},
       active: false,
       visible: false,
       classType,
