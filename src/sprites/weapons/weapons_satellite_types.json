@@ -9,7 +9,7 @@
         "WIDTH": 40,
         "HEIGHT": 40,
         "FOLLOW": 1,
-        "TURN_RATE": 1.5
+        "TURN_RATE": 3
     },
     "LASER_SATELLITE": {
         "DAMAGE": 100,
