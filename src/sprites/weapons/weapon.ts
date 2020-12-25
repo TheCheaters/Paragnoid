@@ -152,8 +152,8 @@ export class SatelliteWeapon extends Weapon {
           coords[0] = closestEnemy.x;
           coords[1] = closestEnemy.y
           var delta = angleEnemy - this.rotation; // differenza tra l'angolo del missile e l'angolo del nemico
-          if (delta > Math.PI) delta -= Math.PI * 2; // se la differenza è > 180° allora togli 90° dal delta e mantienilo nel range 0-180°
-          if (delta < -Math.PI) delta += Math.PI * 2; // se la differenza è < -180° allora aggiungi 90° al delta e mantienilo nel range -180° - 0
+          if (delta > Math.PI) delta -= Math.PI * 2; // se la differenza è > 180° allora togli 360° dal delta e mantienilo nel range 0-180°
+          if (delta < -Math.PI) delta += Math.PI * 2; // se la differenza è < -180° allora aggiungi 360° al delta e mantienilo nel range 0-180°
           if (delta > 0) { this.angle += this.TURN_RATE} else { this.angle -= this.TURN_RATE}; // se delta > 0 gira in senso orario gradualmente altrimenti gira in senso antiorario
           if (Math.abs(delta) < Phaser.Math.DegToRad(this.TURN_RATE)) { this.rotation = angleEnemy}; //se l'angolo è troppo piccolo approssima l'angolo a quello originario con i nemici
           this.body.velocity.x = Math.cos(this.rotation) * this.FIRE_SPEED;
