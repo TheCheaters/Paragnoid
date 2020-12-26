@@ -9,10 +9,11 @@ export default class SatelliteWeapon extends Weapon {
   weaponType = weaponSatelliteNames[0] as WeaponSatelliteType;
 
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
-      this.setWeaponTexture(WEAPON_SATELLITE_TYPES[weaponType].TEXTURE_NAME, WEAPON_SATELLITE_TYPES[weaponType].FRAME_NAME);
-      this.damage = (WEAPON_SATELLITE_TYPES[weaponType].DAMAGE);
+      const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED } = WEAPON_SATELLITE_TYPES[weaponType];
+      this.setWeaponTexture(TEXTURE_NAME, FRAME_NAME);
+      this.damage = (DAMAGE);
       this.follow = follow;
-      this.fireSpeed = (WEAPON_SATELLITE_TYPES[weaponType].FIRE_SPEED);
+      this.fireSpeed = (FIRE_SPEED);
       this.body.enable = true;
       this.body.reset(x + 2, y + 2);
       this.setActive(true);

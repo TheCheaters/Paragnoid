@@ -20,16 +20,17 @@ export default class PlayerWeapon extends Weapon {
    }
 
    firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
-
-    this.setTexture(WEAPON_PLAYER_TYPES[weaponType].TEXTURE_NAME, WEAPON_PLAYER_TYPES[weaponType].FRAME_NAME);
-    this.fireSpeed = (WEAPON_PLAYER_TYPES[weaponType].FIRE_SPEED);
+    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS } = WEAPON_PLAYER_TYPES[weaponType];
+    const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
+    this.setTexture(TEXTURE_NAME, FRAME_NAME);
+    this.fireSpeed = (FIRE_SPEED);
     this.body.enable = true;
     if (angle > 0) {
-      this.body.reset(x + 20, y+5+WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].VERTICAL_OFFSET);
+      this.body.reset(x + 20, y + 5 + VERTICAL_OFFSET);
     } else if (angle < 0){
-      this.body.reset(x + 20, y+5-WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].VERTICAL_OFFSET);
+      this.body.reset(x + 20, y + 5 - VERTICAL_OFFSET);
     } else {
-      this.body.reset(x + 20, y+5);
+      this.body.reset(x + 20, y + 5);
     }
     this.setActive(true);
     this.setVisible(true);
@@ -37,7 +38,7 @@ export default class PlayerWeapon extends Weapon {
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     this.scene.sound.play(this.audioName);
     this.setRotation(Phaser.Math.DegToRad(angle));
-    this.body.gravity.set(WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].GRAVITY_X, WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].GRAVITY_Y);
+    this.body.gravity.set(GRAVITY_X, GRAVITY_Y);
 
   }
 }
