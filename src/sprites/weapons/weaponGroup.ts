@@ -17,7 +17,6 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
       frameQuantity: 30,
       setXY: {x: -50, y: -50},
       key: WEAPON_ENEMY_TYPES.DEFAULT.TEXTURE_NAME,
-      setScale: {x: 0.3, y: 0.3},
       active: false,
       visible: false,
       classType,
@@ -27,7 +26,6 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   fireBulletEnemy(x: number, y: number, weaponType: WeaponEnemyType) {
     WEAPON_ENEMY_TYPES[weaponType].ANGLE.forEach((angle) => {
       const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
-      weaponEnemy.setActive(true);
       weaponEnemy.fireEnemy(x, y,angle, WEAPON_ENEMY_TYPES[weaponType].FOLLOW, weaponType);
     })
   }
@@ -35,16 +33,12 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   fireBulletPlayer(x: number, y: number, weaponType: WeaponPlayerType, weaponLevel: number) {
     WEAPON_PLAYER_TYPES[weaponType].LEVELS[weaponLevel].ANGLE.forEach((angle) => {
       const weaponPlayer = this.getFirstDead(true) as PlayerWeapon;
-      weaponPlayer.setOrigin(0, 0.5);
-      weaponPlayer.setActive(true);
       weaponPlayer.firePlayer(x, y, angle, weaponType, weaponLevel);
     })
   }
 
   fireBulletSatellite({ x, y, weaponType, follow }: { x: number; y: number; weaponType: WeaponSatelliteType; follow: number; }){
     const weaponSatellite = this.getFirstDead(true) as SatelliteWeapon;
-    weaponSatellite.setOrigin(0, 0.5);
-    weaponSatellite.setActive(true);
     weaponSatellite.fireSatellite(x, y, 0, follow, weaponType);
   }
 

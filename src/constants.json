@@ -2,6 +2,7 @@
   "GAME_NAME":                  "Paragnoid",
   "GAME_TITLE":                 "Rabbia edition",
   "RESPAWN_TIME":               500,
+  "IMMORTAL":                   true,
   "SPACECRAFT":                 "spacecraft",
   "SPACECRAFT_ASSET_PATH":      "assets/player/spacecraft.png",
   "SPACECRAFT_FRAME_WIDTH":     50,

@@ -6,8 +6,8 @@ type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 
 export default class EnemyWeapon extends Weapon {
   fireEnemy(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
-    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME } = WEAPON_ENEMY_TYPES[weaponType];
-    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 20, WIDTH, HEIGHT);
+    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE } = WEAPON_ENEMY_TYPES[weaponType];
+    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 20, WIDTH, HEIGHT, SCALE);
     this.damage = (DAMAGE);
     this.fireSpeed = -(FIRE_SPEED);
     if (follow === 0){

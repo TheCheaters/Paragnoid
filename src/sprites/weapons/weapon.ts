@@ -28,9 +28,11 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
   }
 
-  make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number) {
+  make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number, scale: number, flip = true) {
     this.setTexture(texture, frame);
     this.setBodySize(width, height);
+    this.setScale(scale);
+    this.setFlipX(flip);
     this.enableBody(true, x, y, true, true);
     this.scene.sound.play(sound);
   }

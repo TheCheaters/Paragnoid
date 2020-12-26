@@ -12,7 +12,7 @@ export default class PlayerWeapon extends Weapon {
    }
 
    firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
-    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS, AUDIO_NAME, WIDTH, HEIGHT } = WEAPON_PLAYER_TYPES[weaponType];
+    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS, AUDIO_NAME, WIDTH, HEIGHT, SCALE } = WEAPON_PLAYER_TYPES[weaponType];
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
     let _x = x;
     let _y = y;
@@ -28,7 +28,8 @@ export default class PlayerWeapon extends Weapon {
       _x = x + 20;
       _y = y + 5;
     }
-    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, _x, _y, WIDTH, HEIGHT);
+    this.setOrigin(0, 0.5); // TODO: spostare in make
+    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, _x, _y, WIDTH, HEIGHT, SCALE, false);
     this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     this.setRotation(Phaser.Math.DegToRad(angle));

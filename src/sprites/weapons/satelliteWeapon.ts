@@ -9,8 +9,9 @@ export default class SatelliteWeapon extends Weapon {
   weaponType = weaponSatelliteNames[0] as WeaponSatelliteType;
 
   fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
-      const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME } = WEAPON_SATELLITE_TYPES[weaponType];
-      this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 2, WIDTH, HEIGHT);
+      const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE } = WEAPON_SATELLITE_TYPES[weaponType];
+      this.setOrigin(0, 0.5); // TODO: spostare in make
+      this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 2, WIDTH, HEIGHT, SCALE);
       this.damage = (DAMAGE);
       this.follow = follow;
       this.fireSpeed = (FIRE_SPEED);
