@@ -14,6 +14,26 @@
   "FOUR": {
     "EXPLOSION_ASSET_PATH":        "assets/explosions/4.png",
     "EXPLOSION_FRAME_SIZE":        256
+  },
+  "FIVE": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/5.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "SIX": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/6.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "SEVEN": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/7.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "EIGHT": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/8.png",
+    "EXPLOSION_FRAME_SIZE":        256
+  },
+  "NINE": {
+    "EXPLOSION_ASSET_PATH":        "assets/explosions/9.png",
+    "EXPLOSION_FRAME_SIZE":        256
   }
 }
 

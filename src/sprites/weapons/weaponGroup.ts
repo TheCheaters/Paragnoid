@@ -2,7 +2,9 @@ import { Scene } from "phaser";
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
-import { PlayerWeapon, EnemyWeapon, SatelliteWeapon } from '~/sprites/weapons/weapon';
+import PlayerWeapon from '~/sprites/weapons/PlayerWeapon';
+import EnemyWeapon from '~/sprites/weapons/enemyWeapon';
+import SatelliteWeapon from '~/sprites/weapons/satelliteWeapon';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
@@ -26,7 +28,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     WEAPON_ENEMY_TYPES[weaponType].ANGLE.forEach((angle) => {
       const weaponEnemy = this.getFirstDead(true) as EnemyWeapon;
       weaponEnemy.setActive(true);
-    weaponEnemy.fireEnemy(x, y,angle, WEAPON_ENEMY_TYPES[weaponType].FOLLOW, weaponType);
+      weaponEnemy.fireEnemy(x, y,angle, WEAPON_ENEMY_TYPES[weaponType].FOLLOW, weaponType);
     })
   }
 
