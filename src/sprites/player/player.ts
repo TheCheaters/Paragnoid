@@ -137,7 +137,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.weaponLevel >= 1) {this.weaponLevel -= 1;}
   }
 
-  changeWeaponType(type:number){
+  changeWeaponType(type: number){
     this.weaponType = weaponNames[type] as WeaponPlayerType;
   }
 

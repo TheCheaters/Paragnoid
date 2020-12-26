@@ -1,6 +1,8 @@
 import { Scene } from 'phaser';
 import * as C from '~/constants.json';
-import { PlayerWeapon, EnemyWeapon, SatelliteWeapon } from '~/sprites/weapons/weapon';
+import PlayerWeapon from '~/sprites/weapons/PlayerWeapon';
+import EnemyWeapon from '~/sprites/weapons/enemyWeapon';
+import SatelliteWeapon from '~/sprites/weapons/satelliteWeapon';
 import WeaponGroup from '~/sprites/weapons/weaponGroup';
 import Enemies, { Enemy } from '~/sprites/enemies/enemies';
 import Player from '~/sprites/player/player';

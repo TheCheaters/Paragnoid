@@ -21,7 +21,7 @@ class Explosion extends Phaser.Physics.Arcade.Sprite {
     this.setActive(true);
     this.setVisible(true);
 
-    this.on('animationcomplete', (...args) => this.kill());
+    this.on('animationcomplete', () => this.kill());
 
   }
 

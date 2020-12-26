@@ -61,14 +61,12 @@ export default class Preload extends Scene {
     //Carica tutti gli sprite ed i suoni del Player
     Object.keys(WEAPON_PLAYER_TYPES).forEach((P) =>{
       const PLAYER = P as WeaponPlayerType;
-      this.load.image(WEAPON_PLAYER_TYPES[PLAYER].TEXTURE_NAME, WEAPON_PLAYER_TYPES[PLAYER].SPRITE_ASSET_PATH);
       this.load.audio(WEAPON_PLAYER_TYPES[PLAYER].AUDIO_NAME, WEAPON_PLAYER_TYPES[PLAYER].AUDIO_ASSET_PATH);
     });
 
     //Carica tutti gli sprite ed i suoni dei Satelliti
     Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => {
       const SATELLITE = S as WeaponSatelliteType;
-      this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].TEXTURE_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].SPRITE_ASSET_PATH);
       this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_ASSET_PATH);
     })
 
