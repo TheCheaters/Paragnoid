@@ -9,36 +9,29 @@ export default class PlayerWeapon extends Weapon {
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y);
-    this.damage = DEFAULT.DAMAGE;
-    this.fireSpeed = DEFAULT.FIRE_SPEED;
-    this.textureName = DEFAULT.TEXTURE_NAME;
-    this.frameName = DEFAULT.FRAME_NAME;
-    this.audioName = DEFAULT.AUDIO_NAME;
-    this.audioAssetPath = DEFAULT.AUDIO_ASSET_PATH;
-    this.width = DEFAULT.WIDTH;
-    this.height = DEFAULT.HEIGHT;
    }
 
    firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
-    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS } = WEAPON_PLAYER_TYPES[weaponType];
+    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS, AUDIO_NAME, WIDTH, HEIGHT } = WEAPON_PLAYER_TYPES[weaponType];
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
-    this.setTexture(TEXTURE_NAME, FRAME_NAME);
+    let _x = x;
+    let _y = y;
     this.fireSpeed = (FIRE_SPEED);
-    this.body.enable = true;
     if (angle > 0) {
-      this.body.reset(x + 20, y + 5 + VERTICAL_OFFSET);
+      _x = x + 20;
+      _y = y + 5 + VERTICAL_OFFSET;
     } else if (angle < 0){
-      this.body.reset(x + 20, y + 5 - VERTICAL_OFFSET);
+      _x = x + 20;
+      _y = y + 5 - VERTICAL_OFFSET;
     } else {
       this.body.reset(x + 20, y + 5);
+      _x = x + 20;
+      _y = y + 5;
     }
-    this.setActive(true);
-    this.setVisible(true);
+    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, _x, _y, WIDTH, HEIGHT);
     this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
-    this.scene.sound.play(this.audioName);
     this.setRotation(Phaser.Math.DegToRad(angle));
     this.body.gravity.set(GRAVITY_X, GRAVITY_Y);
-
   }
 }

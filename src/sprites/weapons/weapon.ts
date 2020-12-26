@@ -8,8 +8,6 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
   fireSpeed = DEFAULT.FIRE_SPEED;
   textureName = DEFAULT.TEXTURE_NAME;
   frameName = DEFAULT.FRAME_NAME;
-  audioName = DEFAULT.AUDIO_NAME;
-  audioAssetPath = DEFAULT.AUDIO_ASSET_PATH;
   width = DEFAULT.WIDTH;
   height = DEFAULT.HEIGHT;
   follow = 0;
@@ -30,8 +28,11 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
   }
 
-  setWeaponTexture(texture: string, frame: string) {
+  make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number) {
     this.setTexture(texture, frame);
+    this.setBodySize(width, height);
+    this.enableBody(true, x, y, true, true);
+    this.scene.sound.play(sound);
   }
 
 	preUpdate(time: number, delta: number,) {

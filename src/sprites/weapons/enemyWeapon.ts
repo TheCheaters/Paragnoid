@@ -6,15 +6,10 @@ type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 
 export default class EnemyWeapon extends Weapon {
   fireEnemy(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
-    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED } = WEAPON_ENEMY_TYPES[weaponType];
-    this.setWeaponTexture(TEXTURE_NAME, FRAME_NAME);
+    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME } = WEAPON_ENEMY_TYPES[weaponType];
+    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 20, WIDTH, HEIGHT);
     this.damage = (DAMAGE);
     this.fireSpeed = -(FIRE_SPEED);
-    this.body.enable = true;
-    this.body.reset(x + 2, y + 20);
-    this.setActive(true);
-    this.setVisible(true);
-    this.scene.sound.play(this.audioName);
     if (follow === 0){
       this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
       this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
