@@ -1,4 +1,4 @@
-import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE } from '~/constants.json';
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
@@ -28,7 +28,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
-  private enemyFlip?: Make ['enemyFlip'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
@@ -58,7 +57,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.isBoss = enemyType.includes('BOSS');
     this.enemyType = enemyType;
-    this.enemyFlip = enemyFlip;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -70,7 +68,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     enemyProgressiveNumber += 1;
     this.enemyName = `Enemy_${enemyProgressiveNumber}`;
-    // console.log(`Made Enemy ${this.enemyName}`);
+    console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
     const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
@@ -83,7 +81,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
-    const x = this.scene.scale.width + 100;
+    const x = RIGHT_SPAWN_ZONE;
     this.setOrigin(0, 0);
     this.body.reset(x, y);
 
@@ -159,7 +157,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.timer.remove();
     this.tween?.stop();
-    // console.log(`Killed Enemy ${this.enemyName}`);
+    console.log(`Killed Enemy ${this.enemyName}`);
     if (this.isBoss) sceneChangeEmitter.emit(`${this.enemyType}-IS-DEAD`);
   }
 
@@ -173,7 +171,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     this.updateLifeLine();
 
-    if (this.x < -LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
+    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
 			this.kill();
 		}
 	}

@@ -105,7 +105,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
     this.flares.setPosition(this.x, this.y);
 
-    if (this.x < -LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
+    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
 			this.kill();
 		}
 	}

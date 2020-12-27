@@ -37,17 +37,17 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.manager = this.scene.add.particles(BLUE_PARTICLE);
     this.emitter = this.manager
       .createEmitter({
-        x: 0,
-        y: 0,
+        x: this.x,
+        y: this.y,
         blendMode: 'ADD',
         scale: { start: 0.1, end: 0 },
         speed: { min: -100, max: 100 },
-        quantity: 3,
+        quantity: 2,
       });
   }
 
   removeTrail() {
-    this.manager.destroy();
+    if (this.manager)this.manager.destroy();
   }
 
   make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number, scale: number, flip = true) {
