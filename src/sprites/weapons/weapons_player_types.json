@@ -9,6 +9,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "PARTICLES":        "SMOKE",
         "LEVELS":           [
             {
                 "ANGLE": [
@@ -78,6 +79,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "PARTICLES":        "SMOKE",
         "LEVELS":           [
             {
                 "ANGLE": [
@@ -129,6 +131,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "PARTICLES":        "SMOKE",
         "LEVELS":           [
             {
                 "ANGLE": [

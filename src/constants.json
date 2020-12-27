@@ -2,6 +2,8 @@
   "GAME_NAME":                  "Paragnoid",
   "GAME_TITLE":                 "Rabbia edition",
   "RESPAWN_TIME":               500,
+  "LEFT_KILL_ZONE":             250,
+  "RIGHT_KILL_ZONE":            1500,
   "IMMORTAL":                   true,
   "SPACECRAFT":                 "spacecraft",
   "SPACECRAFT_ASSET_PATH":      "assets/player/spacecraft.png",

@@ -1,7 +1,6 @@
 import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
-import { DEFAULT } from '~/sprites/weapons/weapons_enemy_types.json';
 
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 
@@ -16,7 +15,6 @@ export default class PlayerWeapon extends Weapon {
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
     let _x = x;
     let _y = y;
-    this.fireSpeed = (FIRE_SPEED);
     if (angle > 0) {
       _x = x + 20;
       _y = y + 5 + VERTICAL_OFFSET;
@@ -24,12 +22,12 @@ export default class PlayerWeapon extends Weapon {
       _x = x + 20;
       _y = y + 5 - VERTICAL_OFFSET;
     } else {
-      this.body.reset(x + 20, y + 5);
       _x = x + 20;
       _y = y + 5;
     }
-    this.setOrigin(0, 0.5); // TODO: spostare in make
+    // this.setOrigin(0, 0.5); // TODO: spostare in make
     this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, _x, _y, WIDTH, HEIGHT, SCALE, false);
+    this.fireSpeed = (FIRE_SPEED);
     this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     this.setRotation(Phaser.Math.DegToRad(angle));

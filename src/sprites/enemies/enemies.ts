@@ -1,4 +1,4 @@
-import { AUDIO_EXPLOSION, HIT_ENEMY } from '~/constants.json';
+import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
@@ -173,7 +173,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     this.updateLifeLine();
 
-    if (this.x < -500 || this.x > 1500) {
+    if (this.x < -LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
 			this.kill();
 		}
 	}
