@@ -1,5 +1,5 @@
 import Game from '~/scenes/game';
-import { BLUE_PARTICLE } from '~/constants.json';
+import { FLARES } from '~/constants.json';
 
 export default class Shield {
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
@@ -13,7 +13,7 @@ export default class Shield {
   }
 
   createShield() {
-    this.manager = this.scene.add.particles(BLUE_PARTICLE);
+    this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
       .createEmitter({
         x: 0,

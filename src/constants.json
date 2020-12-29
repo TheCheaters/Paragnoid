@@ -12,8 +12,6 @@
   "SPACECRAFT_ASSET_PATH":      "assets/player/spacecraft.png",
   "SPACECRAFT_FRAME_WIDTH":     50,
   "SPACECRAFT_FRAME_HEIGH":     22,
-  "BLUE_PARTICLE":              "blue_particle",
-  "BLUE_PARTICLE_ASSET_PATH":   "assets/particles/blue_particle.png",
   "FLARES":                     "flares",
   "FLARES_ASSET_PATH":          "assets/particles/flares.png",
   "FLARES_JSON_ASSET_PATH":     "assets/particles/flares.json",

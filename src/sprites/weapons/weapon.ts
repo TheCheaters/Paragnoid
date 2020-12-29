@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/weapons/weapons_enemy_types.json';
-import { BLUE_PARTICLE, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
 export default class Weapon extends Phaser.Physics.Arcade.Sprite {
   timer!: Phaser.Time.TimerEvent;
@@ -34,15 +34,43 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
   }
 
   createTrail() {
-    this.manager = this.scene.add.particles(BLUE_PARTICLE);
+    this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
+      // .createEmitter({
+      //   // frame: { frames: [ 0, 1, 2 ], cycle: true, quantity: 4 },
+      //   frame: [
+      //     // 'blue',
+      //     // 'green',
+      //     'red',
+      //     // 'white',
+      //     // 'yellow',
+      //   ],
+      //   x: this.x,
+      //   y: this.y,
+      //   blendMode: 'ADD',
+      //   scale: { start: 0.1, end: 0 },
+      //   speed: { min: -100, max: 100 },
+      //   lifespan: 100,
+      //   quantity: 4,
+      // });
       .createEmitter({
+        // frame: { frames: [ 0, 1, 2 ], cycle: true, quantity: 4 },
+        frame: [
+          // 'blue',
+          // 'green',
+          // 'red',
+          'white',
+          // 'yellow',
+        ],
         x: this.x,
         y: this.y,
         blendMode: 'ADD',
-        scale: { start: 0.1, end: 0 },
-        speed: { min: -100, max: 100 },
-        quantity: 2,
+        scale: 0.05,
+        speed: 0,
+        lifespan: 500,
+        frequency: 1,
+        quantity: 300,
+        timeScale: 3,
       });
   }
 
@@ -63,7 +91,7 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(time: number, delta: number,) {
     super.preUpdate(time, delta);
     this.emitter.setPosition(this.x, this.y);
-    if (this.x < -LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
+    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
       this.kill();
     }
 
