@@ -21,13 +21,13 @@ export default class Shield {
         blendMode: 'ADD',
         scale: { start: 0.1, end: 0 },
         speed: { min: -100, max: 100 },
-        quantity: 3,
+        quantity: 1,
         visible: false,
       })
       .setEmitZone({
         source: new Phaser.Geom.Circle(0, 0, 50),
         type: 'edge',
-        quantity: 50,
+        quantity: 20,
       });
   }
 

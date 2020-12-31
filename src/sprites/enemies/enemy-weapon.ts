@@ -24,8 +24,8 @@ export default class EnemyWeapon extends Weapon {
         blendMode: 'ADD',
         scale: { start: 0.1, end: 0 },
         speed: { min: -100, max: 100 },
-        lifespan: 100,
-        quantity: 5,
+        lifespan: 80,
+        quantity: 1,
       })
   }
 
