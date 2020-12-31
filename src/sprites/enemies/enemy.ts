@@ -5,7 +5,7 @@ import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites/enemies/enemy_behaviors.json';
 import ENEMY_PATHS from '~/sprites/enemies/enemy_paths.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
-import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 
 let enemyProgressiveNumber = 0;
 
@@ -127,7 +127,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   fire(x: number, y: number, weaponType: WeaponEnemyType) {
     const { enemyWeaponsGroup } = this.scene as Game;
-    enemyWeaponsGroup.fireBulletEnemy(x, y, weaponType as WeaponEnemyType);
+    enemyWeaponsGroup.fire(x, y, weaponType as WeaponEnemyType);
 
   }
 

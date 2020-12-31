@@ -1,12 +1,10 @@
 import { Scene } from 'phaser';
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
-import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
-import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
-import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import EXPLOSION_TYPES from '~/sprites/explosions/explosions_types.json';
-type EnemyType = keyof typeof ENEMY_TYPES;
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
@@ -37,6 +35,7 @@ export default class Preload extends Scene {
     });
 
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
+    this.load.image('laser', 'assets/particles/laser.png');
     this.load.image(C.SPACE, C.SPACE_ASSET_PATH);
     this.load.image(C.SUN, C.SUN_ASSET_PATH);
     this.load.image(C.HORIZON, C.HORIZON_ASSET_PATH);

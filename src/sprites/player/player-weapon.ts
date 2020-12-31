@@ -1,16 +1,35 @@
 import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
-import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 
 export default class PlayerWeapon extends Weapon {
+  manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
+
+  emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y);
-   }
+  }
 
-   firePlayer(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
+  createTrail() {
+    this.manager = this.scene.add.particles('laser');
+    this.emitter = this.manager
+      .createEmitter({
+        x: this.x,
+        y: this.y,
+        // blendMode: 'ADD',
+        scale: 1,
+        speed: 0,
+        lifespan: 0,
+        frequency: 0,
+        quantity: 1,
+        // delay: 300
+      });
+  }
+
+   fire(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
     const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS, AUDIO_NAME, WIDTH, HEIGHT, SCALE } = WEAPON_PLAYER_TYPES[weaponType];
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
     let _x = x;

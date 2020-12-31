@@ -1,20 +1,19 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { DEFAULT } from '~/sprites/weapons/weapons_enemy_types.json';
-import { FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
-export default class Weapon extends Phaser.Physics.Arcade.Sprite {
-  timer!: Phaser.Time.TimerEvent;
-  damage = DEFAULT.DAMAGE;
-  fireSpeed = DEFAULT.FIRE_SPEED;
-  textureName = DEFAULT.TEXTURE_NAME;
-  frameName = DEFAULT.FRAME_NAME;
+export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
+  private timer!: Phaser.Time.TimerEvent;
+  protected damage = DEFAULT.DAMAGE;
+  protected fireSpeed = DEFAULT.FIRE_SPEED;
+  private textureName = DEFAULT.TEXTURE_NAME;
+  private frameName = DEFAULT.FRAME_NAME;
   width = DEFAULT.WIDTH;
   height = DEFAULT.HEIGHT;
-  follow = 0;
-  private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
-  private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-
+  protected follow = 0;
+  abstract manager: Phaser.GameObjects.Particles.ParticleEmitterManager;
+  abstract emitter: Phaser.GameObjects.Particles.ParticleEmitter;
 
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
@@ -33,49 +32,10 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.removeTrail();
   }
 
-  createTrail() {
-    this.manager = this.scene.add.particles(FLARES);
-    this.emitter = this.manager
-      // .createEmitter({
-      //   // frame: { frames: [ 0, 1, 2 ], cycle: true, quantity: 4 },
-      //   frame: [
-      //     // 'blue',
-      //     // 'green',
-      //     'red',
-      //     // 'white',
-      //     // 'yellow',
-      //   ],
-      //   x: this.x,
-      //   y: this.y,
-      //   blendMode: 'ADD',
-      //   scale: { start: 0.1, end: 0 },
-      //   speed: { min: -100, max: 100 },
-      //   lifespan: 100,
-      //   quantity: 4,
-      // });
-      .createEmitter({
-        // frame: { frames: [ 0, 1, 2 ], cycle: true, quantity: 4 },
-        frame: [
-          // 'blue',
-          // 'green',
-          // 'red',
-          'white',
-          // 'yellow',
-        ],
-        x: this.x,
-        y: this.y,
-        blendMode: 'ADD',
-        scale: 0.05,
-        speed: 0,
-        lifespan: 500,
-        frequency: 1,
-        quantity: 300,
-        timeScale: 3,
-      });
-  }
+  abstract createTrail(): void;
 
   removeTrail() {
-    if (this.manager)this.manager.destroy();
+    if (this.emitter) this.emitter.remove();
   }
 
   make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number, scale: number, flip = true) {
@@ -84,8 +44,10 @@ export default class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setBodySize(width, height);
     this.setScale(scale);
     this.setFlipX(flip);
+    this.setOrigin(1, 0.5);
     this.enableBody(true, x, y, true, true);
     this.scene.sound.play(sound);
+    console.log('made weapon');
   }
 
 	preUpdate(time: number, delta: number,) {

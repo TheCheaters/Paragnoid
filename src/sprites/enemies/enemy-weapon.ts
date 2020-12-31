@@ -1,11 +1,35 @@
 import Weapon from '~/sprites/weapons/weapon';
-import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
+import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import Game from '~/scenes/game';
+import { FLARES } from '~/constants.json';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 
 export default class EnemyWeapon extends Weapon {
-  fireEnemy(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
+  manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
+  emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
+  constructor(scene: Game, x: number, y: number) {
+    super(scene, x, y);
+  }
+  createTrail() {
+    this.manager = this.scene.add.particles(FLARES);
+    this.emitter = this.manager
+      .createEmitter({
+        name: 'fire',
+        frame: [
+          'yellow',
+        ],
+        x: this.x,
+        y: this.y,
+        blendMode: 'ADD',
+        scale: { start: 0.1, end: 0 },
+        speed: { min: -100, max: 100 },
+        lifespan: 100,
+        quantity: 5,
+      })
+  }
+
+  fire(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
     const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE } = WEAPON_ENEMY_TYPES[weaponType];
     this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 20, WIDTH, HEIGHT, SCALE);
     this.damage = (DAMAGE);
