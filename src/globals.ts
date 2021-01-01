@@ -15,3 +15,8 @@ export enum KEYS {
   LEFT  = 'LEFT',
 }
 
+declare const process: {
+	env: {
+		NODE_ENV: string
+	}
+}

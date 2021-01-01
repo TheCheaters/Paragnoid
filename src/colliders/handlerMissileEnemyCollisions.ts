@@ -1,4 +1,4 @@
-import PlayerWeapon from '~/sprites/weapons/PlayerWeapon';
+import PlayerWeapon from '~/sprites/player/player-weapon';
 import Enemy from '~/sprites/enemies/enemy';
 
 export default (enemy: Enemy, weapon: PlayerWeapon ) => {

@@ -1,8 +1,7 @@
 import Player from '~/sprites/player/player';
-import EnemyWeapon from '~/sprites/weapons/enemyWeapon';
-import { IMMORTAL } from '~/constants.json';
+import EnemyWeapon from '~/sprites/enemies/enemy-weapon';
 
 export default (player: Player, weapon: EnemyWeapon ) => {
-    if (!IMMORTAL) player.takeHit(weapon.damage);
+    player.takeHit(weapon.damage);
     weapon.explode();
 }

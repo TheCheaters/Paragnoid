@@ -1,9 +1,10 @@
 import { DIRECTIONS } from '~/globals';
-import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
+import { SPACECRAFT, RESPAWN_TIME, MORTAL } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
 
 import Game from '~/scenes/game';
+import debug from '~/utils/debug';
 type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
 
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
@@ -100,12 +101,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   takeHit(damage: number) {
-    const scene = this.scene as Game;
-    console.log(scene.shield.isUp);
-    if (scene.shield.isUp) scene.shield.takeHit(damage);
-    else {
-      this.energy -= damage;
-      if (this.energy <= 0) { this.die(); }
+    if (MORTAL && debug) {
+      const scene = this.scene as Game;
+      console.log(scene.shield.isUp);
+      if (scene.shield.isUp) scene.shield.takeHit(damage);
+      else {
+        this.energy -= damage;
+        if (this.energy <= 0) { this.die(); }
+      }
     }
   }
 

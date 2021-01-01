@@ -5,7 +5,7 @@ import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
 export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
-  protected damage = DEFAULT.DAMAGE;
+  damage = DEFAULT.DAMAGE;
   protected fireSpeed = DEFAULT.FIRE_SPEED;
   private textureName = DEFAULT.TEXTURE_NAME;
   private frameName = DEFAULT.FRAME_NAME;

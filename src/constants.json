@@ -7,7 +7,7 @@
   "LEFT_SPAWN_ZONE":            -200,
   "RIGHT_SPAWN_ZONE":           1400,
   "TOP_SPAWN_ZONE":             -500,
-  "IMMORTAL":                   true,
+  "MORTAL":                     false,
   "SPACECRAFT":                 "spacecraft",
   "SPACECRAFT_ASSET_PATH":      "assets/player/spacecraft.png",
   "SPACECRAFT_FRAME_WIDTH":     50,

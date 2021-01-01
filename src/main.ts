@@ -7,7 +7,7 @@ import Game from '~/scenes/game';
 import GameOver from '~/scenes/gameover';
 import Preloader from '~/scenes/preloader';
 import KeyController from '~/scenes/keys_controller';
-
+import debug from '~/utils/debug';
 
 declare const process: {
 	env: {
@@ -26,10 +26,6 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 		parent: 'phaser',
 		width: 1200,
 		height: 600,
-		min: {
-				width: 800,
-				height: 400
-		},
 		max: {
 				width: 2400,
 				height: 1200
@@ -39,7 +35,7 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			debug: process.env.NODE_ENV === 'development',
+			debug,
 			useTree: false
 		}
 	},
