@@ -1,6 +1,6 @@
 {
     "DEFAULT": {
-        "DAMAGE":           100,
+        "DAMAGE":           1000,
         "FIRE_SPEED":       4000,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "OrangeTail__003.png",
@@ -9,6 +9,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         false,
         "PARTICLES":        "LASER",
         "LEVELS":           [
             {
@@ -52,7 +53,7 @@
         ]
     },
     "LASER": {
-        "DAMAGE":           100,
+        "DAMAGE":           1000,
         "FIRE_SPEED":       4000,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "OrangeTail__003.png",
@@ -61,6 +62,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         false,
         "PARTICLES":        "LASER",
         "LEVELS":           [
             {
@@ -113,6 +115,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
         "LEVELS":           [
             {

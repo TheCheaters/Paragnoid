@@ -1,12 +1,9 @@
 import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
-
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
-
+import { WeaponPlayerType } from '~/types/weapons';
 export default class PlayerWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
-
   emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
 
   constructor(scene: Game, x: number, y: number) {
@@ -30,7 +27,16 @@ export default class PlayerWeapon extends Weapon {
   }
 
    fire(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
-    const { TEXTURE_NAME, FRAME_NAME, FIRE_SPEED, LEVELS, AUDIO_NAME, WIDTH, HEIGHT, SCALE } = WEAPON_PLAYER_TYPES[weaponType];
+    const { DAMAGE,
+      TEXTURE_NAME,
+      FRAME_NAME,
+      FIRE_SPEED,
+      LEVELS,
+      AUDIO_NAME,
+      WIDTH,
+      HEIGHT,
+      SCALE,
+      EXPLODES } = WEAPON_PLAYER_TYPES[weaponType];
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
     let _x = x;
     let _y = y;
@@ -45,8 +51,20 @@ export default class PlayerWeapon extends Weapon {
       _y = y + 5;
     }
     // this.setOrigin(0, 0.5); // TODO: spostare in make
-    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, _x, _y, WIDTH, HEIGHT, SCALE, false);
+    this.make({
+      texture: TEXTURE_NAME,
+      frame: FRAME_NAME,
+      sound: AUDIO_NAME,
+      x: _x,
+      y: _y,
+      width: WIDTH,
+      height: HEIGHT,
+      scale: SCALE,
+      explodes: EXPLODES,
+      flip: false,
+    });
     this.fireSpeed = (FIRE_SPEED);
+    this.damage = DAMAGE;
     this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     this.setRotation(Phaser.Math.DegToRad(angle));

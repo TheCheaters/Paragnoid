@@ -2,8 +2,7 @@ import Weapon from '~/sprites/weapons/weapon';
 import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import Game from '~/scenes/game';
 import { FLARES } from '~/constants.json';
-
-type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
+import { WeaponEnemyType } from '~/types/weapons';
 
 export default class EnemyWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
@@ -30,8 +29,18 @@ export default class EnemyWeapon extends Weapon {
   }
 
   fire(x: number, y: number, angle: number, follow: number, weaponType: WeaponEnemyType) {
-    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE } = WEAPON_ENEMY_TYPES[weaponType];
-    this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 20, WIDTH, HEIGHT, SCALE);
+    const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE, EXPLODES } = WEAPON_ENEMY_TYPES[weaponType];
+    this.make({
+      texture: TEXTURE_NAME,
+      frame: FRAME_NAME,
+      sound: AUDIO_NAME,
+      x: x + 2,
+      y: y + 2,
+      width: WIDTH,
+      height: HEIGHT,
+      scale: SCALE,
+      explodes: EXPLODES,
+    });
     this.damage = (DAMAGE);
     this.fireSpeed = -(FIRE_SPEED);
     if (follow === 0){

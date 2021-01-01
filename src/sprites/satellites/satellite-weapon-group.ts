@@ -1,8 +1,7 @@
 import { Scene } from "phaser";
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import SatelliteWeapon from '~/sprites/satellites/satellite-weapon';
-
-type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
+import { WeaponSatelliteType } from "~/types/weapons";
 export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene) {
     super(scene.physics.world, scene);

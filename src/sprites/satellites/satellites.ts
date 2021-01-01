@@ -3,8 +3,8 @@ import Game from '~/scenes/game';
 import { SATELLITE } from '~/constants.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
+import { WeaponSatelliteType } from "~/types/weapons";
 
-type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private keys!: {

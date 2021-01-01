@@ -5,7 +5,8 @@ import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites/enemies/enemy_behaviors.json';
 import ENEMY_PATHS from '~/sprites/enemies/enemy_paths.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
-import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
+import Lifeline from '~/utils/Lifeline';
+import { WeaponEnemyType } from '~/types/weapons';
 
 let enemyProgressiveNumber = 0;
 
@@ -15,8 +16,6 @@ export type Make = {
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyFlip: true | false;
 }
-export type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
-
 
 export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   public energy!: number;
@@ -27,8 +26,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
-  private greenStyle!: Phaser.GameObjects.Graphics;
-  private greenLine!: Phaser.Geom.Line;
+  private lifeLine!: Lifeline;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
   private curve?: Phaser.Curves.Spline | null;
   private tween?: Phaser.Tweens.Tween | null;
@@ -36,20 +34,6 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   private ui?: UI;
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
-  }
-
-  setLifeLine() {
-    this.greenStyle = this.scene.add.graphics({ lineStyle: { width: 2, color: 0x00ff3d } });
-    this.greenLine = new Phaser.Geom.Line();
-  }
-
-  updateLifeLine() {
-    this.greenStyle.clear();
-    this.greenLine.x1 = this.x;
-    this.greenLine.y1 = this.y - 3;
-    this.greenLine.x2 = this.x + ((this.width / 2) * this.energy) / this.maxEnergy;
-    this.greenLine.y2 = this.y - 3;
-    this.greenStyle.strokeLineShape(this.greenLine);
   }
 
   make({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
@@ -115,7 +99,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.body.enable = true;
     this.setActive(true);
     this.setVisible(true);
-    this.setLifeLine();
+    this.lifeLine = new Lifeline(this.scene as Game, this);
 
     const delay = Phaser.Math.Between(FIRE_RATE, FIRE_RATE + 2000);
 
@@ -150,7 +134,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   kill() {
-    this.greenStyle.clear();
+    this.lifeLine.kill();
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
@@ -168,7 +152,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
       this.x = x;
       this.y = y;
     }
-    this.updateLifeLine();
+    this.lifeLine.update();
 
     if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
 			this.kill();

@@ -3,15 +3,29 @@ import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
 import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
+type WeaponType = {
+  texture: string;
+  frame: string;
+  sound: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  scale: number;
+  explodes: boolean;
+  flip?: boolean;
+}
+
 export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
-  damage = DEFAULT.DAMAGE;
+  protected damage = DEFAULT.DAMAGE;
   protected fireSpeed = DEFAULT.FIRE_SPEED;
   private textureName = DEFAULT.TEXTURE_NAME;
   private frameName = DEFAULT.FRAME_NAME;
   width = DEFAULT.WIDTH;
   height = DEFAULT.HEIGHT;
   protected follow = 0;
+  private explodes!: boolean;
   abstract manager: Phaser.GameObjects.Particles.ParticleEmitterManager;
   abstract emitter: Phaser.GameObjects.Particles.ParticleEmitter;
 
@@ -20,9 +34,11 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   }
 
   explode() {
-    const { explosions } = this.scene as Game;
-    explosions.addExplosion(this.x, this.y);
-    this.kill();
+    if (this.explodes) {
+      const { explosions } = this.scene as Game;
+      explosions.addExplosion(this.x, this.y);
+      this.kill();
+    }
   }
 
   kill() {
@@ -30,6 +46,7 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.removeTrail();
+    console.log('weapon killed');
   }
 
   abstract createTrail(): void;
@@ -38,8 +55,10 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     if (this.emitter) this.emitter.remove();
   }
 
-  make(texture: string, frame: string, sound: string, x: number, y: number, width: number, height: number, scale: number, flip = true) {
+  make({ texture, frame, sound, x, y, width, height, scale, explodes, flip = true }: WeaponType) {
+    this.explodes = explodes;
     this.createTrail();
+    this.setImmovable(true);
     this.setTexture(texture, frame);
     this.setBodySize(width, height);
     this.setScale(scale);
@@ -56,6 +75,5 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
       this.kill();
     }
-
 	}
 }

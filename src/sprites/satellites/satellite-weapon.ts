@@ -2,8 +2,8 @@ import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import { FLARES } from '~/constants.json';
+import { WeaponSatelliteType } from '~/types/weapons';
 
-type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 const weaponSatelliteNames = Object.keys(WEAPON_SATELLITE_TYPES);
 
 export default class SatelliteWeapon extends Weapon {
@@ -12,9 +12,19 @@ export default class SatelliteWeapon extends Weapon {
   emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
 
   fire(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
-      const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE } = WEAPON_SATELLITE_TYPES[weaponType];
+      const { TEXTURE_NAME, FRAME_NAME, DAMAGE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE, EXPLODES } = WEAPON_SATELLITE_TYPES[weaponType];
       this.setOrigin(0, 0.5); // TODO: spostare in make
-      this.make(TEXTURE_NAME, FRAME_NAME, AUDIO_NAME, x + 2, y + 2, WIDTH, HEIGHT, SCALE);
+      this.make({
+        texture: TEXTURE_NAME,
+        frame: FRAME_NAME,
+        sound: AUDIO_NAME,
+        x: x + 2,
+        y: y + 2,
+        width: WIDTH,
+        height: HEIGHT,
+        scale: SCALE,
+        explodes: EXPLODES,
+      });
       this.damage = (DAMAGE);
       this.follow = follow;
       this.fireSpeed = (FIRE_SPEED);

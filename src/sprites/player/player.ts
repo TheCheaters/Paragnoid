@@ -5,7 +5,8 @@ import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
 
 import Game from '~/scenes/game';
 import debug from '~/utils/debug';
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+import Lifeline from '~/utils/Lifeline';
+import { WeaponPlayerType } from '~/types/weapons';
 
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 
@@ -13,9 +14,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   public energy = 300;
   public speed = 1000;
-  private maxEnergy!: number;
-  private greenStyle!: Phaser.GameObjects.Graphics;
-  private greenLine!: Phaser.Geom.Line;
+  public maxEnergy!: number;
+  private lifeLine!: Lifeline;
+
   public weaponType = weaponNames[0] as WeaponPlayerType;
   public weaponLevel = 0;
 
@@ -77,27 +78,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // BEHAVIOR
     this.maxEnergy = this.energy;
-    this.setLifeLine();
-  }
-
-  setLifeLine() {
-    this.greenStyle = this.scene.add.graphics({
-      lineStyle: {
-        width: 3,
-        color: 0x00ff3d
-      }
-    });
-    this.greenLine = new Phaser.Geom.Line();
-  }
-
-  updateLifeLine() {
-    this.greenStyle.clear();
-    const xPos = this.x - this.width / 2;
-    this.greenLine.x1 = xPos;
-    this.greenLine.y1 = this.y + this.height-2;
-    this.greenLine.x2 = xPos + ((this.width) * this.energy) / this.maxEnergy;
-    this.greenLine.y2 = this.y + this.height-2;
-    this.greenStyle.strokeLineShape(this.greenLine);
+    // this.lifeLine = new Lifeline(this.scene as Game, this);
   }
 
   takeHit(damage: number) {
@@ -211,6 +192,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
+    this.lifeLine.kill();
+
   }
 
   preUpdate(time: number, delta: number) {
@@ -219,7 +202,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const scene = this.scene as Game;
 
     scene.shield.moveShield(this.x, this.y);
-    this.updateLifeLine();
+    // this.lifeLine.update();
 
   }
 }

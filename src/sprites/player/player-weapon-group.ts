@@ -1,8 +1,7 @@
 import { Scene } from "phaser";
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import PlayerWeapon from '~/sprites/player/player-weapon';
-
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+import { WeaponPlayerType } from "~/types/weapons";
 export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene: Scene) {
     super(scene.physics.world, scene);

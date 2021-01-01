@@ -9,6 +9,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
         "FOLLOW":           1
     },
@@ -22,6 +23,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
         "FOLLOW":           1
     },
@@ -35,6 +37,7 @@
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
+        "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
         "FOLLOW":           0
     }
