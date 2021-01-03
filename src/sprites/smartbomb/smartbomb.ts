@@ -19,7 +19,7 @@ export default class Smartbomb {
         frame: 'red',
         x: x,
         y: y,
-        lifespan: {min:1500, max:2200},
+        lifespan: {min:1300, max:2200},
         angle: {start:0, end: 360, steps:64},
         speed: 200,
         blendMode: 'ADD',
