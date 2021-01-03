@@ -1,10 +1,10 @@
 {
-  "GREY_SHIP_PATH": [
+  "DEFAULT_PATH": [
     1500, 257,
     600, 400,
     -250, 300
   ],
-  "GREY_SHIP_REVERSED_PATH": [
+  "DEFAULT_REVERSED_PATH": [
     -250, 300,
     600, 400, 
     1500, 257

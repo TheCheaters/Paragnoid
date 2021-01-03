@@ -7,10 +7,10 @@
       "singleWave": false,
       "enemyQuantity": 4,
       "enemyDelay": 500,
-      "enemyType": "GREY_SHIP",
-      "enemyFlip": false,
+      "enemyType": "SHIP_6",
+      "enemyFlip": true,
       "enemyBehavior": "STANDARD",
-      "enemyPath": "GREY_SHIP_PATH",
+      "enemyPath": "DEFAULT_PATH",
       "callbacks": ["powerups.shield"]
     },
 
@@ -21,10 +21,10 @@
       "singleWave": false,
       "enemyQuantity": 6,
       "enemyDelay": 500,
-      "enemyType": "GREY_SHIP",
-      "enemyFlip": true,
+      "enemyType": "DEFAULT",
+      "enemyFlip": false,
       "enemyBehavior": "STANDARD",
-      "enemyPath": "GREY_SHIP_REVERSED_PATH"
+      "enemyPath": "DEFAULT_REVERSED_PATH"
     },
 
     {
