@@ -58,9 +58,7 @@ export default class SatelliteWeapon extends Weapon {
   preUpdate(time: number, delta: number, ) {
     super.preUpdate(time, delta);
     if (this.follow === 1) {
-      const {
-        enemies
-      } = this.scene as Game;
+      const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
       if (closestEnemy !== null) {
         const angleEnemy = Phaser.Math.Angle.Between(this.x, this.y, closestEnemy.x, closestEnemy.y);
@@ -108,9 +106,6 @@ export default class SatelliteWeapon extends Weapon {
           }
         }
       }
-
     }
-
   }
-
 }

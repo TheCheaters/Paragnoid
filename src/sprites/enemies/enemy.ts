@@ -54,12 +54,12 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
+    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE, ENEMY_SCALE } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
     this.setBodySize(WIDTH, HEIGHT);
-    this.setScale(0.3, 0.3);
+    this.setScale(ENEMY_SCALE);
 
 
     // POSITION

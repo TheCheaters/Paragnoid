@@ -2,10 +2,6 @@ import Game from "~/scenes/game";
 import Enemy from "~/sprites/enemies/enemy";
 import Player from "~/sprites/player/player";
 
-colors: {
-
-}
-
 export default class Lifeline {
   private style: Phaser.GameObjects.Graphics;
   private line: Phaser.Geom.Line;

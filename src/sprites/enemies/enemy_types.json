@@ -158,7 +158,7 @@
     "WIDTH": 967,
     "HEIGHT": 454,
     "ENEMY_SCALE": 0.2,
+    "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE": 1500
   }
-
 }
