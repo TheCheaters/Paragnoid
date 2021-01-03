@@ -11,7 +11,7 @@
       "enemyFlip": true,
       "enemyBehavior": "STANDARD",
       "enemyPath": "DEFAULT_PATH",
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.upgradeWeapon"]
     },
 
     {
