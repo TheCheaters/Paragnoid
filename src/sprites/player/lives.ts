@@ -1,5 +1,4 @@
 import { Scene } from "phaser";
-import { SPACECRAFT } from '~/constants.json';
 
 export default class Lives extends Phaser.Physics.Arcade.Group {
     public lifes!: number;
@@ -10,7 +9,7 @@ export default class Lives extends Phaser.Physics.Arcade.Group {
 
         this.createMultiple({
             frameQuantity: this.lifes,
-            key: SPACECRAFT,
+            key: texture,
             frame: 35,
             repeat: 0,
           });

@@ -1,7 +1,7 @@
-import { PlayerWeapon } from '~/sprites/weapons/weapon';
-import { Enemy } from '~/sprites/enemies/enemies';
+import PlayerWeapon from '~/sprites/player/player-weapon';
+import Enemy from '~/sprites/enemies/enemy';
 
 export default (enemy: Enemy, weapon: PlayerWeapon ) => {
-  enemy.takeHit(weapon.DAMAGE)
-  weapon.kill();
+  enemy.takeHit(weapon.damage)
+  weapon.explode();
 }

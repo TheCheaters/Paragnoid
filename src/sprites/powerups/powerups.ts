@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { POWERUP, FLARES } from '~/constants.json';
+import { POWERUP, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
 
 export enum PowerUpTypes {
   ENERGY         = 'ENERGY',
@@ -105,7 +105,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
     this.flares.setPosition(this.x, this.y);
 
-		if (this.x < -100) {
+    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
 			this.kill();
 		}
 	}

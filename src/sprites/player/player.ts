@@ -1,10 +1,12 @@
 import { DIRECTIONS } from '~/globals';
-import { SPACECRAFT, RESPAWN_TIME } from '~/constants.json';
-import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import { SPACECRAFT, RESPAWN_TIME, MORTAL } from '~/constants.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
 
 import Game from '~/scenes/game';
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+import debug from '~/utils/debug';
+import Lifeline from '~/utils/Lifeline';
+import { WeaponPlayerType } from '~/types/weapons';
 
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 
@@ -12,9 +14,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   public energy = 300;
   public speed = 1000;
-  private maxEnergy!: number;
-  private greenStyle!: Phaser.GameObjects.Graphics;
-  private greenLine!: Phaser.Geom.Line;
+  public maxEnergy!: number;
+  private lifeLine!: Lifeline;
+
   public weaponType = weaponNames[0] as WeaponPlayerType;
   public weaponLevel = 0;
 
@@ -24,6 +26,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
+    this.setImmovable(true);
     this.setDrag(500, 500);
     this.setMaxVelocity(300, 300);
 
@@ -75,36 +78,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // BEHAVIOR
     this.maxEnergy = this.energy;
-    this.setLifeLine();
-  }
-
-  setLifeLine() {
-    this.greenStyle = this.scene.add.graphics({
-      lineStyle: {
-        width: 3,
-        color: 0x00ff3d
-      }
-    });
-    this.greenLine = new Phaser.Geom.Line();
-  }
-
-  updateLifeLine() {
-    this.greenStyle.clear();
-    const xPos = this.x - this.width / 2;
-    this.greenLine.x1 = xPos;
-    this.greenLine.y1 = this.y + this.height-2;
-    this.greenLine.x2 = xPos + ((this.width) * this.energy) / this.maxEnergy;
-    this.greenLine.y2 = this.y + this.height-2;
-    this.greenStyle.strokeLineShape(this.greenLine);
+    // this.lifeLine = new Lifeline(this.scene as Game, this);
   }
 
   takeHit(damage: number) {
-    const scene = this.scene as Game;
-    console.log(scene.shield.isUp);
-    if (scene.shield.isUp) scene.shield.takeHit(damage);
-    else {
-      this.energy -= damage;
-      if (this.energy <= 0) { this.die(); }
+    if (MORTAL && debug) {
+      const scene = this.scene as Game;
+      console.log(scene.shield.isUp);
+      if (scene.shield.isUp) scene.shield.takeHit(damage);
+      else {
+        this.energy -= damage;
+        if (this.energy <= 0) { this.die(); }
+      }
     }
   }
 
@@ -137,7 +122,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.weaponLevel >= 1) {this.weaponLevel -= 1;}
   }
 
-  changeWeaponType(type:number){
+  changeWeaponType(type: number){
     this.weaponType = weaponNames[type] as WeaponPlayerType;
   }
 
@@ -207,6 +192,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
+    this.lifeLine.kill();
+
   }
 
   preUpdate(time: number, delta: number) {
@@ -215,7 +202,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const scene = this.scene as Game;
 
     scene.shield.moveShield(this.x, this.y);
-    this.updateLifeLine();
+    // this.lifeLine.update();
 
   }
 }

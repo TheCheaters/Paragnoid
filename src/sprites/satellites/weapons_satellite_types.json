@@ -1,0 +1,45 @@
+{
+    "DEFAULT": {
+        "DAMAGE":           300,
+        "FIRE_SPEED":       350,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "FOLLOW":           1
+    },
+    "MISSILI_SATELLITE": {
+        "DAMAGE":           300,
+        "FIRE_SPEED":       350,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "FOLLOW":           1
+    },
+    "LASER_SATELLITE": {
+        "DAMAGE":           100,
+        "FIRE_SPEED":       2000,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "FOLLOW":           0
+    }
+
+}

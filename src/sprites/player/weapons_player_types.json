@@ -1,0 +1,179 @@
+{
+    "DEFAULT": {
+        "DAMAGE":           1000,
+        "FIRE_SPEED":       4000,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         false,
+        "PARTICLES":        "LASER",
+        "LEVELS":           [
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "ANGLE": [
+                    -15,
+                    0,
+                    15
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            }
+        ]
+    },
+    "LASER": {
+        "DAMAGE":           1000,
+        "FIRE_SPEED":       4000,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         false,
+        "PARTICLES":        "LASER",
+        "LEVELS":           [
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "ANGLE": [
+                    -15,
+                    0,
+                    15
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            }
+        ]
+    },
+    "MISSILI": {
+        "DAMAGE":           100,
+        "FIRE_SPEED":       1000,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "LEVELS":           [
+            {
+                "ANGLE": [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            35,
+                "SATELLITES_OFFSET_Y": [0],
+                "SATELLITES_OFFSET_X": 0
+
+            },
+            {
+                "ANGLE": [
+                    -15,
+                    0,
+                    15
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            35,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 0
+
+            },
+            {
+                "ANGLE": [
+                    -45,
+                    -15,
+                    0,
+                    15,
+                    45
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            35,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 40
+
+            },
+            {
+                "ANGLE": [
+                    -0.01,
+                    0,
+                    0.01
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     30,
+                "DURATION":            35,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            }
+        ]
+    }
+}

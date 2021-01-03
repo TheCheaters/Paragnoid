@@ -1,0 +1,776 @@
+{
+	"textures": [
+		{
+			"image": "weapons.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 843,
+				"h": 126
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Missile_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 174,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 174,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 174,
+						"h": 64
+					}
+				},
+				{
+					"filename": "Missile_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 118,
+						"h": 58
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 118,
+						"h": 58
+					},
+					"frame": {
+						"x": 1,
+						"y": 67,
+						"w": 118,
+						"h": 58
+					}
+				},
+				{
+					"filename": "BlueBlast__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 131,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 21,
+						"y": 2,
+						"w": 110,
+						"h": 58
+					},
+					"frame": {
+						"x": 121,
+						"y": 67,
+						"w": 110,
+						"h": 58
+					}
+				},
+				{
+					"filename": "BlueBlast__001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 131,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 131,
+						"h": 60
+					},
+					"frame": {
+						"x": 177,
+						"y": 1,
+						"w": 131,
+						"h": 60
+					}
+				},
+				{
+					"filename": "OrangeBlast__001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 131,
+						"h": 59
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 131,
+						"h": 59
+					},
+					"frame": {
+						"x": 233,
+						"y": 63,
+						"w": 131,
+						"h": 59
+					}
+				},
+				{
+					"filename": "BlueSpin__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 2,
+						"w": 32,
+						"h": 58
+					},
+					"frame": {
+						"x": 310,
+						"y": 1,
+						"w": 32,
+						"h": 58
+					}
+				},
+				{
+					"filename": "OrangeBlast__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 131,
+						"h": 59
+					},
+					"spriteSourceSize": {
+						"x": 21,
+						"y": 2,
+						"w": 110,
+						"h": 57
+					},
+					"frame": {
+						"x": 344,
+						"y": 1,
+						"w": 110,
+						"h": 57
+					}
+				},
+				{
+					"filename": "OrangeSpin__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 2,
+						"w": 33,
+						"h": 57
+					},
+					"frame": {
+						"x": 366,
+						"y": 60,
+						"w": 33,
+						"h": 57
+					}
+				},
+				{
+					"filename": "BlueSpin__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 4,
+						"w": 32,
+						"h": 57
+					},
+					"frame": {
+						"x": 401,
+						"y": 60,
+						"w": 32,
+						"h": 57
+					}
+				},
+				{
+					"filename": "OrangeSpin__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 2,
+						"w": 31,
+						"h": 57
+					},
+					"frame": {
+						"x": 435,
+						"y": 60,
+						"w": 31,
+						"h": 57
+					}
+				},
+				{
+					"filename": "BlueSpin__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 10,
+						"w": 52,
+						"h": 42
+					},
+					"frame": {
+						"x": 456,
+						"y": 1,
+						"w": 52,
+						"h": 42
+					}
+				},
+				{
+					"filename": "BlueSpin__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 11,
+						"w": 51,
+						"h": 42
+					},
+					"frame": {
+						"x": 468,
+						"y": 45,
+						"w": 51,
+						"h": 42
+					}
+				},
+				{
+					"filename": "OrangeSpin__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 9,
+						"w": 51,
+						"h": 42
+					},
+					"frame": {
+						"x": 510,
+						"y": 1,
+						"w": 51,
+						"h": 42
+					}
+				},
+				{
+					"filename": "BlueTail__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 115,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 0,
+						"w": 101,
+						"h": 33
+					},
+					"frame": {
+						"x": 468,
+						"y": 89,
+						"w": 101,
+						"h": 33
+					}
+				},
+				{
+					"filename": "BlueTail__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 115,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 0,
+						"w": 101,
+						"h": 33
+					},
+					"frame": {
+						"x": 468,
+						"y": 89,
+						"w": 101,
+						"h": 33
+					}
+				},
+				{
+					"filename": "OrangeSpin__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 9,
+						"w": 51,
+						"h": 41
+					},
+					"frame": {
+						"x": 521,
+						"y": 45,
+						"w": 51,
+						"h": 41
+					}
+				},
+				{
+					"filename": "BlueTail__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 115,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 28,
+						"y": 0,
+						"w": 87,
+						"h": 33
+					},
+					"frame": {
+						"x": 571,
+						"y": 88,
+						"w": 87,
+						"h": 33
+					}
+				},
+				{
+					"filename": "BlueTail__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 115,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 115,
+						"h": 30
+					},
+					"frame": {
+						"x": 563,
+						"y": 1,
+						"w": 115,
+						"h": 30
+					}
+				},
+				{
+					"filename": "BlueTail__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 115,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 115,
+						"h": 30
+					},
+					"frame": {
+						"x": 563,
+						"y": 1,
+						"w": 115,
+						"h": 30
+					}
+				},
+				{
+					"filename": "OrangeTail__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 101,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 0,
+						"w": 75,
+						"h": 28
+					},
+					"frame": {
+						"x": 574,
+						"y": 33,
+						"w": 75,
+						"h": 28
+					}
+				},
+				{
+					"filename": "OrangeScale__000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 56,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 56,
+						"h": 23
+					},
+					"frame": {
+						"x": 574,
+						"y": 63,
+						"w": 56,
+						"h": 23
+					}
+				},
+				{
+					"filename": "OrangeScale__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 45,
+						"h": 23
+					},
+					"frame": {
+						"x": 632,
+						"y": 63,
+						"w": 45,
+						"h": 23
+					}
+				},
+				{
+					"filename": "OrangeTail__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 101,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 1,
+						"w": 89,
+						"h": 27
+					},
+					"frame": {
+						"x": 651,
+						"y": 33,
+						"w": 89,
+						"h": 27
+					}
+				},
+				{
+					"filename": "OrangeTail__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 101,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 1,
+						"w": 89,
+						"h": 27
+					},
+					"frame": {
+						"x": 651,
+						"y": 33,
+						"w": 89,
+						"h": 27
+					}
+				},
+				{
+					"filename": "BlueSpin__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 19,
+						"w": 59,
+						"h": 26
+					},
+					"frame": {
+						"x": 680,
+						"y": 1,
+						"w": 59,
+						"h": 26
+					}
+				},
+				{
+					"filename": "OrangeTail__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 101,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 101,
+						"h": 25
+					},
+					"frame": {
+						"x": 741,
+						"y": 1,
+						"w": 101,
+						"h": 25
+					}
+				},
+				{
+					"filename": "OrangeTail__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 101,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 101,
+						"h": 25
+					},
+					"frame": {
+						"x": 741,
+						"y": 1,
+						"w": 101,
+						"h": 25
+					}
+				},
+				{
+					"filename": "OrangeSpin__000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 18,
+						"w": 59,
+						"h": 26
+					},
+					"frame": {
+						"x": 660,
+						"y": 88,
+						"w": 59,
+						"h": 26
+					}
+				},
+				{
+					"filename": "BlueScale__000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 56,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 56,
+						"h": 24
+					},
+					"frame": {
+						"x": 679,
+						"y": 62,
+						"w": 56,
+						"h": 24
+					}
+				},
+				{
+					"filename": "BlueScale__001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 45,
+						"h": 24
+					},
+					"frame": {
+						"x": 721,
+						"y": 88,
+						"w": 45,
+						"h": 24
+					}
+				},
+				{
+					"filename": "BlueScale__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 45,
+						"h": 24
+					},
+					"frame": {
+						"x": 737,
+						"y": 62,
+						"w": 45,
+						"h": 24
+					}
+				},
+				{
+					"filename": "BlueScale__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 0,
+						"w": 32,
+						"h": 24
+					},
+					"frame": {
+						"x": 742,
+						"y": 28,
+						"w": 32,
+						"h": 24
+					}
+				},
+				{
+					"filename": "BlueScale__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 0,
+						"w": 32,
+						"h": 24
+					},
+					"frame": {
+						"x": 776,
+						"y": 28,
+						"w": 32,
+						"h": 24
+					}
+				},
+				{
+					"filename": "OrangeScale__002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 0,
+						"w": 31,
+						"h": 23
+					},
+					"frame": {
+						"x": 810,
+						"y": 28,
+						"w": 31,
+						"h": 23
+					}
+				},
+				{
+					"filename": "OrangeScale__003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 0,
+						"w": 31,
+						"h": 23
+					},
+					"frame": {
+						"x": 810,
+						"y": 53,
+						"w": 31,
+						"h": 23
+					}
+				},
+				{
+					"filename": "OrangeScale__004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 56,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 45,
+						"h": 23
+					},
+					"frame": {
+						"x": 784,
+						"y": 78,
+						"w": 45,
+						"h": 23
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ebeb1fa371aafca78f43bbfe2e43df39:be003f54d87b6543b9e5c4b541d111df:ba48453f8b2235fdb166a51105f49255$"
+	}
+}

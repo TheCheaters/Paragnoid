@@ -1,25 +1,23 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { MISSILI_SATELLITE } from '~/sprites/weapons/weapons_satellite_types.json';
 import { SATELLITE } from '~/constants.json';
-import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
-import WEAPON_SATELLITE_TYPES from '~/sprites/weapons/weapons_satellite_types.json';
+import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
+import { WeaponSatelliteType } from "~/types/weapons";
 
-type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
 export class Satellite extends Phaser.Physics.Arcade.Sprite{
     private keys!: {
       [key: string]: Phaser.Input.Keyboard.Key; };
     public timer!: Phaser.Time.TimerEvent;
-    FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
-    AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
-    DAMAGE = MISSILI_SATELLITE.DAMAGE;
-    TEXTURE_NAME = MISSILI_SATELLITE.TEXTURE_NAME;
-    SPRITE_ASSET_PATH = MISSILI_SATELLITE.SPRITE_ASSET_PATH;
-    AUDIO_ASSET_PATH = MISSILI_SATELLITE.AUDIO_ASSET_PATH;
-    WIDTH = MISSILI_SATELLITE.WIDTH;
-    HEIGHT = MISSILI_SATELLITE.HEIGHT;
-    FOLLOW = MISSILI_SATELLITE.FOLLOW;
+    fireSpeed = WEAPON_SATELLITE_TYPES.DEFAULT.FIRE_SPEED;
+    audioName = WEAPON_SATELLITE_TYPES.DEFAULT.AUDIO_NAME;
+    damage = WEAPON_SATELLITE_TYPES.DEFAULT.DAMAGE;
+    textureName = WEAPON_SATELLITE_TYPES.DEFAULT.TEXTURE_NAME;
+    audioAssetPath = WEAPON_SATELLITE_TYPES.DEFAULT.AUDIO_ASSET_PATH;
+    width = WEAPON_SATELLITE_TYPES.DEFAULT.WIDTH;
+    height = WEAPON_SATELLITE_TYPES.DEFAULT.HEIGHT;
+    follow = WEAPON_SATELLITE_TYPES.DEFAULT.FOLLOW;
     private energy = 200;
     private offsetY!: number;
     private offsetX!: number;
@@ -27,19 +25,6 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite{
     public weaponType = weaponNames[0] as WeaponSatelliteType;
     constructor(scene: Game, x: number, y: number, texture: string){
         super(scene, x, y, texture);
-        this.DAMAGE = MISSILI_SATELLITE.DAMAGE;
-        this.FIRE_SPEED = MISSILI_SATELLITE.FIRE_SPEED;
-        this.TEXTURE_NAME = MISSILI_SATELLITE.TEXTURE_NAME;
-        this.SPRITE_ASSET_PATH = MISSILI_SATELLITE.SPRITE_ASSET_PATH;
-        this.AUDIO_NAME = MISSILI_SATELLITE.AUDIO_NAME;
-        this.AUDIO_ASSET_PATH = MISSILI_SATELLITE.AUDIO_ASSET_PATH;
-        this.WIDTH = MISSILI_SATELLITE.WIDTH;
-        this.HEIGHT = MISSILI_SATELLITE.HEIGHT;
-        this.FOLLOW = MISSILI_SATELLITE.FOLLOW;
-        this.keys = {
-          space: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)  }
-
-
     }
 
 make(offsetX: number, offsetY: number) {
@@ -60,7 +45,7 @@ make(offsetX: number, offsetY: number) {
     const delay = Phaser.Math.Between(4000, 5000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
-      this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);
+      this.fireSatellite(this.x, this.y, this.weaponType, this.follow);
     }, callbackScope: this, loop: true });
 
     }
@@ -89,7 +74,7 @@ kill() {
 
 fireSatellite(x: number, y: number, weaponType: WeaponSatelliteType, follow: number){
   const { satelliteWeaponsGroup } = this.scene as Game;
-  satelliteWeaponsGroup.fireBulletSatellite({ x, y, weaponType, follow });
+  satelliteWeaponsGroup.fire({ x, y, weaponType, follow });
 }
 
 preUpdate(){

@@ -1,12 +1,9 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
 import { DIRECTIONS } from '~/globals';
-import WEAPON_PLAYER_TYPES from '~/sprites/weapons/weapons_player_types.json';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
-
-const weaponNames = Object.keys(WEAPON_PLAYER_TYPES);
-
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
+import debug from '~/utils/debug';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -101,38 +98,49 @@ export default class KeysController extends Scene {
     }
 
     // TASTI AUMENTO DIMINUZIONE LIVELLO ARMI PER DEBUG
-    if (Phaser.Input.Keyboard.JustDown(this.keys.m)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.m) && debug) {
       player.increaseLevelWeapon();
-      
-    } else if (Phaser.Input.Keyboard.JustDown(this.keys.n)) {
+
+    } else if (Phaser.Input.Keyboard.JustDown(this.keys.n) && debug) {
       player.decreaseLevelWeapon();
     }
     // TASTI CAMBIO ARMA PER DEBUG
-    if (Phaser.Input.Keyboard.JustDown(this.keys.l)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.l) && debug) {
       player.changeWeaponType(1);
     }
-    if (Phaser.Input.Keyboard.JustDown(this.keys.k)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.k) && debug) {
       player.changeWeaponType(2);
     }
-    if (Phaser.Input.Keyboard.JustDown(this.keys.j)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.j) && debug) {
       player.changeWeaponType(0);
     }
     //  PLAYER SHOOT FUNCTION
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
-        playerWeaponsGroup.fireBulletPlayer(player.x, player.y, player.weaponType, player.weaponLevel);
+
+    if (WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION === -1) {
+
+      if (Phaser.Input.Keyboard.JustDown(this.keys.space)) {
+        playerWeaponsGroup.fire(player.x, player.y, player.weaponType, player.weaponLevel);
+      }
+
+    } else {
+
+      if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
+          playerWeaponsGroup.fire(player.x, player.y, player.weaponType, player.weaponLevel);
+        }
 
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.keys.one)) {
+
+    if (Phaser.Input.Keyboard.JustDown(this.keys.one) && debug) {
       sceneChangeEmitter.emit('sky-boss-is-dead');
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.keys.two)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.two) && debug) {
       sceneChangeEmitter.emit('space-boss-is-dead');
     }
 
     // SHIELD UP (DEBUG)
-    if (Phaser.Input.Keyboard.JustDown(this.keys.z)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keys.z) && debug) {
       player.shieldUp();
     }
 

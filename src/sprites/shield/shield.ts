@@ -1,5 +1,5 @@
 import Game from '~/scenes/game';
-import { BLUE_PARTICLE, SPACECRAFT_FRAME_WIDTH, SPACECRAFT_FRAME_HEIGH } from '~/constants.json';
+import { FLARES } from '~/constants.json';
 
 export default class Shield {
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
@@ -13,7 +13,7 @@ export default class Shield {
   }
 
   createShield() {
-    this.manager = this.scene.add.particles(BLUE_PARTICLE);
+    this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
       .createEmitter({
         x: 0,
@@ -21,13 +21,13 @@ export default class Shield {
         blendMode: 'ADD',
         scale: { start: 0.1, end: 0 },
         speed: { min: -100, max: 100 },
-        quantity: 3,
+        quantity: 1,
         visible: false,
       })
       .setEmitZone({
         source: new Phaser.Geom.Circle(0, 0, 50),
         type: 'edge',
-        quantity: 50,
+        quantity: 20,
       });
   }
 
