@@ -4,6 +4,7 @@
     "FRAME_NAME":   "Ship/Ship_1.png",
     "WIDTH":        435,
     "HEIGHT":       309,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  100
   },

@@ -15,6 +15,7 @@ type Make = {
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyFlip: true | false;
+  enemyScale: keyof typeof ENEMY_TYPES;
 }
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
@@ -29,6 +30,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
   private enemyFlip?: Make ['enemyFlip'] | null;
+  private enemyScale?: keyof typeof ENEMY_TYPES;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
@@ -54,11 +56,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
+  make({ enemyType, enemyBehavior, enemyPath, enemyFlip, enemyScale }: Make) {
 
     this.isBoss = enemyType.includes('BOSS');
     this.enemyType = enemyType;
     this.enemyFlip = enemyFlip;
+    this.enemyScale = enemyScale;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -73,11 +76,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
+    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, ENEMY_SCALE, WEAPON_TYPE, SCORE_VALUE } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
-    this.setBodySize(WIDTH, HEIGHT);
+    this.setBodySize(WIDTH, HEIGHT, ENEMY_SCALE);
     this.setScale(0.3, 0.3);
 
 
@@ -195,9 +198,9 @@ export default class Enemies extends Phaser.Physics.Arcade.Group {
 
   }
 
-  makeEnemy({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
+  makeEnemy({ enemyType, enemyBehavior, enemyPath, enemyFlip, enemyScale }: Make) {
     const enemy = this.getFirstDead(false) as Enemy;
-    if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath, enemyFlip });
+    if (enemy) enemy.make({ enemyType, enemyBehavior, enemyPath, enemyFlip, enemyScale });
   }
 
   getChildrenAlive(){
