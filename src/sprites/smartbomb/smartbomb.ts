@@ -10,7 +10,7 @@ export default class Smartbomb {
 
   constructor(scene: Game) {
     this.scene = scene;
-    this.createSmartbomb(600, 400);
+    this.createSmartbomb(Phaser.Math.RND.between(0, 1200), Phaser.Math.RND.between(0, 600));
   }
   createSmartbomb(x: number, y: number) {
     this.manager = this.scene.add.particles(FLARES);
