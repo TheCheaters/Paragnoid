@@ -13,6 +13,7 @@
     "FRAME_NAME":   "Ship/Ship_2.png",
     "WIDTH":        488,
     "HEIGHT":       200,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  1000
   },
@@ -21,6 +22,7 @@
     "FRAME_NAME":   "Ship/Ship_3.png",
     "WIDTH":        414,
     "HEIGHT":       320,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  1200
   },
@@ -29,6 +31,7 @@
     "FRAME_NAME":   "Ship/Ship_4.png",
     "WIDTH":        423,
     "HEIGHT":       232,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "SKY_BOSS_WEAPON",
     "SCORE_VALUE":  10000
   },
@@ -37,6 +40,7 @@
     "FRAME_NAME":   "Ship/Ship_5.png",
     "WIDTH":        483,
     "HEIGHT":       273,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   },
@@ -45,6 +49,7 @@
     "FRAME_NAME":   "Ship/Ship_6.png",
     "WIDTH":        474,
     "HEIGHT":       275,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   },
@@ -53,6 +58,7 @@
     "FRAME_NAME":   "Ship/Ship_7.png",
     "WIDTH":        637,
     "HEIGHT":       239,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  1500
   },
@@ -61,6 +67,7 @@
     "FRAME_NAME":   "Ship/Ship_8.png",
     "WIDTH":        509,
     "HEIGHT":       245,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  1500
   },
@@ -69,6 +76,7 @@
     "FRAME_NAME":   "Ship/Ship_9.png",
     "WIDTH":        466,
     "HEIGHT":       267,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  500
   },
@@ -77,6 +85,7 @@
     "FRAME_NAME":   "Ship/Ship_10.png",
     "WIDTH":        511,
     "HEIGHT":       296,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  600
   },
@@ -85,6 +94,7 @@
     "FRAME_NAME":   "Ship/Ship_11.png",
     "WIDTH":        673,
     "HEIGHT":       337,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  5000
   },
@@ -93,6 +103,7 @@
     "FRAME_NAME":   "Ship/Ship_12.png",
     "WIDTH":        720,
     "HEIGHT":       269,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "MEGA",
     "SCORE_VALUE":  500
   },
@@ -101,6 +112,7 @@
     "FRAME_NAME":   "Ship/Ship_13.png",
     "WIDTH":        632,
     "HEIGHT":       368,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  300
   },
@@ -109,6 +121,7 @@
     "FRAME_NAME":   "Ship/Ship_14.png",
     "WIDTH":        575,
     "HEIGHT":       350,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1000
   },
@@ -117,6 +130,7 @@
     "FRAME_NAME":   "Ship/Ship_15.png",
     "WIDTH":        703,
     "HEIGHT":       318,
+    "ENEMY_SCALE":    0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   }
