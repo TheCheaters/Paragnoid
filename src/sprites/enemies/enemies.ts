@@ -15,7 +15,7 @@ type Make = {
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyFlip: true | false;
-  enemyScale: keyof typeof ENEMY_TYPES;
+  enemyScale: number;
 }
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
@@ -29,8 +29,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
-  private enemyFlip?: Make ['enemyFlip'] | null;
-  private enemyScale?: keyof typeof ENEMY_TYPES;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
@@ -56,12 +54,10 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.greenStyle.strokeLineShape(this.greenLine);
   }
 
-  make({ enemyType, enemyBehavior, enemyPath, enemyFlip, enemyScale }: Make) {
+  make({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
 
     this.isBoss = enemyType.includes('BOSS');
     this.enemyType = enemyType;
-    this.enemyFlip = enemyFlip;
-    this.enemyScale = enemyScale;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -80,8 +76,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
-    this.setBodySize(WIDTH, HEIGHT, ENEMY_SCALE);
-    this.setScale(0.3, 0.3);
+    this.setBodySize(WIDTH, HEIGHT);
+    this.setScale(ENEMY_SCALE);
 
 
     // POSITION

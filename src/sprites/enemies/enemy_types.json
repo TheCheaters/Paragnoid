@@ -130,7 +130,7 @@
     "FRAME_NAME":   "Ship/Ship_15.png",
     "WIDTH":        703,
     "HEIGHT":       318,
-    "ENEMY_SCALE":    0.3,
+    "ENEMY_SCALE":  0.3,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   }
