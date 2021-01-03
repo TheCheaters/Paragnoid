@@ -33,19 +33,6 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
-  make({ texture, frame, sound, x, y, width, height, scale, explodes, flip = true }: WeaponType) {
-    this.explodes = explodes;
-    this.createTrail();
-    this.setImmovable(true);
-    this.setTexture(texture, frame);
-    this.setBodySize(width, height);
-    this.setScale(scale);
-    this.setFlipX(flip);
-    this.setOrigin(1, 0.5);
-    this.enableBody(true, x, y, true, true);
-    this.scene.sound.play(sound);
-  }
-
   explode() {
     if (this.explodes) {
       const { explosions } = this.scene as Game;
@@ -67,4 +54,26 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   removeTrail() {
     if (this.emitter) this.emitter.remove();
   }
+
+  make({ texture, frame, sound, x, y, width, height, scale, explodes, flip = true }: WeaponType) {
+    this.explodes = explodes;
+    this.createTrail();
+    this.setImmovable(true);
+    this.setTexture(texture, frame);
+    this.setBodySize(width, height);
+    this.setScale(scale);
+    this.setFlipX(flip);
+    this.setOrigin(1, 0.5);
+    this.enableBody(true, x, y, true, true);
+    this.scene.sound.play(sound);
+    console.log('made weapon');
+  }
+
+	preUpdate(time: number, delta: number,) {
+    super.preUpdate(time, delta);
+    this.emitter.setPosition(this.x, this.y);
+    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
+      this.kill();
+    }
+	}
 }
