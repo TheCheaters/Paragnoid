@@ -6,7 +6,7 @@
     "HEIGHT":       309,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  100
+    "SCORE_VALUE":  1000
   },
   "SHIP_2": {
     "TEXTURE_NAME": "enemies",
@@ -15,7 +15,7 @@
     "HEIGHT":       200,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1000
+    "SCORE_VALUE":  1100
   },
   "SHIP_3": {
     "TEXTURE_NAME": "enemies",
@@ -32,7 +32,7 @@
     "WIDTH":        423,
     "HEIGHT":       232,
     "ENEMY_SCALE":  0.2,
-    "WEAPON_TYPE":  "SKY_BOSS_WEAPON",
+    "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  10000
   },
   "SHIP_5": {
@@ -51,7 +51,7 @@
     "HEIGHT":       275,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1000
   },
   "SHIP_7": {
     "TEXTURE_NAME": "enemies",
@@ -68,7 +68,7 @@
     "WIDTH":        509,
     "HEIGHT":       245,
     "ENEMY_SCALE":  0.2,
-    "WEAPON_TYPE":  "ULTRA",
+    "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   },
   "SHIP_9": {
