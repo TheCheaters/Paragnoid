@@ -15,6 +15,7 @@ type Make = {
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
   enemyPath: keyof typeof ENEMY_PATHS | null;
   enemyFlip: true | false;
+  enemyScale: number;
 }
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
@@ -28,7 +29,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
   private isBoss = false;
   private enemyPath?: Make['enemyPath'] | null;
-  private enemyFlip?: Make ['enemyFlip'] | null;
   private greenStyle!: Phaser.GameObjects.Graphics;
   private greenLine!: Phaser.Geom.Line;
   private path?: { t: number, vec: Phaser.Math.Vector2 };
@@ -58,7 +58,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.isBoss = enemyType.includes('BOSS');
     this.enemyType = enemyType;
-    this.enemyFlip = enemyFlip;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -78,7 +77,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
     this.setBodySize(WIDTH, HEIGHT);
-    this.setScale(0.3, 0.3);
+    this.setScale(ENEMY_SCALE);
 
 
     // POSITION
@@ -105,7 +104,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       const { player } = this.scene as Game;
       this.scene.physics.moveToObject(this, player, SPEED);
 
-    }; 
+    };
 
     this.setFlipX(enemyFlip);
 
