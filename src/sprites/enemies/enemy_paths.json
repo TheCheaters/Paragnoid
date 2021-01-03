@@ -1,23 +1,23 @@
 {
-  "GREY_SHIP_PATH": [
-    1400, 257,
+  "DEFAULT_PATH": [
+    1500, 257,
     600, 400,
-    -500, 300
+    -250, 300
   ],
-  "GREY_SHIP_REVERSED_PATH": [
-    -200, 300,
+  "DEFAULT_REVERSED_PATH": [
+    -250, 300,
     600, 400,
-    1700, 257
+    1500, 257
   ],
   "SHIP_2_REVERSED_PATH": [
     -250, 300,
     650, 450,
-    1700, 250
+    1500, 250
   ],
   "SHIP_8_REVERSED_PATH": [
     -250,300,
     650,450,
-    1700,250
+    1500,250
   ],
   "SPACE_BOSS_PATH": [
     1200, 257,
