@@ -33,6 +33,19 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, DEFAULT.TEXTURE_NAME);
   }
 
+  make({ texture, frame, sound, x, y, width, height, scale, explodes, flip = true }: WeaponType) {
+    this.explodes = explodes;
+    this.createTrail();
+    this.setImmovable(true);
+    this.setTexture(texture, frame);
+    this.setBodySize(width, height);
+    this.setScale(scale);
+    this.setFlipX(flip);
+    this.setOrigin(1, 0.5);
+    this.enableBody(true, x, y, true, true);
+    this.scene.sound.play(sound);
+  }
+
   explode() {
     if (this.explodes) {
       const { explosions } = this.scene as Game;

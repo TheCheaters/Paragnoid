@@ -11,7 +11,9 @@
         "SCALE":            0.3,
         "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
-        "FOLLOW":           1
+        "FOLLOW":           1,
+        "TURN_RATE":        3
+
     },
     "MISSILI_SATELLITE": {
         "DAMAGE":           300,
@@ -25,7 +27,9 @@
         "SCALE":            0.3,
         "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
-        "FOLLOW":           1
+        "FOLLOW":           1,
+        "TURN_RATE":        5
+
     },
     "LASER_SATELLITE": {
         "DAMAGE":           100,
@@ -39,7 +43,9 @@
         "SCALE":            0.3,
         "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
-        "FOLLOW":           0
+        "FOLLOW":           0,
+        "TURN_RATE":        5
+
     }
 
 }

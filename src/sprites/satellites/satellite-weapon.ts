@@ -92,19 +92,8 @@ fireSatellite(x: number, y: number, angle: number, follow: number, weaponType: W
     this.setVelocityY(this.FIRE_SPEED*Math.sin(Phaser.Math.DegToRad(angle)));
     this.setRotation(Phaser.Math.DegToRad(angle));
   }
-make({ texture, frame, sound, x, y, width, height, scale, explodes, flip = true }: WeaponType) {
-this.explodes = explodes;
-this.createTrail();
-this.setImmovable(true);
-this.setTexture(texture, frame);
-this.setBodySize(width, height);
-this.setScale(scale);
-this.setFlipX(flip);
-this.setOrigin(1, 0.5);
-this.enableBody(true, x, y, true, true);
-this.scene.sound.play(sound);
-console.log('made weapon');
 }
+
 
 preUpdate(time: number, delta: number,) {
 super.preUpdate(time, delta);
