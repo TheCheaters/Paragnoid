@@ -4,121 +4,161 @@
     "FRAME_NAME":   "Ship/Ship_1.png",
     "WIDTH":        435,
     "HEIGHT":       309,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  100
   },
-  "GREY_SHIP": {
+  "SHIP_2": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_2.png",
     "WIDTH":        488,
     "HEIGHT":       200,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  1000
   },
-  "GREY_SHIP_REVERSED": {
+  "SHIP_3": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_3.png",
     "WIDTH":        414,
     "HEIGHT":       320,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  1200
   },
-  "SKY_BOSS": {
+  "SHIP_4": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_4.png",
     "WIDTH":        423,
     "HEIGHT":       232,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "SKY_BOSS_WEAPON",
     "SCORE_VALUE":  10000
   },
-  "WHITE_SHIP": {
+  "SHIP_5": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_5.png",
     "WIDTH":        483,
     "HEIGHT":       273,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
   },
-  "WHITE_SHIP_REVERSED": {
+  "SHIP_6": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_6.png",
     "WIDTH":        474,
     "HEIGHT":       275,
-    "WEAPON_TYPE":  "DIFFUSO",
+    "ENEMY_SCALE":  0.2,
+    "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE":  1500
   },
-  "GREEN_SHIP": {
+  "SHIP_7": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_7.png",
     "WIDTH":        637,
     "HEIGHT":       239,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  1500
   },
-  "GREEN_SHIP_REVERSED": {
+  "SHIP_8": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_8.png",
     "WIDTH":        509,
     "HEIGHT":       245,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  1500
   },
-  "PURPLE_SHIP": {
+  "SHIP_9": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_9.png",
     "WIDTH":        466,
     "HEIGHT":       267,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  500
   },
-  "DARKGREEN_SHIP": {
+  "SHIP_10": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_10.png",
     "WIDTH":        511,
     "HEIGHT":       296,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  600
   },
-  "SPACE_BOSS_SHIP": {
+  "SHIP_11": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_11.png",
     "WIDTH":        673,
     "HEIGHT":       337,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  5000
   },
-  "DARKWHITE_SHIP": {
+  "SHIP_12": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_12.png",
     "WIDTH":        720,
     "HEIGHT":       269,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "MEGA",
     "SCORE_VALUE":  500
   },
-  "PIRATE_SHIP": {
+  "SHIP_13": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_13.png",
     "WIDTH":        632,
     "HEIGHT":       368,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
     "SCORE_VALUE":  300
   },
-  "PINCER_SHIP": {
+  "SHIP_14": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_14.png",
     "WIDTH":        575,
     "HEIGHT":       350,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1000
   },
-  "KNIGHT_SHIP": {
+  "SHIP_15": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_15.png",
     "WIDTH":        703,
     "HEIGHT":       318,
-    "ENEMY_SCALE":  0.3,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
     "SCORE_VALUE":  1500
+  },
+  "SHIP_16": {
+    "TEXTURE_NAME": "enemies",
+    "FRAME_NAME":   "Ship/Ship_16.png",
+    "WIDTH":        969,
+    "HEIGHT":       421,
+    "ENEMY_SCALE":  0.2,
+    "WEAPON_TYPE":  "DEFAULT",
+    "SCORE_VALUE":  1500
+  },
+  "SHIP_17": {
+    "TEXTURE_NAME": "enemies",
+    "FRAME_NAME":   "Ship/Ship_17.png",
+    "WIDTH":        856,
+    "HEIGHT":       496,
+    "ENEMY_SCALE":  0.2,
+    "WEAPON_TYPE":  "DEFAULT",
+    "SCORE_VALUE":  1500
+  },
+  "SHIP_18": {
+    "TEXTURE_NAME": "enemies",
+    "FRAME_NAME":   "Ship/Ship_18.png",
+    "WIDTH": 967,
+    "HEIGHT": 454,
+    "ENEMY_SCALE": 0.2,
+    "SCORE_VALUE": 1500
   }
 
 }
