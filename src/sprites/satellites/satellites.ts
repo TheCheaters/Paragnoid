@@ -57,7 +57,7 @@ make(offsetX: number, offsetY: number) {
     this.setVisible(true);
     this.activeSatellite = true;
     this.weaponType = "MISSILI_SATELLITE";
-    const delay = Phaser.Math.Between(1000, 1100); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
+    const delay = Phaser.Math.Between(4000, 5000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fireSatellite(this.x, this.y, this.weaponType, this.FOLLOW);

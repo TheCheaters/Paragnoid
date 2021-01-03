@@ -11,7 +11,7 @@
       "enemyFlip": false,
       "enemyBehavior": "STANDARD",
       "enemyPath": "GREY_SHIP_PATH",
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.upgradeWeapon"]
     },
 
     {

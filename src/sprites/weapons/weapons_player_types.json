@@ -68,7 +68,7 @@
         ]
     },
     "LASER": {
-        "DAMAGE": 100,
+        "DAMAGE": 300,
         "FIRE_SPEED": 2000,
         "TEXTURE_NAME": "Laser",
         "SPRITE_ASSET_PATH": "assets/weapons/laser2.png",
