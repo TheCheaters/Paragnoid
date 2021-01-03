@@ -5,7 +5,7 @@
   "SPACECRAFT":                  "spacecraft",
   "SPACECRAFT_ASSET_PATH":       "assets/player/spacecraft.png",
   "SPACECRAFT_FRAME_WIDTH":      50,
-  "SPACECRAFT_FRAME_HEIGH":      22,
+  "SPACECRAFT_FRAME_HEIGHT":     22,
   "BLUE_PARTICLE":               "blue_particle",
   "BLUE_PARTICLE_ASSET_PATH":    "assets/particles/blue_particle.png",
   "FLARES":                      "flares",

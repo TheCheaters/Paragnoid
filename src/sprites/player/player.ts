@@ -202,6 +202,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.shield.shieldDown();
   }
 
+  launchSmartbomb(){
+    const scene = this.scene as Game;
+    scene.smartbomb.smartbombLaunch();
+  }
+
   kill() {
     this.body.enable = false;
     this.setActive(false);

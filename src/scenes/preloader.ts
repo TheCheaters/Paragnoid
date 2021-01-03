@@ -25,7 +25,7 @@ export default class Preload extends Scene {
     this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
     this.load.spritesheet(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH, {
       frameWidth: C.SPACECRAFT_FRAME_WIDTH,
-      frameHeight: C.SPACECRAFT_FRAME_HEIGH,
+      frameHeight: C.SPACECRAFT_FRAME_HEIGHT,
     });
     Object.keys(EXPLOSION_TYPES).forEach((E) => {
       const EXPLOSION = E as ExplosionType;

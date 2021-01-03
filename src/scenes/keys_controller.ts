@@ -62,7 +62,7 @@ export default class KeysController extends Scene {
       a: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
       s: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       d: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
-
+      q: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
     }
 
   }
@@ -136,6 +136,10 @@ export default class KeysController extends Scene {
       player.shieldUp();
     }
 
+    // SMARTBOMB LAUNCH (DEBUG)
+    if (Phaser.Input.Keyboard.JustDown(this.keys.q)) {
+      player.launchSmartbomb();
+    }
   }
 }
 

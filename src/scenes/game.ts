@@ -14,6 +14,7 @@ import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollis
 import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/weapons/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
+import Smartbomb from '~/sprites/smartbomb/smartbomb';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
@@ -21,6 +22,7 @@ export default class Game extends Scene {
   public satellites!: Satellites;
   public satellite!: Satellite;
   public shield!: Shield;
+  public smartbomb!: Smartbomb;
   public enemies!: Enemies;
   public enemy!: Enemy;
   public playerWeaponsGroup!: WeaponGroup;
@@ -48,6 +50,7 @@ export default class Game extends Scene {
     console.log('create Game');
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.shield = new Shield(this);
+    this.smartbomb = new Smartbomb(this);
     this.playerWeaponsGroup = new WeaponGroup(this, PlayerWeapon);
     this.enemyWeaponsGroup = new WeaponGroup(this, EnemyWeapon);
     this.satelliteWeaponsGroup = new WeaponGroup(this, SatelliteWeapon)
