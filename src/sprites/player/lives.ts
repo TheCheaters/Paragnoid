@@ -1,11 +1,11 @@
-import { Scene } from "phaser";
+import { Scale, Scene } from "phaser";
 
 export default class Lives extends Phaser.Physics.Arcade.Group {
     public lifes!: number;
     public firstLifeIconX!: number;
     constructor(scene: Scene, texture: string) {
         super(scene.physics.world, scene);
-        this.lifes = 2;
+        this.lifes = 3;
 
         this.createMultiple({
             frameQuantity: this.lifes,
@@ -13,9 +13,9 @@ export default class Lives extends Phaser.Physics.Arcade.Group {
             frame: 35,
             repeat: 0,
           });
-          this.firstLifeIconX = this.scene.scale.width - 10 - (this.lifes * 50);
+          this.firstLifeIconX = this.scene.scale.width - 40 - (this.lifes * 50);
           Phaser.Actions.SetXY(this.getChildren(), this.firstLifeIconX, 25, 50);
-          Phaser.Actions.SetScale(this.getChildren(), 0.8, 0.8);
+          Phaser.Actions.SetScale(this.getChildren(), 0.08, 0.08);
           Phaser.Actions.SetOrigin(this.getChildren(), 0.5, 0.5);
    }
 
