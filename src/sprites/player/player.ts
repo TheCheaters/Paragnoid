@@ -42,6 +42,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // this.lifeLine = new Lifeline(this.scene as Game, this);
   }
 
+  get fireXposition() {
+    return this.x + this.cannonfireX;
+  }
+
+  get fireYposition() {
+    return this.y + this.cannonfireY;
+  }
+
   setInitialWeapon() {
     this.weaponType = 'DEFAULT';
     this.weaponLevel = 0;

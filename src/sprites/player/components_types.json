@@ -1,7 +1,7 @@
 {
   "Comp_9.png": {
-    "POS_X":  10,
-    "POS_Y":  10,
+    "POS_X":  50,
+    "POS_Y":  50,
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "SCALE":  0.3
@@ -112,10 +112,10 @@
     "SCALE":  0.3
   },
   "Comp_27.png": {
-    "POS_X":  10,
-    "POS_Y":  10,
-    "FIRE_X": 10,
-    "FIRE_Y": 10,
+    "POS_X":  50,
+    "POS_Y":  50,
+    "FIRE_X": 50,
+    "FIRE_Y": 70,
     "SCALE":  0.1
   },
   "Comp_37.png": {

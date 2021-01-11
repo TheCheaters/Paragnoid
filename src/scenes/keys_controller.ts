@@ -119,13 +119,13 @@ export default class KeysController extends Scene {
     if (WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION === -1) {
 
       if (Phaser.Input.Keyboard.JustDown(this.keys.space)) {
-        playerWeaponsGroup.fire(player.x, player.y, player.weaponType, player.weaponLevel);
+        playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
       }
 
     } else {
 
       if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
-          playerWeaponsGroup.fire(player.x, player.y, player.weaponType, player.weaponLevel);
+          playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
         }
 
     }
