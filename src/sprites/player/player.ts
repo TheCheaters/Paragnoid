@@ -1,5 +1,4 @@
-import { DIRECTIONS } from '~/globals';
-import { SPACECRAFT, RESPAWN_TIME, MORTAL } from '~/constants.json';
+import { RESPAWN_TIME, MORTAL } from '~/constants.json';
 import components from '~/sprites/player/components_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
@@ -36,58 +35,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setImmovable(true);
     this.setDrag(500, 500);
     this.setMaxVelocity(300, 300);
-
-    /*
-      CANCELLARE LE RIGHE RELATIVE AI COMANDI FRAME
-
-      scene.anims.create({
-      key: DIRECTIONS.GO_RIGHT,
-      frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 0,
-        end: 6
-      }),
-      frameRate: 20
-    });
-
-    scene.anims.create({
-      key: DIRECTIONS.GO_LEFT,
-      frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 28,
-        end: 35
-      }),
-      frameRate: 20
-    })
-
-    scene.anims.create({
-      key: DIRECTIONS.GO_UP,
-      frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 14,
-        end: 20
-      }),
-      frameRate: 20
-    });
-
-    scene.anims.create({
-      key: DIRECTIONS.GO_DOWN,
-      frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 7,
-        end: 13
-      }),
-      frameRate: 20
-    });
-
-    scene.anims.create({
-      key: DIRECTIONS.STOP,
-      frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
-        start: 21,
-        end: 27
-      }),
-      frameRate: 20
-    });
-
-    CANCELLARE FINO A QUI
-    */
-
     this.setInitialEnergy();
     this.setInitialWeapon();
     this.setCannonComponent();
