@@ -25,6 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private cannonPosY!: number;
   private cannonfireX!: number;
   private cannonfireY!: number;
+  public scale = 0.2;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -36,7 +37,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setDrag(500, 500);
     this.setMaxVelocity(300, 300);
 
-    scene.anims.create({
+    /*
+      CANCELLARE LE RIGHE RELATIVE AI COMANDI FRAME
+
+      scene.anims.create({
       key: DIRECTIONS.GO_RIGHT,
       frames: scene.anims.generateFrameNumbers(SPACECRAFT, {
         start: 0,
@@ -80,6 +84,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       }),
       frameRate: 20
     });
+
+    CANCELLARE FINO A QUI
+    */
 
     this.setInitialEnergy();
     this.setInitialWeapon();
