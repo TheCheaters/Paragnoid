@@ -76,25 +76,20 @@ export default class KeysController extends Scene {
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       player.setAccelerationX(-speed);
-      player.play(DIRECTIONS.GO_LEFT, true);
     } else if (right) {
       player.setAccelerationX(speed);
-      player.play(DIRECTIONS.GO_RIGHT, true);
     }
 
     // ACCELERAZIONE E ANIMAZIONE VERTICALE
     if (up) {
       player.setAccelerationY(-speed);
-      player.play(DIRECTIONS.GO_UP, true);
     } else if (down) {
       player.setAccelerationY(speed);
-      player.play(DIRECTIONS.GO_DOWN, true);
     }
 
     if (!up && !down && !left && !right) {
       player.setAccelerationY(0);
       player.setAccelerationX(0);
-      player.play(DIRECTIONS.STOP, true);
     }
 
     // TASTI AUMENTO DIMINUZIONE LIVELLO ARMI PER DEBUG
