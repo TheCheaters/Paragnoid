@@ -48,5 +48,8 @@
   "PV_FONT_XML_PATH":           "assets/fonts/portable_vengeance/portable_vengeance.xml",
   "LR_FONT_NAME":               "lady_radical",
   "LR_FONT_PATH":               "assets/fonts/lady_radical/lady_radical.png",
-  "LR_FONT_XML_PATH":           "assets/fonts/lady_radical/lady_radical.xml"
+  "LR_FONT_XML_PATH":           "assets/fonts/lady_radical/lady_radical.xml",
+  "LAMPO_GENERAZIONI":          10,
+  "LAMPO_MAXOFFSET":            50,
+  "LAMPO_SCALA":                0.8
 }
