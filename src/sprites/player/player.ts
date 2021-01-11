@@ -1,5 +1,5 @@
 import { DIRECTIONS } from '~/globals';
-import { SPACECRAFT, RESPAWN_TIME, MORTAL } from '~/constants.json';
+import { SPACECRAFT, RESPAWN_TIME, MORTAL, COMPONENTS } from '~/constants.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
 
@@ -19,11 +19,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   public weaponType = weaponNames[0] as WeaponPlayerType;
   public weaponLevel = 0;
+  private test: Phaser.GameObjects.Image;
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
 
     scene.add.existing(this);
+    this.test = scene.add.image(this.x, this.y, COMPONENTS, 'Comp_9.png').setScale(0.2);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
     this.setImmovable(true);
@@ -200,7 +202,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     super.preUpdate(time, delta);
 
     const scene = this.scene as Game;
-
+    this.test.setPosition(this.x, this.y);
     scene.shield.moveShield(this.x, this.y);
     // this.lifeLine.update();
 
