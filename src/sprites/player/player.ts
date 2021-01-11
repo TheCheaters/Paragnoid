@@ -60,6 +60,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   setCannonComponent() {
+    if (this.cannon) this.cannon.destroy();
     const { TEXTURE_NAME, FRAME_NAME } = WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel];
     const { POS_X, POS_Y, FIRE_X, FIRE_Y, SCALE } = components[FRAME_NAME];
     this.cannonPosX = POS_X;
@@ -101,18 +102,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   changeWeapon() {
     this.weaponType = weaponNames[Phaser.Math.Between(0, weaponNames.length - 1)];
+    this.setCannonComponent();
   }
 
   increaseLevelWeapon() {
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {this.weaponLevel += 1;}
+    this.setCannonComponent();
   }
 
   decreaseLevelWeapon(){
     if (this.weaponLevel >= 1) {this.weaponLevel -= 1;}
+    this.setCannonComponent();
   }
 
   changeWeaponType(type: number){
     this.weaponType = weaponNames[type] as WeaponPlayerType;
+    this.setCannonComponent();
   }
 
   updgradeWeapon() {
