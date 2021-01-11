@@ -2,6 +2,8 @@ import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponPlayerType } from '~/types/weapons';
+import { FLARES } from '~/constants.json';
+
 export default class PlayerWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
@@ -10,20 +12,38 @@ export default class PlayerWeapon extends Weapon {
     super(scene, x, y);
   }
 
+  // createTrail() {
+  //   this.manager = this.scene.add.particles('laser');
+  //   this.emitter = this.manager
+  //     .createEmitter({
+  //       x: this.x,
+  //       y: this.y,
+  //       // blendMode: 'ADD',
+  //       scale: 1,
+  //       speed: 0,
+  //       lifespan: 0,
+  //       frequency: 0,
+  //       quantity: 1,
+  //       // delay: 300
+  //     });
+  // }
+
   createTrail() {
-    this.manager = this.scene.add.particles('laser');
+    this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
       .createEmitter({
+        name: 'fire',
+        frame: [
+          'yellow',
+        ],
         x: this.x,
         y: this.y,
-        // blendMode: 'ADD',
-        scale: 1,
-        speed: 0,
-        lifespan: 0,
-        frequency: 0,
+        blendMode: 'ADD',
+        scale: { start: 0.1, end: 0 },
+        speed: { min: -100, max: 100 },
+        lifespan: 80,
         quantity: 1,
-        // delay: 300
-      });
+      })
   }
 
    fire(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {

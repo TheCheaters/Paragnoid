@@ -43,17 +43,15 @@ export default class EnemyWeapon extends Weapon {
     });
     this.damage = (DAMAGE);
     this.fireSpeed = -(FIRE_SPEED);
+    this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
+    this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     if (follow === 0){
-      this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
-      this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
       this.setRotation(Phaser.Math.DegToRad(angle));
     }
     if (follow === 1){
       const { player } = this.scene as Game;
-      this.setVelocityX(this.fireSpeed*Math.cos(Phaser.Math.DegToRad(angle)));
-      this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
-      this.scene.physics.moveToObject(this, player, -this.fireSpeed);
       this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
+      this.scene.physics.moveToObject(this, player, -this.fireSpeed);
     }
   }
 }

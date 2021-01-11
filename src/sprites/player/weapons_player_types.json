@@ -1,18 +1,17 @@
 {
     "DEFAULT": {
         "DAMAGE":           1000,
-        "FIRE_SPEED":       4000,
+        "FIRE_SPEED":       500,
         "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "OrangeTail__003.png",
+        "FRAME_NAME":       "Missile_1.png",
         "AUDIO_NAME":       "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
-        "EXPLODES":         false,
+        "EXPLODES":         true,
         "PARTICLES":        "LASER",
-        "LEVELS":           [
-            {
+        "LEVELS":           [{
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_27.png",
                 "ANGLE":        [
@@ -63,7 +62,7 @@
         "DAMAGE":           1000,
         "FIRE_SPEED":       4000,
         "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "OrangeTail__003.png",
+        "FRAME_NAME":       "Missile_1.png",
         "AUDIO_NAME":       "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH":            56,
@@ -71,8 +70,7 @@
         "SCALE":            0.3,
         "EXPLODES":         false,
         "PARTICLES":        "LASER",
-        "LEVELS":           [
-            {
+        "LEVELS":           [{
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_9.png",
                 "ANGLE":        [
@@ -122,7 +120,7 @@
         "DAMAGE":           100,
         "FIRE_SPEED":       1000,
         "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "OrangeTail__003.png",
+        "FRAME_NAME":       "Missile_1.png",
         "AUDIO_NAME":       "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH":            56,
@@ -130,8 +128,7 @@
         "SCALE":            0.3,
         "EXPLODES":         true,
         "PARTICLES":        "SMOKE",
-        "LEVELS":           [
-            {
+        "LEVELS":           [{
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_9.png",
                 "ANGLE":        [
