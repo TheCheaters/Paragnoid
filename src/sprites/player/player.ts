@@ -51,7 +51,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   setInitialWeapon() {
-    this.weaponType = 'DEFAULT';
+    this.weaponType = 'MISSILI';
     this.weaponLevel = 0;
   }
 

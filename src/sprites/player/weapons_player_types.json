@@ -1,121 +1,4 @@
 {
-    "DEFAULT": {
-        "DAMAGE":           1000,
-        "FIRE_SPEED":       500,
-        "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "Missile_1.png",
-        "AUDIO_NAME":       "Missile",
-        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
-        "WIDTH":            56,
-        "HEIGHT":           23,
-        "SCALE":            0.3,
-        "EXPLODES":         true,
-        "PARTICLES":        "LASER",
-        "LEVELS":           [{
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_27.png",
-                "ANGLE":        [
-                    0
-                ],
-
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            },
-            {
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_31.png",
-                "ANGLE":        [
-                    -15,
-                    0,
-                    15
-                ],
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            },
-            {
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
-                "ANGLE":        [
-                    0
-                ],
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            }
-        ]
-    },
-    "LASER": {
-        "DAMAGE":           1000,
-        "FIRE_SPEED":       4000,
-        "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "Missile_1.png",
-        "AUDIO_NAME":       "Missile",
-        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
-        "WIDTH":            56,
-        "HEIGHT":           23,
-        "SCALE":            0.3,
-        "EXPLODES":         false,
-        "PARTICLES":        "LASER",
-        "LEVELS":           [{
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
-                "ANGLE":        [
-                    0
-                ],
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            },
-            {
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
-                "ANGLE":        [
-                    -15,
-                    0,
-                    15
-                ],
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            },
-            {
-                "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
-                "ANGLE":        [
-                    0
-                ],
-                "GRAVITY_X":           0,
-                "GRAVITY_Y":           0,
-                "VERTICAL_OFFSET":     0,
-                "DURATION":            -1,
-                "SATELLITES_OFFSET_Y": [45, -45],
-                "SATELLITES_OFFSET_X": 20
-
-            }
-        ]
-    },
     "MISSILI": {
         "DAMAGE":           100,
         "FIRE_SPEED":       1000,
@@ -188,6 +71,64 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     30,
                 "DURATION":            35,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            }
+        ]
+    },
+    "LASER": {
+        "DAMAGE":           1000,
+        "FIRE_SPEED":       4000,
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "Missile_1.png",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         false,
+        "PARTICLES":        "LASER",
+        "LEVELS":           [{
+                "TEXTURE_NAME": "components",
+                "FRAME_NAME":   "Comp_9.png",
+                "ANGLE":        [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "TEXTURE_NAME": "components",
+                "FRAME_NAME":   "Comp_9.png",
+                "ANGLE":        [
+                    -15,
+                    0,
+                    15
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
+                "SATELLITES_OFFSET_Y": [45, -45],
+                "SATELLITES_OFFSET_X": 20
+
+            },
+            {
+                "TEXTURE_NAME": "components",
+                "FRAME_NAME":   "Comp_9.png",
+                "ANGLE":        [
+                    0
+                ],
+                "GRAVITY_X":           0,
+                "GRAVITY_Y":           0,
+                "VERTICAL_OFFSET":     0,
+                "DURATION":            -1,
                 "SATELLITES_OFFSET_Y": [45, -45],
                 "SATELLITES_OFFSET_X": 20
 

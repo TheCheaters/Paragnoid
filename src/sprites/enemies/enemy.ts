@@ -1,4 +1,4 @@
-import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE } from '~/constants.json';
+import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
 import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
@@ -154,8 +154,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
     this.lifeLine.update();
 
-    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
-			this.kill();
+    if (this.x < LEFT_KILL_ZONE
+      || this.x > RIGHT_KILL_ZONE
+      || this.y < TOP_KILL_ZONE
+      || this.y > BOTTOM_KILL_ZONE) {
+     this.kill();
 		}
 	}
 

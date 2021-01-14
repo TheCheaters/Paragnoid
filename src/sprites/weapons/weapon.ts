@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
-import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
 
 type WeaponType = {
   texture: string;
@@ -72,7 +72,10 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(time: number, delta: number,) {
     super.preUpdate(time, delta);
     this.emitter.setPosition(this.x, this.y);
-    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
+    if (this.x < LEFT_KILL_ZONE
+       || this.x > RIGHT_KILL_ZONE
+       || this.y < TOP_KILL_ZONE
+       || this.y > BOTTOM_KILL_ZONE) {
       this.kill();
     }
 	}
