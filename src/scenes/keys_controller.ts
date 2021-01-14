@@ -103,9 +103,9 @@ export default class KeysController extends Scene {
     if (Phaser.Input.Keyboard.JustDown(this.keys.l) && debug) {
       player.changeWeaponType(1);
     }
-    if (Phaser.Input.Keyboard.JustDown(this.keys.k) && debug) {
-      player.changeWeaponType(2);
-    }
+    // if (Phaser.Input.Keyboard.JustDown(this.keys.k) && debug) {
+    //   player.changeWeaponType(2);
+    // }
     if (Phaser.Input.Keyboard.JustDown(this.keys.j) && debug) {
       player.changeWeaponType(0);
     }

@@ -13,7 +13,7 @@
         "PARTICLES":        "SMOKE",
         "LEVELS":           [{
                 "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
+                "FRAME_NAME":   "Comp_24.png",
                 "ANGLE":        [
                     0
                 ],
@@ -25,7 +25,7 @@
             },
             {
                 "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
+                "FRAME_NAME":   "Comp_21.png",
                 "ANGLE":        [
                     -2,
                     2
@@ -38,7 +38,7 @@
             },
             {
                 "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
+                "FRAME_NAME":   "Comp_36.png",
                 "ANGLE":        [
                     -3,
                     -0,
@@ -52,7 +52,7 @@
             },
             {
                 "TEXTURE_NAME": "components",
-                "FRAME_NAME":   "Comp_9.png",
+                "FRAME_NAME":   "Comp_31.png",
                 "ANGLE":        [
                     -0.01,
                     0,
