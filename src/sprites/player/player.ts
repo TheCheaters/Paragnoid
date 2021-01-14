@@ -69,6 +69,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannonfireY = FIRE_Y;
     this.cannon = this.scene.add.image(this.cannonPosX + this.x, this.cannonPosY + this.y, TEXTURE_NAME, FRAME_NAME);
     this.cannon.setScale(SCALE);
+    this.cannon.setFlipY(true);
   }
 
   takeHit(damage: number) {

@@ -13,9 +13,7 @@ export type Level = {
   GRAVITY_X:           number;
   GRAVITY_Y:           number;
   VERTICAL_OFFSET:     number;
-  DURATION:            number,
-  SATELLITES_OFFSET_Y: number[];
-  SATELLITES_OFFSET_X: number
+  DURATION:            number;
 }
 
 export type WeaponType = {

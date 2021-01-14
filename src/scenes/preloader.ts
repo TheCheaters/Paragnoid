@@ -47,7 +47,6 @@ export default class Preload extends Scene {
       frameWidth: 60,
       frameHeight: 60
     });
-    this.load.image(C.SATELLITE, C.SATELLITE_ASSET_PATH);
 
     // Carica tutti gli sprite e i suoni di Weapons
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
