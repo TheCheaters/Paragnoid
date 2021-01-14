@@ -3,7 +3,7 @@ import Game from '~/scenes/game';
 import Segment from '~/utils/segment';
 import { LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA } from '~/constants.json';
 
-export default abstract class Lampo extends Phaser.GameObjects.Graphics {
+export default class Lampo extends Phaser.GameObjects.Graphics {
         generazioni !: number;
         maxOffset !: number;
         scala !: number;
@@ -52,7 +52,7 @@ generazione(startPointX: number, startPointY: number, endPointX: number, endPoin
                     y: segmento.endPointY
                 };
                 let angoloSuddivisione;
-                if (Phaser.Math.RND.between(0,2)<1){
+                if (Phaser.Math.RND.between(0,2) <1){
                     angoloSuddivisione = Phaser.Math.RND.between(-0.8, -0.2);
                 } else {
                     angoloSuddivisione = Phaser.Math.RND.between(0.2, 0.8);

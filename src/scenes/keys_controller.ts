@@ -4,6 +4,8 @@ import { DIRECTIONS } from '~/globals';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import debug from '~/utils/debug';
+import Lampo from '~/sprites/weapons/lampo';
+import Segment from '~/utils/segment';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -59,7 +61,7 @@ export default class KeysController extends Scene {
       a: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
       s: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       d: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
-
+      p: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P),
     }
 
   }
@@ -143,7 +145,15 @@ export default class KeysController extends Scene {
     if (Phaser.Input.Keyboard.JustDown(this.keys.z) && debug) {
       player.shieldUp();
     }
-
+    if (Phaser.Input.Keyboard.JustDown(this.keys.p) && debug) {
+      let lampo = new Lampo(this.gameInstance, 10, 50, 0.8);
+      let armaLampo = lampo.generazione(600, 300, 1000, 300);
+      var segmento: Segment;
+      armaLampo.forEach((E) => {
+        var segmento = E as Segment;
+        segmento.draw();
+      });
+    }
   }
 }
 
