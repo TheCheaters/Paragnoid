@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { SATELLITE } from '~/constants.json';
+import { COMPONENTS } from '~/constants.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponSatelliteType } from "~/types/weapons";
@@ -42,7 +42,7 @@ make(offsetX: number, offsetY: number) {
     this.setVisible(true);
     this.activeSatellite = true;
     this.weaponType = "MISSILI_SATELLITE";
-    const delay = Phaser.Math.Between(4000, 5000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
+    const delay = 2000 // Phaser.Math.Between(1000, 1000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
 
     this.timer = this.scene.time.addEvent({ delay, callback: () => {
       this.fireSatellite(this.x, this.y, this.weaponType, this.follow);
@@ -64,10 +64,10 @@ takeHit(damage: number) {
   }
 
 kill() {
-    this.body.enable = false;
-    this.setActive(false);
-    if(this.timer) { this.timer.remove(); }
-    this.setVisible(false);
+    // this.body.enable = false;
+    // this.setActive(false);
+    // if(this.timer) { this.timer.remove(); }
+    // this.setVisible(false);
     //this.setVelocity(0);
 
   }
@@ -91,9 +91,10 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
         this.createMultiple({
           frameQuantity: 5,
-          key: SATELLITE,
+          key: COMPONENTS,
+          frame: 'Comp_17.png',
           setXY: {x: -1000, y: -1000},
-          setScale: {x: 0.5, y: 0.5},
+          setScale: {x: 0.1, y: 0.1},
           active: false,
           visible: false,
           classType: Satellite
@@ -101,10 +102,9 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
 }
 launchSatellite() {
-    const scene = this.scene as Game;
-    WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_Y.forEach((offsetY) => {
+    [45, -45].forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
-      const satelliteOffsetX = WEAPON_PLAYER_TYPES[scene.player.weaponType].LEVELS[scene.player.weaponLevel].SATELLITES_OFFSET_X;
+      const satelliteOffsetX = 0;
       if (offsetY !== 0 ) { satellitePlayer.make(satelliteOffsetX, offsetY);}
 
     })
