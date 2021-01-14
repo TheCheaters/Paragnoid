@@ -9,7 +9,6 @@ export default class Segment extends Phaser.GameObjects.Line {
  public startY !: number
  public endX !: number
  public endY !: number
- public Graphics !: Phaser.GameObjects.Graphics
  constructor(scene: Scene, startX: number, startY: number, endX: number, endY: number, level: number){
     super(scene, startX, startY, endX, endY);
     this.startX = startX;
@@ -25,8 +24,9 @@ clone(){
 }
 
 draw(){   
-   this.Graphics.lineBetween(this.startX, this.startY, this.endX, this.endY);
-   this.Graphics.lineStyle(1, 0xFF0000)
+   const graphics = new Phaser.GameObjects.Graphics(this.scene);
+   graphics.lineBetween(this.startX, this.startY, this.endX, this.endY);
+   graphics.lineStyle(1, 0xFF0000)
 }
 
 }
