@@ -146,11 +146,10 @@ export default class KeysController extends Scene {
       player.shieldUp();
     }
     if (Phaser.Input.Keyboard.JustDown(this.keys.p) && debug) {
-      let lampo = new Lampo(this.gameInstance, 10, 50, 0.8);
-      let armaLampo = lampo.generazione(600, 300, 1000, 300);
-      var segmento: Segment;
+      const lampo = new Lampo(this.gameInstance, 10, 50, 0.8);
+      const armaLampo = lampo.generazione(600, 300, 1000, 300);
       armaLampo.forEach((E) => {
-        var segmento = E as Segment;
+        const segmento = E as Segment;
         segmento.draw();
       });
     }
