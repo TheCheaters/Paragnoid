@@ -1,15 +1,14 @@
-import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import Segment from '~/utils/segment';
 import { LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA } from '~/constants.json';
 
-export default class Lampo extends Phaser.GameObjects.Graphics {
+export default class Lampo {
         generazioni !: number;
         maxOffset !: number;
         scala !: number;
-
-        constructor(scene: Scene, generazioni: number, maxOffset: number, scala: number){
-            super(scene);
+        scene!: Game;
+        constructor(scene: Game, generazioni: number, maxOffset: number, scala: number){
+            this.scene = scene;
             this.generazioni = LAMPO_GENERAZIONI;
             this.maxOffset = LAMPO_MAXOFFSET;
             this.scala = LAMPO_SCALA;
