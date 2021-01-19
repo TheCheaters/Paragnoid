@@ -29,8 +29,11 @@ export default class Segment extends Phaser.GameObjects.Line {
    draw() {
       const graphics = new Phaser.GameObjects.Graphics(this.scene);
       graphics.lineBetween(this.startX, this.startY, this.endX, this.endY);
-      this.scoreText = this.scene.add.dynamicBitmapText(260, 260, PV_FONT_NAME, this.startX.toString(), 14);
-      graphics.lineStyle(1, 0xFF0000)
+      // this.scoreText = this.scene.add.dynamicBitmapText(260, 260, PV_FONT_NAME, this.startX.toString(), 14);
+      graphics.lineStyle(10, 0xFF0000)
+      graphics.beginPath();
+      console.log(this.startX, this.scaleY, this.endX, this.endY);
+      // console.log(graphics);
    }
 
 }
