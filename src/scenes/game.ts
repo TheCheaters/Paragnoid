@@ -80,8 +80,7 @@ export default class Game extends Scene {
 
     const lampo = new Lampo(this, 10, 50, 0.8);
     const armaLampo = lampo.generazione(600, 300, 1000, 300);
-    armaLampo.forEach((E) => {
-      const segmento = E as Segment;
+    armaLampo.forEach((segmento) => {
       segmento.draw();
     });
 
