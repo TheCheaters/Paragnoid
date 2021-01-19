@@ -1,5 +1,5 @@
 import Game from "~/scenes/game";
-
+let n = 0;
 export default class Segment {
    public scene!: Game;
    public level!: number
@@ -33,8 +33,7 @@ export default class Segment {
       // graphics.lineBetween(this.startX, this.startY, this.endX, this.endY);
       // this.scoreText = this.scene.add.dynamicBitmapText(260, 260, PV_FONT_NAME, this.startX.toString(), 14);
       // graphics.lineStyle(10, 0xFF0000)
-      console.log(this.startX, this.startY, this.endX, this.endY);
-      console.log(this.scene);
+      console.log(++n, this.startX, this.startY, this.endX, this.endY);
       // console.log(graphics);
       this.line.x1 = this.startX;
       this.line.y1 = this.startY;

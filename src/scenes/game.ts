@@ -16,6 +16,8 @@ import handlerMissileEnemyCollisions from '~/colliders/handlerMissileEnemyCollis
 import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
+import Lampo from '~/sprites/weapons/lampo';
+import Segment from '~/utils/segment';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
@@ -75,5 +77,13 @@ export default class Game extends Scene {
     this.scene.launch('ui');
     this.scene.launch('keys-controller');
     this.scene.launch('space');
+
+    const lampo = new Lampo(this, 10, 50, 0.8);
+    const armaLampo = lampo.generazione(600, 300, 1000, 300);
+    armaLampo.forEach((E) => {
+      const segmento = E as Segment;
+      segmento.draw();
+    });
+
   }
 }
