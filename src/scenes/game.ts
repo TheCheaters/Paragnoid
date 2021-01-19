@@ -17,7 +17,6 @@ import Lives from '~/sprites/player/lives';
 import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import Satellites, { Satellite } from '~/sprites/satellites/satellites';
 import Lampo from '~/sprites/weapons/lampo';
-import Segment from '~/utils/segment';
 
 type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
 export default class Game extends Scene {
