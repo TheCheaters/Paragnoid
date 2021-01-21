@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { SATELLITES, SATELLITES_ASSETH_PATH } from '~/constants.json';
+import { SATELLITES, SATELLITES_ASSET_PATH } from '~/constants.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponSatelliteType } from "~/types/weapons";
@@ -92,7 +92,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
         this.createMultiple({
           frameQuantity: 5,
           key: SATELLITES,
-          frame: SATELLITES_ASSETH_PATH,
+          frame: SATELLITES_ASSET_PATH,
           setXY: {x: -1000, y: -1000},
           setScale: {x: 0.3, y: 0.3},
           active: false,
