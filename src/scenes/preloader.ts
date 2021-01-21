@@ -64,7 +64,7 @@ export default class Preload extends Scene {
     Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => {
       const SATELLITE = S as WeaponSatelliteType;
       this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_ASSET_PATH);
-      this.load.image(C.SATELLITES, C.SATELLITES_ASSETH_PATH);
+      this.load.image(C.SATELLITES, C.SATELLITES_ASSET_PATH);
     })
 
     this.load.audio(C.HIT_ENEMY, C.HIT_ENEMY_ASSET_PATH);
