@@ -18,7 +18,7 @@ export default class Segment {
       this.endX = endX;
       this.endY = endY;
       this.level = level;
-      this.style = this.scene.add.graphics({ lineStyle: { width: 5, color: 0x00ff3d } });
+      this.style = this.scene.add.graphics({ lineStyle: { width: 3, color: 0xff0000 } });
       this.line = new Phaser.Geom.Line();
 
    }

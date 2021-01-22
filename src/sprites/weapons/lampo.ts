@@ -37,14 +37,14 @@ export default class Lampo {
                 console.log(listaSegmenti[1]);
                 console.log(listaSegmenti[2]);
                 console.log(listaSegmenti[3]);                             
-                let puntoMedioX = Phaser.Math.Average([segmento.startX, segmento.endX]); //calcola il punto medio delle coordinate X dei punti iniziale e finale
+                let puntoMedioX = Phaser.Math.Average([listaSegmenti[0].startX, listaSegmenti[0].endX]); //calcola il punto medio delle coordinate X dei punti iniziale e finale
                 console.log(puntoMedioX, segmento.startX, segmento.endX);
-                let puntoMedioY = Phaser.Math.Average([segmento.startY, segmento.endY]); //calcola il punto medio delle coordinate Y dei punti iniziale e finale
+                let puntoMedioY = Phaser.Math.Average([listaSegmenti[0].startY, listaSegmenti[0].endY]); //calcola il punto medio delle coordinate Y dei punti iniziale e finale
                 console.log(puntoMedioY, segmento.startY, segmento.endY);
                 
 
                 //trascina il punto medio per un estensione casuale lungo la normale al segmento
-                const angolo = Math.atan2(segmento.endY - segmento.startY, segmento.endX - segmento.startX); //calcolo angolo di inclinazione del segmento
+                const angolo = Math.atan2(listaSegmenti[0].endY - listaSegmenti[0].startY, listaSegmenti[0].endX - listaSegmenti[0].startX); //calcolo angolo di inclinazione del segmento
                 console.log(angolo);
                 const randomOffset = Phaser.Math.RND.between(-offsetSegmento, offsetSegmento); // prendi un offset random tra quelli massimi negativo e positivo
                 console.log(randomOffset);
@@ -66,8 +66,8 @@ export default class Lampo {
                     puntoMedioX = x2;
                     puntoMedioY = y2;
                 }
-                listaSegmenti.push(new Segment(this.scene, segmento.startX, segmento.startY, puntoMedioX, puntoMedioY, segmento.level));
-                listaSegmenti.push(new Segment(this.scene, puntoMedioX, puntoMedioY, segmento.endX, segmento.endY, segmento.level));   
+                listaSegmenti.push(new Segment(this.scene, listaSegmenti[0].startX, listaSegmenti[0].startY, puntoMedioX, puntoMedioY, listaSegmenti[0].level));
+                listaSegmenti.push(new Segment(this.scene, puntoMedioX, puntoMedioY, listaSegmenti[0].endX, listaSegmenti[0].endY, listaSegmenti[0].level));   
                 listaSegmenti.splice(0,1);              
                 console.log(listaSegmenti.length);
                                
