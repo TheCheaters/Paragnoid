@@ -73,11 +73,11 @@ export default class Lampo {
                 console.log(listaSegmenti.length);
                                
 
-                /*if (i === 0 || i === 2) {
-                    const distanza = Math.sqrt(Math.pow(puntoMedioX - startPointX, 2) + Math.pow(puntoMedioY - startPointY, 2));
-                    const endPointDiviso = {
-                        x: endPointX,
-                        y: endPointY
+                if (i === Phaser.Math.RND.between(0,this.generazioni)) {
+                    const direzione = Math.sqrt(Math.pow(puntoMedioX - listaSegmenti[0].startX, 2) + Math.pow(puntoMedioY - listaSegmenti[0].startY, 2));
+                    const endPointBranch = {
+                        x: listaSegmenti[0].endX,
+                        y: listaSegmenti[0].endY
                     };
                     let angoloSuddivisione;
                     if (Phaser.Math.RND.between(0, 2) < 1) {
@@ -85,11 +85,11 @@ export default class Lampo {
                     } else {
                         angoloSuddivisione = Phaser.Math.RND.between(0.2, 0.8);
                     }
-                    Phaser.Math.RotateAroundDistance(endPointDiviso, puntoMedioX, puntoMedioY, angoloSuddivisione, this.scala * distanza);
+                    Phaser.Math.RotateAroundDistance(endPointBranch, puntoMedioX, puntoMedioY, angoloSuddivisione, this.scala * direzione);
 
-                    listaSegmenti.push(new Segment(this.scene, puntoMedioX, puntoMedioY, endPointDiviso.x, endPointDiviso.y, 1 + 1));
+                    listaSegmenti.push(new Segment(this.scene, puntoMedioX, puntoMedioY, endPointBranch.x, endPointBranch.y, listaSegmenti[0].level + 1));
 
-                }*/
+                }
 
             })
 

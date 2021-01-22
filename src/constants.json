@@ -49,7 +49,7 @@
   "LR_FONT_NAME":               "lady_radical",
   "LR_FONT_PATH":               "assets/fonts/lady_radical/lady_radical.png",
   "LR_FONT_XML_PATH":           "assets/fonts/lady_radical/lady_radical.xml",
-  "LAMPO_GENERAZIONI":          1,
+  "LAMPO_GENERAZIONI":          6,
   "LAMPO_MAXOFFSET":            170,
   "LAMPO_SCALA":                0.8
 }
