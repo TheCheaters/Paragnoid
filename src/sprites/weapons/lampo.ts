@@ -20,6 +20,7 @@ export default class Lampo {
     }
 
     generazione(startPointX: number, startPointY: number, endPointX: number, endPointY: number, level:number) {
+        var t0 = performance.now();
         const listaSegmenti: Segment[] = []; //array vuoto
         // const nuovaLista: Segment[] = []; //un altro array di appoggio
         let segmento1 = new Segment(this.scene, startPointX, startPointY, endPointX, endPointY, level);
@@ -95,7 +96,10 @@ export default class Lampo {
             offsetSegmento /= 2;
             // listaSegmenti = nuovaLista;
         }
+        var t1 = performance.now();
+        console.log("Performance singolo Lampo " + (t1 - t0) + " millisecondi.")
         return listaSegmenti;
+        
     }
 
 }
