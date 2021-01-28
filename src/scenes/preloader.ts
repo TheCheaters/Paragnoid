@@ -34,9 +34,9 @@ export default class Preload extends Scene {
     this.load.image(C.INFOPANEL_OVER, C.INFOPANEL_OVER_PATH);
     this.load.image('laser', 'assets/particles/laser.png');
     this.load.image(C.SPACE, C.SPACE_ASSET_PATH);
-    this.load.image(C.SUN, C.SUN_ASSET_PATH);
     this.load.image(C.HORIZON, C.HORIZON_ASSET_PATH);
     this.load.multiatlas(C.NUVOLE, C.NUVOLE_JSON_ASSET_PATH, C.NUVOLE_ASSET_PATH);
+    this.load.multiatlas(C.PLANETS, C.PLANETS_JSON_ASSET_PATH, C.PLANETS_ASSET_PATH);
     this.load.multiatlas(C.ENEMIES, C.ENEMIES_JSON_ASSET_PATH, C.ENEMIES_ASSET_PATH);
     this.load.multiatlas(C.WEAPONS, C.WEAPONS_JSON_ASSET_PATH, C.WEAPONS_ASSET_PATH);
     this.load.multiatlas(C.COMPONENTS, C.COMPONENTS_JSON_ASSET_PATH, C.COMPONENTS_ASSET_PATH);

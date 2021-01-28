@@ -1,0 +1,410 @@
+{
+	"textures": [
+		{
+			"image": "planets_nebulas-0.webp",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2030,
+				"h": 1985
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "nebula_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1388,
+						"h": 774
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1388,
+						"h": 774
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1388,
+						"h": 774
+					}
+				},
+				{
+					"filename": "nebula_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1316,
+						"h": 683
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1316,
+						"h": 683
+					},
+					"frame": {
+						"x": 1,
+						"y": 777,
+						"w": 1316,
+						"h": 683
+					}
+				},
+				{
+					"filename": "planet_7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 580,
+						"h": 580
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 580,
+						"h": 580
+					},
+					"frame": {
+						"x": 1391,
+						"y": 1,
+						"w": 580,
+						"h": 580
+					}
+				},
+				{
+					"filename": "planet_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 521,
+						"h": 522
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 521,
+						"h": 522
+					},
+					"frame": {
+						"x": 1,
+						"y": 1462,
+						"w": 521,
+						"h": 522
+					}
+				},
+				{
+					"filename": "planet_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 520,
+						"h": 519
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 520,
+						"h": 519
+					},
+					"frame": {
+						"x": 524,
+						"y": 1462,
+						"w": 520,
+						"h": 519
+					}
+				},
+				{
+					"filename": "planet_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 503,
+						"h": 522
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 503,
+						"h": 522
+					},
+					"frame": {
+						"x": 1046,
+						"y": 1462,
+						"w": 503,
+						"h": 522
+					}
+				},
+				{
+					"filename": "asteroid_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 419,
+						"h": 288
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 419,
+						"h": 288
+					},
+					"frame": {
+						"x": 1391,
+						"y": 583,
+						"w": 419,
+						"h": 288
+					}
+				},
+				{
+					"filename": "planet_6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 393,
+						"h": 392
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 393,
+						"h": 392
+					},
+					"frame": {
+						"x": 1319,
+						"y": 873,
+						"w": 393,
+						"h": 392
+					}
+				},
+				{
+					"filename": "planet_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 315,
+						"h": 315
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 315,
+						"h": 315
+					},
+					"frame": {
+						"x": 1714,
+						"y": 873,
+						"w": 315,
+						"h": 315
+					}
+				},
+				{
+					"filename": "asteroid_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 186,
+						"h": 191
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 186,
+						"h": 191
+					},
+					"frame": {
+						"x": 1319,
+						"y": 1267,
+						"w": 186,
+						"h": 191
+					}
+				},
+				{
+					"filename": "planet_5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 352,
+						"h": 353
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 352,
+						"h": 353
+					},
+					"frame": {
+						"x": 1551,
+						"y": 1267,
+						"w": 352,
+						"h": 353
+					}
+				},
+				{
+					"filename": "asteroid_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 419,
+						"h": 288
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 419,
+						"h": 288
+					},
+					"frame": {
+						"x": 1551,
+						"y": 1622,
+						"w": 419,
+						"h": 288
+					}
+				},
+				{
+					"filename": "planet_8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 105,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 105,
+						"h": 105
+					},
+					"frame": {
+						"x": 1812,
+						"y": 583,
+						"w": 105,
+						"h": 105
+					}
+				},
+				{
+					"filename": "planet_9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 94,
+						"h": 94
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 94,
+						"h": 94
+					},
+					"frame": {
+						"x": 1812,
+						"y": 690,
+						"w": 94,
+						"h": 94
+					}
+				}
+			]
+		},
+		{
+			"image": "planets_nebulas-1.webp",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1252,
+				"h": 1347
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "nebula_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1250,
+						"h": 1345
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1250,
+						"h": 1345
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1250,
+						"h": 1345
+					}
+				}
+			]
+		},
+		{
+			"image": "planets_nebulas-2.webp",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1073,
+				"h": 1330
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "nebula_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1071,
+						"h": 1328
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1071,
+						"h": 1328
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1071,
+						"h": 1328
+					}
+				}
+			]
+		},
+		{
+			"image": "planets_nebulas-3.webp",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1186,
+				"h": 844
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "nebula_5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1184,
+						"h": 842
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1184,
+						"h": 842
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1184,
+						"h": 842
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:1082aaa75fa85a68cb463e5ac12abe2a:0d4a484f32a4904c3bcc86b604aebf2a:207efdc65134f4a9324512dd65c5ff1c$"
+	}
+}

@@ -1,16 +1,34 @@
-import { SPACE, SUN } from '~/constants.json';
+import { SPACE, PLANETS } from '~/constants.json';
 import Level from '~/scenes/level';
 
 export default class Space extends Level {
+  distance = 1500;
+  nebulaDeltaSpeed = 1.5;
+
   private bg!: Phaser.GameObjects.TileSprite;
-  private sun!: Phaser.GameObjects.Image;
+  private nebule!: {
+    image: Phaser.GameObjects.Image,
+    x: number;
+    y: number;
+  }[];
   constructor() {
     super('space', 'sky');
   }
   create() {
     console.log('create Space');
     this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, SPACE).setOrigin(0);
-    this.sun = this.add.image(0, 0, SUN).setPosition(this.scale.width / 4, this.scale.height / 4).setScale(0.3, 0.3);
+
+    const nomiNebule = [
+      // 'nebula_4.png',
+      'nebula_3.png',
+      'nebula_2.png',
+      'nebula_1.png',
+    ];
+    this.nebule = nomiNebule.map((frame, index) => ({
+      image: this.add.image(this.scale.width + (this.distance * index), index * 200, PLANETS, frame).setScale(2).setAlpha(0.3),
+      x: this.scale.width + (this.distance * index / 5),
+      y: Phaser.Math.Between(0, 600),
+    }));
     super.create();
   }
 
@@ -27,6 +45,22 @@ export default class Space extends Level {
 
     this.bg.tilePositionX += 1 + backgroundVelocity;
 
-    this.sun.rotation += 0.00006 * delta;
+    for (let index = 0; index < this.nebule.length; index++) {
+      const nebula = this.nebule[index];
+      nebula.image.setPosition(nebula.x, nebula.y);
+      if (nebula.x > -this.distance) {
+        // scroll
+        nebula.x = nebula.x - (this.nebulaDeltaSpeed);
+        nebula.image.rotation += 0.000012 * delta
+      } else {
+        // reset
+        nebula.x = this.scale.width + this.distance;
+        nebula.y = Phaser.Math.Between(-200, 800);
+        nebula.image
+          .setAlpha(Phaser.Math.Between(0.1, 0.5))
+          .setScale(Phaser.Math.Between(2, 3));
+      }
+    }
+
     }
 }
