@@ -73,27 +73,29 @@ export default class Lampo {
                 console.log(listaSegmenti.length);
                                
 
-                if (i === Phaser.Math.RND.between(0,this.generazioni)) {
+                if (i === Phaser.Math.RND.between(0,this.generazioni) && i%2 == 0) {
                     const direzione = Math.sqrt(Math.pow(puntoMedioX - listaSegmenti[0].startX, 2) + Math.pow(puntoMedioY - listaSegmenti[0].startY, 2));
                     const endPointBranch = {
                         x: listaSegmenti[0].endX,
                         y: listaSegmenti[0].endY
                     };
                     let angoloSuddivisione;
+                    console.log(listaSegmenti[0].endX, listaSegmenti[0].endY);
                     if (Phaser.Math.RND.between(0, 2) < 1) {
                         angoloSuddivisione = Phaser.Math.RND.between(-0.8, -0.2);
                     } else {
                         angoloSuddivisione = Phaser.Math.RND.between(0.2, 0.8);
                     }
+                    console.log(angoloSuddivisione);
                     Phaser.Math.RotateAroundDistance(endPointBranch, puntoMedioX, puntoMedioY, angoloSuddivisione, this.scala * direzione);
-
                     listaSegmenti.push(new Segment(this.scene, puntoMedioX, puntoMedioY, endPointBranch.x, endPointBranch.y, listaSegmenti[0].level + 1));
+                    console.log(endPointBranch.x, endPointBranch.y);
 
                 }
 
             })
 
-            offsetSegmento /= 2;
+            offsetSegmento /= 2;            
             // listaSegmenti = nuovaLista;
         }
         var t1 = performance.now();
