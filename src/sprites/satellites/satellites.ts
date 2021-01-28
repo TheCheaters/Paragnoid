@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { COMPONENTS } from '~/constants.json';
+import { SATELLITES, SATELLITES_ASSET_PATH } from '~/constants.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponSatelliteType } from "~/types/weapons";
@@ -91,10 +91,10 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
         this.createMultiple({
           frameQuantity: 5,
-          key: COMPONENTS,
-          frame: 'Comp_17.png',
+          key: SATELLITES,
+          frame: SATELLITES_ASSET_PATH,
           setXY: {x: -1000, y: -1000},
-          setScale: {x: 0.1, y: 0.1},
+          setScale: {x: 0.2, y: 0.2},
           active: false,
           visible: false,
           classType: Satellite
@@ -102,7 +102,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
 }
 launchSatellite() {
-    [45, -45].forEach((offsetY) => {
+    [20, -45].forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
       const satelliteOffsetX = 0;
       if (offsetY !== 0 ) { satellitePlayer.make(satelliteOffsetX, offsetY);}

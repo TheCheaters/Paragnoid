@@ -34,6 +34,8 @@
   "COMPONENTS":                 "components",
   "COMPONENTS_ASSET_PATH":      "assets/player/components/",
   "COMPONENTS_JSON_ASSET_PATH": "assets/player/components/components.json",
+  "SATELLITES":                 "satellites",
+  "SATELLITES_ASSET_PATH":     "assets/player/components/satellite_1.png",
   "POWERUPS":                   "powerups",
   "POWERUPS_ASSET_PATH":        "assets/powerups/powerups.png",
   "POWERUPS_JSON_ASSET_PATH":   "assets/powerups/powerups.json",
