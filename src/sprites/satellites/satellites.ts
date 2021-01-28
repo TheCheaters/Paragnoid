@@ -94,7 +94,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
           key: SATELLITES,
           frame: SATELLITES_ASSET_PATH,
           setXY: {x: -1000, y: -1000},
-          setScale: {x: 0.3, y: 0.3},
+          setScale: {x: 0.2, y: 0.2},
           active: false,
           visible: false,
           classType: Satellite
@@ -102,7 +102,7 @@ export default class Satellites extends Phaser.Physics.Arcade.Group {
 
 }
 launchSatellite() {
-    [45, -80].forEach((offsetY) => {
+    [20, -45].forEach((offsetY) => {
       const satellitePlayer = this.getFirstDead(false) as Satellite;
       const satelliteOffsetX = 0;
       if (offsetY !== 0 ) { satellitePlayer.make(satelliteOffsetX, offsetY);}
