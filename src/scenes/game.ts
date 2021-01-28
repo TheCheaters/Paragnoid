@@ -77,11 +77,11 @@ export default class Game extends Scene {
     this.scene.launch('keys-controller');
     this.scene.launch('space');
 
-    const lampo = new Lampo(this, 10, 50, 0.8);
+    /*const lampo = new Lampo(this, 10, 50, 0.8);
     const armaLampo = lampo.generazione(300, 300, 1000, 300, 1);
     armaLampo.forEach((segmento) => {
       segmento.draw();
-    });
+    });*/
 
   }
 }

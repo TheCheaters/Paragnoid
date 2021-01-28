@@ -9,6 +9,7 @@ export default class Segment {
    public endY!: number
    public scoreText!: Phaser.GameObjects.DynamicBitmapText;
    private style: Phaser.GameObjects.Graphics;
+   private style1: Phaser.GameObjects.Graphics;
    private line: Phaser.Geom.Line;
 
    constructor(scene: Game, startX: number, startY: number, endX: number, endY: number, level: number) {
@@ -19,6 +20,7 @@ export default class Segment {
       this.endY = endY;
       this.level = level;
       this.style = this.scene.add.graphics({ lineStyle: { width: 3, color: 0xff0000 } });
+      this.style1 = this.scene.add.graphics({ lineStyle: { width: 1, color: 0xff0000, alpha: 0.5 } });
       this.line = new Phaser.Geom.Line();
 
    }
@@ -39,8 +41,21 @@ export default class Segment {
       this.line.y1 = this.startY;
       this.line.x2 = this.endX;
       this.line.y2 = this.endY;
-      this.style.strokeLineShape(this.line);
-
+      if (this.level <= 1) {
+         this.style.strokeLineShape(this.line);
+         this.scene.tweens.add({
+            targets: this.style,
+            duration: 400,
+            alpha: 0
+         })
+      } else {
+         this.style1.strokeLineShape(this.line);
+         this.scene.tweens.add({
+            targets: this.style1,
+            duration: 600,
+            alpha: 0
+         })}
+      
    }
 
 }
