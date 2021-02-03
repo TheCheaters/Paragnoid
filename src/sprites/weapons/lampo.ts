@@ -1,5 +1,8 @@
 import Game from '~/scenes/game';
 import Segment from '~/utils/segment';
+import Weapon from '~/sprites/weapons/weapon';
+import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
+import { WeaponPlayerType } from '~/types/weapons';
 import {
     LAMPO_GENERAZIONI,
     LAMPO_MAXOFFSET,

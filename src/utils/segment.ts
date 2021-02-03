@@ -30,17 +30,12 @@ export default class Segment {
       return new Segment(this.scene, this.startX, this.startY, this.endX, this.endY, this.level)
    }
 
-   draw() {
-      // const graphics = new Phaser.GameObjects.Graphics(this.scene);
-      // graphics.lineBetween(this.startX, this.startY, this.endX, this.endY);
-      // this.scoreText = this.scene.add.dynamicBitmapText(260, 260, PV_FONT_NAME, this.startX.toString(), 14);
-      // graphics.lineStyle(10, 0xFF0000)
-      // console.log(++n, this.startX, this.startY, this.endX, this.endY);
-      // console.log(graphics);
+   draw() {  
       this.line.x1 = this.startX;
       this.line.y1 = this.startY;
       this.line.x2 = this.endX;
       this.line.y2 = this.endY;
+      //this.scene.add.shader();
       if (this.level <= 1) {
          this.style.strokeLineShape(this.line);
          this.scene.tweens.add({

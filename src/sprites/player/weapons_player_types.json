@@ -175,5 +175,19 @@
 
             }
         ]
-    }
+    },
+    "LAMPO": {
+        "DAMAGE":           1000,
+        "FIRE_SPEED":       1000,
+        "TEXTURE_NAME":     "",
+        "FRAME_NAME":       "",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "LEVELS":           []
+    }           
 }
