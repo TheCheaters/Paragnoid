@@ -54,6 +54,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   setInitialWeapon() {
     this.weaponType = 'MISSILI';
     this.weaponLevel = 0;
+    this.setDepth(0);
   }
 
   setInitialEnergy() {
@@ -120,6 +121,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   changeWeaponType(type: number){
     this.weaponType = weaponNames[type] as WeaponPlayerType;
     this.setCannonComponent();
+    this.setDepth(1);
   }
 
   updgradeWeapon() {
