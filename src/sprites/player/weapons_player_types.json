@@ -62,7 +62,6 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     30,
                 "DURATION":            -1
-
             }
         ]
     },
@@ -140,7 +139,6 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
                 "DURATION":            -1
-
             },
             {
                 "TEXTURE_NAME": "components",
@@ -167,7 +165,6 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
                 "DURATION":            -1
-
             },
             {
                 "TEXTURE_NAME": "components",
@@ -181,7 +178,7 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     30,
                 "DURATION":            -1
-
+            
             }
         ]
     }

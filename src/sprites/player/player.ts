@@ -54,7 +54,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   setInitialWeapon() {
     this.weaponType = 'MISSILI';
     this.weaponLevel = 0;
-    this.setDepth(0);
   }
 
   setInitialEnergy() {
@@ -64,7 +63,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   setCannonComponent() {
     if (this.cannon) this.cannon.destroy();
     const { TEXTURE_NAME, FRAME_NAME } = WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel];
-    const { POS_X, POS_Y, FIRE_X, FIRE_Y, FLIP_Y, SCALE } = components[FRAME_NAME];
+    const { POS_X, POS_Y, FIRE_X, FIRE_Y, FLIP_Y, SCALE, DEPTH } = components[FRAME_NAME];
     this.cannonPosX = POS_X;
     this.cannonPosY = POS_Y;
     this.cannonfireX = FIRE_X;
@@ -72,6 +71,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannon = this.scene.add.image(this.cannonPosX + this.x, this.cannonPosY + this.y, TEXTURE_NAME, FRAME_NAME);
     this.cannon.setScale(SCALE);
     this.cannon.setFlipY(FLIP_Y);
+    this.cannon.setDepth(DEPTH);
   }
 
   takeHit(damage: number) {
@@ -121,7 +121,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   changeWeaponType(type: number){
     this.weaponType = weaponNames[type] as WeaponPlayerType;
     this.setCannonComponent();
-    this.setDepth(1);
   }
 
   updgradeWeapon() {

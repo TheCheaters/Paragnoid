@@ -5,7 +5,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3,
+    "DEPTH":  0
   },
   "Comp_15.png": {
     "POS_X":  10,
@@ -13,7 +14,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3,
+    "DEPTH":  0
   },
   "Comp_14.png": {
     "POS_X":  10,
@@ -21,7 +23,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_8.png": {
     "POS_X":  10,
@@ -29,7 +32,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_3.png": {
     "POS_X":  10,
@@ -37,7 +41,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_4.png": {
     "POS_X":  10,
@@ -45,7 +50,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3,
+    "DEPTH":  0
   },
   "Comp_12.png": {
     "POS_X":  10,
@@ -53,7 +59,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_6.png": {
     "POS_X":  10,
@@ -61,7 +68,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3,
+    "DEPTH":  0
   },
   "Comp_13.png": {
     "POS_X":  10,
@@ -69,7 +77,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_7.png": {
     "POS_X":  10,
@@ -77,7 +86,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_2.png": {
     "POS_X":  10,
@@ -85,7 +95,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_22.png": {
     "POS_X":  10,
@@ -93,7 +104,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_31.png": {
     "POS_X":  30,
@@ -101,7 +113,8 @@
     "FIRE_X": 70,
     "FIRE_Y": 30,
     "FLIP_Y": true,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  -1
   },
   "Comp_30.png": {
     "POS_X":  10,
@@ -109,7 +122,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_1.png": {
     "POS_X":  10,
@@ -117,7 +131,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_5.png": {
     "POS_X":  10,
@@ -125,7 +140,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_27.png": {
     "POS_X":  50,
@@ -133,7 +149,8 @@
     "FIRE_X": 50,
     "FIRE_Y": 70,
     "FLIP_Y": false,
-    "SCALE":  0.1
+    "SCALE":  0.1, 
+    "DEPTH":  0
   },
   "Comp_37.png": {
     "POS_X":  10,
@@ -141,7 +158,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_28.png": {
     "POS_X":  10,
@@ -149,7 +167,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_25.png": {
     "POS_X":  10,
@@ -157,7 +176,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_32.png": {
     "POS_X":  10,
@@ -165,7 +185,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_21.png": {
     "POS_X":  20,
@@ -173,7 +194,8 @@
     "FIRE_X": 45,
     "FIRE_Y": 2,
     "FLIP_Y": false,
-    "SCALE":  0.2
+    "SCALE":  0.2, 
+    "DEPTH":  1
   },
   "Comp_11.png": {
     "POS_X":  10,
@@ -181,7 +203,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_29.png": {
     "POS_X":  10,
@@ -189,7 +212,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_10.png": {
     "POS_X":  10,
@@ -197,7 +221,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_34.png": {
     "POS_X":  10,
@@ -205,7 +230,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_36.png": {
     "POS_X":  25,
@@ -213,7 +239,8 @@
     "FIRE_X": 50,
     "FIRE_Y": 30,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  -1
   },
   "Comp_33.png": {
     "POS_X":  10,
@@ -221,7 +248,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_18.png": {
     "POS_X":  10,
@@ -229,7 +257,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_19.png": {
     "POS_X":  10,
@@ -237,7 +266,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_23.png": {
     "POS_X":  10,
@@ -245,7 +275,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_16.png": {
     "POS_X":  10,
@@ -253,7 +284,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_17.png": {
     "POS_X":  10,
@@ -261,7 +293,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_35.png": {
     "POS_X":  10,
@@ -269,7 +302,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_20.png": {
     "POS_X":  10,
@@ -277,7 +311,8 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   },
   "Comp_24.png": {
     "POS_X":  4,
@@ -285,7 +320,8 @@
     "FIRE_X": 5,
     "FIRE_Y": 2,
     "FLIP_Y": false,
-    "SCALE":  0.2
+    "SCALE":  0.2,
+    "DEPTH":  0
   },
   "Comp_26.png": {
     "POS_X":  10,
@@ -293,6 +329,7 @@
     "FIRE_X": 10,
     "FIRE_Y": 10,
     "FLIP_Y": false,
-    "SCALE":  0.3
+    "SCALE":  0.3, 
+    "DEPTH":  0
   }
 }
