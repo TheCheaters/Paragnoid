@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { POWERUPS, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE } from '~/constants.json';
+import { POWERUPS, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
 
 export enum PowerUpTypes {
   ENERGY         = 'ENERGY',
@@ -47,11 +47,11 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
     // DIRECTION
     this.path = { t: 0, vec: new Phaser.Math.Vector2() };
     this.points = [
-      1300, Phaser.Math.Between(200, 400),
+      RIGHT_SPAWN_ZONE, Phaser.Math.Between(200, 400),
       Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
       Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
       Phaser.Math.Between(200, 1000), Phaser.Math.Between(200, 400),
-      Phaser.Math.Between(200, 1000), -150
+      Phaser.Math.Between(200, 1000), LEFT_KILL_ZONE
     ];
     this.curve = new Phaser.Curves.Spline(this.points);
     this.tween = this.scene.tweens.add({
@@ -73,7 +73,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
       x: 200,
       y: 300,
       alpha: 0.3,
-      lifespan: 100,
+      lifespan: 500,
       speed: { min: -400, max: 100 },
       gravityY: 300,
       scale: { start: 0.4, end: 0 },
@@ -81,8 +81,6 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
       blendMode: 'LIGHTEN',
       on: true,
     });
-
-
   }
 
   kill() {
@@ -104,8 +102,10 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
     this.flares.setPosition(this.x, this.y);
 
-    if (this.x < LEFT_KILL_ZONE || this.x > RIGHT_KILL_ZONE) {
-			this.kill();
+    if (this.x < LEFT_KILL_ZONE
+      || this.x > RIGHT_KILL_ZONE
+      || this.y < TOP_KILL_ZONE
+      || this.y > BOTTOM_KILL_ZONE) {			this.kill();
 		}
 	}
 
