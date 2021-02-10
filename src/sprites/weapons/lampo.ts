@@ -14,7 +14,7 @@ export default class Lampo {
     maxOffset!: number;
     scala!: number;
     scene!: Game;
-    random!:boolean
+    random!: boolean
     constructor(scene: Game, generazioni: number, maxOffset: number, scala: number) {
         this.scene = scene;
         this.generazioni = LAMPO_GENERAZIONI;
@@ -22,11 +22,11 @@ export default class Lampo {
         this.scala = LAMPO_SCALA;
     }
 
-    generazione(startPointX: number, startPointY: number, endPointX: number, endPointY: number, level:number) {
-        var t0 = performance.now();
+    generazione(startPointX: number, startPointY: number, endPointX: number, endPointY: number, level: number) {
+        const t0 = performance.now();
         const listaSegmenti: Segment[] = []; //array vuoto
         // const nuovaLista: Segment[] = []; //un altro array di appoggio
-        let segmento1 = new Segment(this.scene, startPointX, startPointY, endPointX, endPointY, level);
+        const segmento1 = new Segment(this.scene, startPointX, startPointY, endPointX, endPointY, level);
         listaSegmenti.push(segmento1); //metto nell'array un primo segmento che va dal punto iniziale a quello finale
         let offsetSegmento = this.maxOffset; //il massimo Offset che posso dare ad un vertice del segmento
 
@@ -61,7 +61,7 @@ export default class Lampo {
                 const y2 = Math.cos(angolo) * randomOffset + puntoMedioY;
                 console.log(y2);
 
-                if (this.random = Phaser.Math.RND.between(-1, 1) < 0) {                     //sceglie tra una estensione a sx o a dx oppure sopra/sotto
+                if (Phaser.Math.RND.between(-1, 1) < 0) {                     //sceglie tra una estensione a sx o a dx oppure sopra/sotto
                     console.log(this.random);
                     puntoMedioX = x1;
                     puntoMedioY = y1;
@@ -101,7 +101,7 @@ export default class Lampo {
             offsetSegmento /= 2;            
             // listaSegmenti = nuovaLista;
         }
-        var t1 = performance.now();
+        const t1 = performance.now();
         console.log("Performance singolo Lampo " + (t1 - t0) + " millisecondi.")
         return listaSegmenti;
         
