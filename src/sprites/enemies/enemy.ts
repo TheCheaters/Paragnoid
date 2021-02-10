@@ -1,4 +1,4 @@
-import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
+import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE, FLARES } from '~/constants.json';
 import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
@@ -32,6 +32,10 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   private tween?: Phaser.Tweens.Tween | null;
   private points?: number[];
   private ui?: UI;
+  private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
+  private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
+  private enginePosition!: [number, number];
+
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, ENEMY_TYPES.DEFAULT.TEXTURE_NAME);
   }
@@ -54,22 +58,23 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     console.log(`Made Enemy ${this.enemyName}`);
 
     const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE, ENEMY_SCALE } = ENEMY_TYPES[enemyType];
+    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE, ENEMY_SCALE, ENGINE_POSITION } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
     this.setBodySize(WIDTH, HEIGHT);
     this.setScale(ENEMY_SCALE);
-
+    this.enginePosition = ENGINE_POSITION as [number, number];
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
     const x = RIGHT_SPAWN_ZONE;
-    this.setOrigin(0, 0);
+    this.setOrigin(0.5, 0.5);
     this.body.reset(x, y);
 
     // DIRECTION
     if (enemyPath) {
+      this.setRotation(0);
       this.enemyPath = enemyPath;
       this.path = { t: 0, vec: new Phaser.Math.Vector2() };
       this.points = ENEMY_PATHS[this.enemyPath];
@@ -82,8 +87,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
       });
 
     } else {
-
       const { player } = this.scene as Game;
+      this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
+      console.log(this.rotation);
       this.scene.physics.moveToObject(this, player, SPEED);
 
     }
@@ -107,6 +113,31 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
       this.fire(this.x, this.y, WEAPON_TYPE as WeaponEnemyType);
     }, callbackScope: this, loop: true });
 
+    this.createFireEngine();
+
+  }
+
+  createFireEngine() {
+    this.manager = this.scene.add.particles(FLARES);
+    this.emitter = this.manager
+      .createEmitter({
+        name: 'fire',
+        frame: [
+          'yellow',
+        ],
+        x: this.x,
+        y: this.y,
+        blendMode: 'ADD',
+        scale: { start: 0.3, end: 0 },
+        speed: { min: -100, max: 100 },
+        lifespan: 200,
+        quantity: 1,
+        alpha: [0.5, 1]
+      })
+  }
+
+  removeFireEngine() {
+    if (this.emitter) this.emitter.remove();
   }
 
   fire(x: number, y: number, weaponType: WeaponEnemyType) {
@@ -140,6 +171,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.timer.remove();
     this.tween?.stop();
+    this.removeFireEngine();
     console.log(`Killed Enemy ${this.enemyName}`);
     if (this.isBoss) sceneChangeEmitter.emit(`${this.enemyType}-IS-DEAD`);
   }
@@ -153,6 +185,8 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
       this.y = y;
     }
     this.lifeLine.update();
+    const engineXpos = this.flipX ? this.body.width / 2 : -this.body.width / 2
+    this.emitter.setPosition(this.x + engineXpos + this.enginePosition[0], this.y + this.enginePosition[1]);
 
     if (this.x < LEFT_KILL_ZONE
       || this.x > RIGHT_KILL_ZONE
