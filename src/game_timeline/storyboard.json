@@ -145,8 +145,8 @@
       "singleWave": false,
       "enemyQuantity": 1,
       "enemyDelay": 500,
-      "enemyType": "SHIP_17",
-      "enemyFlip": false,
+      "enemyType": "SPACE_BOSS",
+      "enemyFlip": true,
       "enemyBehavior": "SPACE_BOSS_BEHAVIOR",
       "enemyPath": "SPACE_BOSS_PATH"
     }
@@ -193,6 +193,21 @@
       "enemyBehavior": "INVINCIBLE",
       "enemyPath": null,
       "callbacks": ["powerups.energy"]
+    }, 
+
+    {
+      "delay": 1000,
+      "waves": 3,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 1,
+      "enemyDelay": 1000,
+      "enemyType":  "SKY_BOSS",
+      "enemyFlip":  true,
+      "enemyBehavior": "SPACE_BOSS_BEHAVIOR",
+      "enemyPath": "SPACE_BOSS_PATH",
+      "callbacks":  ["powerups.energy"]
+
     }
   ]
 }

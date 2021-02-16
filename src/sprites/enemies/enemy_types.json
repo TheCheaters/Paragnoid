@@ -160,5 +160,23 @@
     "ENEMY_SCALE": 0.2,
     "WEAPON_TYPE":  "DEFAULT",
     "SCORE_VALUE": 1500
+  }, 
+  "SPACE_BOSS": {
+    "TEXTURE_NAME": "enemies", 
+    "FRAME_NAME":   "Ship/enemy_boss_space.png",
+    "WIDTH":        611,
+    "HEIGHT":       395,
+    "ENEMY_SCALE":  0.2,
+    "WEAPON_TYPE":  "DEFAULT",
+    "SCORE_VALUE":  1500
+  },
+  "SKY_BOSS": {
+    "TEXTURE_NAME":  "enemies",
+    "FRAME_NAME":    "Ship/enemy_boss_sky.png",
+    "WIDTH":         619,
+    "HEIGHT":        395,
+    "ENEMY_SCALE":   0.2,
+    "WEAPON_TYPE":   "DEFAULT",
+    "SCORE_VALUE":   1500
   }
 }
