@@ -164,7 +164,7 @@ export default class KeysController extends Scene {
     }
 
     //LAMPO
-    if (Phaser.Input.Keyboard.JustDown(this.keys.q) && debug){
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 1000) && debug){
       const lampo = new Lampo(this.gameInstance, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
     const segmentoIniziale = lampo.generazione2(300, 300, 1000, 300, 1);
     const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
