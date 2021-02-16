@@ -105,7 +105,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.body.enable = true;
     this.setActive(true);
     this.setVisible(true);
-    this.lifeLine = new Lifeline(this.scene as Game, this);
+    this.lifeLine = new Lifeline(this.scene as Game, this, true);
 
     const delay = Phaser.Math.Between(FIRE_RATE, FIRE_RATE + 2000);
 
