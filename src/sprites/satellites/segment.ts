@@ -38,7 +38,7 @@ export default class Segment {
          this.scene.tweens.add({
                targets: style,
                duration: 400,
-               alpha: 0
+               //alpha: 0
           })
          setTimeout(() => {
             style.clear();
@@ -48,7 +48,7 @@ export default class Segment {
          this.scene.tweens.add({
             targets: style1,
             duration: 600,
-            alpha: 0
+            //alpha: 0
          })
          setTimeout(() => {
             style1.clear();
