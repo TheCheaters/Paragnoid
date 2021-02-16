@@ -35,24 +35,25 @@ export default class Segment {
       //this.scene.add.shader();
       if (this.level <= 1) {
          style.strokeLineShape(this.line);
-         // this.scene.tweens.add({
-            //    targets: style,
-            //    duration: 400,
-         //    alpha: 0
-         // })
+         /*this.scene.tweens.add({
+               targets: style,
+               duration: 400,
+               alpha: 0
+          })*/
          setTimeout(() => {
             style.clear();
          }, LAMPO_DURATA + 10000000)
       } else {
          style1.strokeLineShape(this.line);
+         /*this.scene.tweens.add({
+            targets: style1,
+            duration: 600,
+            alpha: 0
+         })*/
          setTimeout(() => {
             style1.clear();
          }, LAMPO_DURATA + 10000000)
-         // this.scene.tweens.add({
-         //    targets: style1,
-         //    duration: 600,
-         //    alpha: 0
-         // })
+
       }
 
    }
