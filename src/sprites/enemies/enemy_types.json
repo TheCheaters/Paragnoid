@@ -155,15 +155,15 @@
   "SHIP_18": {
     "TEXTURE_NAME": "enemies",
     "FRAME_NAME":   "Ship/Ship_18.png",
-    "WIDTH": 967,
-    "HEIGHT": 454,
-    "ENEMY_SCALE": 0.2,
+    "WIDTH":        967,
+    "HEIGHT":       454,
+    "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE": 1500
+    "SCORE_VALUE":  1500
   }, 
   "SPACE_BOSS": {
     "TEXTURE_NAME": "enemies", 
-    "FRAME_NAME":   "Ship/enemy_boss_space.png",
+    "FRAME_NAME":   "Ship/Boss_space.png",
     "WIDTH":        611,
     "HEIGHT":       395,
     "ENEMY_SCALE":  0.2,
@@ -172,7 +172,7 @@
   },
   "SKY_BOSS": {
     "TEXTURE_NAME":  "enemies",
-    "FRAME_NAME":    "Ship/enemy_boss_sky.png",
+    "FRAME_NAME":    "Ship/Boss_sky.png",
     "WIDTH":         619,
     "HEIGHT":        395,
     "ENEMY_SCALE":   0.2,
