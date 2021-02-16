@@ -94,14 +94,14 @@ export default class Game extends Scene {
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
-    const lampo = new Lampo(this, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
-    const segmentoIniziale = lampo.generazione2(300, 300, 1000, 421, 1);
+    /*const lampo = new Lampo(this, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
+    const segmentoIniziale = lampo.generazione2(300, 300, 1000, 300, 1);
     const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
     const risultato = generazioneRecorsiva(segmentoIniziale, 5);
     for (let index = 0; index < risultato.length; index++) {
       const segmento = risultato[index];
       segmento.draw(this.style, this.style1);
-    }
+    }*/
 
     this.scene.launch('ui');
     this.scene.launch('keys-controller');

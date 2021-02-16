@@ -4,6 +4,14 @@ import { DIRECTIONS } from '~/globals';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import debug from '~/utils/debug';
+import {
+  LAMPO_GENERAZIONI,
+  LAMPO_MAXOFFSET,
+  LAMPO_SCALA,
+  LAMPO_DURATA
+} from '~/constants.json';
+import Lampo from '~/sprites/satellites/lampo';
+import { createRecurringFunctionLast } from '~/sprites/satellites/recurring';
 
 type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   add: (Scene, any) => VirtualJoystickPlugin;
@@ -19,6 +27,8 @@ export default class KeysController extends Scene {
     [key: string]: Phaser.Input.Keyboard.Key;
   }
   private gameInstance!: Game;
+  private style!: Phaser.GameObjects.Graphics;
+  private style1!: Phaser.GameObjects.Graphics;
   constructor() {
     super({
       key: 'keys-controller',
@@ -28,6 +38,19 @@ export default class KeysController extends Scene {
 
   create() {
     this.gameInstance = this.scene.get('game') as Game;
+    this.style = this.add.graphics({
+      lineStyle: {
+          width: 3,
+          color: 0xff0000
+      }
+    });
+    this.style1 = this.add.graphics({
+      lineStyle: {
+          width: 2,
+          color: 0xffff00,
+        //  alpha: 0.
+      }
+    });
 
     const plugin = this.plugins.get('rexVirtualJoystick') as VirtualJoystickPlugin;
     this.joyStick = plugin.add(this, {
@@ -59,6 +82,7 @@ export default class KeysController extends Scene {
       a: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
       s: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       d: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+      q: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q),
 
     }
 
@@ -137,6 +161,18 @@ export default class KeysController extends Scene {
     // SHIELD UP (DEBUG)
     if (Phaser.Input.Keyboard.JustDown(this.keys.z) && debug) {
       player.shieldUp();
+    }
+
+    //LAMPO
+    if (Phaser.Input.Keyboard.JustDown(this.keys.q) && debug){
+      const lampo = new Lampo(this.gameInstance, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
+    const segmentoIniziale = lampo.generazione2(300, 300, 1000, 300, 1);
+    const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
+    const risultato = generazioneRecorsiva(segmentoIniziale, 5);
+    for (let index = 0; index < risultato.length; index++) {
+      const segmento = risultato[index];
+      segmento.draw(this.style, this.style1);
+    }
     }
 
   }
