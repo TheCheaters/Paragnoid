@@ -10,6 +10,11 @@ import { WeaponEnemyType } from '~/types/weapons';
 
 let enemyProgressiveNumber = 0;
 
+const BOSS_LVL = {
+  SHIP_17: "space",
+  SHIP_30: "sky",
+};
+
 export type Make = {
   enemyType: keyof typeof ENEMY_TYPES;
   enemyBehavior: keyof typeof ENEMY_BEHAVIORS;
@@ -42,8 +47,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   make({ enemyType, enemyBehavior, enemyPath, enemyFlip }: Make) {
 
-    this.isBoss = enemyType.includes('BOSS');
+    const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
+    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE, ENEMY_SCALE, ENGINE_POSITION, BOSS } = ENEMY_TYPES[enemyType];
+
     this.enemyType = enemyType;
+    this.isBoss = BOSS;
 
     // BIND UI SCENE
     this.ui = this.scene.game.scene.getScene('ui') as UI;
@@ -55,10 +63,8 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     enemyProgressiveNumber += 1;
     this.enemyName = `Enemy_${enemyProgressiveNumber}`;
-    console.log(`Made Enemy ${this.enemyName}`);
+    console.log(`Made Enemy ${this.enemyName} [Boss: ${this.isBoss}]`);
 
-    const { ENERGY, SPEED, FIRE_RATE } = ENEMY_BEHAVIORS[enemyBehavior];
-    const { TEXTURE_NAME, FRAME_NAME, WIDTH, HEIGHT, WEAPON_TYPE, SCORE_VALUE, ENEMY_SCALE, ENGINE_POSITION } = ENEMY_TYPES[enemyType];
 
     // TEXTURE
     this.setTexture(TEXTURE_NAME, FRAME_NAME);
@@ -173,7 +179,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.tween?.stop();
     this.removeFireEngine();
     console.log(`Killed Enemy ${this.enemyName}`);
-    if (this.isBoss) sceneChangeEmitter.emit(`${this.enemyType}-IS-DEAD`);
+    if (this.isBoss) sceneChangeEmitter.emit(`${BOSS_LVL[this.enemyType]}-is-over`);
   }
 
 	preUpdate(time: number, delta: number) {
