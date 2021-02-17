@@ -7,11 +7,12 @@ export default class Lifeline {
   private line: Phaser.Geom.Line;
   private sprite: Player | Enemy;
   private shifted: boolean | undefined;
+  private colors = [0x00ff3d, 0xffff00, 0xff0000];
 
   constructor(scene: Game, sprite: Player | Enemy, shifted?: boolean) {
     this.sprite = sprite;
     this.shifted = shifted;
-    this.style = scene.add.graphics({ lineStyle: { width: 5, color: 0x00ff3d } });
+    this.style = scene.add.graphics({ lineStyle: { width: 5, color: this.colors[0] } });
     this.line = new Phaser.Geom.Line();
   }
 
@@ -34,6 +35,9 @@ export default class Lifeline {
       this.line.x2 = this.sprite.x + (larg * this.sprite.energy) / this.sprite.maxEnergy;
       this.line.y2 = y;
     }
+    const ratio = this.sprite.energy / this.sprite.maxEnergy
+    const color = (ratio > 0.7) ? this.colors[0] : (ratio > 0.3) ? this.colors[1] : this.colors[2];
+    this.style.lineStyle(5, color);
     this.style.strokeLineShape(this.line);
   }
 }
