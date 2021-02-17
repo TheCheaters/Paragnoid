@@ -35,7 +35,7 @@
     "FIRE_RATE": 800
   },
   "SPACE_BOSS_BEHAVIOR": {
-    "ENERGY":    1000,
+    "ENERGY":    10000,
     "SPEED":     2600,
     "FIRE_RATE": 500
   }
