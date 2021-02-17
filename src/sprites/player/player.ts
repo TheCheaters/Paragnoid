@@ -1,4 +1,4 @@
-import { RESPAWN_TIME, MORTAL } from '~/constants.json';
+import { RESPAWN_TIME, MORTAL, FLARES } from '~/constants.json';
 import components from '~/sprites/player/components_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
@@ -16,7 +16,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public speed = 1000;
   public maxEnergy!: number;
   private lifeLine!: Lifeline;
-
   public weaponType!: WeaponPlayerType;
   public weaponLevel!: number;
   private cannon!: Phaser.GameObjects.Image;
@@ -26,6 +25,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private cannonfireY!: number;
   public scale = 0.2;
   public cannonflipY!: boolean;
+  private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
+  private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
+
 
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
@@ -39,6 +41,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setInitialEnergy();
     this.setInitialWeapon();
     this.setCannonComponent();
+    this.createFireEngine();
+
     // BEHAVIOR
     // this.lifeLine = new Lifeline(this.scene as Game, this);
   }
@@ -72,6 +76,27 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannon.setScale(SCALE);
     this.cannon.setFlipY(FLIP_Y);
     this.cannon.setDepth(DEPTH);
+  }
+
+  createFireEngine() {
+    this.manager = this.scene.add.particles(FLARES);
+    this.emitter = this.manager
+      .createEmitter({
+        name: 'fire',
+        frame: [
+          'blue',
+        ],
+        gravityX: -500,
+        x: -40,
+        y: 5,
+        blendMode: 'ADD',
+        scale: { start: 0.3, end: 0 },
+        speedX: { min: -100, max: 10, steps: 12 },
+        speedY: { min: -50, max: 50 },
+        lifespan: 500,
+        quantity: 1,
+        alpha: [0.5, 1]
+      })
   }
 
   takeHit(damage: number) {
@@ -195,6 +220,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
+    this.manager.setPosition(this.x, this.y);
 
     const scene = this.scene as Game;
     scene.shield.moveShield(this.x, this.y);

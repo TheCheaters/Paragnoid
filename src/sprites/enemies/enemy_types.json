@@ -6,7 +6,8 @@
     "HEIGHT":       309,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1000
+    "SCORE_VALUE":  1000,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_2": {
     "TEXTURE_NAME": "enemies",
@@ -15,7 +16,8 @@
     "HEIGHT":       200,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1100
+    "SCORE_VALUE":  1100,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_3": {
     "TEXTURE_NAME": "enemies",
@@ -24,7 +26,8 @@
     "HEIGHT":       320,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1200
+    "SCORE_VALUE":  1200,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_4": {
     "TEXTURE_NAME": "enemies",
@@ -33,7 +36,8 @@
     "HEIGHT":       232,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  10000
+    "SCORE_VALUE":  10000,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_5": {
     "TEXTURE_NAME": "enemies",
@@ -42,7 +46,8 @@
     "HEIGHT":       273,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_6": {
     "TEXTURE_NAME": "enemies",
@@ -51,7 +56,8 @@
     "HEIGHT":       275,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1000
+    "SCORE_VALUE":  1000,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_7": {
     "TEXTURE_NAME": "enemies",
@@ -60,7 +66,8 @@
     "HEIGHT":       239,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_8": {
     "TEXTURE_NAME": "enemies",
@@ -69,7 +76,8 @@
     "HEIGHT":       245,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_9": {
     "TEXTURE_NAME": "enemies",
@@ -78,7 +86,8 @@
     "HEIGHT":       267,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
-    "SCORE_VALUE":  500
+    "SCORE_VALUE":  500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_10": {
     "TEXTURE_NAME": "enemies",
@@ -87,7 +96,8 @@
     "HEIGHT":       296,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
-    "SCORE_VALUE":  600
+    "SCORE_VALUE":  600,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_11": {
     "TEXTURE_NAME": "enemies",
@@ -96,7 +106,8 @@
     "HEIGHT":       337,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
-    "SCORE_VALUE":  5000
+    "SCORE_VALUE":  5000,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_12": {
     "TEXTURE_NAME": "enemies",
@@ -105,7 +116,8 @@
     "HEIGHT":       269,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "MEGA",
-    "SCORE_VALUE":  500
+    "SCORE_VALUE":  500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_13": {
     "TEXTURE_NAME": "enemies",
@@ -114,7 +126,8 @@
     "HEIGHT":       368,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "ULTRA",
-    "SCORE_VALUE":  300
+    "SCORE_VALUE":  300,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_14": {
     "TEXTURE_NAME": "enemies",
@@ -123,7 +136,8 @@
     "HEIGHT":       350,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
-    "SCORE_VALUE":  1000
+    "SCORE_VALUE":  1000,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_15": {
     "TEXTURE_NAME": "enemies",
@@ -132,7 +146,8 @@
     "HEIGHT":       318,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DIFFUSO",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_16": {
     "TEXTURE_NAME": "enemies",
@@ -141,7 +156,8 @@
     "HEIGHT":       421,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_17": {
     "TEXTURE_NAME": "enemies",
@@ -150,7 +166,8 @@
     "HEIGHT":       496,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SHIP_18": {
     "TEXTURE_NAME": "enemies",
@@ -159,6 +176,7 @@
     "HEIGHT": 454,
     "ENEMY_SCALE": 0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE": 1500
+    "SCORE_VALUE": 1500,
+    "ENGINE_POSITION": [0, 0]
   }
 }
