@@ -11,6 +11,7 @@ type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 type ExplosionType = keyof typeof EXPLOSION_TYPES;
 
 export default class Preload extends Scene {
+  private text!: Phaser.GameObjects.Text;
 
   constructor() {
     super({
@@ -20,6 +21,8 @@ export default class Preload extends Scene {
   }
 
   preload() {
+    this.text = this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...' ).setOrigin(0.5);
+
     this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
     this.load.image(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH);
     Object.keys(EXPLOSION_TYPES).forEach((E) => {
