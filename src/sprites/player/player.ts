@@ -101,9 +101,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   takeHit(damage: number) {
     if (MORTAL && debug) {
-      const scene = this.scene as Game;
-      console.log(scene.shield.isUp);
-      if (scene.shield.isUp) scene.shield.takeHit(damage);
+      if ((this.scene as Game).shield.isUp) (this.scene as Game).shield.takeHit(damage);
       else {
         this.energy -= damage;
         if (this.energy <= 0) { this.die(); }
@@ -149,10 +147,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   updgradeWeapon() {
-    const scene = this.scene as Game;
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
       this.weaponLevel += 1;
-      scene.satellites.launchSatellite();
+      (this.scene as Game).satellites.launchSatellite();
     } else {
       this.weaponLevel += 0;
     }
