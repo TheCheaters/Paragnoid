@@ -1,17 +1,10 @@
 import { Scene } from 'phaser';
 import VirtualJoystickPlugin from 'phaser3-rex-plugins/plugins/virtualjoystick-plugin.js';
 import * as C from '~/constants.json';
-import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
-import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
-import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import EXPLOSION_TYPES from '~/sprites/explosions/explosions_types.json';
-type WeaponPlayerType = keyof typeof WEAPON_PLAYER_TYPES;
-type WeaponEnemyType = keyof typeof WEAPON_ENEMY_TYPES;
-type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 type ExplosionType = keyof typeof EXPLOSION_TYPES;
 
 export default class Preload extends Scene {
-  private text!: Phaser.GameObjects.Text;
 
   constructor() {
     super({
@@ -21,7 +14,7 @@ export default class Preload extends Scene {
   }
 
   preload() {
-    this.text = this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...' ).setOrigin(0.5);
+    this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading Images' ).setOrigin(0.5);
 
     this.load.plugin('rexVirtualJoystick', VirtualJoystickPlugin, true);
     this.load.image(C.SPACECRAFT, C.SPACECRAFT_ASSET_PATH);
@@ -51,35 +44,14 @@ export default class Preload extends Scene {
       frameHeight: 60
     });
 
-    // Carica tutti gli sprite e i suoni di Weapons
-    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponEnemyType;
-      this.load.audio(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, WEAPON_ENEMY_TYPES[WEAPON].AUDIO_ASSET_PATH);
-    });
-
-    //Carica tutti gli sprite ed i suoni del Player
-    Object.keys(WEAPON_PLAYER_TYPES).forEach((P) =>{
-      const PLAYER = P as WeaponPlayerType;
-      this.load.audio(WEAPON_PLAYER_TYPES[PLAYER].AUDIO_NAME, WEAPON_PLAYER_TYPES[PLAYER].AUDIO_ASSET_PATH);
-    });
-
-    //Carica tutti gli sprite ed i suoni dei Satelliti
-    Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => {
-      const SATELLITE = S as WeaponSatelliteType;
-      this.load.image(WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_NAME, WEAPON_SATELLITE_TYPES[SATELLITE].AUDIO_ASSET_PATH);
-      this.load.image(C.SATELLITES, C.SATELLITES_ASSET_PATH);
-    })
-
-    this.load.audio(C.HIT_ENEMY, C.HIT_ENEMY_ASSET_PATH);
-    this.load.audio(C.AUDIO_EXPLOSION, C.AUDIO_EXPLOSION_ASSET_PATH);
-    this.load.audio(C.AUDIO_OVER, C.AUDIO_OVER_PATH);
     this.load.bitmapFont(C.PV_FONT_NAME, C.PV_FONT_PATH, C.PV_FONT_XML_PATH);
     this.load.bitmapFont(C.LR_FONT_NAME, C.LR_FONT_PATH, C.LR_FONT_XML_PATH);
+    this.load.image(C.SATELLITES, C.SATELLITES_ASSET_PATH);
 
   }
 
   create() {
-    this.scene.start('intro');
+    this.scene.start('sound');
   }
 
 }
