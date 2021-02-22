@@ -22,6 +22,9 @@ type extraConfig = {
 
 const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	type: Phaser.AUTO,
+	input: {
+		gamepad: true,
+	},
 	scale: {
 		mode: Phaser.Scale.FIT,
 		parent: 'phaser',

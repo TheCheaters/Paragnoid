@@ -17,6 +17,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   public maxEnergy!: number;
   private lifeLine!: Lifeline;
   public weaponType!: WeaponPlayerType;
+
+  public weaponTypeIndex = 0;
   public weaponLevel!: number;
   private cannon!: Phaser.GameObjects.Image;
   private cannonPosX!: number;
@@ -141,8 +143,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setCannonComponent();
   }
 
-  changeWeaponType(type: number){
-    this.weaponType = weaponNames[type] as WeaponPlayerType;
+  prevWeapon(){
+    this.weaponTypeIndex = (this.weaponTypeIndex === 0) ? weaponNames.length - 1 : this.weaponTypeIndex - 1;
+    this.weaponType = weaponNames[this.weaponTypeIndex] as WeaponPlayerType;
+    this.setCannonComponent();
+  }
+
+  nextWeapon(){
+    this.weaponTypeIndex = (this.weaponTypeIndex === weaponNames.length - 1) ? 0 : this.weaponTypeIndex + 1;
+    this.weaponType = weaponNames[this.weaponTypeIndex] as WeaponPlayerType;
     this.setCannonComponent();
   }
 

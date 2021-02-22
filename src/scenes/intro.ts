@@ -26,6 +26,10 @@ export default class Intro extends Scene {
     this.input.once('pointerdown', () => {
       this.scene.start('game');
     });
+
+    this.input.gamepad.once('down', () => {
+      this.scene.start('game');
+    });
   }
 
   update(time, delta) {
