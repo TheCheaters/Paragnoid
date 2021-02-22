@@ -1,6 +1,5 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
-import { DIRECTIONS } from '~/globals';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import debug from '~/utils/debug';
@@ -12,6 +11,10 @@ type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
   createCursorKeys: () => Phaser.Types.Input.Keyboard.CursorKeys;
 }
 
+let aPressed = false;
+let xPressed = false;
+let bPressed = false;
+
 export default class KeysController extends Scene {
   private cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
   private joyStick!: VirtualJoystickPlugin;
@@ -19,6 +22,7 @@ export default class KeysController extends Scene {
   private keys!: {
     [key: string]: Phaser.Input.Keyboard.Key;
   }
+
   private gameInstance!: Game;
   constructor() {
     super({
@@ -70,10 +74,16 @@ export default class KeysController extends Scene {
 
     const { player, playerWeaponsGroup } = this.gameInstance;
     const { speed } = player;
-    const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
-    const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
-    const down = this.cursor.down?.isDown || this.joyStickKeys.down?.isDown || this.keys.s?.isDown;
-    const left = this.cursor.left?.isDown || this.joyStickKeys.left?.isDown || this.keys.a?.isDown;
+    const duration = WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION
+    const up = this.cursor.up?.isDown || this.input.gamepad?.pad1?.leftStick.y < 0 || this.keys.w?.isDown;
+    const right = this.cursor.right?.isDown || this.input.gamepad?.pad1?.leftStick.x > 0 || this.keys.d?.isDown;
+    const down = this.cursor.down?.isDown || this.input.gamepad?.pad1?.leftStick.y > 0 || this.keys.s?.isDown;
+    const left = this.cursor.left?.isDown || this.input.gamepad?.pad1?.leftStick.x < 0 || this.keys.a?.isDown;
+    const prevWeapon = Phaser.Input.Keyboard.JustDown(this.keys.k) || this.input.gamepad?.pad1?.B && !bPressed;
+    const nextWeapon = Phaser.Input.Keyboard.JustDown(this.keys.l) || this.input.gamepad?.pad1?.X && !xPressed;
+    const shortFireWeapon = WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION === -1;
+    const fire = Phaser.Input.Keyboard.JustDown(this.keys.space) || this.input.gamepad?.pad1?.A && !aPressed;
+    const longFire = Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) || this.input.gamepad?.pad1?.A;
 
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
@@ -101,32 +111,33 @@ export default class KeysController extends Scene {
     } else if (Phaser.Input.Keyboard.JustDown(this.keys.n) && debug) {
       player.decreaseLevelWeapon();
     }
-    // TASTI CAMBIO ARMA PER DEBUG
-    if (Phaser.Input.Keyboard.JustDown(this.keys.l) && debug) {
-      player.changeWeaponType(1);
+
+
+    if (prevWeapon) {
+      player.prevWeapon();
+      bPressed = true;
     }
-    // if (Phaser.Input.Keyboard.JustDown(this.keys.k) && debug) {
-    //   player.changeWeaponType(2);
-    // }
-    if (Phaser.Input.Keyboard.JustDown(this.keys.j) && debug) {
-      player.changeWeaponType(0);
+
+    if (nextWeapon) {
+      player.nextWeapon();
+      xPressed = true;
     }
+
     //  PLAYER SHOOT FUNCTION
+    if (shortFireWeapon) {
 
-    if (WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION === -1) {
-
-      if (Phaser.Input.Keyboard.JustDown(this.keys.space)) {
+      if (fire) {
         playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
+        aPressed = true;
       }
 
     } else {
 
-      if (Phaser.Input.Keyboard.DownDuration(this.keys.space, WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION)) {
+      if (longFire) {
           playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
         }
 
     }
-
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.one) && debug) {
       sceneChangeEmitter.emit('sky-boss-is-dead');
@@ -146,6 +157,11 @@ export default class KeysController extends Scene {
       sound.on = !sound.on;
       console.log('Sound is on', sound.on);
     }
+
+    // reset pressed state at the end of update cycle
+    if (!this.input.gamepad?.pad1?.A) aPressed = false;
+    if (!this.input.gamepad?.pad1?.B) bPressed = false;
+    if (!this.input.gamepad?.pad1?.X) xPressed = false;
 
   }
 }
