@@ -14,7 +14,7 @@ export default class SatelliteWeapon extends Weapon {
 
   fire(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
       const { TEXTURE_NAME, FRAME_NAME, DAMAGE, TURN_RATE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE, EXPLODES } = WEAPON_SATELLITE_TYPES[weaponType];
-      this.setOrigin(0, 0.5); // TODO: spostare in make
+        this.setOrigin(0, 0.5); // TODO: spostare in make
       this.make({
         texture: TEXTURE_NAME,
         frame: FRAME_NAME,
@@ -57,6 +57,34 @@ export default class SatelliteWeapon extends Weapon {
 
   preUpdate(time: number, delta: number, ) {
     super.preUpdate(time, delta);
+    const {player, enemies} = this.scene as Game;
+    this.weaponType = 'LAMPO_SATELLITE';
+    if (this.weaponType == 'LAMPO_SATELLITE'){
+      const closestEnemy = this.physics.closest(player, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
+      const lampo = new Lampo(this.scene as Game, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA);
+    const segmentoIniziale = lampo.generazione2(player.x, player.y, closestEnemy.x, closestEnemy.y, 1);
+    const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
+    const risultato = generazioneRecorsiva(segmentoIniziale, 5);
+    this.style = this.scene.add.graphics({
+      lineStyle: {
+          width: 3,
+          color: 0xff0000,
+          alpha: 1
+      }
+    });
+    this.style1 = this.scene.add.graphics({
+      lineStyle: {
+          width: 2,
+          color: 0xffff00,
+          alpha: 1
+      }
+    });
+    for (let index = 0; index < risultato.length; index++) {
+      const segmento = risultato[index];
+      segmento.draw(this.style, this.style1);
+      }
+    }
+
     if (this.follow === 1) {
       const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
