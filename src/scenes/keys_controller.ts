@@ -38,20 +38,6 @@ export default class KeysController extends Scene {
 
   create() {
     this.gameInstance = this.scene.get('game') as Game;
-    this.style = this.add.graphics({
-      lineStyle: {
-          width: 3,
-          color: 0xff0000
-      }
-    });
-    this.style1 = this.add.graphics({
-      lineStyle: {
-          width: 2,
-          color: 0xffff00,
-        //  alpha: 0.
-      }
-    });
-
     const plugin = this.plugins.get('rexVirtualJoystick') as VirtualJoystickPlugin;
     this.joyStick = plugin.add(this, {
       x: -200,
@@ -164,15 +150,29 @@ export default class KeysController extends Scene {
     }
 
     //LAMPO
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 1000) && debug){
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 500) && debug){
       const lampo = new Lampo(this.gameInstance, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
-    const segmentoIniziale = lampo.generazione2(300, 300, 1000, 300, 1);
+    const segmentoIniziale = lampo.generazione2(player.x, player.y, 1000, 300, 1);
     const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
     const risultato = generazioneRecorsiva(segmentoIniziale, 5);
+    this.style = this.add.graphics({
+      lineStyle: {
+          width: 3,
+          color: 0xff0000,
+          alpha: 1
+      }
+    });
+    this.style1 = this.add.graphics({
+      lineStyle: {
+          width: 2,
+          color: 0xffff00,
+          alpha: 1
+      }
+    });
     for (let index = 0; index < risultato.length; index++) {
       const segmento = risultato[index];
       segmento.draw(this.style, this.style1);
-    }
+      }
     }
 
   }

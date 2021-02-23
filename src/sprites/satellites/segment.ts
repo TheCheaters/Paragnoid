@@ -34,25 +34,30 @@ export default class Segment {
       this.line.y2 = this.endY;
       //this.scene.add.shader();
       if (this.level <= 1) {
-         style.strokeLineShape(this.line);
-         this.scene.tweens.add({
+         style.strokeLineShape(this.line); 
+            this.scene.tweens.add({               
                targets: style,
-               duration: 400,
-               //alpha: 0
-          })
-         setTimeout(() => {
-            style.clear();
-         }, LAMPO_DURATA + 1000)
+               alpha: {value:0, duration: 500, ease: 'Power1'} 
+          });
+   
+         /*setTimeout(() => {
+            this.scene.tweens.add({
+               targets: style,
+               alpha: {value:0, duration: 500, ease: 'Power1'} })
+            style.clear();            
+         }, LAMPO_DURATA + 500) */
       } else {
          style1.strokeLineShape(this.line);
          this.scene.tweens.add({
-            targets: style1,
-            duration: 600,
-            //alpha: 0
-         })
-         setTimeout(() => {
+            targets: style1,            
+            alpha: {value:0, duration: 500, ease: 'Power1'} 
+         });
+         /*setTimeout(() => {
+            this.scene.tweens.add({
+               targets: style1,
+               alpha: {value:0, duration: 500, ease: 'Power1'} })
             style1.clear();
-         }, LAMPO_DURATA + 1000)
+         }, LAMPO_DURATA + 500)*/
 
       }
 
