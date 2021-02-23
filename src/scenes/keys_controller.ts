@@ -76,7 +76,7 @@ export default class KeysController extends Scene {
 
   update() {
 
-    const { player, playerWeaponsGroup } = this.gameInstance;
+    const { player, enemies, playerWeaponsGroup } = this.gameInstance;
     const { speed } = player;
     const up = this.cursor.up?.isDown || this.joyStickKeys.up?.isDown || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.joyStickKeys.right?.isDown || this.keys.d?.isDown;
@@ -150,9 +150,10 @@ export default class KeysController extends Scene {
     }
 
     //LAMPO
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 500) && debug){
+    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 100) && debug){
+      const closestEnemy = this.physics.closest(player, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
       const lampo = new Lampo(this.gameInstance, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
-    const segmentoIniziale = lampo.generazione2(player.x, player.y, 1000, 300, 1);
+    const segmentoIniziale = lampo.generazione2(player.x, player.y, closestEnemy.x, closestEnemy.y, 1);
     const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
     const risultato = generazioneRecorsiva(segmentoIniziale, 5);
     this.style = this.add.graphics({
