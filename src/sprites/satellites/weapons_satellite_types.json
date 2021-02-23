@@ -46,6 +46,22 @@
         "FOLLOW":           0,
         "TURN_RATE":        5
 
+    },
+    "LAMPO_SATELLITE": {
+        "DAMAGE":           100,
+        "FIRE_SPEED":       2000,
+        "TEXTURE_NAME":     "",
+        "FRAME_NAME":       "",
+        "AUDIO_NAME":       "Missile",
+        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "WIDTH":            56,
+        "HEIGHT":           23,
+        "SCALE":            0.3,
+        "EXPLODES":         true,
+        "PARTICLES":        "SMOKE",
+        "FOLLOW":           0,
+        "TURN_RATE":        5
+
     }
 
 }
