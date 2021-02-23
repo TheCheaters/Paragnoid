@@ -37,7 +37,8 @@ export default class Segment {
          style.strokeLineShape(this.line); 
             this.scene.tweens.add({               
                targets: style,
-               alpha: {value:0, duration: 500, ease: 'Power1'} 
+               alpha: {value:0, duration: 500, ease: 'Power1'},
+               onComplete: function(){ style1.destroy}
           });
    
          /*setTimeout(() => {
@@ -50,7 +51,8 @@ export default class Segment {
          style1.strokeLineShape(this.line);
          this.scene.tweens.add({
             targets: style1,            
-            alpha: {value:0, duration: 500, ease: 'Power1'} 
+            alpha: {value:0, duration: 500, ease: 'Power1'},
+            onComplete: function(){ style1.destroy}
          });
          /*setTimeout(() => {
             this.scene.tweens.add({
