@@ -45,7 +45,7 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite {
       this.setVisible(true);
       this.activeSatellite = true;
       this.weaponType = "MISSILI_SATELLITE";
-      const delay = 2000 // Phaser.Math.Between(1000, 1000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
+      const delay = 5000 // Phaser.Math.Between(1000, 1000); // con questo si controlla il tempo di fuoriuscita dei missili a ricerca
 
       this.timer = this.scene.time.addEvent({ delay, callback: () => {
         this.fireSatellite(this.x, this.y, this.weaponType, this.follow);

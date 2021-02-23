@@ -178,6 +178,27 @@
 					}
 				},
 				{
+					"filename": "Laser.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 300,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 366,
+						"y": 119,
+						"w": 3,
+						"h": 3
+					}
+				},
+				{
 					"filename": "BlueSpin__004.png",
 					"rotated": false,
 					"trimmed": true,
@@ -771,6 +792,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ebeb1fa371aafca78f43bbfe2e43df39:be003f54d87b6543b9e5c4b541d111df:ba48453f8b2235fdb166a51105f49255$"
+		"smartupdate": "$TexturePacker:SmartUpdate:4fb9a9accc81c73e51aa2e9e86e191f2:058fbc2491ea63480b1030af14835a2e:ba48453f8b2235fdb166a51105f49255$"
 	}
 }

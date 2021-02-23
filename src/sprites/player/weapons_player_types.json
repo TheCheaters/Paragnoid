@@ -66,16 +66,16 @@
         ]
     },
     "LASER": {
-        "DAMAGE":           1000,
-        "FIRE_SPEED":       4000,
+        "DAMAGE":           5,
+        "FIRE_SPEED":       1000,
         "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "Missile_1.png",
+        "FRAME_NAME":       "Laser.png",
         "AUDIO_NAME":       "Laser",
         "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
-        "WIDTH":            56,
-        "HEIGHT":           23,
-        "SCALE":            0.3,
-        "EXPLODES":         false,
+        "WIDTH":            300,
+        "HEIGHT":           50,
+        "SCALE":            1,
+        "EXPLODES":         true,
         "PARTICLES":        "LASER",
         "LEVELS":           [{
                 "TEXTURE_NAME": "components",
@@ -93,9 +93,7 @@
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_36.png",
                 "ANGLE":        [
-                    -15,
-                    0,
-                    15
+                    0
                 ],
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
