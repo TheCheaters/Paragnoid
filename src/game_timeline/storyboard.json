@@ -1,6 +1,142 @@
 {
   "space": [
+    {
+      "delay": 0,
+      "waves": 2,
+      "wavesDelay": 2000,
+      "singleWave": false,
+      "enemyQuantity": 6,
+      "enemyDelay": 500,
+      "enemyType": "SHIP_6",
+      "enemyFlip": true,
+      "enemyBehavior": "STANDARD",
+      "enemyPath": "DEFAULT_PATH",
+      "callbacks": ["powerups.upgradeWeapon"]
+    },
 
+    {
+      "delay": 0,
+      "waves": 1,
+      "wavesDelay": 2000,
+      "singleWave": false,
+      "enemyQuantity": 4,
+      "enemyDelay": 500,
+      "enemyType": "SHIP_6",
+      "enemyFlip": false,
+      "enemyBehavior": "STANDARD",
+      "enemyPath": "DEFAULT_REVERSED_PATH"
+    },
+
+    {
+      "delay": 1000,
+      "waves": 3,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 4,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_2",
+      "enemyFlip": true,
+      "enemyBehavior": "AGGRESSIVE",
+      "enemyPath": null,
+      "callbacks": ["powerups.energy"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 2000,
+      "singleWave":false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_8",
+      "enemyFlip": true,
+      "enemyBehavior": "AGGRESSIVE",
+      "enemyPath": null,
+      "callbacks": ["powerups.shield"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 10,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_2",
+      "enemyFlip": false,
+      "enemyBehavior": "STANDARD",
+      "enemyPath": "SHIP_2_REVERSED_PATH"
+    },
+
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 2000,
+      "singleWave": false,
+      "enemyQuantity": 3,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_3",
+      "enemyFlip": true,
+      "enemyBehavior": "AGGRESSIVE",
+      "enemyPath": null,
+      "callbacks": ["powerups.energy"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 1,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 1,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_8",
+      "enemyFlip": false,
+      "enemyBehavior": "WHITE_SHIP_REVERSED_BEHAVIOR",
+      "enemyPath": "SHIP_8_REVERSED_PATH",
+      "callbacks": ["powerups.shield"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 2,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 3,
+      "enemyDelay": 1000,
+      "enemyType": "DEFAULT",
+      "enemyFlip": true,
+      "enemyBehavior": "SUICIDE",
+      "enemyPath": null,
+      "callbacks": ["powerups.changeWeapon"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 5,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_4",
+      "enemyFlip": true,
+      "enemyBehavior": "MONSTER",
+      "enemyPath": null,
+      "callbacks": ["powerups.upgradeWeapon"]
+    },
+
+    {
+      "delay": 1000,
+      "waves": 5,
+      "wavesDelay": 1000,
+      "singleWave": false,
+      "enemyQuantity": 5,
+      "enemyDelay": 1000,
+      "enemyType": "SHIP_5",
+      "enemyFlip": true,
+      "enemyBehavior": "TOUGH",
+      "enemyPath": null,
+      "callbacks": ["powerups.shield"]
+    },
 
     {
       "delay": 2000,
