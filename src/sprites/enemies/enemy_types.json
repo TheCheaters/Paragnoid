@@ -187,14 +187,32 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_18": {
-    "TEXTURE_NAME":    "enemies",
-    "BOSS":            false,
-    "FRAME_NAME":      "Ship/Ship_18.png",
-    "WIDTH":           967,
-    "HEIGHT":          454,
-    "ENEMY_SCALE":     0.2,
-    "WEAPON_TYPE":     "DEFAULT",
-    "SCORE_VALUE":     1500,
+    "TEXTURE_NAME": "enemies",
+    "FRAME_NAME":   "Ship/Ship_18.png",
+    "WIDTH":        967,
+    "HEIGHT":       454,
+    "ENEMY_SCALE":  0.2,
+    "WEAPON_TYPE":  "DEFAULT",
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
+  },
+  "SPACE_BOSS": {
+    "TEXTURE_NAME": "enemies",
+    "FRAME_NAME":   "Ship/Boss_space.png",
+    "WIDTH":        611,
+    "HEIGHT":       395,
+    "ENEMY_SCALE":  0.5,
+    "WEAPON_TYPE":  "DEFAULT",
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
+  },
+  "SKY_BOSS": {
+    "TEXTURE_NAME":  "enemies",
+    "FRAME_NAME":    "Ship/Boss_sky.png",
+    "WIDTH":         619,
+    "HEIGHT":        395,
+    "WEAPON_TYPE":   "DEFAULT",
+    "SCORE_VALUE":   1500,
     "ENGINE_POSITION": [0, 0]
   }
 }
