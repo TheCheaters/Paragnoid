@@ -48,16 +48,16 @@
 
     },
     "LAMPO_SATELLITE": {
-        "DAMAGE":           100,
+        "DAMAGE":           10000,
         "FIRE_SPEED":       2000,
-        "TEXTURE_NAME":     "",
-        "FRAME_NAME":       "",
+        "TEXTURE_NAME":     "weapons",
+        "FRAME_NAME":       "OrangeTail__003.png",
         "AUDIO_NAME":       "Missile",
         "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
-        "EXPLODES":         true,
+        "EXPLODES":         false,
         "PARTICLES":        "SMOKE",
         "FOLLOW":           0,
         "TURN_RATE":        5
