@@ -1,11 +1,11 @@
 {
     "MISSILI": {
-        "DAMAGE":           100,
+        "DAMAGE":           50,
         "FIRE_SPEED":       1000,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "Missile_1.png",
         "AUDIO_NAME":       "Missile",
-        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
@@ -70,8 +70,8 @@
         "FIRE_SPEED":       4000,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "Missile_1.png",
-        "AUDIO_NAME":       "Missile",
-        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "AUDIO_NAME":       "Laser",
+        "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.3,
@@ -122,8 +122,8 @@
         "FIRE_SPEED":       1500,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "OrangeTail__002.png",
-        "AUDIO_NAME":       "Missile",
-        "AUDIO_ASSET_PATH": "assets/weapons/missile.mp3",
+        "AUDIO_NAME":       "Plasma",
+        "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
         "SCALE":            0.6,
@@ -178,7 +178,7 @@
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     30,
                 "DURATION":            -1
-            
+
             }
         ]
     }

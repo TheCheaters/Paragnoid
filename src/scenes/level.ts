@@ -3,7 +3,6 @@ import sceneChangeEmitter from '~/emitters/scene-change-emitter';
 import { TimeLineScenes } from '~/game_timeline/timeline';
 import Timeline from '~/game_timeline/timeline';
 
-
 export default class Level extends Scene {
   private levelName: TimeLineScenes;
   private nextLevelName: TimeLineScenes;
@@ -22,7 +21,7 @@ export default class Level extends Scene {
 
   startTimeline() {
     this.timeline.start(this.levelName);
-    sceneChangeEmitter.on(`${this.levelName}-boss-is-dead`, () => {
+    sceneChangeEmitter.on(`${this.levelName}-is-over`, () => {
       console.log(`Starting Level ${this.nextLevelName}`);
       this.stopTimeline();
       this.scene.start(this.nextLevelName);
