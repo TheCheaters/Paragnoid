@@ -11,8 +11,8 @@ import { WeaponEnemyType } from '~/types/weapons';
 let enemyProgressiveNumber = 0;
 
 const BOSS_LVL = {
-  SHIP_17: "space",
-  SHIP_30: "sky",
+  SPACE_BOSS: "space",
+  SKY_BOSS: "sky",
 };
 
 export type Make = {

@@ -140,11 +140,11 @@ export default class KeysController extends Scene {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.one) && debug) {
-      sceneChangeEmitter.emit('sky-boss-is-dead');
+      sceneChangeEmitter.emit('sky-is-over');
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.two) && debug) {
-      sceneChangeEmitter.emit('space-boss-is-dead');
+      sceneChangeEmitter.emit('space-is-over');
     }
 
     // SHIELD UP (DEBUG)

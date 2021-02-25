@@ -1,7 +1,7 @@
 {
   "DEFAULT": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_1.png",
     "WIDTH":           435,
     "HEIGHT":          309,
@@ -11,8 +11,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_2": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_2.png",
     "WIDTH":           488,
     "HEIGHT":          200,
@@ -22,8 +22,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_3": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_3.png",
     "WIDTH":           414,
     "HEIGHT":          320,
@@ -33,8 +33,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_4": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_4.png",
     "WIDTH":           423,
     "HEIGHT":          232,
@@ -44,8 +44,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_5": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_5.png",
     "WIDTH":           483,
     "HEIGHT":          273,
@@ -55,8 +55,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_6": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_6.png",
     "WIDTH":           474,
     "HEIGHT":          275,
@@ -66,8 +66,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_7": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_7.png",
     "WIDTH":           637,
     "HEIGHT":          239,
@@ -77,8 +77,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_8": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_8.png",
     "WIDTH":           509,
     "HEIGHT":          245,
@@ -88,8 +88,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_9": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_9.png",
     "WIDTH":           466,
     "HEIGHT":          267,
@@ -99,8 +99,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_10": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_10.png",
     "WIDTH":           511,
     "HEIGHT":          296,
@@ -110,8 +110,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_11": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_11.png",
     "WIDTH":           673,
     "HEIGHT":          337,
@@ -121,8 +121,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_12": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_12.png",
     "WIDTH":           720,
     "HEIGHT":          269,
@@ -132,8 +132,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_13": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_13.png",
     "WIDTH":           632,
     "HEIGHT":          368,
@@ -143,8 +143,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_14": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_14.png",
     "WIDTH":           575,
     "HEIGHT":          350,
@@ -154,8 +154,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_15": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_15.png",
     "WIDTH":           703,
     "HEIGHT":          318,
@@ -165,8 +165,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_16": {
-    "TEXTURE_NAME":    "enemies",
     "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
     "FRAME_NAME":      "Ship/Ship_16.png",
     "WIDTH":           969,
     "HEIGHT":          421,
@@ -176,8 +176,8 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_17": {
+    "BOSS":            false,
     "TEXTURE_NAME":    "enemies",
-    "BOSS":            true,
     "FRAME_NAME":      "Ship/Ship_17.png",
     "WIDTH":           856,
     "HEIGHT":          496,
@@ -187,32 +187,36 @@
     "ENGINE_POSITION": [0, 0]
   },
   "SHIP_18": {
-    "TEXTURE_NAME": "enemies",
-    "FRAME_NAME":   "Ship/Ship_18.png",
-    "WIDTH":        967,
-    "HEIGHT":       454,
-    "ENEMY_SCALE":  0.2,
-    "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500,
+    "BOSS":            false,
+    "TEXTURE_NAME":    "enemies",
+    "FRAME_NAME":      "Ship/Ship_18.png",
+    "WIDTH":           967,
+    "HEIGHT":          454,
+    "ENEMY_SCALE":     0.2,
+    "WEAPON_TYPE":     "DEFAULT",
+    "SCORE_VALUE":     1500,
     "ENGINE_POSITION": [0, 0]
   },
   "SPACE_BOSS": {
-    "TEXTURE_NAME": "enemies",
-    "FRAME_NAME":   "Ship/Boss_space.png",
-    "WIDTH":        611,
-    "HEIGHT":       395,
-    "ENEMY_SCALE":  0.5,
-    "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500,
+    "BOSS":            true,
+    "TEXTURE_NAME":    "enemies",
+    "FRAME_NAME":      "Ship/Boss_space.png",
+    "WIDTH":           611,
+    "HEIGHT":          395,
+    "ENEMY_SCALE":     0.5,
+    "WEAPON_TYPE":     "DEFAULT",
+    "SCORE_VALUE":     1500,
     "ENGINE_POSITION": [0, 0]
   },
   "SKY_BOSS": {
-    "TEXTURE_NAME":  "enemies",
-    "FRAME_NAME":    "Ship/Boss_sky.png",
-    "WIDTH":         619,
-    "HEIGHT":        395,
-    "WEAPON_TYPE":   "DEFAULT",
-    "SCORE_VALUE":   1500,
+    "BOSS":            true,
+    "TEXTURE_NAME":    "enemies",
+    "FRAME_NAME":      "Ship/Boss_sky.png",
+    "WIDTH":           619,
+    "HEIGHT":          395,
+    "ENEMY_SCALE":     0.5,
+    "WEAPON_TYPE":     "DEFAULT",
+    "SCORE_VALUE":     1500,
     "ENGINE_POSITION": [0, 0]
   }
 }
