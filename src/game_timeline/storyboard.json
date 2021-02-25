@@ -193,7 +193,7 @@
       "enemyBehavior": "INVINCIBLE",
       "enemyPath": null,
       "callbacks": ["powerups.energy"]
-    }, 
+    },
 
     {
       "delay": 1000,
