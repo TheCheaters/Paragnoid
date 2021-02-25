@@ -193,7 +193,8 @@
     "HEIGHT":       454,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SPACE_BOSS": {
     "TEXTURE_NAME": "enemies",
@@ -202,7 +203,8 @@
     "HEIGHT":       395,
     "ENEMY_SCALE":  0.2,
     "WEAPON_TYPE":  "DEFAULT",
-    "SCORE_VALUE":  1500
+    "SCORE_VALUE":  1500,
+    "ENGINE_POSITION": [0, 0]
   },
   "SKY_BOSS": {
     "TEXTURE_NAME":  "enemies",
@@ -211,6 +213,7 @@
     "HEIGHT":        395,
     "ENEMY_SCALE":   0.2,
     "WEAPON_TYPE":   "DEFAULT",
-    "SCORE_VALUE":   1500
+    "SCORE_VALUE":   1500,
+    "ENGINE_POSITION": [0, 0]
   }
 }
