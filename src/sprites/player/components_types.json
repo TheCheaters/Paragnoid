@@ -236,7 +236,7 @@
   "Comp_36.png": {
     "POS_X":  25,
     "POS_Y":  30,
-    "FIRE_X": 160,
+    "FIRE_X": 40,
     "FIRE_Y": 30,
     "FLIP_Y": false,
     "SCALE":  0.3,
