@@ -21,7 +21,7 @@ export default class SatelliteWeapon extends Weapon {
   turnRate!: number;
   physics!: Phaser.Physics.Arcade.ArcadePhysics;
   style!: Phaser.GameObjects.Graphics;
-  style1!: Phaser.GameObjects.Graphics;
+  style1!: Phaser.GameObjects.Graphics;  
 
   fire(x: number, y: number, angle: number, follow: number, weaponType: WeaponSatelliteType){
       const { TEXTURE_NAME, FRAME_NAME, DAMAGE, TURN_RATE, FIRE_SPEED, WIDTH, HEIGHT, AUDIO_NAME, SCALE, EXPLODES } = WEAPON_SATELLITE_TYPES[weaponType];
@@ -66,10 +66,8 @@ export default class SatelliteWeapon extends Weapon {
       })
   }
 
-  preUpdate(time: number, delta: number, ) {
-    super.preUpdate(time, delta);
+  lampoSatellite(): any {
     const {player, enemies} = this.scene as Game;
-    this.weaponType = 'LAMPO_SATELLITE';
     if (this.weaponType == 'LAMPO_SATELLITE'){
       const closestEnemy = this.scene.physics.closest(player, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
       const lampo = new Lampo(this.scene as Game, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA);
@@ -95,9 +93,17 @@ export default class SatelliteWeapon extends Weapon {
         segmento.draw(this.style, this.style1);
         }
       }
+  }
 
-
-
+  preUpdate(time: number, delta: number,) {
+    super.preUpdate(time, delta);
+    /*this.weaponType = 'LAMPO_SATELLITE';
+    this.scene.time.addEvent({
+      delay:200,
+      callback: this.lampoSatellite(),
+      loop: false
+    });*/
+ 
     if (this.follow === 1) {
       const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
