@@ -20,6 +20,7 @@ export type WeaponType = {
   DAMAGE:           number;
   FIRE_SPEED:       number;
   TEXTURE_NAME:     string;
+  LEVELS:           Level[];
   FRAME_NAME:       string;
   AUDIO_NAME:       string;
   AUDIO_ASSET_PATH: string;
@@ -27,7 +28,7 @@ export type WeaponType = {
   HEIGHT:           number;
   SCALE:            number;
   EXPLODES:         boolean;
-  PARTICLES:        string;
+  PARTICLES:        'LASER' | 'SMOKE';
   FOLLOW:           boolean;
 }
 

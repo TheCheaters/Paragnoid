@@ -1,12 +1,13 @@
 import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
-import { WeaponPlayerType } from '~/types/weapons';
+import { WeaponPlayerType, WeaponType } from '~/types/weapons';
 import { FLARES } from '~/constants.json';
 
 export default class PlayerWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
+  particleType!: 'LASER' | 'SMOKE';
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y);
@@ -14,20 +15,37 @@ export default class PlayerWeapon extends Weapon {
 
   createTrail() {
     this.manager = this.scene.add.particles(FLARES);
-    this.emitter = this.manager
-      .createEmitter({
-        name: 'fire',
-        frame: [
-          'yellow',
-        ],
-        x: this.x,
-        y: this.y,
-        blendMode: 'ADD',
-        scale: { start: 0.1, end: 0 },
-        speed: { min: -100, max: 100 },
-        lifespan: 80,
-        quantity: 1,
-      })
+    if (this.particleType === 'SMOKE') {
+      this.emitter = this.manager
+        .createEmitter({
+          name: 'fire',
+          frame: [
+            'yellow',
+          ],
+          x: this.x,
+          y: this.y,
+          blendMode: 'ADD',
+          scale: { start: 0.1, end: 0 },
+          speed: { min: -100, max: 100 },
+          lifespan: 80,
+          quantity: 1,
+        })
+    } else if (this.particleType === 'LASER') {
+      this.emitter = this.manager
+        .createEmitter({
+          name: 'laser',
+          frame: [
+            'blue',
+          ],
+          x: this.x,
+          y: this.y,
+          blendMode: 'ADD',
+          scale: 0.3,
+          speed: { min: -100, max: 100 },
+          lifespan: 40,
+          quantity: 1,
+        });
+    }
   }
 
    fire(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
@@ -40,7 +58,9 @@ export default class PlayerWeapon extends Weapon {
       WIDTH,
       HEIGHT,
       SCALE,
-      EXPLODES } = WEAPON_PLAYER_TYPES[weaponType];
+      PARTICLES,
+      EXPLODES } = WEAPON_PLAYER_TYPES[weaponType] as WeaponType ;
+    this.particleType = PARTICLES;
     const { VERTICAL_OFFSET, GRAVITY_X, GRAVITY_Y } = LEVELS[weaponLevel];
     let _x = x;
     let _y = y;

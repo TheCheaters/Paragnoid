@@ -66,16 +66,16 @@
         ]
     },
     "LASER": {
-        "DAMAGE":           1000,
-        "FIRE_SPEED":       4000,
-        "TEXTURE_NAME":     "weapons",
-        "FRAME_NAME":       "Missile_1.png",
+        "DAMAGE":           10,
+        "FIRE_SPEED":       1000,
+        "TEXTURE_NAME":     "flares",
+        "FRAME_NAME":       "yellow",
         "AUDIO_NAME":       "Laser",
         "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
-        "WIDTH":            56,
-        "HEIGHT":           23,
-        "SCALE":            0.3,
-        "EXPLODES":         false,
+        "WIDTH":            128,
+        "HEIGHT":           128,
+        "SCALE":            0.4,
+        "EXPLODES":         true,
         "PARTICLES":        "LASER",
         "LEVELS":           [{
                 "TEXTURE_NAME": "components",
@@ -86,16 +86,16 @@
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
-                "DURATION":            25
+                "DURATION":            10
 
             },
             {
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_36.png",
                 "ANGLE":        [
-                    -15,
-                    0,
-                    15
+                    -1,
+                    1
+
                 ],
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
@@ -107,7 +107,9 @@
                 "TEXTURE_NAME": "components",
                 "FRAME_NAME":   "Comp_36.png",
                 "ANGLE":        [
-                    0
+                    -2,
+                    0,
+                    2
                 ],
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
@@ -126,7 +128,7 @@
         "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
-        "SCALE":            0.6,
+        "SCALE":            1,
         "EXPLODES":         false,
         "PARTICLES":        "SMOKE",
         "LEVELS":           [{
