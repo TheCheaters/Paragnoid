@@ -12,22 +12,6 @@ export default class PlayerWeapon extends Weapon {
     super(scene, x, y);
   }
 
-  // createTrail() {
-  //   this.manager = this.scene.add.particles('laser');
-  //   this.emitter = this.manager
-  //     .createEmitter({
-  //       x: this.x,
-  //       y: this.y,
-  //       // blendMode: 'ADD',
-  //       scale: 1,
-  //       speed: 0,
-  //       lifespan: 0,
-  //       frequency: 0,
-  //       quantity: 1,
-  //       // delay: 300
-  //     });
-  // }
-
   createTrail() {
     this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
