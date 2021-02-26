@@ -16,10 +16,6 @@ declare const process: {
 	}
 }
 
-type extraConfig = {
-	pixelArt: boolean
-}
-
 const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	type: Phaser.AUTO,
 	input: {
