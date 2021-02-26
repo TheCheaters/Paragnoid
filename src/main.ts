@@ -35,7 +35,6 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 				height: 1200
 		}
 	},
-	pixelArt: true,
 	physics: {
 		default: 'arcade',
 		arcade: {
