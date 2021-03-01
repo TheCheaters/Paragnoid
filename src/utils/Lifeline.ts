@@ -1,15 +1,14 @@
 import Game from "~/scenes/game";
 import Enemy from "~/sprites/enemies/enemy";
-import Player from "~/sprites/player/player";
 
 export default class Lifeline {
   private style: Phaser.GameObjects.Graphics;
   private line: Phaser.Geom.Line;
-  private sprite: Player | Enemy;
+  private sprite: Enemy;
   private shifted: boolean | undefined;
   private colors = [0x00ff3d, 0xffff00, 0xff0000];
 
-  constructor(scene: Game, sprite: Player | Enemy, shifted?: boolean) {
+  constructor(scene: Game, sprite: Enemy, shifted?: boolean) {
     this.sprite = sprite;
     this.shifted = shifted;
     this.style = scene.add.graphics({ lineStyle: { width: 3, color: this.colors[0] } });

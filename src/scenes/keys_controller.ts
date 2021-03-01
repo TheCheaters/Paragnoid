@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
+import eventManager from '~/emitters/event-manager';
 import debug from '~/utils/debug';
 import Sound from '~/scenes/sound';
 
@@ -74,14 +74,14 @@ export default class KeysController extends Scene {
 
     const { player, playerWeaponsGroup } = this.gameInstance;
     const { speed } = player;
-    const duration = WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION
+    const duration = WEAPON_PLAYER_TYPES[player.weapon].LEVELS[player.level].DURATION
     const up = this.cursor.up?.isDown || this.input.gamepad?.pad1?.leftStick.y < 0 || this.keys.w?.isDown;
     const right = this.cursor.right?.isDown || this.input.gamepad?.pad1?.leftStick.x > 0 || this.keys.d?.isDown;
     const down = this.cursor.down?.isDown || this.input.gamepad?.pad1?.leftStick.y > 0 || this.keys.s?.isDown;
     const left = this.cursor.left?.isDown || this.input.gamepad?.pad1?.leftStick.x < 0 || this.keys.a?.isDown;
     const prevWeapon = Phaser.Input.Keyboard.JustDown(this.keys.k) || this.input.gamepad?.pad1?.B && !bPressed;
     const nextWeapon = Phaser.Input.Keyboard.JustDown(this.keys.l) || this.input.gamepad?.pad1?.X && !xPressed;
-    const shortFireWeapon = WEAPON_PLAYER_TYPES[player.weaponType].LEVELS[player.weaponLevel].DURATION === -1;
+    const shortFireWeapon = WEAPON_PLAYER_TYPES[player.weapon].LEVELS[player.level].DURATION === -1;
     const fire = Phaser.Input.Keyboard.JustDown(this.keys.space) || this.input.gamepad?.pad1?.A && !aPressed;
     const longFire = Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) || this.input.gamepad?.pad1?.A;
 
@@ -127,24 +127,24 @@ export default class KeysController extends Scene {
     if (shortFireWeapon) {
 
       if (fire) {
-        playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
+        playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weapon, player.level);
         aPressed = true;
       }
 
     } else {
 
       if (longFire) {
-          playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weaponType, player.weaponLevel);
+          playerWeaponsGroup.fire(player.fireXposition, player.fireYposition, player.weapon, player.level);
         }
 
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.one) && debug) {
-      sceneChangeEmitter.emit('sky-is-over');
+      eventManager.emit('sky-is-over');
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.two) && debug) {
-      sceneChangeEmitter.emit('space-is-over');
+      eventManager.emit('space-is-over');
     }
 
     // SHIELD UP (DEBUG)

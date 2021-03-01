@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
+import eventManager from '~/emitters/event-manager';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import * as C from '~/constants.json';
@@ -56,7 +56,7 @@ export default class Intro extends Scene {
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
       const WEAPON = W as WeaponEnemyType;
       const { AUDIO_NAME } = WEAPON_ENEMY_TYPES[WEAPON];
-      sceneChangeEmitter.on(`play-${AUDIO_NAME}`, () =>{
+      eventManager.on(`play-${AUDIO_NAME}`, () =>{
         if (this.on) this.sound.play(AUDIO_NAME);
       })
     });
@@ -64,7 +64,7 @@ export default class Intro extends Scene {
     Object.keys(WEAPON_PLAYER_TYPES).forEach((P) =>{
       const PLAYER = P as WeaponPlayerType;
       const { AUDIO_NAME } = WEAPON_PLAYER_TYPES[PLAYER];
-      sceneChangeEmitter.on(`play-${AUDIO_NAME}`, () =>{
+      eventManager.on(`play-${AUDIO_NAME}`, () =>{
         if (this.on) this.sound.play(AUDIO_NAME);
       })
     });
@@ -72,17 +72,17 @@ export default class Intro extends Scene {
     Object.keys(WEAPON_SATELLITE_TYPES).forEach((S) => {
       const SATELLITE = S as WeaponSatelliteType;
       const { AUDIO_NAME } = WEAPON_SATELLITE_TYPES[SATELLITE];
-      sceneChangeEmitter.on(`play-${AUDIO_NAME}`, () =>{
+      eventManager.on(`play-${AUDIO_NAME}`, () =>{
         if (this.on) this.sound.play(AUDIO_NAME);
       })
     })
     const explosionSound = this.sound.add(C.AUDIO_EXPLOSION, { loop: false })
-    sceneChangeEmitter.on(`play-${C.AUDIO_EXPLOSION}`, () =>{
+    eventManager.on(`play-${C.AUDIO_EXPLOSION}`, () =>{
       if (this.on) explosionSound.play();
     })
 
     const hitEnemySound = this.sound.add(C.HIT_ENEMY, { loop: false })
-    sceneChangeEmitter.on(`play-${C.HIT_ENEMY}`, () =>{
+    eventManager.on(`play-${C.HIT_ENEMY}`, () =>{
       if (this.on) hitEnemySound.play();
     })
 

@@ -1,6 +1,7 @@
 {
     "MISSILI": {
         "DAMAGE":           50,
+        "ENERGY":           0,
         "FIRE_SPEED":       1000,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "Missile_1.png",
@@ -67,6 +68,7 @@
     },
     "LASER": {
         "DAMAGE":           10,
+        "ENERGY":           20,
         "FIRE_SPEED":       1000,
         "TEXTURE_NAME":     "flares",
         "FRAME_NAME":       "yellow",
@@ -121,6 +123,7 @@
     },
     "PLASMA": {
         "DAMAGE":           100,
+        "ENERGY":           50,
         "FIRE_SPEED":       1500,
         "TEXTURE_NAME":     "weapons",
         "FRAME_NAME":       "OrangeTail__002.png",
