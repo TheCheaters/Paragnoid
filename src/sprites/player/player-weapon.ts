@@ -3,6 +3,7 @@ import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponPlayerType, WeaponType } from '~/types/weapons';
 import { FLARES } from '~/constants.json';
+import eventManager from '~/emitters/event-manager';
 
 export default class PlayerWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
@@ -50,6 +51,7 @@ export default class PlayerWeapon extends Weapon {
 
    fire(x: number, y: number, angle: number, weaponType: WeaponPlayerType, weaponLevel: number) {
     const { DAMAGE,
+      ENERGY,
       TEXTURE_NAME,
       FRAME_NAME,
       FIRE_SPEED,
@@ -93,5 +95,7 @@ export default class PlayerWeapon extends Weapon {
     this.setVelocityY(this.fireSpeed*Math.sin(Phaser.Math.DegToRad(angle)));
     this.setRotation(Phaser.Math.DegToRad(angle));
     this.body.gravity.set(GRAVITY_X, GRAVITY_Y);
+    eventManager.emit('player-weapon-fired', ENERGY);
+
   }
 }

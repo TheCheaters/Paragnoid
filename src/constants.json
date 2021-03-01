@@ -10,7 +10,7 @@
   "BOTTOM_SPAWN_ZONE":          750,
   "TOP_KILL_ZONE":              -300,
   "BOTTOM_KILL_ZONE":           1000,
-  "MORTAL":                     false,
+  "MORTAL":                     true,
   "SPACECRAFT":                 "spacecraft",
   "BLUE_PARTICLE":              "blue_particle",
   "BLUE_PARTICLE_ASSET_PATH":   "assets/particles/blue_particle.png",

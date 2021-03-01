@@ -18,6 +18,7 @@ export type Level = {
 
 export type WeaponType = {
   DAMAGE:           number;
+  ENERGY:           number;
   FIRE_SPEED:       number;
   TEXTURE_NAME:     string;
   LEVELS:           Level[];

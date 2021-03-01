@@ -2,7 +2,7 @@ import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
 import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
+import eventManager from '~/emitters/event-manager';
 
 type WeaponType = {
   texture: string;
@@ -66,7 +66,7 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setFlipX(flip);
     this.setOrigin(1, 0.5);
     this.enableBody(true, x, y, true, true);
-    sceneChangeEmitter.emit(`play-${sound}`);
+    eventManager.emit(`play-${sound}`);
     console.log('made weapon');
   }
 

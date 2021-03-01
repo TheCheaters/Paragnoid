@@ -5,35 +5,29 @@ import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
 
 import Game from '~/scenes/game';
 import debug from '~/utils/debug';
-import Lifeline from '~/utils/Lifeline';
 import { WeaponPlayerType } from '~/types/weapons';
+import eventManager from '~/emitters/event-manager';
 
 const weaponNames = Object.keys(WEAPON_PLAYER_TYPES) as WeaponPlayerType[];
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-
-  public energy = 300;
-  public speed = 1000;
-  public maxEnergy!: number;
-  private lifeLine!: Lifeline;
-  public weaponType!: WeaponPlayerType;
-
-  public weaponTypeIndex = 0;
-  public weaponLevel!: number;
+  private energyLevel = 10000;
+  private maxSpeed = 1000;
+  private maxEnergy!: number;
+  private weaponType!: WeaponPlayerType;
+  private weaponTypeIndex = 0;
+  private weaponLevel!: number;
   private cannon!: Phaser.GameObjects.Image;
   private cannonPosX!: number;
   private cannonPosY!: number;
   private cannonfireX!: number;
   private cannonfireY!: number;
   public scale = 0.2;
-  public cannonflipY!: boolean;
+  private cannonflipY!: boolean;
   private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-
-
   constructor(scene: Game, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
-
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
@@ -44,28 +38,41 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setInitialWeapon();
     this.setCannonComponent();
     this.createFireEngine();
-
-    // BEHAVIOR
-    // this.lifeLine = new Lifeline(this.scene as Game, this);
+    this.setWeaponEventListener();
   }
-
+  get energy() {
+    return this.energyLevel;
+  }
+  get energyRatio() {
+    return this.energy / this.maxEnergy;
+  }
+  get speed() {
+    return this.maxSpeed;
+  }
+  get weapon() {
+    return this.weaponType;
+  }
+  get level() {
+    return this.weaponLevel;
+  }
   get fireXposition() {
     return this.x + this.cannonfireX;
   }
-
   get fireYposition() {
     return this.y + this.cannonfireY;
   }
-
+  setWeaponEventListener() {
+    eventManager.on('player-weapon-fired', (energy: number) => {
+      this.decreaseEnergy(energy);
+    })
+  }
   setInitialWeapon() {
     this.weaponType = 'MISSILI';
     this.weaponLevel = 0;
   }
-
   setInitialEnergy() {
-    this.maxEnergy = this.energy;
+    this.maxEnergy = this.energyLevel;
   }
-
   setCannonComponent() {
     if (this.cannon) this.cannon.destroy();
     const { TEXTURE_NAME, FRAME_NAME } = WEAPON_PLAYER_TYPES[this.weaponType].LEVELS[this.weaponLevel];
@@ -79,7 +86,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannon.setFlipY(FLIP_Y);
     this.cannon.setDepth(DEPTH);
   }
-
   createFireEngine() {
     this.manager = this.scene.add.particles(FLARES);
     this.emitter = this.manager
@@ -100,17 +106,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         alpha: [0.5, 1]
       })
   }
-
   takeHit(damage: number) {
     if (MORTAL && debug) {
       if ((this.scene as Game).shield.isUp) (this.scene as Game).shield.takeHit(damage);
       else {
-        this.energy -= damage;
-        if (this.energy <= 0) { this.die(); }
+        this.energyLevel -= damage;
+        if (this.energyLevel <= 0) { this.die(); }
       }
     }
   }
-
+  decreaseEnergy(energy: number) {
+    this.takeHit(energy);
+  }
+  increaseEnergy(energy: number) {
+    if (this.energyLevel + energy <= this.maxEnergy) {
+      this.energyLevel += energy;
+    }
+  }
   usePowerUp(type: PowerUpType) {
     switch (type) {
       case PowerUpTypes.ENERGY:
@@ -127,34 +139,28 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         break;
     }
   }
-
   changeWeapon() {
     this.weaponType = weaponNames[Phaser.Math.Between(0, weaponNames.length - 1)];
     this.setCannonComponent();
   }
-
   increaseLevelWeapon() {
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {this.weaponLevel += 1;}
     this.setCannonComponent();
   }
-
   decreaseLevelWeapon(){
     if (this.weaponLevel >= 1) {this.weaponLevel -= 1;}
     this.setCannonComponent();
   }
-
   prevWeapon(){
     this.weaponTypeIndex = (this.weaponTypeIndex === 0) ? weaponNames.length - 1 : this.weaponTypeIndex - 1;
     this.weaponType = weaponNames[this.weaponTypeIndex] as WeaponPlayerType;
     this.setCannonComponent();
   }
-
   nextWeapon(){
     this.weaponTypeIndex = (this.weaponTypeIndex === weaponNames.length - 1) ? 0 : this.weaponTypeIndex + 1;
     this.weaponType = weaponNames[this.weaponTypeIndex] as WeaponPlayerType;
     this.setCannonComponent();
   }
-
   updgradeWeapon() {
     if (this.weaponLevel < WEAPON_PLAYER_TYPES[this.weaponType].LEVELS.length - 1) {
       this.weaponLevel += 1;
@@ -163,11 +169,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.weaponLevel += 0;
     }
   }
-
   fullEnergy() {
-    this.energy = this.maxEnergy;
+    this.energyLevel = this.maxEnergy;
   }
-
   die() {
     const scene = this.scene as Game;
 
@@ -200,38 +204,29 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     });
     this.resurrect();
   }
-
   resurrect() {
-    this.energy = this.maxEnergy;
+    this.energyLevel = this.maxEnergy;
   }
-
   shieldUp() {
     const scene = this.scene as Game;
     scene.shield.forceShieldUp();
   }
-
   shieldDown() {
     const scene = this.scene as Game;
     scene.shield.shieldDown();
   }
-
   kill() {
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
-    this.lifeLine.kill();
-
   }
-
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
     this.manager.setPosition(this.x, this.y);
-
     const scene = this.scene as Game;
     scene.shield.moveShield(this.x, this.y);
     this.cannon.setPosition(this.cannonPosX + this.x, this.cannonPosY + this.y);
-    // this.lifeLine.update();
-
+    this.increaseEnergy(5);
   }
 }

@@ -4,7 +4,7 @@ import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
 import ENEMY_BEHAVIORS from '~/sprites/enemies/enemy_behaviors.json';
 import ENEMY_PATHS from '~/sprites/enemies/enemy_paths.json';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
+import eventManager from '~/emitters/event-manager';
 import Lifeline from '~/utils/Lifeline';
 import { WeaponEnemyType } from '~/types/weapons';
 
@@ -95,7 +95,6 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     } else {
       const { player } = this.scene as Game;
       this.setRotation(Phaser.Math.Angle.Between(player.x, player.y,this.x, this.y));
-      console.log(this.rotation);
       this.scene.physics.moveToObject(this, player, SPEED);
 
     }
@@ -155,11 +154,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   takeHit(damage: number) {
     this.energy -= damage;
     if (this.energy <= 0) {
-      sceneChangeEmitter.emit(`play-${AUDIO_EXPLOSION}`);
+      eventManager.emit(`play-${AUDIO_EXPLOSION}`);
       this.explode();
       this.ui?.addScore(this.scoreValue);
     } else {
-      sceneChangeEmitter.emit(`play-${HIT_ENEMY}`);
+      eventManager.emit(`play-${HIT_ENEMY}`);
     }
   }
 
@@ -178,7 +177,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.tween?.stop();
     this.removeFireEngine();
     console.log(`Killed Enemy ${this.enemyName}`);
-    if (this.isBoss) sceneChangeEmitter.emit(`${BOSS_LVL[this.enemyType]}-is-over`);
+    if (this.isBoss) eventManager.emit(`${BOSS_LVL[this.enemyType]}-is-over`);
   }
 
 	preUpdate(time: number, delta: number) {

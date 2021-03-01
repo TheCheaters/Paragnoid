@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import sceneChangeEmitter from '~/emitters/scene-change-emitter';
+import eventManager from '~/emitters/event-manager';
 import { TimeLineScenes } from '~/game_timeline/timeline';
 import Timeline from '~/game_timeline/timeline';
 
@@ -21,7 +21,7 @@ export default class Level extends Scene {
 
   startTimeline() {
     this.timeline.start(this.levelName);
-    sceneChangeEmitter.on(`${this.levelName}-is-over`, () => {
+    eventManager.on(`${this.levelName}-is-over`, () => {
       console.log(`Starting Level ${this.nextLevelName}`);
       this.stopTimeline();
       this.scene.start(this.nextLevelName);
