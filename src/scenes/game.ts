@@ -59,7 +59,7 @@ export default class Game extends Scene {
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
     this.explosions = new Explosions(this);
-    this.lives = new Lives(this, C.SPACECRAFT);
+    this.lives = new Lives(this, C.BATTERY);
 
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
       const WEAPON = W as WeaponEnemyType;

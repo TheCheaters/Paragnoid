@@ -185,8 +185,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       repeat: 3,
       yoyo: true,
       onUpdate: tween => {
-        const valoreFrame = tween.getValue()
-        this.setAlpha(valoreFrame)
+        // const valoreFrame = tween.getValue()
+        // this.setAlpha(valoreFrame)
       },
       onStart: () => {
         scene.colliderEnemyWeapons.active = true;
