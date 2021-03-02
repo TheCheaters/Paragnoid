@@ -14,6 +14,7 @@ type VirtualJoystickPlugin = Phaser.Plugins.BasePlugin & {
 let aPressed = false;
 let xPressed = false;
 let bPressed = false;
+let l2Pressed = false;
 
 export default class KeysController extends Scene {
   private cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -65,9 +66,7 @@ export default class KeysController extends Scene {
       a: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
       s: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
       d: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
-
     }
-
   }
 
   update() {
@@ -84,7 +83,7 @@ export default class KeysController extends Scene {
     const shortFireWeapon = WEAPON_PLAYER_TYPES[player.weapon].LEVELS[player.level].DURATION === -1;
     const fire = Phaser.Input.Keyboard.JustDown(this.keys.space) || this.input.gamepad?.pad1?.A && !aPressed;
     const longFire = Phaser.Input.Keyboard.DownDuration(this.keys.space, duration) || this.input.gamepad?.pad1?.A;
-
+    const shield = Phaser.Input.Keyboard.DownDuration(this.keys.z, 10000) || this.input.gamepad?.pad1?.L2;
     // ACCELERAZIONE E ANIMAZIONE ORIZONTALE
     if (left) {
       player.setAccelerationX(-speed);
@@ -123,6 +122,16 @@ export default class KeysController extends Scene {
       xPressed = true;
     }
 
+    if (shield && !l2Pressed) {
+      player.shieldUp();
+      l2Pressed = true;
+    }
+
+    if (!shield && l2Pressed) {
+      player.shieldDown();
+      l2Pressed = false;
+    }
+
     //  PLAYER SHOOT FUNCTION
     if (shortFireWeapon) {
 
@@ -147,11 +156,6 @@ export default class KeysController extends Scene {
       eventManager.emit('space-is-over');
     }
 
-    // SHIELD UP (DEBUG)
-    if (Phaser.Input.Keyboard.JustDown(this.keys.z) && debug) {
-      player.shieldUp();
-    }
-
     if (Phaser.Input.Keyboard.JustDown(this.keys.zero)) {
       const sound = this.scene.get('sound') as Sound;
       sound.on = !sound.on;
@@ -162,7 +166,6 @@ export default class KeysController extends Scene {
     if (!this.input.gamepad?.pad1?.A) aPressed = false;
     if (!this.input.gamepad?.pad1?.B) bPressed = false;
     if (!this.input.gamepad?.pad1?.X) xPressed = false;
-
   }
 }
 

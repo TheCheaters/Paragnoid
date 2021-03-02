@@ -73,19 +73,6 @@ export class Satellite extends Phaser.Physics.Arcade.Sprite {
       })
   }
 
-  takeHit(damage: number) {
-      const scene = this.scene as Game;
-      console.log(scene.shield.isUp);
-      if (scene.shield.isUp) scene.shield.takeHit(damage);
-      else {
-        this.energy -= damage;
-        if (this.energy < 0) {
-            scene.explosions?.addExplosion(this.x, this.y);
-            this.kill();
-          }
-      }
-    }
-
   kill() {
       // this.body.enable = false;
       // this.setActive(false);
