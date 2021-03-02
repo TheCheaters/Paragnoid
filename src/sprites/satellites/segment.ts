@@ -1,10 +1,4 @@
 import Game from '~/scenes/game';
-import {
-   LAMPO_GENERAZIONI,
-   LAMPO_MAXOFFSET,
-   LAMPO_SCALA, 
-   LAMPO_DURATA
-} from '~/constants.json';
 export default class Segment {
    public scene!: Game;
    public level!: number
