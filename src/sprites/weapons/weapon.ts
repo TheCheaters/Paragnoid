@@ -35,9 +35,9 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   }
 
   explode() {
+    const { explosions } = this.scene as Game;
+    explosions.addExplosion(this.x, this.y);
     if (this.explodes) {
-      const { explosions } = this.scene as Game;
-      explosions.addExplosion(this.x, this.y);
       this.kill();
     }
   }

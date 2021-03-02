@@ -110,7 +110,7 @@
   "Comp_31.png": {
     "POS_X":  30,
     "POS_Y":  35,
-    "FIRE_X": 70,
+    "FIRE_X": 150,
     "FIRE_Y": 30,
     "FLIP_Y": true,
     "SCALE":  0.3,
