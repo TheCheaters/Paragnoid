@@ -66,7 +66,11 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setOrigin(1, 0.5);
     this.enableBody(true, x, y, true, true);
     this.scene.sound.play(sound);
-    console.log('made weapon');
+  }
+
+  makeLampo({sound, x, y, width, height, scale}: WeaponType){
+    this.setScale(scale);
+    this.scene.sound.play(sound);
   }
 
 	preUpdate(time: number, delta: number,) {

@@ -2,11 +2,13 @@ import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import { FLARES } from '~/constants.json';
+import Enemy from '~/sprites/enemies/enemy';
 import {
   LAMPO_GENERAZIONI,
   LAMPO_MAXOFFSET,
   LAMPO_SCALA,
-  LAMPO_DURATA
+  LAMPO_WIDTH,
+  LAMPO_WIDTH_CODE
 } from '~/constants.json';
 import Lampo from '~/sprites/satellites/lampo';
 import { WeaponSatelliteType } from '~/types/weapons';
@@ -49,7 +51,7 @@ export default class SatelliteWeapon extends Weapon {
   } 
 
 fireLampoSatellite(x: number, y: number){
-  this.lampoSatellite(x, y);
+   this.lampoSatellite(x, y);
 }
 
 
@@ -73,30 +75,30 @@ fireLampoSatellite(x: number, y: number){
 
   lampoSatellite(x: number, y: number): any {
     const {player, enemies} = this.scene as Game;    
-    const closestEnemy = this.scene.physics.closest(player, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
+    const closestEnemy = this.scene.physics.closest(player, enemies.getChildrenAlive()) as Enemy;
     const lampo = new Lampo(this.scene as Game, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA);
     const segmentoIniziale = lampo.generazione2(x, y, closestEnemy.x, closestEnemy.y, 1);
     const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
     const risultato = generazioneRecorsiva(segmentoIniziale, 5);
     this.style = this.scene.add.graphics({
         lineStyle: {
-            width: 3,
+            width: LAMPO_WIDTH,
             color: 0xf5faff,
             alpha: 1
         }
       });
     this.style1 = this.scene.add.graphics({
         lineStyle: {
-            width: 2,
+            width: LAMPO_WIDTH_CODE,
             color: 0xaacff4,
             alpha: 1
         }
       });
     for (let index = 0; index < risultato.length; index++) {
         const segmento = risultato[index];
-        segmento.draw(this.style, this.style1);
-        }
-      
+        segmento.draw(this.style, this.style1);     
+        }       
+     
   }
 
   preUpdate(time: number, delta: number,) {

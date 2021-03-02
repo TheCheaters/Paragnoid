@@ -64,5 +64,7 @@
   "LAMPO_DURATA":               1000,
   "LAMPO_GENERAZIONI":          6,
   "LAMPO_MAXOFFSET":            125,
-  "LAMPO_SCALA":                0.8
+  "LAMPO_SCALA":                0.8,
+  "LAMPO_WIDTH":                3,
+  "LAMPO_WIDTH_CODE":           2
   }
