@@ -223,7 +223,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.manager.setPosition(this.x, this.y);
     (this.scene as Game).shield.moveShield(this.x, this.y);
     this.cannon.setPosition(this.cannonPosX + this.x, this.cannonPosY + this.y);
-    console.log((this.scene as Game).shield.isUp);
     if (!(this.scene as Game).shield.isUp) {
       // this.increaseEnergy(5);
     } else {
