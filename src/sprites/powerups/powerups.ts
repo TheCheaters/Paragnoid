@@ -13,6 +13,12 @@ const powerUpColors = {
   __WEAPON: 'yellow',
 }
 
+const powerUpTextures = {
+  [PowerUpTypes.ENERGY]: 'energy.png',
+  [PowerUpTypes.UPGRADE_WEAPON]: 'nuclear.png',
+  __WEAPON: 'yellow',
+}
+
 export type PowerUpType = keyof typeof PowerUpTypes;
 
 export class Powerup extends Phaser.Physics.Arcade.Sprite {
@@ -30,9 +36,11 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
     // RESET PREVIOUS PATH
     this.curve = null;
     this.tween = null;
+    this.setDepth(1);
 
     // SET POWERUP TYPE
     this.powerUpType = type;
+    this.setFrame(powerUpTextures[this.powerUpType]);
 
     // POSITION
     const y = Phaser.Math.Between(0, this.scene.scale.height);
@@ -64,17 +72,16 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(true);
 
     // PARTICLES
-    this.flares = this.scene.add.particles(FLARES).createEmitter({
+    this.flares = this.scene.add.particles(FLARES).setDepth(0).createEmitter({
       frame: powerUpColors[type],
       x: 200,
       y: 300,
       alpha: 0.3,
       lifespan: 500,
-      speed: { min: -400, max: 100 },
-      gravityY: 300,
+      speed: { min: -100, max: 100 },
       scale: { start: 0.4, end: 0 },
       quantity: 2,
-      blendMode: 'LIGHTEN',
+      blendMode: 'ADD',
       on: true,
     });
   }
@@ -96,12 +103,15 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
       this.y = y;
     }
 
+    this.rotation += 0.0012 * delta
+
     this.flares.setPosition(this.x, this.y);
 
     if (this.x < LEFT_KILL_ZONE
       || this.x > RIGHT_KILL_ZONE
       || this.y < TOP_KILL_ZONE
-      || this.y > BOTTOM_KILL_ZONE) {			this.kill();
+      || this.y > BOTTOM_KILL_ZONE) {
+        this.kill();
 		}
 	}
 
@@ -115,7 +125,7 @@ export default class Powerups extends Phaser.Physics.Arcade.Group {
       frameQuantity: 5,
       key: POWERUPS,
       setXY: {x: -100, y: -100},
-      setScale: {x: 0.3, y: 0.3},
+      setScale: {x: 0.4, y: 0.4},
       active: false,
       visible: false,
       classType: Powerup
