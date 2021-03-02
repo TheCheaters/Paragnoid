@@ -108,15 +108,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
   takeHit(damage: number) {
     if (MORTAL && debug) {
-      if ((this.scene as Game).shield.isUp) (this.scene as Game).shield.takeHit(damage);
-      else {
-        this.energyLevel -= damage;
-        if (this.energyLevel <= 0) { this.die(); }
+      if (!(this.scene as Game).shield.isUp) {
+        this.decreaseEnergy(damage);
       }
     }
   }
   decreaseEnergy(energy: number) {
-    this.takeHit(energy);
+    this.energyLevel -= energy;
+    if (this.energyLevel <= 0) { this.die(); }
   }
   increaseEnergy(energy: number) {
     if (this.energyLevel + energy <= this.maxEnergy) {
@@ -208,12 +207,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.energyLevel = this.maxEnergy;
   }
   shieldUp() {
-    const scene = this.scene as Game;
-    scene.shield.forceShieldUp();
+    (this.scene as Game).shield.shieldUp();
   }
   shieldDown() {
-    const scene = this.scene as Game;
-    scene.shield.shieldDown();
+    (this.scene as Game).shield.shieldDown();
   }
   kill() {
     this.body.enable = false;
@@ -224,9 +221,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
     this.manager.setPosition(this.x, this.y);
-    const scene = this.scene as Game;
-    scene.shield.moveShield(this.x, this.y);
+    (this.scene as Game).shield.moveShield(this.x, this.y);
     this.cannon.setPosition(this.cannonPosX + this.x, this.cannonPosY + this.y);
-    this.increaseEnergy(5);
+    console.log((this.scene as Game).shield.isUp);
+    if (!(this.scene as Game).shield.isUp) {
+      // this.increaseEnergy(5);
+    } else {
+      this.decreaseEnergy(20);
+    }
   }
 }

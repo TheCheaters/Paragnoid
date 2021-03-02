@@ -88,7 +88,7 @@
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
-                "DURATION":            10
+                "DURATION":            10000
 
             },
             {
@@ -102,7 +102,7 @@
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
-                "DURATION":            25
+                "DURATION":            10000
 
             },
             {
@@ -116,7 +116,7 @@
                 "GRAVITY_X":           0,
                 "GRAVITY_Y":           0,
                 "VERTICAL_OFFSET":     0,
-                "DURATION":            25
+                "DURATION":            10000
 
             }
         ]
