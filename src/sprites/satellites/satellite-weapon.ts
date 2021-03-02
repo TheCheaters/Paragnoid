@@ -81,14 +81,14 @@ fireLampoSatellite(x: number, y: number){
     this.style = this.scene.add.graphics({
         lineStyle: {
             width: 3,
-            color: 0xff0000,
+            color: 0xf5faff,
             alpha: 1
         }
       });
     this.style1 = this.scene.add.graphics({
         lineStyle: {
             width: 2,
-            color: 0xffff00,
+            color: 0xaacff4,
             alpha: 1
         }
       });

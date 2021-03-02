@@ -27,7 +27,7 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
       weaponType = 'LAMPO_SATELLITE';
       if (weaponType == 'LAMPO_SATELLITE' ) {
         this.scene.time.addEvent({
-          repeat: 5,
+          repeat: 3,
           callback: () => {
             weaponSatellite.fireLampoSatellite(x, y);
           }
