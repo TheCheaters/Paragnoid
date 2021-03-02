@@ -39,27 +39,15 @@ export default class Segment {
                targets: style,
                alpha: {value:0, duration: 500, ease: 'Power1'},
                onComplete: function(){ style1.destroy}
-          });
-   
-         /*setTimeout(() => {
-            this.scene.tweens.add({
-               targets: style,
-               alpha: {value:0, duration: 500, ease: 'Power1'} })
-            style.clear();            
-         }, LAMPO_DURATA + 500) */
+          });   
+        
       } else {
          style1.strokeLineShape(this.line);
          this.scene.tweens.add({
             targets: style1,            
             alpha: {value:0, duration: 500, ease: 'Power1'},
             onComplete: function(){ style1.destroy}
-         });
-         /*setTimeout(() => {
-            this.scene.tweens.add({
-               targets: style1,
-               alpha: {value:0, duration: 500, ease: 'Power1'} })
-            style1.clear();
-         }, LAMPO_DURATA + 500)*/
+         });    
 
       }
 
