@@ -38,6 +38,7 @@ export default class Game extends Scene {
   public colliderEnemyWeapons!: Phaser.Physics.Arcade.Collider;
   public colliderSatelliteWeapon!: Phaser.Physics.Arcade.Collider;
   public lives!: Lives;
+  public mainCamera!: Phaser.Cameras.Scene2D.Camera;
 
   constructor() {
     super({
@@ -48,6 +49,7 @@ export default class Game extends Scene {
 
   create() {
     console.log('create Game');
+    this.mainCamera = this.cameras.add(0, 0, this.scale.width, this.scale.height);
     this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new PlayerWeaponsGroup(this);
@@ -57,7 +59,7 @@ export default class Game extends Scene {
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
     this.explosions = new Explosions(this);
-    this.lives = new Lives(this, C.SPACECRAFT);
+    this.lives = new Lives(this, C.BATTERY);
 
     Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
       const WEAPON = W as WeaponEnemyType;
@@ -65,9 +67,7 @@ export default class Game extends Scene {
     });
 
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
-    this.colliderSatelliteEnemy = this.physics.add.collider(this.satellites, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
-    this.colliderSatellite = this.physics.add.collider(this.satellites, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);
     this.colliderPlayerPowerups = this.physics.add.collider(this.player, this.powerups, handlerPlayerPowerupCollisions as ArcadePhysicsCallback);
     this.colliderEnemyWeapons = this.physics.add.collider(this.enemies, this.playerWeaponsGroup, handlerMissileEnemyCollisions as ArcadePhysicsCallback);
     this.colliderSatelliteWeapon = this.physics.add.collider(this.enemies, this.satelliteWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);

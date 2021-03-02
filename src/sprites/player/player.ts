@@ -127,14 +127,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       case PowerUpTypes.ENERGY:
         this.fullEnergy();
         break;
-      case PowerUpTypes.CHANGE_WEAPON:
-        this.changeWeapon();
-        break;
       case PowerUpTypes.UPGRADE_WEAPON:
         this.updgradeWeapon();
-        break;
-      case PowerUpTypes.SHIELD:
-        this.shieldUp();
         break;
     }
   }
@@ -174,6 +168,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   die() {
     const scene = this.scene as Game;
 
+    scene.mainCamera.shake(1000, 0.010);
+
     if (scene.lives.lifes <= 0) scene.scene.start('gameover');
 
     scene.explosions?.addExplosion(this.x, this.y);
@@ -189,8 +185,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       repeat: 3,
       yoyo: true,
       onUpdate: tween => {
-        const valoreFrame = tween.getValue()
-        this.setAlpha(valoreFrame)
+        // const valoreFrame = tween.getValue()
+        // this.setAlpha(valoreFrame)
       },
       onStart: () => {
         scene.colliderEnemyWeapons.active = true;
