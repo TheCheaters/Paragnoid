@@ -131,7 +131,7 @@
         "AUDIO_ASSET_PATH": "assets/sounds/missile.mp3",
         "WIDTH":            56,
         "HEIGHT":           23,
-        "SCALE":            1,
+        "SCALE":            1.5,
         "EXPLODES":         false,
         "PARTICLES":        "SMOKE",
         "LEVELS":           [{
