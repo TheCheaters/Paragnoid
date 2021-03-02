@@ -11,7 +11,7 @@
       "enemyFlip": true,
       "enemyBehavior": "STANDARD",
       "enemyPath": "DEFAULT_PATH",
-      "callbacks": ["powerups.changeWeapon"]
+      "callbacks": ["powerups.energy"]
     },
 
     {
@@ -93,7 +93,7 @@
       "enemyFlip": false,
       "enemyBehavior": "WHITE_SHIP_REVERSED_BEHAVIOR",
       "enemyPath": "SHIP_8_REVERSED_PATH",
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.energy"]
     },
 
     {
@@ -107,7 +107,7 @@
       "enemyFlip": true,
       "enemyBehavior": "SUICIDE",
       "enemyPath": null,
-      "callbacks": ["powerups.changeWeapon"]
+      "callbacks": ["powerups.energy"]
     },
 
     {
@@ -135,7 +135,7 @@
       "enemyFlip": true,
       "enemyBehavior": "TOUGH",
       "enemyPath": null,
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.energy"]
     },
 
     {
@@ -164,7 +164,7 @@
       "enemyFlip": false,
       "enemyBehavior": "MONSTER",
       "enemyPath": null,
-      "callbacks": ["powerups.changeWeapon"]
+      "callbacks": ["powerups.energy"]
     },
 
     {
@@ -178,7 +178,7 @@
       "enemyFlip": false,
       "enemyBehavior": "TOUGH",
       "enemyPath": null,
-      "callbacks": ["powerups.shield"]
+      "callbacks": ["powerups.energy"]
     },
 
     {

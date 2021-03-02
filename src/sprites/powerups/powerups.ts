@@ -4,16 +4,12 @@ import { POWERUPS, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TO
 
 export enum PowerUpTypes {
   ENERGY         = 'ENERGY',
-  CHANGE_WEAPON  = 'CHANGE_WEAPON',
   UPGRADE_WEAPON = 'UPGRADE_WEAPON',
-  SHIELD         = 'SHIELD',
 }
 
 const powerUpColors = {
   [PowerUpTypes.ENERGY]: 'blue',
-  [PowerUpTypes.CHANGE_WEAPON]: 'green',
   [PowerUpTypes.UPGRADE_WEAPON]: 'red',
-  [PowerUpTypes.SHIELD]: 'white',
   __WEAPON: 'yellow',
 }
 
@@ -132,18 +128,9 @@ export default class Powerups extends Phaser.Physics.Arcade.Group {
     if (powerup) powerup.make(PowerUpTypes.ENERGY);
   }
 
-  changeWeapon() {
-    const powerup = this.getFirstDead(false) as Powerup;
-    if (powerup) powerup.make(PowerUpTypes.CHANGE_WEAPON);
-  }
-
   upgradeWeapon() {
     const powerup = this.getFirstDead(false) as Powerup;
     if (powerup) powerup.make(PowerUpTypes.UPGRADE_WEAPON);
   }
 
-  shield() {
-    const powerup = this.getFirstDead(false) as Powerup;
-    if (powerup) powerup.make(PowerUpTypes.SHIELD);
-  }
 }
