@@ -3,9 +3,11 @@ import SatelliteWeapon from '~/sprites/satellites/satellite-weapon';
 import { WeaponSatelliteType } from "~/types/weapons";
 import Game from "~/scenes/game";
 export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
+  time !: Phaser.Time.Clock;
+
   constructor(scene: Game) {
     super(scene.physics.world, scene);
-
+    
     this.createMultiple({
       frameQuantity: 10,
       setXY: {x: -50, y: -50},
@@ -17,12 +19,15 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
   }
 
   fire({ x, y, weaponType, follow }: { x: number; y: number; weaponType: WeaponSatelliteType; follow: number; }){
+    
     const scene = this.scene as Game;
     const enemiesNumber = scene.enemies.getChildrenAlive().length;
     if (enemiesNumber > 0) {
       const weaponSatellite = this.getFirstDead(true) as SatelliteWeapon;
       weaponType = 'LAMPO_SATELLITE';
-      if (weaponType == 'LAMPO_SATELLITE' ) {weaponSatellite.fireLampoSatellite(x, y)}
+      if (weaponType == 'LAMPO_SATELLITE' ) {
+        this.time.addEvent({repeat: 5, callback: weaponSatellite.fireLampoSatellite(x, y) as unknown as Function, callbackScope: this})
+        }
       else {weaponSatellite.fire(x, y, 0, follow, weaponType);}
     }
   }
