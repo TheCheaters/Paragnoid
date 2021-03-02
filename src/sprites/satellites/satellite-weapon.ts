@@ -101,13 +101,7 @@ fireLampoSatellite(x: number, y: number){
 
   preUpdate(time: number, delta: number,) {
     super.preUpdate(time, delta);
-    /*this.weaponType = 'LAMPO_SATELLITE';
-    this.scene.time.addEvent({
-      delay:200,
-      callback: this.lampoSatellite(),
-      loop: false
-    });*/
- 
+   
     if (this.follow === 1) {
       const { enemies } = this.scene as Game;
       const closestEnemy = this.scene.physics.closest(this, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
