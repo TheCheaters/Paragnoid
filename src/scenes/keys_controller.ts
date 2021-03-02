@@ -147,34 +147,7 @@ export default class KeysController extends Scene {
     // SHIELD UP (DEBUG)
     if (Phaser.Input.Keyboard.JustDown(this.keys.z) && debug) {
       player.shieldUp();
-    }
-
-    //LAMPO
-    if (Phaser.Input.Keyboard.DownDuration(this.keys.q, 100) && debug){
-      const closestEnemy = this.physics.closest(player, enemies.getChildrenAlive()) as Phaser.Physics.Arcade.Sprite;
-      const lampo = new Lampo(this.gameInstance, LAMPO_GENERAZIONI, LAMPO_MAXOFFSET, LAMPO_SCALA); 
-    const segmentoIniziale = lampo.generazione2(player.x, player.y, closestEnemy.x, closestEnemy.y, 1);
-    const generazioneRecorsiva = createRecurringFunctionLast(lampo.funzioneT, lampo);
-    const risultato = generazioneRecorsiva(segmentoIniziale, 5);
-    this.style = this.add.graphics({
-      lineStyle: {
-          width: 3,
-          color: 0xff0000,
-          alpha: 1
-      }
-    });
-    this.style1 = this.add.graphics({
-      lineStyle: {
-          width: 2,
-          color: 0xffff00,
-          alpha: 1
-      }
-    });
-    for (let index = 0; index < risultato.length; index++) {
-      const segmento = risultato[index];
-      segmento.draw(this.style, this.style1);
-      }
-    }
+    }   
 
   }
 }
