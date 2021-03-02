@@ -21,7 +21,9 @@ export default class WeaponGroup extends Phaser.Physics.Arcade.Group {
     const enemiesNumber = scene.enemies.getChildrenAlive().length;
     if (enemiesNumber > 0) {
       const weaponSatellite = this.getFirstDead(true) as SatelliteWeapon;
-      weaponSatellite.fire(x, y, 0, follow, weaponType);
+      weaponType = 'LAMPO_SATELLITE';
+      if (weaponType == 'LAMPO_SATELLITE' ) {weaponSatellite.fireLampoSatellite(x, y)}
+      else {weaponSatellite.fire(x, y, 0, follow, weaponType);}
     }
   }
 
