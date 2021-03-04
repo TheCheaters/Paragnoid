@@ -1,5 +1,7 @@
 import { Scene } from 'phaser';
-import { GAME_NAME, GAME_TITLE, LR_FONT_NAME } from "~/constants.json"
+import { GAME_NAME, GAME_TITLE } from "~/configurations/game.json"
+import { LR_FONT_NAME } from '~/configurations/images.json';
+
 import UI from '~/scenes/ui';
 import enemyTimeline from '~/game_timeline/storyboard.json';
 

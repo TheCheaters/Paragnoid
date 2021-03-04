@@ -1,5 +1,4 @@
 import { Scene } from 'phaser';
-import * as C from '~/constants.json';
 import PlayerWeaponsGroup from '~/sprites/player/player-weapon-group';
 import EnemyWeaponsGroup from '~/sprites/enemies/enemy-weapon-group';
 import SatelliteWeaponsGroup from '~/sprites/satellites/satellite-weapon-group';
@@ -50,7 +49,7 @@ export default class Game extends Scene {
   create() {
     console.log('create Game');
     this.mainCamera = this.cameras.add(0, 0, this.scale.width, this.scale.height);
-    this.player = new Player(this, 100, this.scale.height / 2, C.SPACECRAFT);
+    this.player = new Player(this);
     this.shield = new Shield(this);
     this.playerWeaponsGroup = new PlayerWeaponsGroup(this);
     this.enemyWeaponsGroup = new EnemyWeaponsGroup(this);
@@ -59,12 +58,7 @@ export default class Game extends Scene {
     this.powerups = new Powerups(this);
     this.satellites = new Satellites (this);
     this.explosions = new Explosions(this);
-    this.lives = new Lives(this, C.BATTERY);
-
-    Object.keys(WEAPON_ENEMY_TYPES).forEach((W) => {
-      const WEAPON = W as WeaponEnemyType;
-      this.sound.add(WEAPON_ENEMY_TYPES[WEAPON].AUDIO_NAME, {loop: false});
-    });
+    this.lives = new Lives(this);
 
     this.colliderPlayerEnemy = this.physics.add.collider(this.player, this.enemies, handlerPlayerEnemyCollisions as ArcadePhysicsCallback);
     this.colliderPlayerWeapons = this.physics.add.collider(this.player, this.enemyWeaponsGroup, handlerPlayerWeaponCollisions as ArcadePhysicsCallback);

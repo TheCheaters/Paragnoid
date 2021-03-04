@@ -1,5 +1,5 @@
 import Game from '~/scenes/game';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
 
 export default class Shield {
   private scene: Game;

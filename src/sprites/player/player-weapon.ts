@@ -2,7 +2,7 @@ import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponPlayerType, WeaponType } from '~/types/weapons';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
 import eventManager from '~/emitters/event-manager';
 
 export default class PlayerWeapon extends Weapon {

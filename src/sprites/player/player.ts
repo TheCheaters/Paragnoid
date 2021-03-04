@@ -1,8 +1,8 @@
-import { RESPAWN_TIME, MORTAL, FLARES } from '~/constants.json';
+import { RESPAWN_TIME, MORTAL } from '~/configurations/game.json';
+import * as I from '~/configurations/images.json';
 import components from '~/sprites/player/components_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
-
 import Game from '~/scenes/game';
 import debug from '~/utils/debug';
 import { WeaponPlayerType } from '~/types/weapons';
@@ -26,8 +26,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private cannonflipY!: boolean;
   private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-  constructor(scene: Game, x: number, y: number, texture: string) {
-    super(scene, x, y, texture);
+  constructor(scene: Game) {
+    super(scene, 100, scene.scale.height / 2, I.SPACECRAFT);
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
@@ -87,7 +87,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannon.setDepth(DEPTH);
   }
   createFireEngine() {
-    this.manager = this.scene.add.particles(FLARES);
+    this.manager = this.scene.add.particles(I.FLARES);
     this.emitter = this.manager
       .createEmitter({
         name: 'fire',

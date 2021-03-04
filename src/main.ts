@@ -16,7 +16,7 @@ declare const process: {
 	}
 }
 
-const config: Phaser.Types.Core.GameConfig & extraConfig = {
+const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	input: {
 		gamepad: true,

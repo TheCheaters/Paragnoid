@@ -1,7 +1,7 @@
 import Weapon from '~/sprites/weapons/weapon';
 import WEAPON_ENEMY_TYPES from '~/sprites/enemies/weapons_enemy_types.json';
 import Game from '~/scenes/game';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
 import { WeaponEnemyType } from '~/types/weapons';
 
 export default class EnemyWeapon extends Weapon {
