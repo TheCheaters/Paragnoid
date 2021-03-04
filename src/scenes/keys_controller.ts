@@ -157,9 +157,9 @@ export default class KeysController extends Scene {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.zero)) {
-      const sound = this.scene.get('sound') as Sound;
-      sound.on = !sound.on;
-      console.log('Sound is on', sound.on);
+      const soundScene = this.scene.get('sound') as Sound;
+      soundScene.sound.mute = !soundScene.sound.mute;
+      console.log('Sound is on', !soundScene.sound.mute);
     }
 
     // reset pressed state at the end of update cycle

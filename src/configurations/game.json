@@ -10,5 +10,5 @@
   "BOTTOM_SPAWN_ZONE":          750,
   "TOP_KILL_ZONE":              -300,
   "BOTTOM_KILL_ZONE":           1000,
-  "MORTAL":                     true
+  "MORTAL":                     false
 }

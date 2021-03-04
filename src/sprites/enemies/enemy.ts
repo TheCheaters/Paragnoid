@@ -157,17 +157,16 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   takeHit(damage: number) {
     this.energy -= damage;
     if (this.energy <= 0) {
-      eventManager.emit(`play-${AUDIO_EXPLOSION}`);
       this.explode();
       this.ui?.addScore(this.scoreValue);
-    } else {
-      eventManager.emit(`play-${AUDIO_EXPLOSION}`);
     }
+    if (damage >= 20 ) /* è un laser, no esplosione a catena */ eventManager.emit(`play-${AUDIO_EXPLOSION}`);
   }
 
   explode() {
     const { explosions } = this.scene as Game;
     explosions.addExplosion(this.x, this.y);
+    eventManager.emit(`play-${AUDIO_EXPLOSION}`);
     this.kill();
   }
 

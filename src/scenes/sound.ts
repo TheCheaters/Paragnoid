@@ -11,7 +11,6 @@ type WeaponSatelliteType = keyof typeof WEAPON_SATELLITE_TYPES;
 
 
 export default class Intro extends Scene {
-  public on = true;
   text!: Phaser.GameObjects.Text;
   constructor() {
     super({
@@ -25,15 +24,14 @@ export default class Intro extends Scene {
 
     this.load.audio(S.ATMOSPHERE, S.ATMOSPHERE_PATH);
     this.load.audio(S.AUDIO_EXPLOSION, S.AUDIO_EXPLOSION_PATH);
-    this.load.audio(S.BASS, S.BASS_PATH);
     this.load.audio(S.BONUS, S.BONUS_PATH);
     this.load.audio(S.BUILD1, S.BUILD1_PATH);
     this.load.audio(S.BUILD2, S.BUILD2_PATH);
     this.load.audio(S.BUILD3, S.BUILD3_PATH);
+    this.load.audio(S.BUILDSP1, S.BUILDSP1_PATH);
     this.load.audio(S.DESTROYER_1, S.DESTROYER_1_PATH);
     this.load.audio(S.DESTROYER_2, S.DESTROYER_2_PATH);
     this.load.audio(S.GAMEOVER_LOUD, S.GAMEOVER_LOUD_PATH);
-    this.load.audio(S.GAMEOVER, S.GAMEOVER_PATH);
     this.load.audio(S.GMENTERT_LOUD, S.GMENTERT_LOUD_PATH);
     this.load.audio(S.LASER, S.LASER_PATH);
     this.load.audio(S.LASER2, S.LASER2_PATH);
@@ -49,21 +47,20 @@ export default class Intro extends Scene {
       this.text.destroy();
       this.scene.launch('intro');
       this.sound.play(S.ATMOSPHERE, {
-        volume: 1,
+        volume: 0,
       });
     }, 1000);
 
     const sounds = [
       S.AUDIO_EXPLOSION,
-      S.BASS,
       S.BONUS,
       S.BUILD1,
       S.BUILD2,
       S.BUILD3,
+      S.BUILDSP1,
       S.DESTROYER_1,
       S.DESTROYER_2,
       S.GAMEOVER_LOUD,
-      S.GAMEOVER,
       S.GMENTERT_LOUD,
       S.LASER,
       S.LASER2,
@@ -73,13 +70,28 @@ export default class Intro extends Scene {
       S.MISSILE,
     ];
 
-    sounds.forEach(sound => {
+    const configs = {
+      [S.AUDIO_EXPLOSION]: { volume: 0.1 },
+      [S.BONUS]:           { volume: 0.2 },
+      [S.BUILD1]:          { volume: 0.4 },
+      [S.BUILD2]:          { volume: 0.4 },
+      [S.BUILD3]:          { volume: 0.4 },
+      [S.BUILDSP1]:        { volume: 0.8 },
+      [S.DESTROYER_1]:     { volume: 0.6 },
+      [S.DESTROYER_2]:     { volume: 0.6 },
+      [S.GAMEOVER_LOUD]:   { volume: 0.4 },
+      [S.GMENTERT_LOUD]:   { volume: 0.4 },
+      [S.LASER]:           { volume: 0.1 },
+      [S.LASER2]:          { volume: 0.1 },
+      [S.LASER3]:          { volume: 0.1 },
+      [S.LASER34]:         { volume: 0.1 },
+      [S.LASERDOT]:        { volume: 0.4 },
+      [S.MISSILE]:         { volume: 0.2 },
+    }
 
+    sounds.forEach(sound => {
       eventManager.on(`play-${sound}`, () =>{
-        if (this.on) {
-          this.sound.play(sound);
-          console.log('playing:', sound);
-        }
+        this.sound.play(sound, configs[sound]);
       });
     });
   }
