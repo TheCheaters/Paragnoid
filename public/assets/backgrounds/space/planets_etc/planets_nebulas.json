@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "planets_nebulas-0.webp",
+			"image": "planets_nebulas-0.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 2030,
@@ -306,7 +306,7 @@
 			]
 		},
 		{
-			"image": "planets_nebulas-1.webp",
+			"image": "planets_nebulas-1.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1252,
@@ -338,7 +338,7 @@
 			]
 		},
 		{
-			"image": "planets_nebulas-2.webp",
+			"image": "planets_nebulas-2.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1073,
@@ -370,7 +370,7 @@
 			]
 		},
 		{
-			"image": "planets_nebulas-3.webp",
+			"image": "planets_nebulas-3.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1186,
@@ -405,6 +405,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:1082aaa75fa85a68cb463e5ac12abe2a:0d4a484f32a4904c3bcc86b604aebf2a:207efdc65134f4a9324512dd65c5ff1c$"
+		"smartupdate": "$TexturePacker:SmartUpdate:507ffac3ff469a33b1a270807a511764:0d4a484f32a4904c3bcc86b604aebf2a:6900d78da107d915b88addd55369448a$"
 	}
 }
