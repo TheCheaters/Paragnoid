@@ -1,7 +1,7 @@
 import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
 import { WeaponSatelliteType } from '~/types/weapons';
 
 const weaponSatelliteNames = Object.keys(WEAPON_SATELLITE_TYPES);

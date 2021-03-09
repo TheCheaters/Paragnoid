@@ -1,4 +1,7 @@
-import { AUDIO_EXPLOSION, HIT_ENEMY, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE, FLARES } from '~/constants.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/configurations/game.json';
+import { AUDIO_EXPLOSION } from '~/configurations/sounds.json';
+import { FLARES } from '~/configurations/images.json';
+
 import Game from '~/scenes/game';
 import UI from '~/scenes/ui';
 import ENEMY_TYPES from '~/sprites/enemies/enemy_types.json';
@@ -154,17 +157,16 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
   takeHit(damage: number) {
     this.energy -= damage;
     if (this.energy <= 0) {
-      eventManager.emit(`play-${AUDIO_EXPLOSION}`);
       this.explode();
       this.ui?.addScore(this.scoreValue);
-    } else {
-      eventManager.emit(`play-${HIT_ENEMY}`);
     }
+    if (damage >= 20 ) /* è un laser, no esplosione a catena */ eventManager.emit(`play-${AUDIO_EXPLOSION}`);
   }
 
   explode() {
     const { explosions } = this.scene as Game;
     explosions.addExplosion(this.x, this.y);
+    eventManager.emit(`play-${AUDIO_EXPLOSION}`);
     this.kill();
   }
 

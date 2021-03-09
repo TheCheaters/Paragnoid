@@ -1,8 +1,9 @@
-import { RESPAWN_TIME, MORTAL, FLARES } from '~/constants.json';
+import { RESPAWN_TIME, MORTAL } from '~/configurations/game.json';
+import * as I from '~/configurations/images.json';
+import { AUDIO_EXPLOSION, BUILD1 } from '~/configurations/sounds.json';
 import components from '~/sprites/player/components_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { PowerUpTypes, PowerUpType } from '~/sprites/powerups/powerups';
-
 import Game from '~/scenes/game';
 import debug from '~/utils/debug';
 import { WeaponPlayerType } from '~/types/weapons';
@@ -26,8 +27,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private cannonflipY!: boolean;
   private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-  constructor(scene: Game, x: number, y: number, texture: string) {
-    super(scene, x, y, texture);
+  constructor(scene: Game) {
+    super(scene, 100, scene.scale.height / 2, I.SPACECRAFT);
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true);
@@ -85,9 +86,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.cannon.setScale(SCALE);
     this.cannon.setFlipY(FLIP_Y);
     this.cannon.setDepth(DEPTH);
+    eventManager.emit(`play-${BUILD1}`);
+
   }
   createFireEngine() {
-    this.manager = this.scene.add.particles(FLARES);
+    this.manager = this.scene.add.particles(I.FLARES);
     this.emitter = this.manager
       .createEmitter({
         name: 'fire',
@@ -112,6 +115,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.decreaseEnergy(damage);
       }
     }
+    eventManager.emit(`play-${AUDIO_EXPLOSION}`);
   }
   decreaseEnergy(energy: number) {
     this.energyLevel -= energy;
@@ -168,7 +172,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   die() {
     const scene = this.scene as Game;
 
-    scene.mainCamera.shake(1000, 0.010);
+    scene.mainCamera.shake(1000, 0.020);
 
     if (scene.lives.lifes <= 0) scene.scene.start('gameover');
 

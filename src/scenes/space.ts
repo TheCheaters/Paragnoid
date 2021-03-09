@@ -1,4 +1,4 @@
-import { SPACE, PLANETS } from '~/constants.json';
+import { SPACE, PLANETS } from '~/configurations/images.json';
 import Level from '~/scenes/level';
 
 export default class Space extends Level {

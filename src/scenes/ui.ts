@@ -1,4 +1,4 @@
-import { PV_FONT_NAME, FLARES } from '~/constants.json';
+import { PV_FONT_NAME, FLARES } from '~/configurations/images.json';
 import { Scene } from 'phaser';
 import debug from '~/utils/debug';
 import Game from '~/scenes/game';
@@ -12,7 +12,6 @@ export default class UserInterface extends Scene {
   private style!: Phaser.GameObjects.Graphics;
   private manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   private emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-
   private energyLine!: Phaser.Geom.Line;
   private energyLineXPos = 130;
   private energyLineMaxWidth = 1040;

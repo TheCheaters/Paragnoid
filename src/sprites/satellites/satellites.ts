@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { SATELLITES, SATELLITES_ASSET_PATH, FLARES } from '~/constants.json';
+import { SATELLITES, SATELLITES_ASSET_PATH, FLARES } from '~/configurations/images.json';
 import WEAPON_SATELLITE_TYPES from '~/sprites/satellites/weapons_satellite_types.json';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponSatelliteType } from "~/types/weapons";

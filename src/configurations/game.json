@@ -1,0 +1,14 @@
+{
+  "GAME_NAME":                  "Paragnoid",
+  "GAME_TITLE":                 "Rabbia edition",
+  "RESPAWN_TIME":               500,
+  "LEFT_KILL_ZONE":             -300,
+  "LEFT_SPAWN_ZONE":            -150,
+  "RIGHT_KILL_ZONE":            1500,
+  "RIGHT_SPAWN_ZONE":           1350,
+  "TOP_SPAWN_ZONE":             -150,
+  "BOTTOM_SPAWN_ZONE":          750,
+  "TOP_KILL_ZONE":              -300,
+  "BOTTOM_KILL_ZONE":           1000,
+  "MORTAL":                     false
+}

@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
-import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/configurations/game.json';
 import eventManager from '~/emitters/event-manager';
 
 type WeaponType = {

@@ -1,4 +1,4 @@
-import { NUVOLE, HORIZON } from '~/constants.json';
+import { NUVOLE, HORIZON } from '~/configurations/images.json';
 import nuvoleAtlas from '../../public/assets/backgrounds/sky/nuvole/nuvole.json';
 import Level from '~/scenes/level';
 
