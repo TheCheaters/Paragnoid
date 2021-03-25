@@ -1,6 +1,11 @@
 {
   "GAME_NAME":                  "Paragnoid",
   "GAME_TITLE":                 "Rabbia edition",
+  "SCREEN_WIDTH":               1200,
+  "SCREEN_HEIGHT":              600,
+  "ENERGY_BAR_HEIGHT":          60,
+  "CAMERA_WIDTH":               1600,
+  "CAMERA_HEIGHT":              800,
   "RESPAWN_TIME":               500,
   "LEFT_KILL_ZONE":             -300,
   "LEFT_SPAWN_ZONE":            -150,
