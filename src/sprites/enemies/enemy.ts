@@ -1,4 +1,4 @@
-import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/configurations/game.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/utils/spawn_kill_areas';
 import { AUDIO_EXPLOSION } from '~/configurations/sounds.json';
 import { FLARES } from '~/configurations/images.json';
 
@@ -179,6 +179,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.tween?.stop();
     this.removeFireEngine();
     console.log(`Killed Enemy ${this.enemyName}`);
+    enemyProgressiveNumber -= 1;
     if (this.isBoss) eventManager.emit(`${BOSS_LVL[this.enemyType]}-is-over`);
   }
 

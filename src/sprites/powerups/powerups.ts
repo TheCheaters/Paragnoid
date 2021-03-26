@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/configurations/game.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/utils/spawn_kill_areas';
 import { POWERUPS, FLARES } from '~/configurations/images.json';
 import eventManager from '~/emitters/event-manager';
 
