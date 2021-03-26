@@ -1,6 +1,8 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
-import { POWERUPS, FLARES, LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, RIGHT_SPAWN_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/utils/spawn_kill_areas';
+import { POWERUPS, FLARES } from '~/configurations/images.json';
+import eventManager from '~/emitters/event-manager';
 
 export enum PowerUpTypes {
   ENERGY         = 'ENERGY',
@@ -87,6 +89,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
   }
 
   kill() {
+    eventManager.emit('play-BONUS');
     this.body.enable = false;
     this.setActive(false);
     this.setVisible(false);

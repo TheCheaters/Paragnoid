@@ -1,5 +1,8 @@
 import Game from '~/scenes/game';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
+import eventManager from '~/emitters/event-manager';
+import * as S from '~/configurations/sounds.json';
+
 
 export default class Shield {
   private scene: Game;
@@ -31,8 +34,11 @@ export default class Shield {
     return this?.emitter?.visible === true;
   }
   shieldUp() {
+    const scene = this.scene as Game;
     this.createShield();
     this.emitter.setVisible(true);
+    eventManager.emit(`play-${S.BUILDSP1}`);
+    scene.mainCamera.shake(250, 0.005);
   }
   shieldDown() {
     this.emitter.setLifespan(1000);

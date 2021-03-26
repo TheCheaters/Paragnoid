@@ -1,4 +1,4 @@
-import { SPACE, PLANETS } from '~/constants.json';
+import { SPACE, PLANETS } from '~/configurations/images.json';
 import Level from '~/scenes/level';
 
 export default class Space extends Level {
@@ -38,7 +38,7 @@ export default class Space extends Level {
     let backgroundVelocity = 0;
 
     const VelocityX = 0;
-    const VelocityY = 0;
+    const VelocityY = 100;
 
     backgroundVelocity = VelocityX > 0 ? VelocityX / 100 : 0;
     this.bg.tilePositionY += VelocityY / 500;

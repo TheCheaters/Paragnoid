@@ -1,15 +1,16 @@
 import { Scene } from "phaser";
+import * as I from '~/configurations/images.json';
 
 export default class Lives extends Phaser.Physics.Arcade.Group {
     public lifes!: number;
     public firstLifeIconX!: number;
-    constructor(scene: Scene, texture: string) {
+    constructor(scene: Scene) {
         super(scene.physics.world, scene);
         this.lifes = 3;
 
         this.createMultiple({
             frameQuantity: this.lifes,
-            key: texture,
+            key: I.BATTERY,
             repeat: 0,
           });
           this.firstLifeIconX = this.scene.scale.width - 40 - (this.lifes * 50);

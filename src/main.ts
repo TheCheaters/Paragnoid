@@ -9,6 +9,7 @@ import GameOver from '~/scenes/gameover';
 import Preloader from '~/scenes/preloader';
 import KeyController from '~/scenes/keys_controller';
 import debug from '~/utils/debug';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '~/configurations/game.json';
 
 declare const process: {
 	env: {
@@ -16,7 +17,7 @@ declare const process: {
 	}
 }
 
-const config: Phaser.Types.Core.GameConfig & extraConfig = {
+const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	input: {
 		gamepad: true,
@@ -24,12 +25,8 @@ const config: Phaser.Types.Core.GameConfig & extraConfig = {
 	scale: {
 		mode: Phaser.Scale.FIT,
 		parent: 'phaser',
-		width: 1200,
-		height: 600,
-		max: {
-				width: 2400,
-				height: 1200
-		}
+		width: SCREEN_WIDTH,
+		height: SCREEN_HEIGHT,
 	},
 	physics: {
 		default: 'arcade',

@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import Game from '~/scenes/game';
 import { DEFAULT } from '~/sprites/enemies/weapons_enemy_types.json';
-import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/constants.json';
+import { LEFT_KILL_ZONE, RIGHT_KILL_ZONE, TOP_KILL_ZONE, BOTTOM_KILL_ZONE } from '~/utils/spawn_kill_areas';
 import eventManager from '~/emitters/event-manager';
 
 type WeaponType = {
@@ -16,6 +16,9 @@ type WeaponType = {
   explodes: boolean;
   flip?: boolean;
 }
+
+let weaponProgressiveNumber = 0;
+
 
 export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
   private timer!: Phaser.Time.TimerEvent;
@@ -47,7 +50,8 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.removeTrail();
-    console.log('weapon killed');
+    console.log(`Killed Weapon ${weaponProgressiveNumber}`);
+    weaponProgressiveNumber -= 1;
   }
 
   abstract createTrail(): void;
@@ -67,7 +71,8 @@ export default abstract class Weapon extends Phaser.Physics.Arcade.Sprite {
     this.setOrigin(1, 0.5);
     this.enableBody(true, x, y, true, true);
     eventManager.emit(`play-${sound}`);
-    console.log('made weapon');
+    weaponProgressiveNumber += 1;
+    console.log(`Made Weapon ${weaponProgressiveNumber}`);
   }
 
 	preUpdate(time: number, delta: number,) {

@@ -2,13 +2,13 @@ import Weapon from '~/sprites/weapons/weapon';
 import Game from '~/scenes/game';
 import WEAPON_PLAYER_TYPES from '~/sprites/player/weapons_player_types.json';
 import { WeaponPlayerType, WeaponType } from '~/types/weapons';
-import { FLARES } from '~/constants.json';
+import { FLARES } from '~/configurations/images.json';
 import eventManager from '~/emitters/event-manager';
 
 export default class PlayerWeapon extends Weapon {
   manager!: Phaser.GameObjects.Particles.ParticleEmitterManager;
   emitter!: Phaser.GameObjects.Particles.ParticleEmitter;
-  particleType!: 'LASER' | 'SMOKE';
+  particleType!: 'MISSILE' | 'LASER' | 'PLASMA';
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y);
@@ -16,10 +16,10 @@ export default class PlayerWeapon extends Weapon {
 
   createTrail() {
     this.manager = this.scene.add.particles(FLARES);
-    if (this.particleType === 'SMOKE') {
+    if (this.particleType === 'MISSILE') {
       this.emitter = this.manager
         .createEmitter({
-          name: 'fire',
+          name: 'missile',
           frame: [
             'yellow',
           ],
@@ -27,9 +27,9 @@ export default class PlayerWeapon extends Weapon {
           y: this.y,
           blendMode: 'ADD',
           scale: { start: 0.1, end: 0 },
-          speed: { min: -100, max: 100 },
-          lifespan: 80,
-          quantity: 1,
+          speed: { min: -50, max: 50 },
+          lifespan: 300,
+          quantity: 5,
         })
     } else if (this.particleType === 'LASER') {
       this.emitter = this.manager
@@ -44,6 +44,21 @@ export default class PlayerWeapon extends Weapon {
           scale: 0.3,
           speed: { min: -100, max: 100 },
           lifespan: 40,
+          quantity: 1,
+        });
+    } else if (this.particleType === 'PLASMA') {
+      this.emitter = this.manager
+        .createEmitter({
+          name: 'plasma',
+          frame: [
+            'red',
+          ],
+          x: this.x,
+          y: this.y,
+          blendMode: 'ADD',
+          scale: { start: 0.1, end: 0 },
+          speed: { min: -100, max: 100 },
+          lifespan: 300,
           quantity: 1,
         });
     }
