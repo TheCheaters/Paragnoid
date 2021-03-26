@@ -94,7 +94,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     this.setVelocity(0);
-    this.flares.explode(20, this.x, this.y);
+    this?.flares?.explode(20, this.x, this.y);
   }
 
 	preUpdate(time: number, delta: number) {

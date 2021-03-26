@@ -1,10 +1,10 @@
 import { SPACE, PLANETS } from '~/configurations/images.json';
 import Level from '~/scenes/level';
+import Game from './game';
 
 export default class Space extends Level {
   distance = 1500;
   nebulaDeltaSpeed = 1.5;
-
   private bg!: Phaser.GameObjects.TileSprite;
   private nebule!: {
     image: Phaser.GameObjects.Image,
@@ -37,11 +37,16 @@ export default class Space extends Level {
 
     let backgroundVelocity = 0;
 
-    const VelocityX = 0;
-    const VelocityY = 100;
+    const game = this.scene.get('game') as Game;
+    const { player } = game;
+
+    player.scrollFactorX
+
+    const VelocityX = player.x / 4;
+    const VelocityY = player.y / 4;
 
     backgroundVelocity = VelocityX > 0 ? VelocityX / 100 : 0;
-    this.bg.tilePositionY += VelocityY / 500;
+    this.bg.tilePositionY = VelocityY;
 
     this.bg.tilePositionX += 1 + backgroundVelocity;
 

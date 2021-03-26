@@ -71,7 +71,7 @@ export default class Game extends Scene {
 
     this.mainCamera = this.cameras.main;
     this.mainCamera.setBounds(-xBound, -yBound, CAMERA_WIDTH, CAMERA_HEIGHT).setName('main');
-    this.mainCamera.startFollow(this.player, false, 0.2, 0.2);
+    this.mainCamera.startFollow(this.player);
     this.physics.world.setBounds(-xBound, -yBound, CAMERA_WIDTH, CAMERA_HEIGHT - ENERGY_BAR_HEIGHT);
 
     this.scene.launch('ui');
